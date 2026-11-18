@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = "5511999999999"; // Replace with real Falandou number
+export const WHATSAPP_NUMBER = "5511971419047";
 
 export function getWhatsAppUrl(message?: string): string {
   const defaultMessage = "Olá! Tenho interesse em conhecer os planos da Falandou para profissionais.";
