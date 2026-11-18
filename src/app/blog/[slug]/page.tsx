@@ -4,10 +4,8 @@ import Link from "next/link";
 import { ArrowLeft, Clock, MessageCircle } from "lucide-react";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-import { getArticleBySlug, getArticles } from "@/lib/supabase";
+import { getArticleBySlug, getArticles } from "@/lib/blog";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
-
-export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
@@ -15,7 +13,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const article = await getArticleBySlug(slug);
+  const article = getArticleBySlug(slug);
   if (!article) return { title: "Artigo não encontrado" };
 
   return {
@@ -24,15 +22,10 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams() {
-  try {
-    const articles = await getArticles();
-    if (articles.length === 0) return [{ slug: "_placeholder" }];
-    return articles.map((a) => ({ slug: a.slug }));
-  } catch {
-    // Fallback when Supabase is unreachable at build time
-    return [{ slug: "_placeholder" }];
-  }
+export function generateStaticParams() {
+  const articles = getArticles();
+  if (articles.length === 0) return [{ slug: "_placeholder" }];
+  return articles.map((a) => ({ slug: a.slug }));
 }
 
 export default async function ArticlePage({
@@ -41,7 +34,7 @@ export default async function ArticlePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const article = await getArticleBySlug(slug);
+  const article = getArticleBySlug(slug);
 
   if (!article) notFound();
 
@@ -96,7 +89,7 @@ export default async function ArticlePage({
             {article.resumo}
           </p>
 
-          {/* Content */}
+          {/* Content — rendered as markdown */}
           <div
             className="font-body text-grafite/80 text-base leading-relaxed prose-custom"
             dangerouslySetInnerHTML={{ __html: article.conteudo }}

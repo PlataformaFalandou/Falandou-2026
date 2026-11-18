@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Clock } from "lucide-react";
-import type { Article } from "@/lib/supabase";
+import type { Article } from "@/lib/blog";
 
 const categoryColors: Record<string, string> = {
   "Dicas": "#FF6820",

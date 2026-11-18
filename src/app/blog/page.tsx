@@ -2,18 +2,15 @@ import { Metadata } from "next";
 import BlogClient from "./BlogClient";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-import { getArticles, categories } from "@/lib/supabase";
+import { getArticles, categories } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "Blog — Falandou | Inglês para Profissionais",
   description: "Dicas, pronúncia, vocabulário e motivação para você dominar o inglês profissional.",
 };
 
-export const revalidate = 3600; // ISR: revalidate every hour
-
-export default async function BlogPage() {
-  const articles = await getArticles();
-
+export default function BlogPage() {
+  const articles = getArticles();
   return (
     <>
       <Navbar />
