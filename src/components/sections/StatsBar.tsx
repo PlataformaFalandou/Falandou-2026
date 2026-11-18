@@ -32,6 +32,22 @@ function StatItem({
   );
 }
 
+function StatStatic({ display, label, delay = 0 }: { display: string; label: string; delay?: number }) {
+  return (
+    <div
+      className="reveal text-center px-6 py-6"
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      <div className="font-display font-extrabold text-4xl md:text-5xl text-white">
+        {display}
+      </div>
+      <div className="text-white/60 text-sm mt-2 max-w-[140px] mx-auto leading-snug">
+        {label}
+      </div>
+    </div>
+  );
+}
+
 export default function StatsBar() {
   return (
     <section style={{ backgroundColor: "#161616" }} className="border-y border-white/10 py-4">
@@ -40,7 +56,7 @@ export default function StatsBar() {
           <StatItem value={600} suffix="+" label="Profissionais formados" delay={0} />
           <StatItem value={7} suffix="+" label="Anos de experiência" delay={100} />
           <StatItem value={90} label="Dias para resultado visível" delay={200} />
-          <StatItem value={4} suffix=".9★" label="Avaliação média pelos alunos" delay={300} />
+          <StatStatic display="4.9★" label="Avaliação média pelos alunos" delay={300} />
         </div>
       </div>
     </section>
