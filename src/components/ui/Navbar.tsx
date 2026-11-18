@@ -30,12 +30,12 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-6 h-16 md:h-18 flex items-center justify-between">
-        {/* Logo */}
+      <nav className="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
+        {/* Logo — white when on hero, dark when scrolled */}
         <Link href="/" className="flex items-center gap-2">
           <span
-            className="font-display font-extrabold text-2xl tracking-tight"
-            style={{ color: "#161616" }}
+            className="font-display font-extrabold text-2xl tracking-tight transition-colors duration-300"
+            style={{ color: scrolled ? "#161616" : "white" }}
           >
             Falandou
             <span style={{ color: "#FF6820" }}>.</span>
@@ -48,7 +48,8 @@ export default function Navbar() {
             <li key={link.label}>
               <a
                 href={link.href}
-                className="font-body text-sm font-medium text-grafite/70 hover:text-laranja transition-colors duration-200"
+                className="text-sm font-medium transition-colors duration-200 hover:opacity-80"
+                style={{ color: scrolled ? "rgba(22,22,22,0.65)" : "rgba(255,255,255,0.8)" }}
               >
                 {link.label}
               </a>
@@ -71,7 +72,8 @@ export default function Navbar() {
 
         {/* Mobile menu toggle */}
         <button
-          className="md:hidden p-2 rounded-lg hover:bg-black/5 transition-colors"
+          className="md:hidden p-2 rounded-lg transition-colors"
+          style={{ color: scrolled ? "#161616" : "white" }}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Abrir menu"
         >

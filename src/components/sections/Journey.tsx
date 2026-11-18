@@ -52,91 +52,99 @@ const steps = [
 
 export default function Journey() {
   return (
-    <section id="como-funciona" className="py-20 md:py-28 bg-white">
+    <section id="como-funciona" className="py-24 md:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="max-w-2xl mb-16">
-          <p className="reveal font-body text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+        <div className="text-center max-w-2xl mx-auto mb-20">
+          <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
             Como funciona
           </p>
           <h2
-            className="reveal font-display font-extrabold text-grafite leading-tight delay-100"
-            style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+            className="reveal font-display font-extrabold leading-tight delay-100"
+            style={{ fontSize: "clamp(2rem, 4vw, 3rem)", color: "#161616" }}
           >
             Sua jornada de{" "}
             <span style={{ color: "#FF6820" }}>90 dias</span>{" "}
             para o inglês profissional.
           </h2>
-          <p className="reveal font-body text-grafite/60 text-lg mt-4 delay-200">
+          <p className="reveal font-body text-lg mt-4 delay-200" style={{ color: "rgba(22,22,22,0.55)" }}>
             Um processo estruturado, do diagnóstico ao resultado — tudo personalizado para o seu contexto.
           </p>
         </div>
 
-        {/* Steps */}
-        <div className="space-y-6">
+        {/* Steps — alternating layout like reference */}
+        <div className="space-y-8">
           {steps.map((step, i) => (
             <div
               key={step.number}
-              className={`reveal group grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-black/5 hover:border-laranja/20 hover:shadow-lg transition-all duration-300 ${
+              className={`reveal group grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 ${
                 i % 2 === 1 ? "md:[direction:rtl]" : ""
               }`}
               style={{ transitionDelay: `${i * 60}ms` }}
             >
-              {/* Image */}
-              <div className={`relative h-64 md:h-auto md:min-h-[280px] overflow-hidden ${i % 2 === 1 ? "md:[direction:ltr]" : ""}`}>
+              {/* Image half */}
+              <div
+                className={`relative overflow-hidden ${i % 2 === 1 ? "md:[direction:ltr]" : ""}`}
+                style={{ minHeight: "320px" }}
+              >
                 <Image
                   src={step.img}
                   alt={step.title}
                   fill
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
+                {/* Number badge */}
                 <div
-                  className="absolute inset-0"
-                  style={{ background: "linear-gradient(135deg, rgba(255,104,32,0.15) 0%, transparent 60%)" }}
-                />
-                {/* Step number overlay */}
-                <div
-                  className="absolute top-5 left-5 w-10 h-10 rounded-full flex items-center justify-center font-display font-black text-sm text-white"
+                  className="absolute top-6 left-6 w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-base text-white z-10 shadow-lg"
                   style={{ backgroundColor: "#FF6820" }}
                 >
                   {step.number}
                 </div>
-              </div>
-
-              {/* Content */}
-              <div className={`bg-neve p-8 md:p-10 flex flex-col justify-center ${i % 2 === 1 ? "md:[direction:ltr]" : ""}`}>
-                <div className="flex items-center gap-2 mb-4">
+                {/* Tag badge */}
+                <div className="absolute bottom-6 left-6 z-10">
                   <span
-                    className="text-xs font-semibold px-3 py-1 rounded-full"
-                    style={{ background: "rgba(255,104,32,0.1)", color: "#FF6820" }}
+                    className="text-xs font-bold px-3 py-1.5 rounded-full text-white backdrop-blur-sm"
+                    style={{ background: "rgba(22,22,22,0.7)" }}
                   >
                     {step.tag}
                   </span>
                 </div>
+              </div>
 
+              {/* Content half */}
+              <div
+                className={`flex flex-col justify-center p-10 md:p-14 ${i % 2 === 1 ? "md:[direction:ltr]" : ""}`}
+                style={{ backgroundColor: i % 2 === 0 ? "#161616" : "#FF6820" }}
+              >
                 <h3
-                  className="font-display font-extrabold text-grafite mb-1"
-                  style={{ fontSize: "clamp(1.4rem, 2.5vw, 2rem)" }}
+                  className="font-display font-extrabold text-white mb-2"
+                  style={{ fontSize: "clamp(1.6rem, 2.8vw, 2.25rem)" }}
                 >
                   {step.title}
                 </h3>
-                <p className="font-body text-sm font-semibold text-grafite/50 mb-4 uppercase tracking-wide">
+                <p
+                  className="font-body text-sm font-semibold uppercase tracking-wide mb-5"
+                  style={{ color: i % 2 === 0 ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0.7)" }}
+                >
                   {step.subtitle}
                 </p>
-                <p className="font-body text-grafite/70 text-base leading-relaxed">
+                <p
+                  className="font-body text-base leading-relaxed"
+                  style={{ color: i % 2 === 0 ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.9)" }}
+                >
                   {step.description}
                 </p>
 
                 {/* Progress dots */}
-                <div className="flex gap-2 mt-8">
+                <div className="flex gap-2 mt-10">
                   {steps.map((_, j) => (
                     <div
                       key={j}
                       className="h-1.5 rounded-full transition-all duration-300"
                       style={{
-                        width: j === i ? "24px" : "6px",
-                        backgroundColor: j === i ? "#FF6820" : "rgba(22,22,22,0.15)",
+                        width: j === i ? "28px" : "6px",
+                        backgroundColor: j === i ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.25)",
                       }}
                     />
                   ))}

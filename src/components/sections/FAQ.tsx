@@ -71,21 +71,21 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-20 md:py-28 bg-neve">
+    <section className="py-24 md:py-32" style={{ backgroundColor: "#F5F6F1" }}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-5 gap-12 items-start">
+        <div className="grid lg:grid-cols-5 gap-14 items-start">
           {/* Left: header */}
           <div className="lg:col-span-2">
-            <p className="reveal font-body text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
               Dúvidas frequentes
             </p>
             <h2
-              className="reveal font-display font-extrabold text-grafite leading-tight delay-100"
-              style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)" }}
+              className="reveal font-display font-extrabold leading-tight delay-100"
+              style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}
             >
               Tudo que você precisa saber antes de começar.
             </h2>
-            <p className="reveal font-body text-grafite/60 text-base mt-4 delay-200">
+            <p className="reveal font-body text-base mt-4 delay-200" style={{ color: "rgba(22,22,22,0.55)" }}>
               Não encontrou sua resposta? Fale diretamente com a gente pelo WhatsApp.
             </p>
 
@@ -93,15 +93,15 @@ export default function FAQ() {
               href="https://wa.me/5511999999999"
               target="_blank"
               rel="noopener noreferrer"
-              className="reveal inline-flex items-center gap-2 mt-6 px-5 py-3 rounded-full text-sm font-semibold text-white transition-all duration-200 hover:scale-105 delay-300"
-              style={{ backgroundColor: "#FF6820" }}
+              className="reveal inline-flex items-center gap-2 mt-8 px-6 py-3.5 rounded-full text-sm font-bold text-white transition-all duration-200 hover:scale-105 delay-300"
+              style={{ backgroundColor: "#161616" }}
             >
               Perguntar no WhatsApp
             </a>
           </div>
 
           {/* Right: FAQ list */}
-          <div className="reveal lg:col-span-3 bg-white rounded-2xl p-6 md:p-8 border border-black/5 delay-200">
+          <div className="reveal lg:col-span-3 bg-white rounded-2xl p-8 md:p-10 shadow-sm delay-200">
             {faqs.map((faq, i) => (
               <FAQItem
                 key={i}
