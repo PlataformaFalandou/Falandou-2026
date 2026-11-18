@@ -133,7 +133,7 @@ export default function Hero() {
           >
             <div className="relative">
               {/* Main image */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] md:aspect-[3/4] lg:aspect-[4/5]">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[16/10] md:aspect-[16/10] lg:aspect-[16/10]">
                 <Image
                   src="/images/hero-woman-meeting.png"
                   alt="Profissional apresentando com confiança em inglês"
