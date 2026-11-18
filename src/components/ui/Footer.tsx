@@ -135,9 +135,6 @@ export default function Footer() {
           <p className="font-body text-xs text-white/30">
             © {new Date().getFullYear()} Falandou Escola de Inglês. Todos os direitos reservados.
           </p>
-          <p className="font-body text-xs text-white/30">
-            CNPJ 00.000.000/0001-00
-          </p>
         </div>
       </div>
     </footer>
