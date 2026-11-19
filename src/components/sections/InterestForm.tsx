@@ -16,7 +16,7 @@ interface InterestFormProps {
 export default function InterestForm({
   context,
   whatsappMessage,
-  ctaLabel = "Quero garantir minha vaga",
+  ctaLabel = "Quero começar",
 }: InterestFormProps) {
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");

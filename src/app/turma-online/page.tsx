@@ -40,8 +40,8 @@ const benefits = [
   },
   {
     icon: "📊",
-    title: "Turmas pequenas",
-    desc: "Máximo de 8 alunos por turma. Atenção individualizada, mesmo em grupo.",
+    title: "Máximo 8 alunos por turma",
+    desc: "O limite existe por uma razão pedagógica: acima de 8, o professor perde a capacidade de corrigir pronúncia e fluência em tempo real para cada participante. Com 8, todo aluno fala pelo menos duas vezes por aula — abaixo disso, o grupo vira plateia.",
   },
 ];
 
@@ -251,9 +251,11 @@ export default function TurmaOnlinePage() {
                 marginBottom: "36px",
               }}
             >
-              A turma ainda não tem data confirmada. Quanto mais interesse
-              registrarmos, mais rápido ela abre. Deixe seu nome e entraremos
-              em contato assim que as vagas estiverem disponíveis.
+              A turma ainda não tem data confirmada. Com no máximo 8 alunos
+              por turma — limite pedagógico, não comercial — cada abertura
+              preenche rápido. Quanto mais interesse registrarmos, mais rápido
+              ela abre. Deixe seu nome e entraremos em contato assim que as
+              vagas estiverem disponíveis.
             </p>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <InterestForm
