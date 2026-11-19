@@ -35,14 +35,14 @@ export default function PromocaoCargoPage() {
       <Navbar />
       <main>
         <Hero
-          eyebrow="Inglês para crescimento e promoção na carreira"
+          eyebrow="O inglês está te impedindo de crescer — e você sabe disso."
           headline={
             <>
               O inglês que faltava{" "}
               <span style={{ color: "#FF6820" }}>para o próximo nível.</span>
             </>
           }
-          subheadline="Cargos sênior e de liderança em empresas globais exigem inglês fluente — não suficiente, fluente. Em 90 dias você desenvolve o nível que a sua empresa exige para promover."
+          subheadline="Você tem a experiência e a entrega — mas o inglês continua como barreira visível para o próximo nível. Cargos sênior em empresas globais exigem fluência, não suficiência. Em 90 dias você elimina essa barreira."
           whatsappContext="promocao"
         />
         <StatsBar />

@@ -35,14 +35,14 @@ export default function EntrevistaEmpregoPage() {
       <Navbar />
       <main>
         <Hero
-          eyebrow="Inglês para entrevista de emprego"
+          eyebrow="Você tem o perfil. Mas trava quando a entrevista é em inglês."
           headline={
             <>
               Passe na entrevista.{" "}
               <span style={{ color: "#FF6820" }}>Em inglês.</span>
             </>
           }
-          subheadline="Recrutadores de multinacionais avaliam fluência, pronúncia e segurança — não só vocabulário. Em 90 dias você desenvolve a confiança que faz diferença na hora certa."
+          subheadline="A vaga existe, o currículo é bom — mas a entrevista em inglês trava tudo. Recrutadores avaliam fluência, clareza e segurança. Em 90 dias você desenvolve exatamente o que faz diferença na hora certa."
           whatsappContext="entrevista"
         />
         <StatsBar />

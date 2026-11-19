@@ -40,15 +40,14 @@ interface HeroProps {
 }
 
 export default function Hero({
-  eyebrow = "Inglês para profissionais que precisam de resultado",
+  eyebrow = "Você sabe inglês. Mas trava na hora de usar.",
   headline = (
     <>
-      Inglês que{" "}
-      <span style={{ color: "#FF6820" }}>abre portas</span>{" "}
-      na sua carreira.
+      Fale inglês com{" "}
+      <span style={{ color: "#FF6820" }}>confiança no trabalho.</span>
     </>
   ),
-  subheadline = "Plano de 90 dias completamente personalizado ao seu objetivo profissional. Exame CEFR, acompanhamento ativo e aulas particulares com professores especializados.",
+  subheadline = "A maioria dos profissionais entende inglês razoavelmente bem. O problema é na hora de falar — reunião, apresentação, entrevista. A Falandou resolve exatamente isso: inglês funcional para o seu contexto, em 90 dias.",
   whatsappContext = "hero",
 }: HeroProps) {
   const [loaded, setLoaded] = useState(false);

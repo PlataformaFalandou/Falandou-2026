@@ -35,14 +35,14 @@ export default function InglesExecutivoPage() {
       <Navbar />
       <main>
         <Hero
-          eyebrow="Inglês executivo para reuniões e apresentações"
+          eyebrow="Você entende a reunião. Mas raramente toma a palavra."
           headline={
             <>
               Conduza reuniões.{" "}
               <span style={{ color: "#FF6820" }}>Com autoridade.</span>
             </>
           }
-          subheadline="Reuniões internacionais, apresentações para a diretoria, negociações com parceiros — cada contexto exige vocabulário, ritmo e postura diferentes. Desenvolvemos isso no seu plano de 90 dias."
+          subheadline="Participar de reuniões internacionais sem contribuir é invisibilidade profissional. Em 90 dias você aprende a tomar a palavra, conduzir discussões e apresentar com clareza — no inglês do seu contexto executivo."
           whatsappContext="executivo"
         />
         <StatsBar />
