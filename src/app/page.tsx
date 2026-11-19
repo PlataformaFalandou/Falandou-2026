@@ -10,6 +10,7 @@ import YouTubeVideos from "@/components/sections/YouTubeVideos";
 import Teachers from "@/components/sections/Teachers";
 import MidCTA from "@/components/sections/MidCTA";
 import FAQ from "@/components/sections/FAQ";
+import LeadMagnet from "@/components/sections/LeadMagnet";
 import BlogPreview from "@/components/sections/BlogPreview";
 import Footer from "@/components/ui/Footer";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
@@ -31,6 +32,7 @@ export default function HomePage() {
         <Teachers />
         <MidCTA />
         <FAQ />
+        <LeadMagnet />
         <BlogPreview />
       </main>
       <Footer />

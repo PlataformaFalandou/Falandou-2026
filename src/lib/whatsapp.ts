@@ -31,6 +31,7 @@ export function getWhatsAppUrlForContext(context: string): string {
     entrevista: "Olá! Estou me preparando para entrevistas de emprego em inglês e quero saber como a Falandou pode me ajudar.",
     executivo: "Olá! Preciso de inglês executivo para reuniões e apresentações. Quero entender como a Falandou trabalha com esse objetivo.",
     promocao: "Olá! Estou buscando uma promoção e o inglês é requisito. Quero saber como a Falandou pode acelerar meu desenvolvimento.",
+    leadmagnet: "Olá! Vi o roteiro de 30 dias no site da Falandou e quero receber o PDF completo.",
   };
   return getWhatsAppUrl(messages[context] ?? messages.hero);
 }
