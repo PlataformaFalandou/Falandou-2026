@@ -59,7 +59,7 @@ const faqs = [
     a: "Sim — para isso existe o plano intensivo. Em 30 dias você não muda tudo, mas você treina as situações específicas da sua entrevista: apresentação pessoal, perguntas comportamentais, vocabulário do setor. Já preparamos candidatos com janelas de 3 semanas.",
   },
   {
-    q: "Já tenho inglês médio mas trao na hora de falar. O curso funciona para mim?",
+    q: "Já tenho inglês médio, mas travo na hora de falar. O curso funciona para mim?",
     a: "Esse é o perfil mais comum que atendemos. Inglês passivo (entender, ler) é diferente de inglês ativo (falar sob pressão em tempo real). O trabalho é de ativação: usar, em voz alta, o que você já sabe — com ritmo e segurança.",
   },
   {

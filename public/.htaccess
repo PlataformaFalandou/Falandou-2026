@@ -1,3 +1,7 @@
 # Hostinger (Apache/LiteSpeed): usa a 404 personalizada gerada pelo Next (out/404.html).
-# Sem esta linha, o servidor mostra a página de erro padrão da hospedagem.
+# Sem esta linha, o servidor mostra a pagina de erro padrao da hospedagem.
 ErrorDocument 404 /404.html
+
+# /entrevista-emprego duplicava /ingles-entrevista (mesmo titulo, mesma busca).
+# 301 mantem links antigos e anuncios funcionando e concentra o SEO numa pagina so.
+RedirectMatch 301 ^/entrevista-emprego/?$ /ingles-entrevista/

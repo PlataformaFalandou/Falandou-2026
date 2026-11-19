@@ -22,7 +22,7 @@ const STORAGE_KEY = "falandou_entry_segment";
 // `keywords`: se a mensagem do botão já fala disso, não repetimos.
 const SEGMENTS: Record<string, { pages: string[]; goal: string; keywords: string[] }> = {
   entrevista: {
-    pages: ["/ingles-entrevista", "/entrevista-emprego"],
+    pages: ["/ingles-entrevista"],
     goal: "me preparar para uma entrevista em inglês",
     keywords: ["entrevista"],
   },
