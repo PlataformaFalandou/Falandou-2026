@@ -1,31 +1,6 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-
-const mockPosts = [
-  {
-    slug: "como-melhorar-pronuncia-ingles",
-    category: "Pronúncia",
-    title: "Como melhorar sua pronúncia em inglês sem morar fora do Brasil",
-    excerpt: "Técnicas práticas usadas por professores de fonética para corrigir os erros mais comuns de brasileiros.",
-    readTime: "5 min",
-  },
-  {
-    slug: "vocabulario-reunioes-negocios",
-    category: "Vocabulário",
-    title: "50 expressões essenciais para reuniões de negócios em inglês",
-    excerpt: "Do 'let's circle back' ao 'take this offline' — expressões que todo profissional precisa dominar.",
-    readTime: "7 min",
-  },
-  {
-    slug: "diferenca-cefr-niveis-ingles",
-    category: "Dicas",
-    title: "CEFR: o que significa cada nível de inglês e onde você provavelmente está",
-    excerpt: "Entenda o quadro europeu de referências e o que representa cada nível — do A1 ao C2.",
-    readTime: "6 min",
-  },
-];
+import { getArticles } from "@/lib/blog";
 
 const categoryColors: Record<string, string> = {
   "Pronúncia": "#FF6820",
@@ -38,6 +13,8 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function BlogPreview() {
+  const posts = getArticles().slice(0, 3);
+
   return (
     <section className="py-20 md:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-6">
@@ -66,7 +43,7 @@ export default function BlogPreview() {
 
         {/* Posts grid */}
         <div className="grid md:grid-cols-3 gap-6">
-          {mockPosts.map((post, i) => (
+          {posts.map((post, i) => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
@@ -76,7 +53,7 @@ export default function BlogPreview() {
               {/* Color header bar */}
               <div
                 className="h-1.5 w-full"
-                style={{ backgroundColor: categoryColors[post.category] || "#FF6820" }}
+                style={{ backgroundColor: categoryColors[post.categoria] || "#FF6820" }}
               />
 
               <div className="p-6 flex flex-col flex-1">
@@ -84,21 +61,23 @@ export default function BlogPreview() {
                   <span
                     className="text-xs font-semibold px-2.5 py-1 rounded-full"
                     style={{
-                      background: `${categoryColors[post.category] || "#FF6820"}18`,
-                      color: categoryColors[post.category] || "#FF6820",
+                      background: `${categoryColors[post.categoria] || "#FF6820"}18`,
+                      color: categoryColors[post.categoria] || "#FF6820",
                     }}
                   >
-                    {post.category}
+                    {post.categoria}
                   </span>
-                  <span className="font-body text-xs text-grafite/40">{post.readTime}</span>
+                  {post.tempo_leitura && (
+                    <span className="font-body text-xs text-grafite/40">{post.tempo_leitura} min</span>
+                  )}
                 </div>
 
                 <h3 className="font-display font-bold text-grafite text-base leading-snug mb-3 group-hover:text-laranja transition-colors line-clamp-2">
-                  {post.title}
+                  {post.titulo}
                 </h3>
 
                 <p className="font-body text-sm text-grafite/60 leading-relaxed line-clamp-3 flex-1">
-                  {post.excerpt}
+                  {post.resumo}
                 </p>
 
                 <div

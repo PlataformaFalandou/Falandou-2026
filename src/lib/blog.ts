@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { marked } from "marked";
 
 const CONTENT_DIR = path.join(process.cwd(), "content/blog");
 
@@ -37,7 +38,7 @@ function readArticleFile(filename: string): Article | null {
       created_at: data.created_at ?? new Date().toISOString(),
       tempo_leitura: data.tempo_leitura,
       publicado: data.publicado ?? true,
-      conteudo: content,
+      conteudo: marked(content) as string,
     };
   } catch {
     return null;
