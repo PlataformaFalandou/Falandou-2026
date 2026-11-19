@@ -30,7 +30,25 @@ const HERO_LOGOS = [
   },
 ];
 
-export default function Hero() {
+interface HeroProps {
+  eyebrow?: string;
+  headline?: React.ReactNode;
+  subheadline?: string;
+  whatsappContext?: string;
+}
+
+export default function Hero({
+  eyebrow = "Inglês para profissionais que precisam de resultado",
+  headline = (
+    <>
+      Inglês que{" "}
+      <span style={{ color: "#FF6820" }}>abre portas</span>{" "}
+      na sua carreira.
+    </>
+  ),
+  subheadline = "Plano de 90 dias completamente personalizado ao seu objetivo profissional. Exame CEFR, acompanhamento ativo e aulas particulares com professores especializados.",
+  whatsappContext = "hero",
+}: HeroProps) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -73,7 +91,7 @@ export default function Hero() {
             style={{ background: "rgba(255,104,32,0.2)", color: "#FF9A6C" }}
           >
             <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: "#FF6820" }} />
-            Inglês para profissionais que precisam de resultado
+            {eyebrow}
           </div>
 
           {/* Headline */}
@@ -83,9 +101,7 @@ export default function Hero() {
             }`}
             style={{ fontSize: "clamp(2.8rem, 6vw, 5rem)" }}
           >
-            Inglês que{" "}
-            <span style={{ color: "#FF6820" }}>abre portas</span>{" "}
-            na sua carreira.
+            {headline}
           </h1>
 
           {/* Subheadline */}
@@ -94,8 +110,7 @@ export default function Hero() {
               loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            Plano de 90 dias completamente personalizado ao seu objetivo profissional.
-            Exame CEFR, acompanhamento ativo e aulas particulares com professores especializados.
+            {subheadline}
           </p>
 
           {/* CTAs */}
@@ -105,7 +120,7 @@ export default function Hero() {
             }`}
           >
             <a
-              href={getWhatsAppUrlForContext("hero")}
+              href={getWhatsAppUrlForContext(whatsappContext)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 px-8 py-5 rounded-full text-base font-bold text-white transition-all duration-200 hover:scale-105 active:scale-95 shadow-2xl"
