@@ -10,7 +10,6 @@ const testimonials = [
     source: "E-mail · Out 2024",
     text: "As aulas foram muito úteis, principalmente para melhorar minha comunicação no trabalho. Obrigada pela dedicação de vocês!",
     stars: 5,
-    initial: "R",
   },
   {
     name: "Camila",
@@ -18,7 +17,6 @@ const testimonials = [
     source: "WhatsApp",
     text: "Eu realmente gosto do material visual, das revisões e de como as aulas me ajudam a perder a vergonha de falar. O material torna o conteúdo mais dinâmico, as revisões fixam o que aprendi e poder conversar sobre temas do dia a dia me dá mais confiança para estudar fora da sala.",
     stars: 5,
-    initial: "C",
   },
   {
     name: "Diego C.",
@@ -26,7 +24,6 @@ const testimonials = [
     source: "E-mail · Jun 2024",
     text: "Gostaria de agradecer aos professores pelas orientações e pela disponibilidade ao longo do curso. As aulas, as atividades práticas contribuíram bastante para o meu desenvolvimento. Me senti mais confiante ao longo do processo.",
     stars: 5,
-    initial: "D",
   },
   {
     name: "Aluno",
@@ -34,7 +31,6 @@ const testimonials = [
     source: "WhatsApp",
     text: "Tem sido boa. O conteúdo é direto, as trilhas são bem divididas e consigo estudar mesmo nos dias corridos.",
     stars: 5,
-    initial: "A",
   },
 ];
 
@@ -62,18 +58,9 @@ function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
         </p>
 
         {/* Author */}
-        <div className="flex items-center gap-3 border-t pt-4" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
-          {/* Avatar com inicial */}
-          <div
-            className="w-10 h-10 rounded-full flex items-center justify-center font-display font-extrabold text-white text-sm flex-shrink-0"
-            style={{ backgroundColor: "#FF6820" }}
-          >
-            {t.initial}
-          </div>
-          <div>
-            <div className="font-display font-bold text-sm text-white">{t.name}</div>
-            <div className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{t.source}</div>
-          </div>
+        <div className="border-t pt-4" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
+          <div className="font-display font-extrabold text-base text-white">{t.name}</div>
+          <div className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>{t.source}</div>
         </div>
       </div>
     </div>
