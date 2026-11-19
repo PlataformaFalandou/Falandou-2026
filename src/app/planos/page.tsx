@@ -311,14 +311,20 @@ export default function PlanosPage() {
               className="font-body text-sm font-bold uppercase tracking-widest mb-4 text-center"
               style={{ color: "#FF6820" }}
             >
-              Comparando o investimento
+              Custo de oportunidade
             </p>
             <h2
-              className="font-display font-extrabold text-white leading-tight mb-12 text-center"
+              className="font-display font-extrabold text-white leading-tight mb-4 text-center"
               style={{ fontSize: "clamp(1.6rem, 3vw, 2.25rem)" }}
             >
-              O que R$ 185/mês pode retornar
+              Quanto custa mais um ano sem inglês?
             </h2>
+            <p
+              className="font-body text-base text-center mb-12 max-w-xl mx-auto"
+              style={{ color: "rgba(255,255,255,0.55)" }}
+            >
+              De um lado, a partir de R$ 185/mês. Do outro, o que fica na mesa enquanto o inglês segura a sua carreira:
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 {

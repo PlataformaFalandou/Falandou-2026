@@ -31,13 +31,13 @@ export default function MidCTA() {
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6 text-white/70">
-          Pronto para começar?
+          O custo de esperar
         </p>
         <h2
           className="reveal font-display font-extrabold text-white leading-tight mb-6 delay-100"
           style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)" }}
         >
-          O inglês que falta para a próxima fase da sua carreira.
+          Quanto custa mais um ano sem inglês fluente?
         </h2>
         <p className="reveal font-body text-white/80 text-lg leading-relaxed mb-6 max-w-2xl mx-auto delay-200">
           Nossos profissionais chegam sem conseguir conduzir uma reunião em inglês. Ao fim do ciclo de 90 dias, 79% sobe pelo menos 1 nível <CEFRTooltip /> — quem começa em B1 chega a B2 em 11 semanas em média. Em menos de 14 meses, 70% é aprovado em processos seletivos com etapa em inglês.

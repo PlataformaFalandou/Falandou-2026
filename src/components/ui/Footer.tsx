@@ -52,10 +52,10 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <h3 className="font-display font-extrabold text-2xl md:text-3xl text-white mb-1">
-              Pronto para evoluir seu inglês?
+              Cada processo seletivo sem inglês é uma porta a menos.
             </h3>
             <p className="font-body text-white/50 text-sm">
-              Fale com a gente — sem compromisso, sem taxa de consulta.
+              Em 90 dias você tem o resultado medido no exame CEFR. A consulta é gratuita e sem compromisso.
             </p>
           </div>
           <a
