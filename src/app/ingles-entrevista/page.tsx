@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import InterestForm from "@/components/sections/InterestForm";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 
@@ -161,7 +162,7 @@ export default function InglesEntrevistaPage() {
                 Cada etapa do processo seletivo tem inglês específico.
               </h2>
               <p className="font-body text-base mt-4" style={{ color: "rgba(22,22,22,0.55)" }}>
-                Não ensinamos "inglês para RH". Ensinamos o inglês de cada momento —
+                Não ensinamos &ldquo;inglês para RH&rdquo;. Ensinamos o inglês de cada momento —
                 do primeiro e-mail ao painel final.
               </p>
             </div>
@@ -280,6 +281,8 @@ export default function InglesEntrevistaPage() {
             </p>
           </div>
         </section>
+
+        <LeadMagnetCompact />
 
       </main>
       <Footer />

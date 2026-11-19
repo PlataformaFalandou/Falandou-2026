@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
 import { TeacherCard, YouTubeLink } from "@/components/sections/Teachers";
 import { teachers } from "@/lib/teachers";
@@ -154,6 +155,7 @@ export default function ProfessoresPage() {
             </div>
           </div>
         </section>
+        <LeadMagnetCompact />
       </main>
       <Footer />
     </>

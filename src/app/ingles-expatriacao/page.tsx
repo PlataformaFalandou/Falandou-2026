@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import InterestForm from "@/components/sections/InterestForm";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 
@@ -281,6 +282,8 @@ export default function InglesExpatriacaoPage() {
             </p>
           </div>
         </section>
+
+        <LeadMagnetCompact />
 
       </main>
       <Footer />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import { getWhatsAppUrl, getWhatsAppUrlForContext } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
@@ -461,6 +462,7 @@ export default function PlanosPage() {
             </div>
           </div>
         </section>
+        <LeadMagnetCompact />
       </main>
       <Footer />
     </>

@@ -11,6 +11,7 @@ import Teachers from "@/components/sections/Teachers";
 import MidCTA from "@/components/sections/MidCTA";
 import FAQ from "@/components/sections/FAQ";
 import Footer from "@/components/ui/Footer";
+import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
 
 export const metadata: Metadata = {
@@ -54,6 +55,7 @@ export default function PromocaoCargoPage() {
         <Teachers />
         <MidCTA />
         <FAQ />
+        <LeadMagnetCompact />
       </main>
       <Footer />
     </>

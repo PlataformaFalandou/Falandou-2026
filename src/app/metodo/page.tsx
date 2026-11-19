@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 
@@ -161,7 +162,7 @@ export default function MetodoPage() {
               >
                 Diagnóstico técnico, plano individual, sessões 1 a 1 e exame
                 de evolução CEFR. Você sabe exatamente o que acontece em cada
-                etapa — sem surpresa, sem "continue e veja".
+                etapa — sem surpresa, sem &ldquo;continue e veja&rdquo;.
               </p>
 
               {/* Stat strip */}
@@ -464,6 +465,8 @@ export default function MetodoPage() {
             </div>
           </div>
         </section>
+
+        <LeadMagnetCompact />
 
       </main>
       <Footer />
