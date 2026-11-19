@@ -12,7 +12,7 @@ const WEEKS = [
     title: "Diagnóstico honesto",
     focus: "Entenda onde você está de verdade",
     tasks: [
-      "Faça o teste CEFR gratuito do British Council (cefr.britishcouncil.org) e anote seu nível atual",
+      "Faça o teste de nível gratuito do British Council (learnenglish.britishcouncil.org/level) e anote seu nível CEFR atual",
       "Liste as 3 situações em inglês que mais travam você no trabalho hoje",
       "Grave 2 minutos falando sobre seu cargo — sem roteiro. Ouça e anote o que incomodou",
     ],
