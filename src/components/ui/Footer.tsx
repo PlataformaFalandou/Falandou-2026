@@ -66,7 +66,7 @@ export default function Footer() {
             style={{ backgroundColor: "#FF6820" }}
           >
             <MessageCircle size={18} />
-            Falar no WhatsApp
+            Falar com o Professor Adriel
           </a>
         </div>
       </div>

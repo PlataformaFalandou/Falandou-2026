@@ -80,14 +80,14 @@ export default function Hero() {
             }`}
           >
             <a
-              href={getWhatsAppUrlForContext("hero")}
+              href={getWhatsAppUrlForContext("executivo")}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 px-8 py-5 rounded-full text-base font-bold text-white transition-all duration-200 hover:scale-105 active:scale-95 shadow-2xl"
               style={{ backgroundColor: "#FF6820", boxShadow: "0 8px 32px rgba(255,104,32,0.5)" }}
             >
               <MessageCircle size={20} />
-              Começar agora no WhatsApp
+              Falar com o Professor Adriel
             </a>
             <a
               href="#como-funciona"

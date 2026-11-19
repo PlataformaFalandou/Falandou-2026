@@ -64,7 +64,7 @@ export default function MidCTA() {
             style={{ backgroundColor: "#161616", color: "white", boxShadow: "0 8px 32px rgba(22,22,22,0.4)" }}
           >
             <MessageCircle size={20} />
-            Entender como funciona
+            Falar com o Professor Adriel
           </a>
         </div>
 

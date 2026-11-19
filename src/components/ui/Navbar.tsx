@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, MessageCircle, X } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 
 const navLinks = [
@@ -66,7 +66,8 @@ export default function Navbar() {
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-base font-semibold text-white transition-all duration-200 hover:scale-105 active:scale-95"
             style={{ backgroundColor: "#FF6820" }}
           >
-            Falar com consultor
+            <MessageCircle size={16} />
+            Falar com o Professor Adriel
           </a>
         </div>
 
@@ -98,11 +99,12 @@ export default function Navbar() {
             href={getWhatsAppUrlForContext("hero")}
             target="_blank"
             rel="noopener noreferrer"
-            className="block mt-2 px-5 py-3 rounded-full text-sm font-semibold text-white text-center transition-all duration-200"
+            className="block mt-2 px-5 py-3 rounded-full text-sm font-semibold text-white text-center transition-all duration-200 inline-flex items-center justify-center gap-2"
             style={{ backgroundColor: "#FF6820" }}
             onClick={() => setMenuOpen(false)}
           >
-            Falar com consultor
+            <MessageCircle size={16} />
+            Falar com o Professor Adriel
           </a>
         </div>
       )}
