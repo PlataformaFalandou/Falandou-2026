@@ -1,4 +1,7 @@
+"use client";
+
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
+import { trackCTAClick } from "@/lib/analytics";
 
 // ─── Conteúdo editável ────────────────────────────────────────────────────────
 // Cada semana tem: título, foco (subtítulo curto) e 2–3 tarefas visíveis.
@@ -169,6 +172,7 @@ export default function LeadMagnet() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackCTAClick("leadmagnet")}
             className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white transition-all duration-300 hover:opacity-90 hover:scale-105"
             style={{ backgroundColor: "#FF6820" }}
           >

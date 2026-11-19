@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { MessageCircle } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
+import { trackCTAClick } from "@/lib/analytics";
 
 export default function MidCTA() {
   return (
@@ -60,6 +61,7 @@ export default function MidCTA() {
             href={getWhatsAppUrlForContext("cta")}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackCTAClick("midcta")}
             className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full text-base font-bold transition-all duration-200 hover:scale-105 active:scale-95 shadow-2xl"
             style={{ backgroundColor: "#161616", color: "white", boxShadow: "0 8px 32px rgba(22,22,22,0.4)" }}
           >

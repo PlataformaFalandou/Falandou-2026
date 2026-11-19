@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { trackCTAClick } from "@/lib/analytics";
 
 const steps = [
   {
@@ -164,6 +165,7 @@ export default function Journey() {
             href={getWhatsAppUrl("hero")}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackCTAClick("journey")}
             className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white transition-all duration-300 hover:opacity-90 hover:scale-105"
             style={{ backgroundColor: "#FF6820" }}
           >

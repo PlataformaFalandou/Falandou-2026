@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
+import { trackCTAClick } from "@/lib/analytics";
 
 const faqs = [
   {
@@ -94,6 +95,7 @@ export default function FAQ() {
               href={getWhatsAppUrlForContext("faq")}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackCTAClick("faq")}
               className="reveal inline-flex items-center gap-2 mt-8 px-6 py-3.5 rounded-full text-sm font-bold text-white transition-all duration-200 hover:scale-105 delay-300"
               style={{ backgroundColor: "#161616" }}
             >

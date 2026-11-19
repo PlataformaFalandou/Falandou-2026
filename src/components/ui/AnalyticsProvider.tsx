@@ -1,0 +1,80 @@
+"use client";
+
+/**
+ * AnalyticsProvider
+ * Injeta os scripts GA4 e Meta Pixel após a hidratação (useEffect),
+ * garantindo compatibilidade com SSG (output: "export").
+ *
+ * Adicione <AnalyticsProvider /> como primeiro filho de <body> em layout.tsx.
+ * Os scripts só carregam se os IDs estiverem configurados — não há erro em dev.
+ */
+
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { trackPageView, resetScroll50 } from "@/lib/analytics";
+
+const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID;
+const PIXEL_ID = process.env.NEXT_PUBLIC_PIXEL_ID;
+
+function injectGA4() {
+  if (!GA4_ID || document.getElementById("ga4-script")) return;
+
+  // Script de carregamento do gtag.js
+  const s1 = document.createElement("script");
+  s1.id = "ga4-script";
+  s1.async = true;
+  s1.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`;
+  document.head.appendChild(s1);
+
+  // Inicialização inline
+  const s2 = document.createElement("script");
+  s2.id = "ga4-init";
+  s2.innerHTML = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${GA4_ID}', { send_page_view: false });
+  `;
+  document.head.appendChild(s2);
+}
+
+function injectPixel() {
+  if (!PIXEL_ID || document.getElementById("pixel-script")) return;
+
+  const s = document.createElement("script");
+  s.id = "pixel-script";
+  s.innerHTML = `
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '${PIXEL_ID}');
+  `;
+  document.head.appendChild(s);
+}
+
+export default function AnalyticsProvider() {
+  const pathname = usePathname();
+
+  // Injeta scripts uma única vez após a hidratação
+  useEffect(() => {
+    injectGA4();
+    injectPixel();
+  }, []);
+
+  // Dispara page_view a cada mudança de rota (incluindo a inicial)
+  useEffect(() => {
+    // Aguarda um tick para os scripts estarem disponíveis no window
+    const timer = setTimeout(() => {
+      trackPageView(pathname);
+      resetScroll50(); // reset do scroll tracker a cada rota nova
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [pathname]);
+
+  return null; // componente invisível
+}
