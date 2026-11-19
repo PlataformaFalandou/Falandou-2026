@@ -25,12 +25,12 @@ const VARIANTS: Record<ABVariant, { eyebrow: string; subheadline: string }> = {
   A: {
     eyebrow: "Você sabe inglês. Mas trava na hora de usar.",
     subheadline:
-      "A maioria dos profissionais entende inglês razoavelmente bem. O problema é na hora de falar — reunião, apresentação, entrevista. A Falandou resolve exatamente isso: inglês funcional para o seu contexto, em 90 dias.",
+      "A maioria dos profissionais entende inglês razoavelmente bem. O problema é na hora de falar — reunião, apresentação, entrevista. A Falandou resolve exatamente isso: inglês funcional para o seu contexto. B1 → B2 em 11 semanas em média.",
   },
   B: {
     eyebrow: "Pare de perder oportunidades por causa do inglês.",
     subheadline:
-      "Promoções, projetos internacionais, seletivas — quantas vezes o inglês foi o critério que te deixou de fora? Em 90 dias você passa a conduzir reuniões, dar apresentações e responder com clareza. Sem travar.",
+      "Promoções, projetos internacionais, seletivas — quantas vezes o inglês foi o critério que te deixou de fora? Nossos profissionais saem de B1 para B2 em 11 semanas em média. Tempo suficiente para mudar o próximo processo seletivo.",
   },
 };
 
@@ -48,7 +48,7 @@ export default function HeroAB() {
     <Hero
       eyebrow={VARIANTS[variant].eyebrow}
       subheadline={VARIANTS[variant].subheadline}
-      statChip="79% dos alunos passou a conduzir reuniões e entrevistas em inglês em até 90 dias"
+      statChip="79% sobe pelo menos 1 nível CEFR em 90 dias · 70% aprovado em seletivas com etapa em inglês"
     />
   );
 }

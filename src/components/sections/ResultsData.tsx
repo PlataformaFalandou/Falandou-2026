@@ -16,9 +16,9 @@ const BARS = [
 ];
 
 const DESTAQUES = [
-  { valor: "79%",        desc: "passaram a usar inglês no trabalho após o ciclo" },
+  { valor: "79%",        desc: "dos profissionais passaram a usar inglês no trabalho após o ciclo" },
   { valor: "11 semanas", desc: "tempo médio para ganhar fluência operacional"   },
-  { valor: "4,9 ★",      desc: "avaliação média dos alunos no ciclo"       },
+  { valor: "4,9 ★",      desc: "avaliação média no ciclo"       },
   { valor: "92%",        desc: "concluíram o plano sem abandonar"           },
 ];
 // ─────────────────────────────────────────────────────────────────────────────
@@ -41,7 +41,7 @@ export default function ResultsData() {
           </p>
           <h2 className="font-heading font-black text-3xl md:text-4xl leading-tight mb-3"
               style={{ color: "#161616" }}>
-            {evolved}% dos alunos passou a conduzir reuniões,<br className="hidden md:block" /> entrevistas e negociações em inglês em até 90 dias.
+            {evolved}% dos profissionais passou a conduzir reuniões,<br className="hidden md:block" /> entrevistas e negociações em inglês em até 90 dias.
           </h2>
           <p className="font-body text-sm text-gray-500">
             {CYCLE_LABEL} · {TOTAL_ALUNOS} alunos avaliados com exame pré e pós-ciclo.
@@ -80,7 +80,7 @@ export default function ResultsData() {
               </div>
             ))}
             <p className="font-body text-xs text-gray-400 pt-1">
-              Evolução medida por exame CEFR aplicado pela escola antes e após o ciclo de aulas.
+              Evolução medida por exame CEFR aplicado pela escola antes e após o ciclo de 90 dias.
             </p>
           </div>
 

@@ -49,7 +49,7 @@ const situations = [
 const proof = [
   { value: "90 dias", label: "para chegar capaz de liderar times e conduzir reuniões no novo país" },
   { value: "1 a 1", label: "todas as sessões individuais — o plano é montado para o seu destino e setor" },
-  { value: "79%", label: "dos alunos chegaram ao destino se comunicando com segurança no trabalho" },
+  { value: "79%", label: "dos profissionais chegaram ao destino se comunicando com segurança no trabalho" },
 ];
 
 const faqs = [
@@ -66,8 +66,8 @@ const faqs = [
     a: "Específico para o seu setor e sua empresa. Engenheiro indo para uma big tech americana vai treinar vocabulário técnico, code review discussions e 1:1s com gestor americano. Gestor indo para empresa europeia vai treinar reuniões multilaterais e comunicação cross-cultural.",
   },
   {
-    q: "Posso continuar as aulas depois que chegar no destino?",
-    a: "Sim — todas as sessões são online. Você pode continuar o plano de qualquer país. Muitos alunos fazem o primeiro ciclo antes da transferência e continuam o segundo ciclo já no destino.",
+    q: "Posso continuar as sessões depois que chegar no destino?",
+    a: "Sim — todas as sessões são online. Você pode continuar o plano de qualquer país. Muitos profissionais fazem o primeiro ciclo antes da transferência e continuam o segundo ciclo já no destino.",
   },
 ];
 
@@ -111,7 +111,7 @@ export default function InglesExpatriacaoPage() {
             </p>
 
             <p className="text-sm font-medium mb-10 -mt-6" style={{ color: "rgba(255,104,32,0.85)" }}>
-              79% dos alunos chegou ao destino se comunicando com segurança no trabalho em até 90 dias
+              79% dos profissionais chegou ao destino se comunicando com segurança no trabalho em até 90 dias
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
+import CEFRTooltip from "@/components/ui/CEFRTooltip";
 
 const steps = [
   {
@@ -46,7 +47,7 @@ const steps = [
     title: "Exame final",
     subtitle: "Reavaliação CEFR",
     description:
-      "Ao final dos 90 dias, você refaz o exame CEFR. Comparamos com o início, medimos sua evolução real e identificamos o próximo passo da sua jornada.",
+      "Ao final dos 90 dias, você refaz o exame CEFR. Comparamos com o início, medimos sua evolução real. 79% dos profissionais sobe pelo menos 1 nível — quem começa em B1 chega a B2 em 11 semanas em média.",
     img: "/images/apresentacao-resultados.png",
     tag: "Resultado",
   },
@@ -123,19 +124,41 @@ export default function Journey() {
                   className="font-display font-extrabold text-white mb-2"
                   style={{ fontSize: "clamp(1.6rem, 2.8vw, 2.25rem)" }}
                 >
-                  {step.title}
+                  {step.title === "Exame CEFR" ? (
+                    <>Exame <CEFRTooltip /></>
+                  ) : (
+                    step.title
+                  )}
                 </h3>
                 <p
                   className="font-body text-sm font-semibold uppercase tracking-wide mb-5"
                   style={{ color: i % 2 === 0 ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0.7)" }}
                 >
-                  {step.subtitle}
+                  {step.subtitle === "Reavaliação CEFR" ? (
+                    <>Reavaliação <CEFRTooltip /></>
+                  ) : (
+                    step.subtitle
+                  )}
                 </p>
                 <p
                   className="font-body text-base leading-relaxed"
                   style={{ color: i % 2 === 0 ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.9)" }}
                 >
-                  {step.description}
+                  {step.description.includes("nível CEFR") ? (
+                    <>
+                      {step.description.split("nível CEFR")[0]}
+                      nível <CEFRTooltip />
+                      {step.description.split("nível CEFR")[1]}
+                    </>
+                  ) : step.description.includes("exame CEFR") ? (
+                    <>
+                      {step.description.split("exame CEFR")[0]}
+                      exame <CEFRTooltip />
+                      {step.description.split("exame CEFR")[1]}
+                    </>
+                  ) : (
+                    step.description
+                  )}
                 </p>
 
                 {/* Progress dots */}

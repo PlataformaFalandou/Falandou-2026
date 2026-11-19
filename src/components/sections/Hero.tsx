@@ -49,7 +49,7 @@ export default function Hero({
       <span style={{ color: "#FF6820" }}>confiança no trabalho.</span>
     </>
   ),
-  subheadline = "A maioria dos profissionais entende inglês razoavelmente bem. O problema é na hora de falar — reunião, apresentação, entrevista. A Falandou resolve exatamente isso: inglês funcional para o seu contexto, em 90 dias.",
+  subheadline = "A maioria dos profissionais entende inglês razoavelmente bem. O problema é na hora de falar — reunião, apresentação, entrevista. A Falandou resolve exatamente isso: inglês funcional para o seu contexto. B1 → B2 em 11 semanas em média.",
   statChip,
   whatsappContext = "hero",
 }: HeroProps) {
@@ -164,10 +164,10 @@ export default function Hero({
           >
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-4 max-w-xl">
               {[
-                { value: "600+", label: "Profissionais formados" },
-                { value: "7+",   label: "Anos de operação" },
-                { value: "90",   label: "Dias para resultado" },
-                { value: "4.9★", label: "Avaliação média" },
+                { value: "600+",    label: "Profissionais formados" },
+                { value: "11 sem",  label: "B1→B2 em média" },
+                { value: "79%",     label: "Sobem 1 nível em 90 dias" },
+                { value: "4.9★",    label: "Avaliação média" },
               ].map((s) => (
                 <div key={s.label} className="text-center sm:text-left">
                   <div className="font-display font-extrabold text-2xl md:text-3xl text-white">{s.value}</div>

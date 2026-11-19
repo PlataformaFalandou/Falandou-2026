@@ -124,10 +124,10 @@ export default async function ArticlePage({
               Pronto para praticar?
             </p>
             <h3 className="font-display font-extrabold text-white text-xl md:text-2xl mb-3">
-              Leve este conhecimento para as suas aulas.
+              Leve este conhecimento para as suas sessões.
             </h3>
             <p className="font-body text-white/50 text-sm mb-6 max-w-md mx-auto">
-              Na Falandou, o conteúdo do blog vira prática real nas suas aulas particulares, com foco no seu contexto profissional.
+              Na Falandou, o conteúdo do blog vira prática real nas suas sessões individuais, com foco no seu contexto profissional.
             </p>
             <a
               href={getWhatsAppUrlForContext("cta")}

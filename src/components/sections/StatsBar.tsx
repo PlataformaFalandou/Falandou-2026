@@ -56,7 +56,7 @@ export default function StatsBar() {
           <StatItem value={600} suffix="+" label="Profissionais formados" delay={0} />
           <StatItem value={7} suffix="+" label="Anos de experiência" delay={100} />
           <StatItem value={90} label="Dias para resultado visível" delay={200} />
-          <StatStatic display="4.9★" label="Avaliação média pelos alunos" delay={300} />
+          <StatStatic display="4.9★" label="Avaliação média" delay={300} />
         </div>
       </div>
     </section>

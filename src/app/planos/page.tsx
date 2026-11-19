@@ -6,7 +6,7 @@ import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 export const metadata: Metadata = {
   title: "Planos e Preços | Falandou",
   description:
-    "Veja os planos de inglês profissional da Falandou: aulas individuais 1 a 1, ciclo de 90 dias e exame CEFR antes e depois. Planos a partir de R$ 184,90/mês.",
+    "Veja os planos de inglês profissional da Falandou: sessões individuais 1 a 1, ciclo de 90 dias e exame CEFR antes e depois. Planos a partir de R$ 184,90/mês.",
 };
 
 const PLANS = [
@@ -19,7 +19,7 @@ const PLANS = [
     cycle: "Ciclo de 90 dias",
     highlight: false,
     features: [
-      "2 aulas individuais por semana",
+      "2 sessões individuais por semana",
       "Exame CEFR diagnóstico (início do ciclo)",
       "Exame CEFR de evolução (fim do ciclo)",
       "Plano personalizado para seu setor",
@@ -27,7 +27,7 @@ const PLANS = [
       "Material de estudo incluso",
     ],
     cta: "Quero o plano Essencial",
-    whatsappMsg: "Olá! Tenho interesse no plano Essencial da Falandou (2 aulas/semana). Podem me contar mais sobre como funciona?",
+    whatsappMsg: "Olá! Tenho interesse no plano Essencial da Falandou (2 sessões/semana). Podem me contar mais sobre como funciona?",
   },
   {
     id: "profissional",
@@ -38,7 +38,7 @@ const PLANS = [
     cycle: "Ciclo de 90 dias",
     highlight: true,
     features: [
-      "3 aulas individuais por semana",
+      "3 sessões individuais por semana",
       "Exame CEFR diagnóstico (início do ciclo)",
       "Exame CEFR de evolução (fim do ciclo)",
       "Plano personalizado para seu setor",
@@ -48,7 +48,7 @@ const PLANS = [
       "Prioridade no reagendamento",
     ],
     cta: "Quero o plano Profissional",
-    whatsappMsg: "Olá! Tenho interesse no plano Profissional da Falandou (3 aulas/semana). Podem me contar mais sobre como funciona?",
+    whatsappMsg: "Olá! Tenho interesse no plano Profissional da Falandou (3 sessões/semana). Podem me contar mais sobre como funciona?",
   },
   {
     id: "acelerado",
@@ -59,7 +59,7 @@ const PLANS = [
     cycle: "Ciclo de 90 dias",
     highlight: false,
     features: [
-      "5 aulas individuais por semana",
+      "5 sessões individuais por semana",
       "Exame CEFR diagnóstico (início do ciclo)",
       "Exame CEFR de evolução (fim do ciclo)",
       "Plano personalizado para seu setor",
@@ -70,18 +70,18 @@ const PLANS = [
       "Sessão extra de feedback a cada 30 dias",
     ],
     cta: "Quero o plano Acelerado",
-    whatsappMsg: "Olá! Tenho interesse no plano Acelerado da Falandou (5 aulas/semana). Podem me contar mais sobre como funciona?",
+    whatsappMsg: "Olá! Tenho interesse no plano Acelerado da Falandou (5 sessões/semana). Podem me contar mais sobre como funciona?",
   },
 ];
 
 const FAQS = [
   {
     q: "Posso trocar de plano durante o ciclo?",
-    a: "Sim. Se você perceber que precisa de mais aulas, é possível fazer o upgrade para o próximo plano. A troca é feita via WhatsApp com a equipe e entra em vigor no mês seguinte.",
+    a: "Sim. Se você perceber que precisa de mais sessões, é possível fazer o upgrade para o próximo plano. A troca é feita via WhatsApp com a equipe e entra em vigor no mês seguinte.",
   },
   {
-    q: "O que acontece se eu precisar faltar a uma aula?",
-    a: "As aulas são reagendadas diretamente com o professor. Nos planos Profissional e Acelerado há prioridade no reagendamento — você não perde a aula, reorganiza o horário.",
+    q: "O que acontece se eu precisar faltar a uma sessão?",
+    a: "As sessões são reagendadas diretamente com o professor. Nos planos Profissional e Acelerado há prioridade no reagendamento — você não perde a sessão, reorganiza o horário.",
   },
   {
     q: "O exame CEFR está incluso no preço?",

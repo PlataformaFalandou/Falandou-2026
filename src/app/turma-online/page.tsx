@@ -36,12 +36,12 @@ const benefits = [
   {
     icon: "💼",
     title: "Profissionais do mesmo nível",
-    desc: "A turma é formada por alunos em nível similar. Você pratica com quem enfrenta os mesmos desafios — reuniões internacionais, processos seletivos, times globais.",
+    desc: "A turma é formada por profissionais em nível similar. Você pratica com quem enfrenta os mesmos desafios — reuniões internacionais, processos seletivos, times globais.",
   },
   {
     icon: "📊",
     title: "Grupos reduzidos por design",
-    desc: "O modelo individual Falandou permite acompanhar até 25 alunos por professor — isso é o que garante que cada aluno é conhecido de perto. Para simulações em grupo, o limite é menor ainda: cada participante precisa de tempo de fala real, não de plateia.",
+    desc: "O modelo individual Falandou permite acompanhar até 25 profissionais por professor — isso é o que garante que cada profissional é conhecido de perto. Para simulações em grupo, o limite é menor ainda: cada participante precisa de tempo de fala real, não de plateia.",
   },
 ];
 
@@ -135,7 +135,7 @@ export default function TurmaOnlinePage() {
               marginBottom: "48px",
             }}
           >
-            Todas as aulas Falandou são individuais — um professor, um aluno,
+            Todas as sessões Falandou são individuais — um professor, um profissional,
             atenção exclusiva. Mas há situações que só existem com outras
             pessoas: uma reunião com banca, uma entrevista com múltiplos
             avaliadores, uma apresentação com perguntas imprevisíveis. A turma
@@ -201,7 +201,7 @@ export default function TurmaOnlinePage() {
               Para quem é essa turma
             </h2>
             {[
-              "Alunos Falandou que querem treinar situações com múltiplos participantes — reuniões com banca, entrevistas em painel, apresentações com Q&A",
+              "Profissionais Falandou que querem treinar situações com múltiplos participantes — reuniões com banca, entrevistas em painel, apresentações com Q&A",
               "Profissionais que já têm o plano individual e querem um ciclo de simulação antes de uma seletiva ou promoção",
               "Quem precisa de prática com pares do mesmo nível — não só com o professor — para ganhar naturalidade sob pressão real",
               "Executivos que vão liderar times internacionais e precisam simular esse ambiente antes de estar nele",
@@ -255,7 +255,7 @@ export default function TurmaOnlinePage() {
               }}
             >
               A turma ainda não tem data confirmada. O modelo individual
-              Falandou permite a cada professor acompanhar até 25 alunos com
+              Falandou permite a cada professor acompanhar até 25 profissionais com
               atenção real — e as simulações em grupo têm limite ainda menor
               para garantir tempo de fala para cada participante. Registre
               interesse e entraremos em contato assim que a próxima turma abrir.

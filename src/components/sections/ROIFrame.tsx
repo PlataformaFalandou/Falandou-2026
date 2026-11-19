@@ -6,7 +6,7 @@ const scenarios = [
     trigger: "Promoção ou aumento",
     result: "+R$ 2.000–4.000/mês",
     detail:
-      "Alunos que receberam promoção ou aumento após o ciclo relatam acréscimos de R$ 1.500 a R$ 4.000/mês. Com esse retorno, o plano costuma se pagar em menos de 60 dias — dado reportado pelos próprios alunos.",
+      "Profissionais que receberam promoção ou aumento após o ciclo relatam acréscimos de R$ 1.500 a R$ 4.000/mês. Com esse retorno, o plano costuma se pagar em menos de 60 dias — dado reportado pelos próprios profissionais.",
     cta: "Quero essa promoção",
   },
   {
@@ -14,7 +14,7 @@ const scenarios = [
     trigger: "Aprovação em processo seletivo",
     result: "Vaga que antes era impossível",
     detail:
-      "70% dos nossos alunos passaram em processos seletivos com etapa em inglês dentro de 14 meses. A maioria relatou que o inglês era o único fator eliminatório — não a experiência ou o currículo.",
+      "70% dos nossos profissionais passaram em processos seletivos com etapa em inglês dentro de 14 meses. A maioria relatou que o inglês era o único fator eliminatório — não a experiência ou o currículo.",
     cta: "Quero passar na seletiva",
   },
   {
@@ -22,7 +22,7 @@ const scenarios = [
     trigger: "Transferência internacional",
     result: "Pacote 2–4× o salário local",
     detail:
-      "Expatriados recebem pacotes com auxílio de moradia, escola internacional, ajuda de custo e salary uplift. Alunos que conquistaram transferências internacionais recuperaram o investimento no primeiro mês.",
+      "Expatriados recebem pacotes com auxílio de moradia, escola internacional, ajuda de custo e salary uplift. Profissionais que conquistaram transferências internacionais recuperaram o investimento no primeiro mês.",
     cta: "Quero a transferência",
   },
 ];

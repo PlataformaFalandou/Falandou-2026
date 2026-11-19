@@ -1,5 +1,9 @@
+"use client";
+
+import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import CEFRTooltip from "@/components/ui/CEFRTooltip";
 
 const gaps = [
   { icon: "📱", label: "Apps", flaw: "ensinam vocabulário, não conversação profissional" },
@@ -74,14 +78,14 @@ export default function MetodoTeaser() {
               >
                 A Falandou faz diferente
               </p>
-              {[
-                "Plano individual — nenhum aluno faz o mesmo plano.",
+              {([
+                "Plano individual — nenhum profissional faz o mesmo plano.",
                 "Inglês do seu contexto — vocabulário do seu setor.",
-                "Sessões 1 a 1 — 100% do tempo de aula é seu.",
-                "Resultado em número — exame CEFR antes e depois.",
-              ].map((item) => (
+                "Sessões 1 a 1 — 100% do tempo de cada sessão é seu.",
+                <>Resultado em número — exame <CEFRTooltip /> antes e depois.</>,
+              ] as React.ReactNode[]).map((item, idx) => (
                 <div
-                  key={item}
+                  key={idx}
                   className="flex items-start gap-3 py-4 border-b last:border-0"
                   style={{ borderColor: "rgba(255,255,255,0.08)" }}
                 >

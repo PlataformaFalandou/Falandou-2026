@@ -42,7 +42,7 @@ export default function PromocaoCargoPage() {
               <span style={{ color: "#FF6820" }}>Consiga a promoção.</span>
             </>
           }
-          subheadline="Você tem a experiência e a entrega — mas o inglês continua como critério visível para o próximo nível. Em um ciclo de 90 dias, 79% dos nossos alunos passou a conduzir reuniões e entrevistas em inglês. Para muitos, isso é exatamente a diferença entre candidato e aprovado."
+          subheadline="Você tem a experiência e a entrega — mas o inglês continua como critério visível para o próximo nível. Em um ciclo de 90 dias, 79% dos nossos profissionais passou a conduzir reuniões e entrevistas em inglês. Para muitos, isso é exatamente a diferença entre candidato e aprovado."
           whatsappContext="promocao"
         />
         <StatsBar />

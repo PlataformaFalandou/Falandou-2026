@@ -4,8 +4,8 @@ import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 
 // ─── Conteúdo editável ────────────────────────────────────────────────────────
-// Cada semana tem: título, foco (subtítulo curto) e 2–3 tarefas visíveis.
-// A promessa de "roteiro completo em PDF" inclui todas as tarefas detalhadas.
+// Cada semana tem: título, foco (subtítulo curto) e 2–3 atividades visíveis.
+// A promessa de "roteiro completo em PDF" inclui todas as atividades detalhadas.
 const WEEKS = [
   {
     num: "Semana 1",
@@ -77,7 +77,7 @@ export default function LeadMagnet() {
             <span style={{ color: "#FF6820" }}>do jeito certo.</span>
           </h2>
           <p className="font-body text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-            Sem matrícula, sem compromisso. Quatro semanas com tarefas concretas
+            Sem matrícula, sem compromisso. Quatro semanas com atividades concretas
             para sair do "quero aprender" e entrar em modo profissional.
           </p>
         </div>
@@ -159,7 +159,7 @@ export default function LeadMagnet() {
             className="font-display font-extrabold text-white mb-3"
             style={{ fontSize: "clamp(1.3rem, 2.5vw, 1.75rem)" }}
           >
-            Receba o roteiro completo com todas as tarefas detalhadas.
+            Receba o roteiro completo com todas as atividades detalhadas.
           </h3>
           <p
             className="font-body text-sm mb-8 max-w-md mx-auto"

@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     q: "Quanto tempo leva para ter resultado?",
-    a: "O ciclo padrão é de 90 dias. Em média, nossos alunos sobem 1 nível CEFR nesse período — o que representa, na prática, conseguir conduzir reuniões em inglês, passar por entrevistas internacionais ou liderar times globais com confiança. O resultado depende da frequência e do comprometimento, mas o plano é montado exatamente para o seu ritmo.",
+    a: "O ciclo padrão é de 90 dias. Em média, os profissionais sobem 1 nível CEFR nesse período — o que representa, na prática, conseguir conduzir reuniões em inglês, passar por entrevistas internacionais ou liderar times globais com confiança. O resultado depende da frequência e do comprometimento, mas o plano é montado exatamente para o seu ritmo.",
   },
   {
     q: "Funciona para quem nunca estudou inglês ou está enferrujado?",
@@ -27,8 +27,8 @@ const faqs = [
     a: "No seu contexto específico. Seja você médico, engenheiro, gestor ou analista — o plano é montado com vocabulário, situações e objetivos do seu setor. Não ensinamos inglês genérico.",
   },
   {
-    q: "Com que frequência acontecem as aulas?",
-    a: "A frequência é definida no seu plano, de acordo com seus objetivos e disponibilidade. As aulas são individuais e agendadas diretamente com o professor. O acompanhamento pelo WhatsApp é contínuo durante toda a semana — você nunca fica sem suporte entre uma aula e outra.",
+    q: "Com que frequência acontecem as sessões?",
+    a: "A frequência é definida no seu plano, de acordo com seus objetivos e disponibilidade. As sessões são individuais e agendadas diretamente com o professor. O acompanhamento pelo WhatsApp é contínuo durante toda a semana — você nunca fica sem suporte entre uma sessão e outra.",
   },
 ];
 

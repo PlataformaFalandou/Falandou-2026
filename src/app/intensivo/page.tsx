@@ -106,7 +106,7 @@ export default function IntensivoPage() {
                 margin: "-24px 0 32px",
               }}
             >
-              79% dos alunos passou a conduzir reuniões e entrevistas em inglês em até 90 dias
+              79% dos profissionais passou a conduzir reuniões e entrevistas em inglês em até 90 dias
             </p>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <InterestForm
@@ -258,8 +258,8 @@ export default function IntensivoPage() {
             O que é diferente em um intensivo
           </h2>
           <p style={{ fontSize: "16px", lineHeight: 1.7, color: "#444", marginBottom: "24px" }}>
-            No plano padrão, o ritmo é o do aluno. No intensivo, o ritmo é o
-            do prazo. Mais horas semanais, exercícios diários entre as aulas,
+            No plano padrão, o ritmo é o do profissional. No intensivo, o ritmo é o
+            do prazo. Mais horas semanais, exercícios diários entre as sessões,
             simulações de situações reais e feedback contínuo do professor.
           </p>
           <p style={{ fontSize: "16px", lineHeight: 1.7, color: "#444" }}>

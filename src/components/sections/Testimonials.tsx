@@ -1,9 +1,11 @@
 "use client";
 
+import React from "react";
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
+import CEFRTooltip from "@/components/ui/CEFRTooltip";
 
 // ─── dados verificáveis — edite com seus números reais ───────────────────────
 const STATS = [
@@ -14,8 +16,8 @@ const STATS = [
   },
   {
     value: "11 sem",
-    label: "para conduzir reuniões com segurança",
-    sub: "mediana do último ciclo",
+    label: "B1 → B2 em média",
+    sub: "mediana do último ciclo · exame antes e depois",
   },
   {
     value: "70%",
@@ -29,10 +31,10 @@ const STATS = [
   },
 ];
 
-const METHODOLOGY_NOTES = [
-  "Exame CEFR aplicado pela escola antes e após cada ciclo de 90 dias.",
+const METHODOLOGY_NOTES: React.ReactNode[] = [
+  <>Exame <CEFRTooltip /> aplicado pela escola antes e após cada ciclo de 90 dias.</>,
   "Dados do último ciclo fechado (Jan–Set 2024) · 87 alunos avaliados.",
-  "Níveis: A1 · A2 · B1 · B2 · C1 · C2 — padrão europeu usado por Cambridge e IELTS.",
+  <>Níveis: A1 · A2 · B1 · B2 · C1 · C2 — padrão europeu usado por Cambridge e IELTS. <CEFRTooltip>O que é CEFR?</CEFRTooltip></>,
 ];
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -193,7 +195,7 @@ export default function Testimonials() {
         {/* ── 0. Social proof: logos das empresas ── */}
         <div className="reveal mb-16 delay-0">
           <p className="font-body text-xs font-semibold uppercase tracking-widest mb-7 text-center" style={{ color: "rgba(255,255,255,0.25)" }}>
-            Nossos alunos trabalham em
+            Nossos profissionais trabalham em
           </p>
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
             {Object.entries(COMPANY_LOGOS).map(([name, logo]) => (
@@ -226,7 +228,7 @@ export default function Testimonials() {
             className="reveal font-display font-extrabold text-white leading-tight mb-3 delay-100"
             style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)" }}
           >
-            79% dos alunos passou a conduzir reuniões{" "}
+            79% dos profissionais passou a conduzir reuniões{" "}
             <span style={{ color: "#FF6820" }}>e entrevistas em inglês em até 90 dias.</span>
           </h2>
           <p className="reveal font-body text-base delay-150" style={{ color: "rgba(255,255,255,0.45)" }}>
@@ -262,8 +264,8 @@ export default function Testimonials() {
               Como medimos
             </p>
             <ul className="flex flex-col gap-1">
-              {METHODOLOGY_NOTES.map((note) => (
-                <li key={note} className="font-body text-xs flex items-start gap-2" style={{ color: "rgba(255,255,255,0.45)" }}>
+              {METHODOLOGY_NOTES.map((note, idx) => (
+                <li key={idx} className="font-body text-xs flex items-start gap-2" style={{ color: "rgba(255,255,255,0.45)" }}>
                   <span style={{ color: "#FF6820" }}>—</span> {note}
                 </li>
               ))}
@@ -275,7 +277,7 @@ export default function Testimonials() {
         <div className="flex items-end justify-between mb-10">
           <div>
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>
-              O que dizem os alunos
+              O que dizem os profissionais
             </p>
             <p className="reveal font-display font-extrabold text-white delay-100" style={{ fontSize: "clamp(1.3rem, 2.5vw, 1.75rem)" }}>
               Os números em palavras.

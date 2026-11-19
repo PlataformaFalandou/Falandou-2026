@@ -4,6 +4,7 @@ import Image from "next/image";
 import { MessageCircle } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
+import CEFRTooltip from "@/components/ui/CEFRTooltip";
 
 export default function MidCTA() {
   return (
@@ -39,7 +40,7 @@ export default function MidCTA() {
           O inglês que falta para a próxima fase da sua carreira.
         </h2>
         <p className="reveal font-body text-white/80 text-lg leading-relaxed mb-6 max-w-2xl mx-auto delay-200">
-          Nossos alunos chegam sem conseguir conduzir uma reunião em inglês. Ao fim do ciclo de 90 dias, 79% sobe pelo menos 1 nível CEFR. Em menos de 14 meses, 70% é aprovado em processos seletivos com etapa em inglês.
+          Nossos profissionais chegam sem conseguir conduzir uma reunião em inglês. Ao fim do ciclo de 90 dias, 79% sobe pelo menos 1 nível <CEFRTooltip /> — quem começa em B1 chega a B2 em 11 semanas em média. Em menos de 14 meses, 70% é aprovado em processos seletivos com etapa em inglês.
         </p>
         {/* ROI anchor */}
         <div

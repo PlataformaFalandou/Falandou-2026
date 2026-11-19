@@ -47,7 +47,7 @@ const stages = [
 ];
 
 const proof = [
-  { value: "70%", label: "dos alunos passaram em processos seletivos com etapa em inglês dentro de 14 meses" },
+  { value: "70%", label: "dos profissionais passaram em processos seletivos com etapa em inglês dentro de 14 meses" },
   { value: "90 dias", label: "ciclo padrão — suficiente para passar de travar para falar com segurança" },
   { value: "1 a 1", label: "todas as sessões são individuais — 100% do tempo focado no seu processo seletivo" },
 ];
@@ -109,7 +109,7 @@ export default function InglesEntrevistaPage() {
             </p>
 
             <p className="text-sm font-medium mb-10 -mt-6" style={{ color: "rgba(255,104,32,0.85)" }}>
-              79% dos alunos passou a conduzir entrevistas e reuniões em inglês em até 90 dias
+              79% dos profissionais passou a conduzir entrevistas e reuniões em inglês em até 90 dias
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">

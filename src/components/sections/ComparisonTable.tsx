@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * ComparisonTable
  * Contraste honesto linha a linha: o que o mercado genérico entrega
@@ -7,15 +9,18 @@
  * descrição concreta, não só um ✓ vs ✗.
  */
 
-const rows = [
+import React from "react";
+import CEFRTooltip from "@/components/ui/CEFRTooltip";
+
+const rows: { dimension: string; generic: string; falandou: React.ReactNode }[] = [
   {
     dimension: "Personalização",
-    generic: "Mesmo conteúdo para todos os alunos",
-    falandou: "Plano individual — cada aluno tem um objetivo, setor e prazo diferentes",
+    generic: "Mesmo conteúdo para todos os profissionais",
+    falandou: "Plano individual — cada profissional tem um objetivo, setor e prazo diferentes",
   },
   {
-    dimension: "Tempo de fala por aula",
-    generic: "Dividido entre vários alunos no grupo",
+    dimension: "Tempo de fala por sessão",
+    generic: "Dividido entre vários profissionais no grupo",
     falandou: "100% do tempo de cada sessão dedicado a você",
   },
   {
@@ -25,18 +30,18 @@ const rows = [
   },
   {
     dimension: "Como o resultado é medido",
-    generic: "Percepção subjetiva do aluno",
-    falandou: "Exame CEFR diagnóstico no início e de evolução no fim do ciclo",
+    generic: "Percepção subjetiva do profissional",
+    falandou: <>Exame <CEFRTooltip /> diagnóstico no início e de evolução no fim do ciclo</>,
   },
   {
-    dimension: "Suporte entre aulas",
+    dimension: "Suporte entre sessões",
     generic: "Fórum ou sem suporte",
-    falandou: "WhatsApp ativo durante a semana — dúvidas respondidas fora do horário da aula",
+    falandou: "WhatsApp ativo durante a semana — dúvidas respondidas fora do horário da sessão",
   },
   {
     dimension: "Prazo para resultado visível",
-    generic: "Indefinido — depende do aluno se organizar",
-    falandou: "Ciclo de 90 dias com objetivo e prazo definidos desde a primeira aula",
+    generic: "Indefinido — depende do profissional se organizar",
+    falandou: "Ciclo de 90 dias com objetivo e prazo definidos desde a primeira sessão",
   },
 ];
 
