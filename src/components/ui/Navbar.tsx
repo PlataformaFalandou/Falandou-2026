@@ -30,11 +30,11 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
+      <nav className="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
         {/* Logo — white when on hero, dark when scrolled */}
         <Link href="/" className="flex items-center gap-2">
           <span
-            className="font-display font-extrabold text-2xl tracking-tight transition-colors duration-300"
+            className="font-display font-extrabold text-3xl md:text-4xl tracking-tight transition-colors duration-300"
             style={{ color: scrolled ? "#161616" : "white" }}
           >
             Falandou
@@ -43,12 +43,12 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <li key={link.label}>
               <a
                 href={link.href}
-                className="text-sm font-medium transition-colors duration-200 hover:opacity-80"
+                className="text-base font-medium transition-colors duration-200 hover:opacity-80"
                 style={{ color: scrolled ? "rgba(22,22,22,0.65)" : "rgba(255,255,255,0.8)" }}
               >
                 {link.label}
@@ -63,7 +63,7 @@ export default function Navbar() {
             href={getWhatsAppUrlForContext("hero")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-all duration-200 hover:scale-105 active:scale-95"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-base font-semibold text-white transition-all duration-200 hover:scale-105 active:scale-95"
             style={{ backgroundColor: "#FF6820" }}
           >
             Falar com consultor
