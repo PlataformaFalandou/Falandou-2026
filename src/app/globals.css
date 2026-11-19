@@ -1,6 +1,7 @@
-@import "tailwindcss";
-
+/* @import url() precisa vir antes de "tailwindcss": o Tailwind v4 expande esse import em regras. */
 @import url('https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;500;600;700;800&family=Wix+Madefor+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+@import "tailwindcss";
 
 :root {
   --font-wix-display: 'Wix Madefor Display', sans-serif;
