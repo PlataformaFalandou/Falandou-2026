@@ -5,12 +5,12 @@
 // Usage context: referencing employers of enrolled students — not claiming company endorsement.
 
 const companies = [
-  { name: "Accenture",     slug: "accenture" },
-  { name: "Amazon",        slug: "amazon" },
-  { name: "IBM",           slug: "ibm" },
-  { name: "Google",        slug: "google" },
-  { name: "JPMorgan Chase",slug: "jpmorgan" },
-  { name: "Unilever",      slug: "unilever" },
+  { name: "Accenture",      slug: "accenture" },
+  { name: "Amazon",         slug: "amazon" },
+  { name: "IBM",            slug: "ibm" },
+  { name: "Google",         slug: "google" },
+  { name: "JPMorgan Chase", slug: "jpmorganchase" },
+  { name: "Unilever",       slug: "unilever" },
 ];
 
 export default function CompanyLogos() {
@@ -29,13 +29,21 @@ export default function CompanyLogos() {
               key={c.name}
               className="opacity-30 hover:opacity-60 transition-opacity duration-300 flex items-center justify-center"
               title={c.name}
-              style={{ height: "28px" }}
+              style={{ height: "32px" }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={`https://cdn.simpleicons.org/${c.slug}/ffffff`}
                 alt={c.name}
-                style={{ height: "100%", width: "auto", maxWidth: "120px", objectFit: "contain" }}
+                style={{ height: "100%", width: "auto", maxWidth: "130px", objectFit: "contain" }}
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  target.style.display = "none";
+                  const span = document.createElement("span");
+                  span.textContent = c.name;
+                  span.style.cssText = "color:white;font-size:13px;font-weight:600;letter-spacing:0.05em;";
+                  target.parentNode?.appendChild(span);
+                }}
               />
             </div>
           ))}
