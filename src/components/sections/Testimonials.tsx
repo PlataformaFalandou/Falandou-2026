@@ -14,15 +14,15 @@ const testimonials = [
   {
     name: "Camila Ferreira",
     role: "Coordenadora de Projetos",
-    source: "WhatsApp · 50 aulas",
-    text: "O que eu não esperava era perder a vergonha de falar. As revisões fixam o conteúdo de verdade, o material visual torna tudo mais dinâmico, e conversar sobre temas do dia a dia me deu confiança para usar o inglês fora da sala também.",
+    source: "WhatsApp · Ciclo 90 dias",
+    text: "O que eu não esperava era perder a vergonha de falar. As sessões individuais fixam muito mais do que qualquer aula em grupo — e conversar sobre temas do meu trabalho me deu confiança para usar o inglês fora do escritório também.",
     stars: 5,
   },
   {
     name: "Mariana Costa",
     role: "Gestora de Marketing",
     source: "WhatsApp",
-    text: "Consigo estudar mesmo nos dias mais corridos. O conteúdo é direto, as trilhas são bem divididas — é exatamente o formato que eu precisava para encaixar na rotina.",
+    text: "Consigo avançar mesmo nos dias mais corridos. O plano é direto e focado no meu contexto — é exatamente o formato que eu precisava para encaixar na rotina sem abrir mão do resultado.",
     stars: 5,
   },
   {
@@ -36,7 +36,7 @@ const testimonials = [
     name: "Diego Carvalho",
     role: "Gerente Comercial",
     source: "E-mail · Jun 2024",
-    text: "A atenção dos professores ao longo do curso foi o que me surpreendeu. Sempre disponíveis, sempre diretos. Terminei o curso com muito mais do que inglês — saí com clareza para me comunicar em qualquer ambiente profissional.",
+    text: "A atenção dos professores ao longo do ciclo foi o que me surpreendeu. Sempre disponíveis, sempre diretos. Terminei os 90 dias com muito mais do que inglês — saí com clareza para me comunicar em qualquer ambiente profissional.",
     stars: 5,
   },
   {

@@ -28,7 +28,7 @@ const teachers = [
     credentials: ["Cambridge", "IELTS", "TOEFL"],
     focus: "A1 – C2",
     specialty: "Literatura e escrita profissional",
-    bio: "Pedagoga norte-americana com domínio completo dos principais exames internacionais. Atende todos os níveis com foco em fluência real — da primeira aula até a certificação.",
+    bio: "Pedagoga norte-americana com domínio completo dos principais exames internacionais. Atende todos os níveis com foco em fluência real — do diagnóstico inicial até a certificação.",
   },
 ];
 
@@ -48,7 +48,7 @@ export default function Teachers() {
             Professores reais, credenciais verificáveis.
           </h2>
           <p className="font-body text-white/50 text-lg mt-4 max-w-xl mx-auto">
-            Cada aluno é atribuído a um professor com base no seu nível e objetivo profissional.
+            Cada profissional é atribuído a um professor com base no diagnóstico CEFR e no objetivo do ciclo.
           </p>
         </div>
 

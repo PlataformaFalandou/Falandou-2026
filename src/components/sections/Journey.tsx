@@ -17,7 +17,7 @@ const steps = [
     title: "Plano de 90 dias",
     subtitle: "Personalizado pelos professores",
     description:
-      "Com os resultados em mãos, nossos professores montam seu plano semanal completo. Cada semana tem foco, ritmo e conteúdo alinhados ao seu objetivo profissional.",
+      "Com os resultados em mãos, nossos professores montam seu plano semanal completo. Cada semana tem foco, ritmo e atividades alinhados ao seu objetivo profissional.",
     img: "/images/reuniao-produto.png",
     tag: "Estratégia",
   },
@@ -26,14 +26,14 @@ const steps = [
     title: "Atividades semanais",
     subtitle: "100% focadas no seu objetivo",
     description:
-      "Cada semana você recebe atividades práticas e direcionadas. Vocabulário do seu setor, situações reais do seu trabalho, sem conteúdo genérico que não serve para nada.",
+      "Cada semana você recebe exercícios práticos e direcionados. Vocabulário do seu setor, situações reais do seu trabalho — sem nada genérico que não sirva para o que você precisa.",
     img: "/images/email-profissional.png",
     tag: "Prática",
   },
   {
     number: "04",
-    title: "Aulas + WhatsApp",
-    subtitle: "Aulas particulares + acompanhamento ativo",
+    title: "Sessões individuais",
+    subtitle: "Professor dedicado + acompanhamento ativo",
     description:
       "Aulas individuais com professor especializado no seu contexto, mais acompanhamento pelo WhatsApp durante toda a semana. Você nunca fica sem suporte.",
     img: "/images/aula-video-call.png",
