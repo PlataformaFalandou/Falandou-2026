@@ -52,7 +52,7 @@ export default function MidCTA() {
         </div>
 
         <p className="reveal font-body text-white/60 text-base leading-relaxed mb-10 max-w-xl mx-auto delay-200">
-          Você conversa com a equipe para entender como funciona, faz o exame de nivelamento gratuito e recebe um plano montado para o seu objetivo. Sem pressão, sem compromisso.
+          Você conversa com a equipe para entender como funciona e recebe um plano montado para o seu objetivo. Sem pressão, sem compromisso.
         </p>
 
         <div className="reveal flex flex-col sm:flex-row gap-4 justify-center items-center delay-300">
@@ -70,7 +70,7 @@ export default function MidCTA() {
 
         {/* Trust chips */}
         <div className="reveal flex flex-wrap gap-4 justify-center mt-10 delay-400">
-          {["Exame de nivelamento grátis", "Resposta em até 1h", "Sem compromisso"].map((item) => (
+          {["Resposta em até 1h", "Consulta grátis", "Sem compromisso"].map((item) => (
             <div
               key={item}
               className="px-5 py-2.5 rounded-full text-sm font-semibold text-white border border-white/30 backdrop-blur-sm"
