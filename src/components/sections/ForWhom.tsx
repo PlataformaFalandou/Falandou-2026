@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 
 const profiles = [
@@ -105,7 +105,7 @@ export default function ForWhom() {
             Se você se identificou com algum desses perfis, o próximo passo é simples.
           </p>
           <a
-            href={getWhatsAppUrl("hero")}
+            href={getWhatsAppUrlForContext("cta")}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackCTAClick("forwho")}

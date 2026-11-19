@@ -1,5 +1,4 @@
-import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
-
+// Seção de prova de valor: sem botões. A ação fica no MidCTA, depois do FAQ.
 const scenarios = [
   {
     icon: "📈",
@@ -7,7 +6,6 @@ const scenarios = [
     result: "+R$ 2.000–4.000/mês",
     detail:
       "Profissionais que receberam promoção ou aumento após o ciclo relatam acréscimos de R$ 1.500 a R$ 4.000/mês. Com esse retorno, o plano costuma se pagar em menos de 60 dias — dado reportado pelos próprios profissionais.",
-    cta: "Quero essa promoção",
   },
   {
     icon: "✈️",
@@ -15,7 +13,6 @@ const scenarios = [
     result: "Vaga que antes era impossível",
     detail:
       "70% dos nossos profissionais passaram em processos seletivos com etapa em inglês dentro de 14 meses. A maioria relatou que o inglês era o único fator eliminatório — não a experiência ou o currículo.",
-    cta: "Quero passar na seletiva",
   },
   {
     icon: "🌍",
@@ -23,7 +20,6 @@ const scenarios = [
     result: "Pacote 2–4× o salário local",
     detail:
       "Expatriados recebem pacotes com auxílio de moradia, escola internacional, ajuda de custo e salary uplift. Profissionais que conquistaram transferências internacionais recuperaram o investimento no primeiro mês.",
-    cta: "Quero a transferência",
   },
 ];
 
@@ -89,16 +85,6 @@ export default function ROIFrame() {
               >
                 {s.detail}
               </p>
-
-              <a
-                href={getWhatsAppUrlForContext("roi")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-5 py-3 rounded-full text-sm font-bold transition-all duration-200 hover:scale-105"
-                style={{ backgroundColor: "#FF6820", color: "white" }}
-              >
-                {s.cta}
-              </a>
             </div>
           ))}
         </div>
@@ -118,7 +104,7 @@ export default function ROIFrame() {
             className="font-body text-base max-w-xl mx-auto"
             style={{ color: "rgba(255,255,255,0.55)" }}
           >
-            O retorno não é "aprender inglês". É o que o inglês desbloqueado permite que você faça — e ganhe.
+            O retorno não é &ldquo;aprender inglês&rdquo;. É o que o inglês desbloqueado permite que você faça — e ganhe.
           </p>
         </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 import CEFRTooltip from "@/components/ui/CEFRTooltip";
 
@@ -185,7 +185,7 @@ export default function Journey() {
             Pronto para ver como fica o seu plano?
           </p>
           <a
-            href={getWhatsAppUrl("hero")}
+            href={getWhatsAppUrlForContext("journey")}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackCTAClick("journey")}

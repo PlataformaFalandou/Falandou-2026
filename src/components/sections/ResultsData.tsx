@@ -1,6 +1,6 @@
 "use client";
 
-import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 
 // ─── dados editáveis ──────────────────────────────────────────────────────────
@@ -108,7 +108,7 @@ export default function ResultsData() {
         {/* CTA — resultado medido, momento de alta persuasão */}
         <div className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href={getWhatsAppUrl("hero")}
+            href={getWhatsAppUrlForContext("cta")}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackCTAClick("results")}

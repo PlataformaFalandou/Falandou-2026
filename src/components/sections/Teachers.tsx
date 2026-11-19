@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 
 const teachers = [
@@ -117,7 +117,7 @@ export default function Teachers() {
             Seu professor será escolhido com base no seu diagnóstico CEFR e objetivo.
           </p>
           <a
-            href={getWhatsAppUrl("hero")}
+            href={getWhatsAppUrlForContext("cta")}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackCTAClick("teachers")}

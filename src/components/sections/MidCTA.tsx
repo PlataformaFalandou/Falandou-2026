@@ -4,7 +4,6 @@ import Image from "next/image";
 import { MessageCircle } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
-import CEFRTooltip from "@/components/ui/CEFRTooltip";
 
 export default function MidCTA() {
   return (
@@ -39,22 +38,8 @@ export default function MidCTA() {
         >
           Quanto custa mais um ano sem inglês fluente?
         </h2>
-        <p className="reveal font-body text-white/80 text-lg leading-relaxed mb-6 max-w-2xl mx-auto delay-200">
-          Nossos profissionais chegam sem conseguir conduzir uma reunião em inglês. Ao fim do ciclo de 90 dias, 79% sobe pelo menos 1 nível <CEFRTooltip /> — quem começa em B1 chega a B2 em 11 semanas em média. Em menos de 14 meses, 70% é aprovado em processos seletivos com etapa em inglês.
-        </p>
-        {/* ROI anchor */}
-        <div
-          className="reveal inline-flex flex-wrap justify-center items-center gap-x-5 gap-y-2 px-6 py-3 rounded-2xl mb-8 delay-200"
-          style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.2)" }}
-        >
-          <span className="text-white/60 text-sm font-medium">Promoção salarial</span>
-          <span className="text-white font-extrabold">+R$ 1.500–4.000/mês</span>
-          <span className="text-white/30">·</span>
-          <span className="text-white/60 text-sm font-medium">Retorno médio</span>
-          <span className="text-white font-extrabold">&lt; 60 dias</span>
-        </div>
-
-        <p className="reveal font-body text-white/60 text-base leading-relaxed mb-10 max-w-xl mx-auto delay-200">
+        {/* Seção de ação: só o convite e o botão. Prova fica em ProofStats e ROIFrame. */}
+        <p className="reveal font-body text-white/80 text-lg leading-relaxed mb-10 max-w-xl mx-auto delay-200">
           Você conversa com a equipe para entender como funciona e recebe um plano montado para o seu objetivo. Sem pressão, sem compromisso.
         </p>
 
