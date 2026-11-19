@@ -19,8 +19,8 @@ const testimonials = [
     stars: 5,
   },
   {
-    name: "Camila Ferreira",
-    role: "Coordenadora de Projetos",
+    name: "Mariana Costa",
+    role: "Gestora de Marketing",
     source: "WhatsApp",
     text: "Consigo estudar mesmo nos dias mais corridos. O conteúdo é direto, as trilhas são bem divididas — é exatamente o formato que eu precisava para encaixar na rotina.",
     stars: 5,
