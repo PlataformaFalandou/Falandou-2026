@@ -87,8 +87,8 @@ export default function TurmaOnlinePage() {
                 margin: "0 0 20px",
               }}
             >
-              Turma online de{" "}
-              <span style={{ color: "#FF6820" }}>inglês profissional</span>
+              Treine antes de estar{" "}
+              <span style={{ color: "#FF6820" }}>na reunião de verdade.</span>
             </h1>
             <p
               style={{

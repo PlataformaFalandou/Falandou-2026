@@ -82,8 +82,8 @@ export default function IntensivoPage() {
                 margin: "0 0 20px",
               }}
             >
-              Inglês intensivo.{" "}
-              <span style={{ color: "#FF6820" }}>60 dias. Resultado.</span>
+              De travar a falar com segurança.{" "}
+              <span style={{ color: "#FF6820" }}>Em 60 dias.</span>
             </h1>
             <p
               style={{

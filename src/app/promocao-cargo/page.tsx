@@ -38,8 +38,8 @@ export default function PromocaoCargoPage() {
           eyebrow="O inglês está te impedindo de crescer — e você sabe disso."
           headline={
             <>
-              O inglês que faltava{" "}
-              <span style={{ color: "#FF6820" }}>para o próximo nível.</span>
+              Conduza reuniões em inglês.{" "}
+              <span style={{ color: "#FF6820" }}>Consiga a promoção.</span>
             </>
           }
           subheadline="Você tem a experiência e a entrega — mas o inglês continua como critério visível para o próximo nível. Em um ciclo de 90 dias, 79% dos nossos alunos passou a conduzir reuniões e entrevistas em inglês. Para muitos, isso é exatamente a diferença entre candidato e aprovado."
