@@ -3,6 +3,7 @@ import Hero from "@/components/sections/Hero";
 import StatsBar from "@/components/sections/StatsBar";
 import ForWhom from "@/components/sections/ForWhom";
 import Journey from "@/components/sections/Journey";
+import ResultsData from "@/components/sections/ResultsData";
 import Testimonials from "@/components/sections/Testimonials";
 import CompanyLogos from "@/components/sections/CompanyLogos";
 import Teachers from "@/components/sections/Teachers";
@@ -23,6 +24,7 @@ export default function HomePage() {
         <CompanyLogos />
         <ForWhom />
         <Journey />
+        <ResultsData />
         <Testimonials />
         <Teachers />
         <MidCTA />

@@ -1,0 +1,107 @@
+"use client";
+
+// ─── dados editáveis ──────────────────────────────────────────────────────────
+// Troque pelos seus números reais quando tiver o ciclo fechado.
+const CYCLE_LABEL = "Último ciclo · Jan–Set 2024"; // ex.: "Jan–Set 2024"
+const TOTAL_ALUNOS = 87; // alunos avaliados no ciclo
+
+const BARS = [
+  { label: "2+ níveis",   pct: 18, sublabel: "ex.: A2 → B2" },
+  { label: "1 nível",     pct: 61, sublabel: "ex.: B1 → B2" },
+  { label: "Manteve",     pct: 17, sublabel: "consolidação" },
+  { label: "Sem medição", pct:  4, sublabel: "desistência"  },
+];
+
+const DESTAQUES = [
+  { valor: "79%",        desc: "subiram pelo menos 1 nível CEFR"           },
+  { valor: "11 semanas", desc: "tempo médio para evolução B1 → B2"         },
+  { valor: "4,9 ★",      desc: "avaliação média dos alunos no ciclo"       },
+  { valor: "92%",        desc: "concluíram o plano sem abandonar"           },
+];
+// ─────────────────────────────────────────────────────────────────────────────
+
+export default function ResultsData() {
+  const evolved = BARS[0].pct + BARS[1].pct; // % que subiram pelo menos 1 nível
+
+  return (
+    <section
+      className="py-20"
+      style={{ background: "#F5F6F1" }}
+    >
+      <div className="max-w-5xl mx-auto px-6">
+
+        {/* cabeçalho */}
+        <div className="mb-12">
+          <p className="font-body text-xs font-semibold uppercase tracking-widest mb-3"
+             style={{ color: "#FF6820" }}>
+            Resultado verificável
+          </p>
+          <h2 className="font-heading font-black text-3xl md:text-4xl leading-tight mb-3"
+              style={{ color: "#161616" }}>
+            {evolved}% dos alunos subiram de nível CEFR<br className="hidden md:block" /> em até 90 dias.
+          </h2>
+          <p className="font-body text-sm text-gray-500">
+            {CYCLE_LABEL} · {TOTAL_ALUNOS} alunos avaliados com exame pré e pós-ciclo.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+
+          {/* gráfico de barras horizontais */}
+          <div className="space-y-5">
+            {BARS.map((bar) => (
+              <div key={bar.label}>
+                <div className="flex justify-between items-baseline mb-1">
+                  <span className="font-body text-sm font-semibold" style={{ color: "#161616" }}>
+                    {bar.label}
+                  </span>
+                  <span className="font-body text-xs text-gray-400">
+                    {bar.sublabel} · {bar.pct}%
+                  </span>
+                </div>
+                <div className="h-3 w-full rounded-full" style={{ background: "rgba(0,0,0,0.08)" }}>
+                  <div
+                    className="h-3 rounded-full transition-all duration-700"
+                    style={{
+                      width: `${bar.pct}%`,
+                      background:
+                        bar.label === "Sem medição"
+                          ? "rgba(0,0,0,0.18)"
+                          : bar.label === "Manteve"
+                          ? "rgba(0,0,0,0.30)"
+                          : "#FF6820",
+                      opacity: bar.label === "2+ níveis" ? 1 : bar.label === "1 nível" ? 0.75 : 1,
+                    }}
+                  />
+                </div>
+              </div>
+            ))}
+            <p className="font-body text-xs text-gray-400 pt-1">
+              Evolução medida por exame CEFR aplicado pela escola antes e após o ciclo de aulas.
+            </p>
+          </div>
+
+          {/* destaques numéricos */}
+          <div className="grid grid-cols-2 gap-5">
+            {DESTAQUES.map((d) => (
+              <div
+                key={d.desc}
+                className="rounded-2xl p-5"
+                style={{ background: "#fff", border: "1px solid rgba(0,0,0,0.07)" }}
+              >
+                <p
+                  className="font-heading font-black text-2xl mb-1"
+                  style={{ color: "#FF6820" }}
+                >
+                  {d.valor}
+                </p>
+                <p className="font-body text-xs text-gray-500 leading-snug">{d.desc}</p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
