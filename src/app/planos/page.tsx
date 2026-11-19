@@ -130,6 +130,14 @@ export default function PlanosPage() {
               para quem consegue uma promoção ou aprovação em processo seletivo.
             </p>
 
+            {/* Product anchor — o que é o produto */}
+            <p
+              className="font-body text-sm max-w-xl mx-auto mb-8 -mt-2"
+              style={{ color: "rgba(255,255,255,0.35)" }}
+            >
+              Cada plano inclui diagnóstico CEFR, sessões individuais 1 a 1 e exame de evolução ao fim dos 90 dias.
+            </p>
+
             {/* Proof bar */}
             <div
               className="inline-flex flex-wrap justify-center items-center gap-x-6 gap-y-2 px-6 py-3 rounded-2xl mb-2"
@@ -140,7 +148,7 @@ export default function PlanosPage() {
             >
               <span className="font-body text-sm font-semibold text-white">Exame CEFR incluso</span>
               <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
-              <span className="font-body text-sm font-semibold text-white">Aulas 1 a 1</span>
+              <span className="font-body text-sm font-semibold text-white">Sessões 1 a 1</span>
               <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
               <span className="font-body text-sm font-semibold text-white">Ciclo de 90 dias</span>
               <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>

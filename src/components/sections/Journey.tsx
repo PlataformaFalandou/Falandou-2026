@@ -38,7 +38,7 @@ const steps = [
     title: "Sessões individuais",
     subtitle: "Professor dedicado + acompanhamento ativo",
     description:
-      "Aulas individuais com professor especializado no seu contexto, mais acompanhamento pelo WhatsApp durante toda a semana. Você nunca fica sem suporte.",
+      "Sessões individuais com professor especializado no seu contexto, mais acompanhamento pelo WhatsApp durante toda a semana. Você nunca fica sem suporte.",
     img: "/images/aula-video-call.png",
     tag: "Acompanhamento",
   },

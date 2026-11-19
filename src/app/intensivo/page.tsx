@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
@@ -307,6 +308,19 @@ export default function IntensivoPage() {
                 ctaLabel="Quero saber quando começa"
               />
             </div>
+            <p style={{ marginTop: "24px" }}>
+              <Link
+                href="/planos"
+                style={{
+                  fontSize: "14px",
+                  color: "rgba(255,255,255,0.35)",
+                  textDecoration: "underline",
+                  textUnderlineOffset: "4px",
+                }}
+              >
+                Enquanto isso, ver o plano padrão →
+              </Link>
+            </p>
           </div>
         </section>
 
