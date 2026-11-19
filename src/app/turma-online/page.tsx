@@ -7,14 +7,14 @@ import InterestForm from "@/components/sections/InterestForm";
 export const metadata: Metadata = {
   title: "Turma Online de Inglês Profissional | Falandou",
   description:
-    "Participe de uma turma online ao vivo com profissionais do mesmo nível. Aulas em grupo focadas em inglês executivo, reuniões e comunicação profissional.",
+    "Simulações ao vivo de reuniões, entrevistas e apresentações em inglês. Grupos reduzidos com profissionais do mesmo nível — complemento ao plano individual.",
   alternates: {
     canonical: "https://2026.falandou.com/turma-online",
   },
   openGraph: {
     title: "Turma Online de Inglês Profissional | Falandou",
     description:
-      "Aulas ao vivo em grupo com foco em inglês executivo. Registre interesse e saiba quando a próxima turma abre.",
+      "Simulações ao vivo de reuniões e entrevistas em inglês com profissionais do mesmo nível. Registre interesse e saiba quando a próxima turma abre.",
     url: "https://2026.falandou.com/turma-online",
   },
 };
@@ -24,24 +24,24 @@ const WHATSAPP_MSG =
 
 const benefits = [
   {
-    icon: "👥",
-    title: "Aprendizado em grupo",
-    desc: "Pratique com profissionais do mesmo nível. A pressão positiva de grupo aumenta a frequência de uso — e uso frequente produz progresso mensurável.",
+    icon: "🎭",
+    title: "Simulação de situações reais",
+    desc: "Reuniões com múltiplos participantes, entrevistas com banca, apresentações com perguntas ao vivo. Situações que não dá para treinar com um professor só — precisam de outras pessoas.",
   },
   {
     icon: "🗓️",
-    title: "Aulas ao vivo, com professor",
-    desc: "Sem gravações. Cada aula é conduzida por um professor Falandou em tempo real.",
+    title: "Ao vivo, com professor mediando",
+    desc: "Sem gravações. O professor conduz a simulação, corrige em tempo real e garante que a conversa seja produtiva — não só social.",
   },
   {
     icon: "💼",
-    title: "Foco em contexto profissional",
-    desc: "Reuniões, apresentações, negociações e e-mails — inglês para usar no trabalho, não em viagem.",
+    title: "Profissionais do mesmo nível",
+    desc: "A turma é formada por alunos em nível similar. Você pratica com quem enfrenta os mesmos desafios — reuniões internacionais, processos seletivos, times globais.",
   },
   {
     icon: "📊",
-    title: "Máximo 8 alunos por turma",
-    desc: "O limite existe por uma razão pedagógica: acima de 8, o professor perde a capacidade de corrigir pronúncia e fluência em tempo real para cada participante. Com 8, todo aluno fala pelo menos duas vezes por aula — abaixo disso, o grupo vira plateia.",
+    title: "Grupos reduzidos por design",
+    desc: "O modelo individual Falandou permite acompanhar até 25 alunos por professor — isso é o que garante que cada aluno é conhecido de perto. Para simulações em grupo, o limite é menor ainda: cada participante precisa de tempo de fala real, não de plateia.",
   },
 ];
 
@@ -98,9 +98,10 @@ export default function TurmaOnlinePage() {
                 margin: "0 0 40px",
               }}
             >
-              Aprenda em grupo com profissionais do mesmo nível. Aulas ao vivo,
-              professor especializado, foco total em inglês executivo.
-              Registre interesse agora e seja avisado quando a turma abrir.
+              Simulações ao vivo de reuniões, entrevistas e apresentações em
+              inglês — com profissionais do mesmo nível. Complemento ao plano
+              individual Falandou. Registre interesse e seja avisado quando a
+              próxima turma abrir.
             </p>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <InterestForm
@@ -123,7 +124,7 @@ export default function TurmaOnlinePage() {
               marginBottom: "16px",
             }}
           >
-            Por que aprender em grupo funciona
+            Por que simulações em grupo funcionam
           </h2>
           <p
             style={{
@@ -134,10 +135,12 @@ export default function TurmaOnlinePage() {
               marginBottom: "48px",
             }}
           >
-            O modelo individual é mais personalizado — mas o grupo cria algo
-            diferente: você pratica com pares reais, ouve outros profissionais
-            cometendo os mesmos erros, e desenvolve a naturalidade que só o
-            uso contínuo com outras pessoas proporciona.
+            Todas as aulas Falandou são individuais — um professor, um aluno,
+            atenção exclusiva. Mas há situações que só existem com outras
+            pessoas: uma reunião com banca, uma entrevista com múltiplos
+            avaliadores, uma apresentação com perguntas imprevisíveis. A turma
+            online é o espaço para treinar exatamente isso — como complemento
+            ao plano individual, não como substituto.
           </p>
 
           <div
@@ -198,10 +201,10 @@ export default function TurmaOnlinePage() {
               Para quem é essa turma
             </h2>
             {[
-              "Profissionais com inglês intermediário que precisam de mais prática oral",
-              "Quem trabalha ou vai trabalhar com equipes internacionais",
-              "Pessoas que precisam de disciplina de grupo para manter o ritmo",
-              "Quem quer melhorar sem abrir mão de aprender com outras perspectivas profissionais",
+              "Alunos Falandou que querem treinar situações com múltiplos participantes — reuniões com banca, entrevistas em painel, apresentações com Q&A",
+              "Profissionais que já têm o plano individual e querem um ciclo de simulação antes de uma seletiva ou promoção",
+              "Quem precisa de prática com pares do mesmo nível — não só com o professor — para ganhar naturalidade sob pressão real",
+              "Executivos que vão liderar times internacionais e precisam simular esse ambiente antes de estar nele",
             ].map((item) => (
               <div
                 key={item}
@@ -251,11 +254,11 @@ export default function TurmaOnlinePage() {
                 marginBottom: "36px",
               }}
             >
-              A turma ainda não tem data confirmada. Com no máximo 8 alunos
-              por turma — limite pedagógico, não comercial — cada abertura
-              preenche rápido. Quanto mais interesse registrarmos, mais rápido
-              ela abre. Deixe seu nome e entraremos em contato assim que as
-              vagas estiverem disponíveis.
+              A turma ainda não tem data confirmada. O modelo individual
+              Falandou permite a cada professor acompanhar até 25 alunos com
+              atenção real — e as simulações em grupo têm limite ainda menor
+              para garantir tempo de fala para cada participante. Registre
+              interesse e entraremos em contato assim que a próxima turma abrir.
             </p>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <InterestForm
