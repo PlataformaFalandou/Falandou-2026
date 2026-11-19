@@ -9,6 +9,7 @@ const navLinks = [
   { label: "O método", href: "/metodo" },
   { label: "Como funciona", href: "#como-funciona" },
   { label: "Resultados", href: "#depoimentos" },
+  { label: "Planos", href: "/planos" },
   { label: "Blog", href: "/blog" },
 ];
 
