@@ -85,6 +85,23 @@ export function resetScroll50() {
   scroll50Fired = false;
 }
 
+// ─── A/B test impression ─────────────────────────────────────────────────────
+/**
+ * Dispara quando o visitante vê uma variante de teste.
+ * Registra no GA4 para segmentação e análise de conversão por variante.
+ *
+ * @param testName  ex: "hero_framing"
+ * @param variant   "A" | "B"
+ */
+export function trackABImpression(testName: string, variant: string) {
+  gtag("event", "ab_impression", {
+    event_category: "experiment",
+    event_label: `${testName}_${variant}`,
+    experiment_name: testName,
+    variant,
+  });
+}
+
 // ─── Chegada em /planos ───────────────────────────────────────────────────────
 /**
  * Dispara quando o visitante chega à página /planos.

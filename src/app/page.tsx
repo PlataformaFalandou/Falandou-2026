@@ -1,5 +1,5 @@
 import Navbar from "@/components/ui/Navbar";
-import Hero from "@/components/sections/Hero";
+import HeroAB from "@/components/sections/HeroAB";
 import StatsBar from "@/components/sections/StatsBar";
 import ForWhom from "@/components/sections/ForWhom";
 import Journey from "@/components/sections/Journey";
@@ -23,7 +23,7 @@ export default function HomePage() {
       <ScrollTracker />
       <Navbar />
       <main>
-        <Hero />
+        <HeroAB />
         <StatsBar />
         <ForWhom />
         <Journey />
