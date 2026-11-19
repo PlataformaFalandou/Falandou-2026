@@ -6,28 +6,28 @@ import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 
 const faqs = [
   {
-    q: "Preciso ter um nível mínimo de inglês para começar?",
-    a: "Não. Atendemos profissionais de todos os níveis, do básico ao avançado. O exame CEFR no início do processo existe exatamente para identificar onde você está e construir o plano a partir daí.",
+    q: "Quanto custa?",
+    a: "Os planos começam em R$ 184,90/mês. O valor varia conforme a carga horária semanal e a duração do ciclo. A consulta inicial com a equipe é gratuita — sem compromisso — e é nela que você descobre qual plano faz mais sentido para o seu objetivo.",
+  },
+  {
+    q: "Quanto tempo leva para ter resultado?",
+    a: "O ciclo padrão é de 90 dias. Em média, nossos alunos sobem 1 nível CEFR nesse período — o que representa, na prática, conseguir conduzir reuniões em inglês, passar por entrevistas internacionais ou liderar times globais com confiança. O resultado depende da frequência e do comprometimento, mas o plano é montado exatamente para o seu ritmo.",
+  },
+  {
+    q: "Funciona para quem nunca estudou inglês ou está enferrujado?",
+    a: "Sim. Atendemos profissionais de todos os níveis — do A1 (zero base) ao C1 (quase fluente que quer refinar). O exame CEFR no início do ciclo identifica exatamente onde você está. O plano é construído a partir daí, sem pressupor nada.",
   },
   {
     q: "Como funciona o exame CEFR?",
-    a: "O exame avalia as quatro habilidades (reading, listening, speaking e writing) e posiciona você em um nível do quadro europeu de referências — de A1 a C2. Com esse resultado, os professores montam um plano semanal detalhado para os próximos 90 dias.",
+    a: "O CEFR é o padrão europeu de proficiência usado por Cambridge, IELTS e multinacionais. O exame avalia as quatro habilidades (reading, listening, speaking e writing) e posiciona você em um nível de A1 a C2. Com esse resultado, os professores montam um plano semanal para os próximos 90 dias. No final do ciclo, você refaz o exame e vê exatamente quanto evoluiu — em números.",
   },
   {
-    q: "Com que frequência acontecem as aulas?",
-    a: "A frequência é definida no seu plano, de acordo com seus objetivos e disponibilidade. As aulas são individuais e agendadas diretamente com o professor. O acompanhamento pelo WhatsApp é contínuo, toda semana.",
-  },
-  {
-    q: "O inglês é focado em qual área?",
+    q: "O inglês é focado em qual área profissional?",
     a: "No seu contexto específico. Seja você médico, engenheiro, gestor ou analista — o plano é montado com vocabulário, situações e objetivos do seu setor. Não ensinamos inglês genérico.",
   },
   {
-    q: "Quanto custa? Tem mensalidade?",
-    a: "Os planos variam de acordo com carga horária e duração. Para descobrir qual faz mais sentido para você, fale com um consultor pelo WhatsApp — o atendimento é gratuito e sem compromisso.",
-  },
-  {
-    q: "O que acontece depois dos 90 dias?",
-    a: "Você faz o exame final CEFR, que mostra exatamente o quanto evoluiu. Com base nos resultados, podemos traçar os próximos passos juntos — seja continuar na Falandou ou avançar de forma independente com as ferramentas que você já terá.",
+    q: "Com que frequência acontecem as aulas?",
+    a: "A frequência é definida no seu plano, de acordo com seus objetivos e disponibilidade. As aulas são individuais e agendadas diretamente com o professor. O acompanhamento pelo WhatsApp é contínuo durante toda a semana — você nunca fica sem suporte entre uma aula e outra.",
   },
 ];
 
