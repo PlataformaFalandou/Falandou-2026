@@ -26,6 +26,7 @@ const LinkedinIcon = () => (
 
 const footerLinks = {
   Escola: [
+    { label: "Sobre a Falandou", href: "/sobre" },
     { label: "Como funciona", href: "/#como-funciona" },
     { label: "Para quem é", href: "/#para-quem" },
     { label: "Depoimentos", href: "/#depoimentos" },

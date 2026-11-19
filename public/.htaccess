@@ -1,0 +1,3 @@
+# Hostinger (Apache/LiteSpeed): usa a 404 personalizada gerada pelo Next (out/404.html).
+# Sem esta linha, o servidor mostra a página de erro padrão da hospedagem.
+ErrorDocument 404 /404.html
