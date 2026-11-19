@@ -7,8 +7,8 @@ import { trackCTAClick } from "@/lib/analytics";
 
 const faqs = [
   {
-    q: "Quanto custa?",
-    a: "Os planos começam em R$ 184,90/mês. O valor varia conforme a carga horária semanal e a duração do ciclo. A consulta inicial com a equipe é gratuita — sem compromisso — e é nela que você descobre qual plano faz mais sentido para o seu objetivo.",
+    q: "Qual é o investimento?",
+    a: "Depende do seu objetivo. Profissionais que usam a Falandou para mudar de emprego relatam aumentos salariais de R$ 1.500 a R$ 4.000/mês. Quem consegue uma promoção ou transferência internacional costuma recuperar o investimento em menos de 60 dias. Os planos começam em R$ 184,90/mês — a consulta inicial é gratuita e é nela que você entende qual plano faz sentido para o que você quer alcançar.",
   },
   {
     q: "Quanto tempo leva para ter resultado?",

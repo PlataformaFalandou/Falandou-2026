@@ -41,15 +41,16 @@ export default function MidCTA() {
         <p className="reveal font-body text-white/80 text-lg leading-relaxed mb-6 max-w-2xl mx-auto delay-200">
           Nossos alunos chegam sem conseguir fazer uma reunião simples em inglês. Em 3 meses ganham confiança para falar em público, e em menos de 14 meses, 70% tem êxito em processos seletivos internacionais — com destaque nos aprovados no TOEFL com notas acima da média.
         </p>
-        {/* Price anchor */}
+        {/* ROI anchor */}
         <div
-          className="reveal inline-flex items-center gap-3 px-6 py-3 rounded-2xl mb-8 delay-200"
+          className="reveal inline-flex flex-wrap justify-center items-center gap-x-5 gap-y-2 px-6 py-3 rounded-2xl mb-8 delay-200"
           style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.2)" }}
         >
-          <span className="text-white/60 text-sm font-medium">Planos a partir de</span>
-          <span className="text-white font-extrabold text-xl">R$ 184,90<span className="text-sm font-normal">/mês</span></span>
-          <span className="text-white/40 text-sm">·</span>
-          <span className="text-white/60 text-sm">cancele quando quiser</span>
+          <span className="text-white/60 text-sm font-medium">Promoção salarial</span>
+          <span className="text-white font-extrabold">+R$ 1.500–4.000/mês</span>
+          <span className="text-white/30">·</span>
+          <span className="text-white/60 text-sm font-medium">Retorno médio</span>
+          <span className="text-white font-extrabold">&lt; 60 dias</span>
         </div>
 
         <p className="reveal font-body text-white/60 text-base leading-relaxed mb-10 max-w-xl mx-auto delay-200">

@@ -9,6 +9,7 @@ import CompanyLogos from "@/components/sections/CompanyLogos";
 import YouTubeVideos from "@/components/sections/YouTubeVideos";
 import Teachers from "@/components/sections/Teachers";
 import MidCTA from "@/components/sections/MidCTA";
+import ROIFrame from "@/components/sections/ROIFrame";
 import FAQ from "@/components/sections/FAQ";
 import LeadMagnet from "@/components/sections/LeadMagnet";
 import BlogPreview from "@/components/sections/BlogPreview";
@@ -33,6 +34,7 @@ export default function HomePage() {
         <YouTubeVideos />
         <Teachers />
         <MidCTA />
+        <ROIFrame />
         <FAQ />
         <LeadMagnet />
         <BlogPreview />
