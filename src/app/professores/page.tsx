@@ -3,7 +3,7 @@ import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
-import { TeacherCard } from "@/components/sections/Teachers";
+import { TeacherCard, YouTubeLink } from "@/components/sections/Teachers";
 import { teachers } from "@/lib/teachers";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 
@@ -72,6 +72,7 @@ export default function ProfessoresPage() {
                 o professor no escuro: a escola indica quem combina com o seu diagnóstico CEFR
                 e com o seu objetivo.
               </p>
+              <YouTubeLink className="reveal mt-8 delay-200" />
             </div>
           </div>
         </section>

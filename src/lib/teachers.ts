@@ -1,4 +1,7 @@
 // Fonte única dos professores — usada na seção Teachers da home e em /professores.
+
+// Canal da escola — prova pública de como a Falandou ensina (ponto 42).
+export const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@falandou";
 export type Teacher = {
   name: string;
   title: string;

@@ -5,7 +5,29 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
-import { teachers, type Teacher } from "@/lib/teachers";
+import { teachers, YOUTUBE_CHANNEL_URL, type Teacher } from "@/lib/teachers";
+
+// Link para o canal da escola — mostra como a Falandou ensina antes da conversa.
+export function YouTubeLink({ className = "" }: { className?: string }) {
+  return (
+    <a
+      href={YOUTUBE_CHANNEL_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-flex items-center gap-2 font-body text-sm font-semibold transition-colors duration-200 hover:text-white ${className}`}
+      style={{ color: "rgba(255,255,255,0.6)" }}
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          fill="#FF6820"
+          d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"
+        />
+      </svg>
+      Veja como a escola ensina no canal @falandou
+      <ArrowRight size={14} />
+    </a>
+  );
+}
 
 export function TeacherCard({ t }: { t: Teacher }) {
   return (
@@ -80,6 +102,7 @@ export default function Teachers() {
           <p className="font-body text-white/50 text-lg mt-4 max-w-xl mx-auto">
             Cada profissional é atribuído a um professor com base no diagnóstico CEFR e no objetivo do ciclo.
           </p>
+          <YouTubeLink className="mt-6" />
         </div>
 
         {/* Cards */}
