@@ -4,6 +4,7 @@ import StatsBar from "@/components/sections/StatsBar";
 import ForWhom from "@/components/sections/ForWhom";
 import Journey from "@/components/sections/Journey";
 import Testimonials from "@/components/sections/Testimonials";
+import Teachers from "@/components/sections/Teachers";
 import MidCTA from "@/components/sections/MidCTA";
 import FAQ from "@/components/sections/FAQ";
 import BlogPreview from "@/components/sections/BlogPreview";
@@ -21,6 +22,7 @@ export default function HomePage() {
         <ForWhom />
         <Journey />
         <Testimonials />
+        <Teachers />
         <MidCTA />
         <FAQ />
         <BlogPreview />
