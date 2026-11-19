@@ -44,7 +44,7 @@ export default function ResultsData() {
             {evolved}% dos profissionais passou a conduzir reuniões,<br className="hidden md:block" /> entrevistas e negociações em inglês em até 90 dias.
           </h2>
           <p className="font-body text-sm text-gray-500">
-            {CYCLE_LABEL} · {TOTAL_ALUNOS} alunos avaliados com exame pré e pós-ciclo.
+            {CYCLE_LABEL} · {TOTAL_ALUNOS} profissionais avaliados com exame pré e pós-ciclo.
           </p>
         </div>
 

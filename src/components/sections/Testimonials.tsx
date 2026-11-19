@@ -33,7 +33,7 @@ const STATS = [
 
 const METHODOLOGY_NOTES: React.ReactNode[] = [
   <>Exame <CEFRTooltip /> aplicado pela escola antes e após cada ciclo de 90 dias.</>,
-  "Dados do último ciclo fechado (Jan–Set 2024) · 87 alunos avaliados.",
+  "Dados do último ciclo fechado (Jan–Set 2024) · 87 profissionais avaliados.",
   <>Níveis: A1 · A2 · B1 · B2 · C1 · C2 — padrão europeu usado por Cambridge e IELTS. <CEFRTooltip>O que é CEFR?</CEFRTooltip></>,
 ];
 // ─────────────────────────────────────────────────────────────────────────────
