@@ -29,6 +29,7 @@ export function getWhatsAppUrlForContext(context: string): string {
     navbar: "Olá! Quero falar com a equipe da Falandou sobre inglês profissional.",
     faq: "Olá! Fiquei com uma dúvida depois de ler o FAQ da Falandou e gostaria de conversar com a equipe.",
     roi: "Olá! Vi os cenários de retorno da Falandou e quero entender como o plano certo pode impactar minha carreira. Pode me ajudar?",
+    metodo: "Olá! Li sobre o método da Falandou e quero entender como funciona na prática para o meu caso.",
     entrevista: "Olá! Estou me preparando para entrevistas de emprego em inglês e quero saber como a Falandou pode me ajudar.",
     executivo: "Olá! Preciso de inglês executivo para reuniões e apresentações. Quero entender como a Falandou trabalha com esse objetivo.",
     promocao: "Olá! Estou buscando uma promoção e o inglês é requisito. Quero saber como a Falandou pode acelerar meu desenvolvimento.",

@@ -6,9 +6,9 @@ import { Menu, X } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 
 const navLinks = [
+  { label: "O método", href: "/metodo" },
   { label: "Como funciona", href: "#como-funciona" },
-  { label: "Para quem é", href: "#para-quem" },
-  { label: "Depoimentos", href: "#depoimentos" },
+  { label: "Resultados", href: "#depoimentos" },
   { label: "Blog", href: "/blog" },
 ];
 
