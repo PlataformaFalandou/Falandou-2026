@@ -17,7 +17,7 @@ const BARS = [
 
 const DESTAQUES = [
   { valor: "79%",        desc: "dos profissionais passaram a usar inglês no trabalho após o ciclo" },
-  { valor: "11 semanas", desc: "tempo médio para ganhar fluência operacional"   },
+  { valor: "11 semanas", desc: "tempo médio para ir de B1 a B2"   },
   { valor: "4,9 ★",      desc: "avaliação média no ciclo"       },
   { valor: "92%",        desc: "concluíram o plano sem abandonar"           },
 ];

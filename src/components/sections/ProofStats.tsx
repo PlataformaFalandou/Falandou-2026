@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import CEFRTooltip from "@/components/ui/CEFRTooltip";
 
 /**
@@ -90,6 +91,13 @@ export default function ProofStats() {
               </li>
             ))}
           </ul>
+          <Link
+            href="/resultados"
+            className="inline-block mt-3 font-body text-xs font-semibold underline underline-offset-4 hover:text-white transition-colors"
+            style={{ color: "rgba(255,255,255,0.55)" }}
+          >
+            Ver a distribuição completa e a metodologia →
+          </Link>
         </div>
       </div>
     </section>
