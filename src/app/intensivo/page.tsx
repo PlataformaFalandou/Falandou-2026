@@ -124,7 +124,7 @@ export default function IntensivoPage() {
           {[
             {
               title: "Você tem uma entrevista em até 2 meses",
-              desc: "Recrutadores de multinacionais avaliam fluência, pronúncia e segurança. 60 dias de foco muda o jogo.",
+              desc: "Recrutadores eliminam candidatos por clareza e ritmo — não só por gramática. Um ciclo focado de 60 dias aumenta a probabilidade de passar para a próxima fase.",
             },
             {
               title: "Você foi promovido e o inglês é requisito agora",

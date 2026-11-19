@@ -6,7 +6,7 @@ const scenarios = [
     trigger: "Promoção ou aumento",
     result: "+R$ 2.000–4.000/mês",
     detail:
-      "Profissionais bilíngues recebem em média 61% a mais do que colegas com o mesmo cargo e experiência sem inglês fluente. Uma promoção típica cobre o investimento no curso em menos de 45 dias.",
+      "Alunos que receberam promoção ou aumento após o ciclo relatam acréscimos de R$ 1.500 a R$ 4.000/mês. Com esse retorno, o plano costuma se pagar em menos de 60 dias — dado reportado pelos próprios alunos.",
     cta: "Quero essa promoção",
   },
   {

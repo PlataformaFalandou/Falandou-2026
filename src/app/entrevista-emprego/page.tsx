@@ -42,7 +42,7 @@ export default function EntrevistaEmpregoPage() {
               <span style={{ color: "#FF6820" }}>Em inglês.</span>
             </>
           }
-          subheadline="A vaga existe, o currículo é bom — mas a entrevista em inglês trava tudo. Recrutadores avaliam fluência, clareza e segurança. Em 90 dias você desenvolve exatamente o que faz diferença na hora certa."
+          subheadline="A vaga existe, o currículo é bom — mas a entrevista em inglês trava tudo. Recrutadores eliminam por clareza, ritmo e segurança — não só por gramática. 70% dos nossos alunos passou em processos seletivos com etapa em inglês dentro de 14 meses."
           whatsappContext="entrevista"
         />
         <StatsBar />

@@ -59,11 +59,11 @@ const faqs = [
   },
   {
     q: "Já tenho inglês médio mas trao na hora de falar. O curso funciona para mim?",
-    a: "Esse é o perfil mais comum que atendemos. Inglês passivo (entender, ler) é diferente de inglês ativo (falar sob pressão). Trabalhamos especificamente ativação — transformar o que você já sabe em fala fluida.",
+    a: "Esse é o perfil mais comum que atendemos. Inglês passivo (entender, ler) é diferente de inglês ativo (falar sob pressão em tempo real). O trabalho é de ativação: usar, em voz alta, o que você já sabe — com ritmo e segurança.",
   },
   {
     q: "Vocês fazem simulação de entrevista real?",
-    a: "Sim. Depois de algumas semanas treinando as estruturas, fazemos simulações com as perguntas mais comuns do seu setor. O professor avalia fluência, clareza e postura — não só gramática.",
+    a: "Sim. Depois de algumas semanas treinando as estruturas específicas, fazemos simulações com as perguntas mais comuns do seu setor. O professor avalia clareza, ritmo e segurança — não só gramática.",
   },
   {
     q: "Como funciona o plano para entrevista?",

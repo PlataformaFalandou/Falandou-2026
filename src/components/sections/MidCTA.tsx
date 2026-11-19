@@ -39,7 +39,7 @@ export default function MidCTA() {
           O inglês que falta para a próxima fase da sua carreira.
         </h2>
         <p className="reveal font-body text-white/80 text-lg leading-relaxed mb-6 max-w-2xl mx-auto delay-200">
-          Nossos alunos chegam sem conseguir fazer uma reunião simples em inglês. Em 3 meses ganham confiança para falar em público, e em menos de 14 meses, 70% tem êxito em processos seletivos internacionais — com destaque nos aprovados no TOEFL com notas acima da média.
+          Nossos alunos chegam sem conseguir conduzir uma reunião em inglês. Ao fim do ciclo de 90 dias, 79% sobe pelo menos 1 nível CEFR. Em menos de 14 meses, 70% é aprovado em processos seletivos com etapa em inglês.
         </p>
         {/* ROI anchor */}
         <div

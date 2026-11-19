@@ -26,7 +26,7 @@ const benefits = [
   {
     icon: "👥",
     title: "Aprendizado em grupo",
-    desc: "Pratique com profissionais do mesmo nível. A turma cria pressão positiva e acelera a fluência.",
+    desc: "Pratique com profissionais do mesmo nível. A pressão positiva de grupo aumenta a frequência de uso — e uso frequente produz progresso mensurável.",
   },
   {
     icon: "🗓️",

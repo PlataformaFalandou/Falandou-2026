@@ -42,7 +42,7 @@ export default function PromocaoCargoPage() {
               <span style={{ color: "#FF6820" }}>para o próximo nível.</span>
             </>
           }
-          subheadline="Você tem a experiência e a entrega — mas o inglês continua como barreira visível para o próximo nível. Cargos sênior em empresas globais exigem fluência, não suficiência. Em 90 dias você elimina essa barreira."
+          subheadline="Você tem a experiência e a entrega — mas o inglês continua como critério visível para o próximo nível. Em um ciclo de 90 dias, 79% dos nossos alunos sobe ao menos 1 nível CEFR. Para muitos, isso é exatamente a diferença entre candidato e aprovado."
           whatsappContext="promocao"
         />
         <StatsBar />

@@ -30,7 +30,7 @@ const teachers = [
     credentials: ["Cambridge", "IELTS", "TOEFL"],
     focus: "A1 – C2",
     specialty: "Literatura e escrita profissional",
-    bio: "Pedagoga norte-americana com domínio completo dos principais exames internacionais. Atende todos os níveis com foco em fluência real — do diagnóstico inicial até a certificação.",
+    bio: "Pedagoga norte-americana com formação e prática em Cambridge, IELTS e TOEFL. Atende do nível A1 ao C2 com planos individualizados — do diagnóstico inicial até a preparação para certificação.",
   },
 ];
 

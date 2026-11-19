@@ -6,7 +6,7 @@ import { getArticles, categories } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "Blog — Falandou | Inglês para Profissionais",
-  description: "Dicas, pronúncia, vocabulário e motivação para você dominar o inglês profissional.",
+  description: "Artigos sobre pronúncia, vocabulário e comunicação em inglês para profissionais — com base no que realmente funciona em reuniões, entrevistas e apresentações.",
 };
 
 export default function BlogPage() {
