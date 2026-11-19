@@ -1,13 +1,22 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
+import { getWhatsAppUrl, getWhatsAppUrlForContext } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Planos e Preços | Falandou",
   description:
     "Veja os planos de inglês profissional da Falandou: sessões individuais 1 a 1, ciclo de 90 dias e exame CEFR antes e depois. Planos a partir de R$ 184,90/mês.",
 };
+
+// Ponto 44 — comparação clara: o que é igual fica numa faixa única;
+// cada cartão mostra só o que muda (sessões por semana + extras).
+const INCLUDED_IN_ALL = [
+  "Exame CEFR diagnóstico e de evolução",
+  "Plano personalizado para o seu setor",
+  "Acompanhamento via WhatsApp",
+  "Material de estudo incluso",
+];
 
 const PLANS = [
   {
@@ -17,15 +26,10 @@ const PLANS = [
     price: "R$ 184,90",
     period: "/mês",
     cycle: "Ciclo de 90 dias",
+    sessions: "2 sessões individuais por semana",
     highlight: false,
-    features: [
-      "2 sessões individuais por semana",
-      "Exame CEFR diagnóstico (início do ciclo)",
-      "Exame CEFR de evolução (fim do ciclo)",
-      "Plano personalizado para seu setor",
-      "Acompanhamento via WhatsApp",
-      "Material de estudo incluso",
-    ],
+    featuresLabel: "Inclui",
+    features: ["Tudo o que está incluso em todos os planos"],
     cta: "Quero o plano Essencial",
     whatsappMsg: "Olá! Tenho interesse no plano Essencial da Falandou (2 sessões/semana). Podem me contar mais sobre como funciona?",
   },
@@ -36,14 +40,10 @@ const PLANS = [
     price: "R$ 299,90",
     period: "/mês",
     cycle: "Ciclo de 90 dias",
+    sessions: "3 sessões individuais por semana",
     highlight: true,
+    featuresLabel: "Tudo do Essencial, mais",
     features: [
-      "3 sessões individuais por semana",
-      "Exame CEFR diagnóstico (início do ciclo)",
-      "Exame CEFR de evolução (fim do ciclo)",
-      "Plano personalizado para seu setor",
-      "Acompanhamento via WhatsApp",
-      "Material de estudo incluso",
       "Simulações de reunião e apresentação",
       "Prioridade no reagendamento",
     ],
@@ -57,15 +57,11 @@ const PLANS = [
     price: "R$ 429,90",
     period: "/mês",
     cycle: "Ciclo de 90 dias",
+    sessions: "5 sessões individuais por semana",
     highlight: false,
+    featuresLabel: "Tudo do Profissional, mais",
     features: [
-      "5 sessões individuais por semana",
-      "Exame CEFR diagnóstico (início do ciclo)",
-      "Exame CEFR de evolução (fim do ciclo)",
-      "Plano personalizado para seu setor",
-      "Acompanhamento via WhatsApp",
-      "Material de estudo incluso",
-      "Simulações de reunião, entrevista e apresentação",
+      "Simulações de entrevista",
       "Prioridade máxima no reagendamento",
       "Sessão extra de feedback a cada 30 dias",
     ],
@@ -160,7 +156,28 @@ export default function PlanosPage() {
         {/* ── Pricing cards ── */}
         <section className="py-16 md:py-20" style={{ backgroundColor: "#0e0e0e" }}>
           <div className="max-w-6xl mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+            {/* Incluso em todos os planos */}
+            <div
+              className="mb-8 rounded-2xl px-6 py-5 flex flex-col md:flex-row md:items-center gap-4 md:gap-8"
+              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
+            >
+              <p
+                className="font-body text-xs font-bold uppercase tracking-widest flex-shrink-0"
+                style={{ color: "#FF6820" }}
+              >
+                Incluso em todos os planos
+              </p>
+              <ul className="flex flex-wrap gap-x-6 gap-y-2">
+                {INCLUDED_IN_ALL.map((item) => (
+                  <li key={item} className="flex items-center gap-2 font-body text-sm" style={{ color: "rgba(255,255,255,0.75)" }}>
+                    <span className="font-bold" style={{ color: "#FF6820" }}>✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
               {PLANS.map((plan) => (
                 <div
                   key={plan.id}
@@ -226,7 +243,21 @@ export default function PlanosPage() {
                       </p>
                     </div>
 
-                    {/* Features */}
+                    {/* Sessões por semana — a principal diferença entre os planos */}
+                    <p
+                      className="font-display font-bold text-base text-white mb-6 pb-6 border-b"
+                      style={{ borderColor: "rgba(255,255,255,0.08)" }}
+                    >
+                      {plan.sessions}
+                    </p>
+
+                    {/* Features — só o que muda */}
+                    <p
+                      className="font-body text-xs font-semibold uppercase tracking-widest mb-3"
+                      style={{ color: "rgba(255,255,255,0.35)" }}
+                    >
+                      {plan.featuresLabel}
+                    </p>
                     <ul className="flex flex-col gap-3 mb-10 flex-1">
                       {plan.features.map((f) => (
                         <li key={f} className="flex items-start gap-3">
@@ -248,7 +279,7 @@ export default function PlanosPage() {
 
                     {/* CTA */}
                     <a
-                      href={`https://wa.me/5511971419047?text=${encodeURIComponent(plan.whatsappMsg)}`}
+                      href={getWhatsAppUrl(plan.whatsappMsg)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block text-center font-body font-bold text-base px-6 py-4 rounded-full transition-all duration-300"
