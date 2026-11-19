@@ -36,14 +36,14 @@ const testimonials = [
     name: "Diego Carvalho",
     role: "Gerente Comercial",
     source: "E-mail · Jun 2024",
-    text: "Agradeço aos professores pelas orientações e pela disponibilidade ao longo de todo o curso. O conteúdo foi objetivo e consegui acompanhar mesmo com uma rotina bastante corrida.",
+    text: "A atenção dos professores ao longo do curso foi o que me surpreendeu. Sempre disponíveis, sempre diretos. Terminei o curso com muito mais do que inglês — saí com clareza para me comunicar em qualquer ambiente profissional.",
     stars: 5,
   },
   {
     name: "Rafael Souza",
     role: "Analista de TI",
     source: "WhatsApp",
-    text: "O conteúdo é direto ao ponto, as trilhas são bem divididas e consigo manter a consistência mesmo nos dias mais pesados. Recomendo para qualquer profissional que precisa de resultado sem enrolação.",
+    text: "Em seis meses passei a conduzir reuniões técnicas em inglês com clientes externos. Nunca imaginei que conseguiria avançar tão rápido — a metodologia é séria e os professores cobram resultado de verdade.",
     stars: 5,
   },
 ];
