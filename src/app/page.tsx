@@ -21,8 +21,8 @@ export default function HomePage() {
       <main>
         <Hero />
         <StatsBar />
-        <CompanyLogos />
         <ForWhom />
+        <CompanyLogos />
         <Journey />
         <ResultsData />
         <Testimonials />
