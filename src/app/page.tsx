@@ -4,6 +4,7 @@ import StatsBar from "@/components/sections/StatsBar";
 import ForWhom from "@/components/sections/ForWhom";
 import Journey from "@/components/sections/Journey";
 import MetodoTeaser from "@/components/sections/MetodoTeaser";
+import ComparisonTable from "@/components/sections/ComparisonTable";
 import Testimonials from "@/components/sections/Testimonials";
 import YouTubeVideos from "@/components/sections/YouTubeVideos";
 import Teachers from "@/components/sections/Teachers";
@@ -28,6 +29,7 @@ export default function HomePage() {
         <ForWhom />
         <Journey />
         <MetodoTeaser />
+        <ComparisonTable />
         <Testimonials />
         <YouTubeVideos />
         <Teachers />

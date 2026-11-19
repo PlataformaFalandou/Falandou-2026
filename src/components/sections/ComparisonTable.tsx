@@ -1,0 +1,152 @@
+/**
+ * ComparisonTable
+ * Contraste honesto linha a linha: o que o mercado genérico entrega
+ * vs. o que a Falandou entrega. Sem atacar nomes, sem superlativo vazio.
+ *
+ * Critério editorial (ponto 27): cada linha da Falandou tem uma
+ * descrição concreta, não só um ✓ vs ✗.
+ */
+
+const rows = [
+  {
+    dimension: "Personalização",
+    generic: "Mesmo conteúdo para todos os alunos",
+    falandou: "Plano individual — cada aluno tem um objetivo, setor e prazo diferentes",
+  },
+  {
+    dimension: "Tempo de fala por aula",
+    generic: "Dividido entre vários alunos no grupo",
+    falandou: "100% do tempo de cada sessão dedicado a você",
+  },
+  {
+    dimension: "Vocabulário ensinado",
+    generic: "Inglês geral — viagens, cotidiano, gramática",
+    falandou: "Inglês do seu contexto — reuniões, e-mails, negociações, apresentações",
+  },
+  {
+    dimension: "Como o resultado é medido",
+    generic: "Percepção subjetiva do aluno",
+    falandou: "Exame CEFR diagnóstico no início e de evolução no fim do ciclo",
+  },
+  {
+    dimension: "Suporte entre aulas",
+    generic: "Fórum ou sem suporte",
+    falandou: "WhatsApp ativo durante a semana — dúvidas respondidas fora do horário da aula",
+  },
+  {
+    dimension: "Prazo para resultado visível",
+    generic: "Indefinido — depende do aluno se organizar",
+    falandou: "Ciclo de 90 dias com objetivo e prazo definidos desde a primeira aula",
+  },
+];
+
+export default function ComparisonTable() {
+  return (
+    <section className="py-20 md:py-28" style={{ background: "#F5F6F1" }}>
+      <div className="max-w-5xl mx-auto px-6">
+
+        {/* Header */}
+        <div className="text-center mb-14">
+          <p
+            className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4"
+            style={{ color: "#FF6820" }}
+          >
+            Por que a diferença importa
+          </p>
+          <h2
+            className="reveal font-display font-extrabold leading-tight delay-100"
+            style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", color: "#161616" }}
+          >
+            O que você recebe aqui{" "}
+            <span style={{ color: "#FF6820" }}>não existe em app ou curso em grupo.</span>
+          </h2>
+          <p
+            className="reveal font-body text-base leading-relaxed mt-4 max-w-xl mx-auto delay-150"
+            style={{ color: "rgba(22,22,22,0.55)" }}
+          >
+            Não é crítica — é o contraste que explica por que cada formato
+            existe e para quem cada um faz sentido.
+          </p>
+        </div>
+
+        {/* Table — desktop */}
+        <div className="reveal delay-200 hidden md:block rounded-2xl overflow-hidden border" style={{ borderColor: "rgba(22,22,22,0.1)" }}>
+          {/* Header row */}
+          <div className="grid grid-cols-[2fr_3fr_3fr]" style={{ background: "#161616" }}>
+            <div className="px-6 py-4 text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>
+              Critério
+            </div>
+            <div className="px-6 py-4 text-xs font-bold uppercase tracking-widest border-l" style={{ color: "rgba(255,255,255,0.4)", borderColor: "rgba(255,255,255,0.08)" }}>
+              Apps e cursos genéricos
+            </div>
+            <div className="px-6 py-4 text-xs font-bold uppercase tracking-widest border-l" style={{ color: "#FF6820", borderColor: "rgba(255,255,255,0.08)" }}>
+              Falandou
+            </div>
+          </div>
+
+          {/* Data rows */}
+          {rows.map((row, i) => (
+            <div
+              key={row.dimension}
+              className="grid grid-cols-[2fr_3fr_3fr] border-t"
+              style={{
+                borderColor: "rgba(22,22,22,0.07)",
+                background: i % 2 === 0 ? "#ffffff" : "#fafaf8",
+              }}
+            >
+              <div className="px-6 py-5 flex items-center">
+                <span className="font-body text-sm font-bold" style={{ color: "#161616" }}>
+                  {row.dimension}
+                </span>
+              </div>
+              <div className="px-6 py-5 flex items-start gap-3 border-l" style={{ borderColor: "rgba(22,22,22,0.07)" }}>
+                <span className="text-base flex-shrink-0 mt-0.5" aria-hidden>✗</span>
+                <span className="font-body text-sm leading-snug" style={{ color: "rgba(22,22,22,0.55)" }}>
+                  {row.generic}
+                </span>
+              </div>
+              <div className="px-6 py-5 flex items-start gap-3 border-l" style={{ borderColor: "rgba(22,22,22,0.07)", background: "rgba(255,104,32,0.04)" }}>
+                <span className="text-base flex-shrink-0 mt-0.5" style={{ color: "#FF6820" }} aria-hidden>✓</span>
+                <span className="font-body text-sm font-medium leading-snug" style={{ color: "#161616" }}>
+                  {row.falandou}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Cards — mobile */}
+        <div className="md:hidden space-y-4">
+          {rows.map((row, i) => (
+            <div
+              key={row.dimension}
+              className={`reveal rounded-2xl overflow-hidden border`}
+              style={{ borderColor: "rgba(22,22,22,0.1)", transitionDelay: `${i * 60}ms` }}
+            >
+              <div className="px-4 py-3" style={{ background: "#161616" }}>
+                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  {row.dimension}
+                </span>
+              </div>
+              <div className="px-4 py-4 flex items-start gap-3 border-b" style={{ borderColor: "rgba(22,22,22,0.07)", background: "#fff" }}>
+                <span className="text-sm flex-shrink-0 mt-0.5" aria-hidden>✗</span>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide mb-1" style={{ color: "rgba(22,22,22,0.4)" }}>Genérico</p>
+                  <p className="text-sm leading-snug" style={{ color: "rgba(22,22,22,0.55)" }}>{row.generic}</p>
+                </div>
+              </div>
+              <div className="px-4 py-4 flex items-start gap-3" style={{ background: "rgba(255,104,32,0.04)" }}>
+                <span className="text-sm flex-shrink-0 mt-0.5" style={{ color: "#FF6820" }} aria-hidden>✓</span>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wide mb-1" style={{ color: "#FF6820" }}>Falandou</p>
+                  <p className="text-sm font-medium leading-snug" style={{ color: "#161616" }}>{row.falandou}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+}
