@@ -28,8 +28,9 @@ export default function HomePage() {
       <Navbar />
       <main>
         <HeroAB />
-        <StatsBar />
+        {/* Ponto 38: identificação logo após a Hero; credenciais vêm depois */}
         <ForWhom />
+        <StatsBar />
         <Journey />
         <MetodoTeaser />
         <ComparisonTable />

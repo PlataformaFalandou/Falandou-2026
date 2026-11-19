@@ -1,8 +1,19 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
+
+// Ponto 38 — além da profissão, o visitante se reconhece pelo momento que está vivendo.
+// Cada momento leva à landing page que fala exatamente com ele.
+const moments = [
+  { label: "Tenho uma entrevista em inglês", href: "/ingles-entrevista" },
+  { label: "Quero ser promovido", href: "/promocao-cargo" },
+  { label: "Vou trabalhar no exterior", href: "/ingles-expatriacao" },
+  { label: "Conduzo reuniões e apresentações", href: "/ingles-executivo" },
+];
 
 const profiles = [
   {
@@ -97,6 +108,27 @@ export default function ForWhom() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Momentos — identificação por situação, não só por profissão */}
+        <div className="mt-14">
+          <p className="font-body text-sm font-bold uppercase tracking-widest mb-5 text-center" style={{ color: "rgba(22,22,22,0.45)" }}>
+            Ou comece pelo seu momento
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {moments.map((m) => (
+              <Link
+                key={m.href}
+                href={m.href}
+                className="group flex items-center justify-between gap-3 px-5 py-4 rounded-2xl bg-white border border-black/5 hover:border-laranja/40 hover:shadow-md transition-all duration-300"
+              >
+                <span className="font-body text-sm font-semibold" style={{ color: "#161616" }}>
+                  {m.label}
+                </span>
+                <ArrowRight size={16} className="flex-shrink-0 group-hover:translate-x-1 transition-transform" style={{ color: "#FF6820" }} />
+              </Link>
+            ))}
+          </div>
         </div>
 
         {/* CTA — visitante acabou de se reconhecer em um dos perfis */}
