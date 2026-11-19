@@ -32,6 +32,10 @@ export function getWhatsAppUrlForContext(context: string): string {
     executivo: "Olá! Preciso de inglês executivo para reuniões e apresentações. Quero entender como a Falandou trabalha com esse objetivo.",
     promocao: "Olá! Estou buscando uma promoção e o inglês é requisito. Quero saber como a Falandou pode acelerar meu desenvolvimento.",
     leadmagnet: "Olá! Vi o roteiro de 30 dias no site da Falandou e quero receber o PDF completo.",
+    "turma-online": "Olá! Tenho interesse na turma online de inglês profissional da Falandou e gostaria de saber quando a próxima turma abre.",
+    "turma-online-footer": "Olá! Tenho interesse na turma online de inglês profissional da Falandou e gostaria de saber quando a próxima turma abre.",
+    intensivo: "Olá! Tenho interesse no programa intensivo da Falandou e gostaria de entender como funciona e quando começa a próxima turma.",
+    "intensivo-footer": "Olá! Tenho interesse no programa intensivo da Falandou e gostaria de entender como funciona e quando começa a próxima turma.",
   };
   return getWhatsAppUrl(messages[context] ?? messages.hero);
 }

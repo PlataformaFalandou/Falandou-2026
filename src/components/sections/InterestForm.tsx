@@ -1,0 +1,118 @@
+"use client";
+
+import { useState } from "react";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { trackCTAClick } from "@/lib/analytics";
+
+interface InterestFormProps {
+  /** Contexto usado no evento de analytics */
+  context: string;
+  /** Mensagem pré-preenchida no WhatsApp */
+  whatsappMessage: string;
+  /** Texto do botão de envio */
+  ctaLabel?: string;
+}
+
+export default function InterestForm({
+  context,
+  whatsappMessage,
+  ctaLabel = "Quero garantir minha vaga",
+}: InterestFormProps) {
+  const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    trackCTAClick(context);
+
+    // Enriquece a mensagem com nome e contato informados
+    const enriched = name.trim()
+      ? `${whatsappMessage} Me chamo ${name.trim()}${contact.trim() ? ` e meu contato é ${contact.trim()}` : ""}.`
+      : whatsappMessage;
+
+    window.open(getWhatsAppUrl(enriched), "_blank", "noopener,noreferrer");
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "12px",
+        width: "100%",
+        maxWidth: "420px",
+      }}
+    >
+      <input
+        type="text"
+        placeholder="Seu nome"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+        style={{
+          padding: "14px 16px",
+          borderRadius: "8px",
+          border: "1.5px solid #e0e0e0",
+          fontSize: "15px",
+          fontFamily: "inherit",
+          outline: "none",
+          background: "#fff",
+          color: "#161616",
+          transition: "border-color 0.2s",
+        }}
+        onFocus={(e) => (e.currentTarget.style.borderColor = "#FF6820")}
+        onBlur={(e) => (e.currentTarget.style.borderColor = "#e0e0e0")}
+      />
+      <input
+        type="text"
+        placeholder="WhatsApp ou e-mail"
+        value={contact}
+        onChange={(e) => setContact(e.target.value)}
+        style={{
+          padding: "14px 16px",
+          borderRadius: "8px",
+          border: "1.5px solid #e0e0e0",
+          fontSize: "15px",
+          fontFamily: "inherit",
+          outline: "none",
+          background: "#fff",
+          color: "#161616",
+          transition: "border-color 0.2s",
+        }}
+        onFocus={(e) => (e.currentTarget.style.borderColor = "#FF6820")}
+        onBlur={(e) => (e.currentTarget.style.borderColor = "#e0e0e0")}
+      />
+      <button
+        type="submit"
+        style={{
+          padding: "16px 24px",
+          background: "#FF6820",
+          color: "#fff",
+          border: "none",
+          borderRadius: "8px",
+          fontSize: "16px",
+          fontWeight: 700,
+          cursor: "pointer",
+          fontFamily: "inherit",
+          letterSpacing: "-0.01em",
+          transition: "opacity 0.2s",
+        }}
+        onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
+        onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+      >
+        {ctaLabel}
+      </button>
+      <p
+        style={{
+          fontSize: "12px",
+          color: "#888",
+          textAlign: "center",
+          margin: 0,
+        }}
+      >
+        Você será redirecionado para o WhatsApp da equipe Falandou.
+      </p>
+    </form>
+  );
+}
