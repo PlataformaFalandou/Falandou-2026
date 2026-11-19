@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 const profiles = [
   {
@@ -95,6 +96,22 @@ export default function ForWhom() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* CTA — visitante acabou de se reconhecer em um dos perfis */}
+        <div className="mt-16 text-center">
+          <p className="font-body text-base mb-6" style={{ color: "rgba(22,22,22,0.55)" }}>
+            Se você se identificou com algum desses perfis, o próximo passo é simples.
+          </p>
+          <a
+            href={getWhatsAppUrl("hero")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white transition-all duration-300 hover:opacity-90 hover:scale-105"
+            style={{ backgroundColor: "#FF6820" }}
+          >
+            Quero começar
+          </a>
         </div>
       </div>
     </section>

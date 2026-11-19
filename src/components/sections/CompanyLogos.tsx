@@ -67,6 +67,18 @@ export default function CompanyLogos() {
             </div>
           ))}
         </div>
+
+        {/* Saída leve — contexto antes do próximo passo */}
+        <p className="text-center mt-10 font-body text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>
+          Esses profissionais estudaram na Falandou.{" "}
+          <a
+            href="#como-funciona"
+            className="underline underline-offset-4 hover:text-white transition-colors duration-200"
+            style={{ color: "rgba(255,255,255,0.5)" }}
+          >
+            Veja como funciona →
+          </a>
+        </p>
       </div>
     </section>
   );

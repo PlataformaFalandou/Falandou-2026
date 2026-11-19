@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 const testimonials = [
   {
@@ -138,6 +139,31 @@ export default function Testimonials() {
             <TestimonialCard t={t} />
           </div>
         ))}
+      </div>
+
+      {/* CTA — prova social é o momento de maior conversão */}
+      <div className="max-w-7xl mx-auto px-6 mt-14 text-center">
+        <p className="font-body text-base mb-6" style={{ color: "rgba(255,255,255,0.4)" }}>
+          A próxima história pode ser a sua.
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href={getWhatsAppUrl("hero")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white transition-all duration-300 hover:opacity-90 hover:scale-105"
+            style={{ backgroundColor: "#FF6820" }}
+          >
+            Quero começar
+          </a>
+          <a
+            href="#faq"
+            className="font-body text-sm font-semibold underline underline-offset-4 transition-colors duration-200"
+            style={{ color: "rgba(255,255,255,0.35)" }}
+          >
+            Ver perguntas frequentes →
+          </a>
+        </div>
       </div>
     </section>
   );

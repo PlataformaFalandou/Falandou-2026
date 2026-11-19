@@ -1,5 +1,7 @@
 "use client";
 
+import { getWhatsAppUrl } from "@/lib/whatsapp";
+
 // ─── dados editáveis ──────────────────────────────────────────────────────────
 // Troque pelos seus números reais quando tiver o ciclo fechado.
 const CYCLE_LABEL = "Último ciclo · Jan–Set 2024"; // ex.: "Jan–Set 2024"
@@ -100,6 +102,26 @@ export default function ResultsData() {
             ))}
           </div>
 
+        </div>
+
+        {/* CTA — resultado medido, momento de alta persuasão */}
+        <div className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href={getWhatsAppUrl("hero")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white transition-all duration-300 hover:opacity-90 hover:scale-105"
+            style={{ backgroundColor: "#FF6820" }}
+          >
+            Quero começar
+          </a>
+          <a
+            href="#faq"
+            className="font-body text-sm font-semibold underline underline-offset-4 transition-colors duration-200"
+            style={{ color: "rgba(22,22,22,0.5)" }}
+          >
+            Ainda tenho dúvidas →
+          </a>
         </div>
       </div>
     </section>

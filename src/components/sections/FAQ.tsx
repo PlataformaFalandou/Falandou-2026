@@ -72,7 +72,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-24 md:py-32" style={{ backgroundColor: "#F5F6F1" }}>
+    <section id="faq" className="py-24 md:py-32" style={{ backgroundColor: "#F5F6F1" }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-5 gap-14 items-start">
           {/* Left: header */}
