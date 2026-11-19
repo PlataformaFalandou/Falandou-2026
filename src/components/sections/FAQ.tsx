@@ -1,32 +1,39 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Minus } from "lucide-react";
+import { MessageCircle, Minus, Plus } from "lucide-react";
+import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 
+// ─── Edite as perguntas e respostas aqui ──────────────────────────
+// As três primeiras são as objeções principais — mantenha-as no topo.
 const faqs = [
   {
-    q: "Preciso ter um nível mínimo de inglês para começar?",
-    a: "Não. Atendemos profissionais de todos os níveis, do básico ao avançado. O exame CEFR no início do processo existe exatamente para identificar onde você está e construir o plano a partir daí.",
+    q: "Quanto custa?",
+    a: "Os planos começam em R$ 184,90/mês. O valor final depende da carga horária semanal e da duração do ciclo escolhido. Não há taxa de matrícula nem multa por cancelamento. Você pode conversar com o Professor Adriel pelo WhatsApp para entender qual plano faz mais sentido para o seu objetivo — o atendimento inicial é gratuito e sem compromisso.",
+  },
+  {
+    q: "Quanto tempo leva para eu ver resultado?",
+    a: "O ciclo padrão é de 90 dias. Nos últimos dados internos, 79% dos alunos subiram pelo menos 1 nível CEFR nesse período — e a média de evolução para quem estava em B1 foi de 11 semanas para chegar ao B2. Resultado depende de consistência: alunos que seguem o plano semanal evoluem dentro do prazo. Alunos que pulam sessões demoram mais.",
+  },
+  {
+    q: "Funciona para quem nunca estudou inglês — ou estudou e esqueceu tudo?",
+    a: "Sim. Atendemos profissionais de todos os níveis, do A1 (iniciante absoluto) ao C1 (avançado). O exame CEFR no início do ciclo identifica exatamente onde você está hoje, e o plano é construído a partir daí — sem pular etapas, sem começar do zero desnecessariamente. Muitos alunos chegam dizendo que 'nunca aprenderam inglês de verdade' e, em 90 dias, já conduzem reuniões básicas sem depender de tradução.",
   },
   {
     q: "Como funciona o exame CEFR?",
-    a: "O exame avalia as quatro habilidades (reading, listening, speaking e writing) e posiciona você em um nível do quadro europeu de referências — de A1 a C2. Com esse resultado, os professores montam um plano semanal detalhado para os próximos 90 dias.",
+    a: "O CEFR (Common European Framework of Reference) é o padrão internacional de proficiência em inglês — o mesmo usado por Cambridge, IELTS e TOEFL. Ele avalia as quatro habilidades: leitura, escuta, fala e escrita, e posiciona você em um nível de A1 a C2. Na Falandou, o exame é aplicado no início e no fim de cada ciclo de 90 dias, para que você veja com precisão o quanto evoluiu.",
   },
   {
-    q: "Com que frequência acontecem as aulas?",
-    a: "A frequência é definida no seu plano, de acordo com seus objetivos e disponibilidade. As aulas são individuais e agendadas diretamente com o professor. O acompanhamento pelo WhatsApp é contínuo, toda semana.",
+    q: "As aulas são individuais ou em grupo?",
+    a: "Individuais. Cada sessão é com o Professor Adriel, dedicada ao seu objetivo específico. Não há turmas, não há grade fixa. O horário é combinado diretamente com o professor e o acompanhamento por WhatsApp acontece toda semana — entre as sessões, não só no dia da aula.",
   },
   {
-    q: "O inglês é focado em qual área?",
-    a: "No seu contexto específico. Seja você médico, engenheiro, gestor ou analista — o plano é montado com vocabulário, situações e objetivos do seu setor. Não ensinamos inglês genérico.",
-  },
-  {
-    q: "Quanto custa? Tem mensalidade?",
-    a: "Os planos variam de acordo com carga horária e duração. Para descobrir qual faz mais sentido para você, fale com um consultor pelo WhatsApp — o atendimento é gratuito e sem compromisso.",
+    q: "O inglês é genérico ou focado na minha área?",
+    a: "Focado no seu contexto. Se você é gestor, o plano prioriza reuniões, negociações e apresentações. Se vai para um intercâmbio, o foco é conversação e cotidiano. Se precisa para um concurso, trabalhamos leitura técnica e redação formal. Não existe plano padrão — o plano é seu.",
   },
   {
     q: "O que acontece depois dos 90 dias?",
-    a: "Você faz o exame final CEFR, que mostra exatamente o quanto evoluiu. Com base nos resultados, podemos traçar os próximos passos juntos — seja continuar na Falandou ou avançar de forma independente com as ferramentas que você já terá.",
+    a: "Você refaz o exame CEFR e vê exatamente o quanto evoluiu — em nível, não em sensação. Com base no resultado, decidimos juntos os próximos passos: continuar com um novo ciclo, aprofundar uma habilidade específica ou avançar de forma independente com as ferramentas que você já terá.",
   },
 ];
 
@@ -57,7 +64,7 @@ function FAQItem({ faq, isOpen, onToggle }: { faq: typeof faqs[0]; isOpen: boole
 
       <div
         className="overflow-hidden transition-all duration-300 ease-in-out"
-        style={{ maxHeight: isOpen ? "300px" : "0", opacity: isOpen ? 1 : 0 }}
+        style={{ maxHeight: isOpen ? "480px" : "0", opacity: isOpen ? 1 : 0 }}
       >
         <p className="font-body text-grafite/65 text-sm leading-relaxed pb-5">
           {faq.a}
@@ -83,20 +90,21 @@ export default function FAQ() {
               className="reveal font-display font-extrabold leading-tight delay-100"
               style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}
             >
-              Tudo que você precisa saber antes de começar.
+              Respostas diretas para as dúvidas que todo mundo tem.
             </h2>
             <p className="reveal font-body text-base mt-4 delay-200" style={{ color: "rgba(22,22,22,0.55)" }}>
-              Não encontrou sua resposta? Fale diretamente com a gente pelo WhatsApp.
+              Custo, prazo, nível de inglês — sem rodeios. Ficou alguma dúvida? Fale diretamente com o Professor Adriel.
             </p>
 
             <a
-              href="https://wa.me/5511999999999"
+              href={getWhatsAppUrlForContext("hero")}
               target="_blank"
               rel="noopener noreferrer"
               className="reveal inline-flex items-center gap-2 mt-8 px-6 py-3.5 rounded-full text-sm font-bold text-white transition-all duration-200 hover:scale-105 delay-300"
               style={{ backgroundColor: "#161616" }}
             >
-              Perguntar no WhatsApp
+              <MessageCircle size={16} />
+              Falar com o Professor Adriel
             </a>
           </div>
 
