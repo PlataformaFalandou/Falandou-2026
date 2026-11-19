@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import AnalyticsProvider from "@/components/ui/AnalyticsProvider";
+import EntrySegment from "@/components/ui/EntrySegment";
 
 export const metadata: Metadata = {
   title: "Falandou — Inglês para Profissionais",
@@ -32,6 +33,7 @@ export default function RootLayout({
       </head>
       <body>
         <AnalyticsProvider />
+        <EntrySegment />
         {children}
       </body>
     </html>
