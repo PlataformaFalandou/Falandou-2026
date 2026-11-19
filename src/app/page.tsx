@@ -5,7 +5,6 @@ import ForWhom from "@/components/sections/ForWhom";
 import Journey from "@/components/sections/Journey";
 import MetodoTeaser from "@/components/sections/MetodoTeaser";
 import Testimonials from "@/components/sections/Testimonials";
-import CompanyLogos from "@/components/sections/CompanyLogos";
 import YouTubeVideos from "@/components/sections/YouTubeVideos";
 import Teachers from "@/components/sections/Teachers";
 import MidCTA from "@/components/sections/MidCTA";
@@ -27,7 +26,6 @@ export default function HomePage() {
         <Hero />
         <StatsBar />
         <ForWhom />
-        <CompanyLogos />
         <Journey />
         <MetodoTeaser />
         <Testimonials />
