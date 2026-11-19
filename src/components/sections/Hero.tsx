@@ -36,6 +36,8 @@ interface HeroProps {
   eyebrow?: string;
   headline?: React.ReactNode;
   subheadline?: string;
+  /** Chip de dado imediatamente abaixo do subheadline — ancora qualquer claim de resultado. */
+  statChip?: string;
   whatsappContext?: string;
 }
 
@@ -48,6 +50,7 @@ export default function Hero({
     </>
   ),
   subheadline = "A maioria dos profissionais entende inglês razoavelmente bem. O problema é na hora de falar — reunião, apresentação, entrevista. A Falandou resolve exatamente isso: inglês funcional para o seu contexto, em 90 dias.",
+  statChip,
   whatsappContext = "hero",
 }: HeroProps) {
   const [loaded, setLoaded] = useState(false);
@@ -113,6 +116,18 @@ export default function Hero({
           >
             {subheadline}
           </p>
+
+          {/* Stat chip — dado de suporte ao claim do subheadline */}
+          {statChip && (
+            <p
+              className={`text-sm font-medium mb-10 -mt-6 transition-all duration-700 delay-250 ${
+                loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+              style={{ color: "rgba(255,104,32,0.85)" }}
+            >
+              {statChip}
+            </p>
+          )}
 
           {/* CTAs */}
           <div

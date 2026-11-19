@@ -110,6 +110,10 @@ export default function InglesExpatriacaoPage() {
               antes de você embarcar.
             </p>
 
+            <p className="text-sm font-medium mb-10 -mt-6" style={{ color: "rgba(255,104,32,0.85)" }}>
+              79% dos alunos chegou ao destino se comunicando com segurança no trabalho em até 90 dias
+            </p>
+
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href={getWhatsAppUrlForContext("ingles-expatriacao-urgente")}

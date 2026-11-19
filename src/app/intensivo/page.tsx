@@ -98,6 +98,16 @@ export default function IntensivoPage() {
               ver progresso. Registre interesse e saiba quando o próximo
               intensivo começa.
             </p>
+            <p
+              style={{
+                fontSize: "13px",
+                fontWeight: 600,
+                color: "rgba(255,104,32,0.85)",
+                margin: "-24px 0 32px",
+              }}
+            >
+              79% dos alunos passou a conduzir reuniões e entrevistas em inglês em até 90 dias
+            </p>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <InterestForm
                 context="intensivo"

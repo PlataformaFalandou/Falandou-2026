@@ -48,6 +48,7 @@ export default function HeroAB() {
     <Hero
       eyebrow={VARIANTS[variant].eyebrow}
       subheadline={VARIANTS[variant].subheadline}
+      statChip="79% dos alunos passou a conduzir reuniões e entrevistas em inglês em até 90 dias"
     />
   );
 }

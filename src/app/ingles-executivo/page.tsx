@@ -43,6 +43,7 @@ export default function InglesExecutivoPage() {
             </>
           }
           subheadline="Participar de reuniões internacionais sem contribuir é invisibilidade profissional. Em 90 dias você aprende a tomar a palavra, conduzir discussões e apresentar com clareza — no inglês do seu contexto executivo."
+          statChip="79% dos alunos passou a conduzir reuniões e entrevistas em inglês em até 90 dias"
           whatsappContext="executivo"
         />
         <StatsBar />
