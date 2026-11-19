@@ -37,8 +37,11 @@ export default function MidCTA() {
         >
           O inglês que falta para a próxima fase da sua carreira.
         </h2>
-        <p className="reveal font-body text-white/80 text-xl leading-relaxed mb-12 max-w-2xl mx-auto delay-200">
-          Fale com um de nossos consultores, entenda o processo e descubra qual plano faz sentido para o seu momento.
+        <p className="reveal font-body text-white/80 text-lg leading-relaxed mb-6 max-w-2xl mx-auto delay-200">
+          Nossos alunos chegam sem conseguir fazer uma reunião simples em inglês. Em 3 meses ganham confiança para falar em público, e em menos de 14 meses, 70% tem êxito em processos seletivos internacionais — com destaque nos aprovados no TOEFL com notas acima da média.
+        </p>
+        <p className="reveal font-body text-white/60 text-base leading-relaxed mb-12 max-w-xl mx-auto delay-200">
+          Fale com um consultor, entenda o processo e descubra qual plano faz sentido para o seu momento.
           Sem pressão, sem compromisso.
         </p>
 
