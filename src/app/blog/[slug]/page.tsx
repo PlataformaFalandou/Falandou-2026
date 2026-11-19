@@ -16,9 +16,29 @@ export async function generateMetadata({
   const article = getArticleBySlug(slug);
   if (!article) return { title: "Artigo não encontrado" };
 
+  const ogImage = article.imagem_capa
+    ? article.imagem_capa.startsWith("http")
+      ? article.imagem_capa
+      : `https://2026.falandou.com${article.imagem_capa}`
+    : "https://2026.falandou.com/og-default.png";
+
   return {
     title: `${article.titulo} — Blog Falandou`,
     description: article.resumo,
+    openGraph: {
+      title: article.titulo,
+      description: article.resumo,
+      url: `https://2026.falandou.com/blog/${slug}`,
+      siteName: "Falandou",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: article.titulo }],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.titulo,
+      description: article.resumo,
+      images: [ogImage],
+    },
   };
 }
 

@@ -20,6 +20,44 @@ export function getWhatsAppUrl(message?: string): string {
  * executivo  — LP nicho: inglês executivo / reuniões e apresentações
  * promocao   — LP nicho: inglês para promoção de cargo
  */
+/**
+ * Adiciona parâmetros UTM a qualquer URL interna do site.
+ * Usado em links publicados no LinkedIn (e outros canais) para
+ * segmentar a origem do tráfego no analytics.
+ *
+ * Exemplo:
+ *   withUTM("/planos", "linkedin", "post-reunioes")
+ *   → "/planos?utm_source=linkedin&utm_medium=organic&utm_campaign=post-reunioes"
+ */
+export function withUTM(
+  path: string,
+  source: string,
+  campaign?: string,
+  medium = "organic"
+): string {
+  const params = new URLSearchParams({ utm_source: source, utm_medium: medium });
+  if (campaign) params.set("utm_campaign", campaign);
+  const separator = path.includes("?") ? "&" : "?";
+  return `${path}${separator}${params.toString()}`;
+}
+
+/**
+ * URLs canônicas do site prontas para uso em posts do LinkedIn.
+ * Cada entrada já carrega UTM source=linkedin + medium=organic.
+ * Passe um `campaign` para identificar o post específico.
+ *
+ * Exemplo de uso em post:
+ *   linkedinUrl("planos", "post-semana-12")
+ */
+export function linkedinUrl(
+  page: "home" | "planos" | "metodo" | "ingles-entrevista" | "ingles-executivo" | "ingles-expatriacao" | "promocao-cargo" | "intensivo" | "turma-online" | string,
+  campaign?: string
+): string {
+  const BASE = "https://2026.falandou.com";
+  const path = page === "home" ? "/" : `/${page}`;
+  return withUTM(`${BASE}${path}`, "linkedin", campaign);
+}
+
 export function getWhatsAppUrlForContext(context: string): string {
   const messages: Record<string, string> = {
     hero: "Olá! Vi o site da Falandou e quero entender como funciona o plano para profissionais.",
