@@ -20,12 +20,17 @@ export default function InterestForm({
 }: InterestFormProps) {
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
+  const [showForm, setShowForm] = useState(false);
+
+  const handleDirectClick = () => {
+    trackCTAClick(context);
+    window.open(getWhatsAppUrl(whatsappMessage), "_blank", "noopener,noreferrer");
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    trackCTAClick(context);
+    trackCTAClick(`${context}-form`);
 
-    // Enriquece a mensagem com nome e contato informados
     const enriched = name.trim()
       ? `${whatsappMessage} Me chamo ${name.trim()}${contact.trim() ? ` e meu contato é ${contact.trim()}` : ""}.`
       : whatsappMessage;
@@ -34,8 +39,7 @@ export default function InterestForm({
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
+    <div
       style={{
         display: "flex",
         flexDirection: "column",
@@ -44,47 +48,10 @@ export default function InterestForm({
         maxWidth: "420px",
       }}
     >
-      <input
-        type="text"
-        placeholder="Seu nome"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        required
-        style={{
-          padding: "14px 16px",
-          borderRadius: "8px",
-          border: "1.5px solid #e0e0e0",
-          fontSize: "15px",
-          fontFamily: "inherit",
-          outline: "none",
-          background: "#fff",
-          color: "#161616",
-          transition: "border-color 0.2s",
-        }}
-        onFocus={(e) => (e.currentTarget.style.borderColor = "#FF6820")}
-        onBlur={(e) => (e.currentTarget.style.borderColor = "#e0e0e0")}
-      />
-      <input
-        type="text"
-        placeholder="WhatsApp ou e-mail"
-        value={contact}
-        onChange={(e) => setContact(e.target.value)}
-        style={{
-          padding: "14px 16px",
-          borderRadius: "8px",
-          border: "1.5px solid #e0e0e0",
-          fontSize: "15px",
-          fontFamily: "inherit",
-          outline: "none",
-          background: "#fff",
-          color: "#161616",
-          transition: "border-color 0.2s",
-        }}
-        onFocus={(e) => (e.currentTarget.style.borderColor = "#FF6820")}
-        onBlur={(e) => (e.currentTarget.style.borderColor = "#e0e0e0")}
-      />
+      {/* CTA direto — sem formulário, sem fricção */}
       <button
-        type="submit"
+        type="button"
+        onClick={handleDirectClick}
         style={{
           padding: "16px 24px",
           background: "#FF6820",
@@ -103,16 +70,110 @@ export default function InterestForm({
       >
         {ctaLabel}
       </button>
+
+      {/* Enriquecimento opcional */}
+      {!showForm && (
+        <button
+          type="button"
+          onClick={() => setShowForm(true)}
+          style={{
+            background: "none",
+            border: "none",
+            padding: "4px 0",
+            fontSize: "13px",
+            color: "#888",
+            cursor: "pointer",
+            fontFamily: "inherit",
+            textDecoration: "underline",
+            textDecorationStyle: "dotted",
+            textAlign: "center",
+          }}
+        >
+          Prefere deixar seu nome antes?
+        </button>
+      )}
+
+      {showForm && (
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Seu nome (opcional)"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            autoFocus
+            style={{
+              padding: "12px 16px",
+              borderRadius: "8px",
+              border: "1.5px solid #e0e0e0",
+              fontSize: "15px",
+              fontFamily: "inherit",
+              outline: "none",
+              background: "#fff",
+              color: "#161616",
+              transition: "border-color 0.2s",
+            }}
+            onFocus={(e) => (e.currentTarget.style.borderColor = "#FF6820")}
+            onBlur={(e) => (e.currentTarget.style.borderColor = "#e0e0e0")}
+          />
+          <input
+            type="text"
+            placeholder="WhatsApp ou e-mail (opcional)"
+            value={contact}
+            onChange={(e) => setContact(e.target.value)}
+            style={{
+              padding: "12px 16px",
+              borderRadius: "8px",
+              border: "1.5px solid #e0e0e0",
+              fontSize: "15px",
+              fontFamily: "inherit",
+              outline: "none",
+              background: "#fff",
+              color: "#161616",
+              transition: "border-color 0.2s",
+            }}
+            onFocus={(e) => (e.currentTarget.style.borderColor = "#FF6820")}
+            onBlur={(e) => (e.currentTarget.style.borderColor = "#e0e0e0")}
+          />
+          <button
+            type="submit"
+            style={{
+              padding: "14px 24px",
+              background: "#161616",
+              color: "#fff",
+              border: "none",
+              borderRadius: "8px",
+              fontSize: "15px",
+              fontWeight: 700,
+              cursor: "pointer",
+              fontFamily: "inherit",
+              letterSpacing: "-0.01em",
+              transition: "opacity 0.2s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+          >
+            Enviar com meu nome →
+          </button>
+        </form>
+      )}
+
       <p
         style={{
           fontSize: "12px",
-          color: "#888",
+          color: "#aaa",
           textAlign: "center",
           margin: 0,
         }}
       >
         Você será redirecionado para o WhatsApp da equipe Falandou.
       </p>
-    </form>
+    </div>
   );
 }
