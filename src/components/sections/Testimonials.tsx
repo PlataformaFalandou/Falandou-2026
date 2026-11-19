@@ -9,12 +9,12 @@ import { trackCTAClick } from "@/lib/analytics";
 const STATS = [
   {
     value: "79%",
-    label: "subiram ≥ 1 nível CEFR",
-    sub: "em até 90 dias · exame pré e pós-ciclo",
+    label: "passaram a usar inglês no trabalho",
+    sub: "em até 90 dias · medido por exame pré e pós",
   },
   {
     value: "11 sem",
-    label: "tempo médio B1 → B2",
+    label: "para conduzir reuniões com segurança",
     sub: "mediana do último ciclo",
   },
   {
@@ -226,8 +226,8 @@ export default function Testimonials() {
             className="reveal font-display font-extrabold text-white leading-tight mb-3 delay-100"
             style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)" }}
           >
-            79% dos alunos subiram pelo menos{" "}
-            <span style={{ color: "#FF6820" }}>1 nível CEFR em 90 dias.</span>
+            79% dos alunos passou a conduzir reuniões{" "}
+            <span style={{ color: "#FF6820" }}>e entrevistas em inglês em até 90 dias.</span>
           </h2>
           <p className="reveal font-body text-base delay-150" style={{ color: "rgba(255,255,255,0.45)" }}>
             Medido com exame antes e depois do ciclo — não autoavaliação, não percepção.

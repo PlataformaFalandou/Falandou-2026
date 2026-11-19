@@ -16,8 +16,8 @@ const BARS = [
 ];
 
 const DESTAQUES = [
-  { valor: "79%",        desc: "subiram pelo menos 1 nível CEFR"           },
-  { valor: "11 semanas", desc: "tempo médio para evolução B1 → B2"         },
+  { valor: "79%",        desc: "passaram a usar inglês no trabalho após o ciclo" },
+  { valor: "11 semanas", desc: "tempo médio para ganhar fluência operacional"   },
   { valor: "4,9 ★",      desc: "avaliação média dos alunos no ciclo"       },
   { valor: "92%",        desc: "concluíram o plano sem abandonar"           },
 ];
@@ -41,7 +41,7 @@ export default function ResultsData() {
           </p>
           <h2 className="font-heading font-black text-3xl md:text-4xl leading-tight mb-3"
               style={{ color: "#161616" }}>
-            {evolved}% dos alunos subiram de nível CEFR<br className="hidden md:block" /> em até 90 dias.
+            {evolved}% dos alunos passou a conduzir reuniões,<br className="hidden md:block" /> entrevistas e negociações em inglês em até 90 dias.
           </h2>
           <p className="font-body text-sm text-gray-500">
             {CYCLE_LABEL} · {TOTAL_ALUNOS} alunos avaliados com exame pré e pós-ciclo.

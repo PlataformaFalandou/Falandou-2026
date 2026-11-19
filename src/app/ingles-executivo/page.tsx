@@ -16,7 +16,7 @@ import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
 export const metadata: Metadata = {
   title: "Inglês Executivo para Profissionais | Falandou",
   description:
-    "Inglês executivo para reuniões, apresentações e negociações. Plano personalizado com professores especializados. Resultado medido por exame CEFR em 90 dias.",
+    "Inglês executivo para conduzir reuniões, apresentações e negociações com autoridade. Plano personalizado com professores especializados em 90 dias.",
   alternates: {
     canonical: "https://2026.falandou.com/ingles-executivo",
   },

@@ -48,14 +48,14 @@ const stages = [
 
 const proof = [
   { value: "70%", label: "dos alunos passaram em processos seletivos com etapa em inglês dentro de 14 meses" },
-  { value: "90 dias", label: "ciclo padrão — suficiente para subir 1 nível CEFR e chegar preparado" },
+  { value: "90 dias", label: "ciclo padrão — suficiente para passar de travar para falar com segurança" },
   { value: "1 a 1", label: "todas as sessões são individuais — 100% do tempo focado no seu processo seletivo" },
 ];
 
 const faqs = [
   {
     q: "Minha entrevista é em 30 dias. Dá tempo?",
-    a: "Sim — para isso existe o plano intensivo. Em 30 dias você não sobe 2 níveis CEFR, mas você treina as situações específicas da sua entrevista: apresentação pessoal, perguntas comportamentais, vocabulário do setor. Já preparamos candidatos com janelas de 3 semanas.",
+    a: "Sim — para isso existe o plano intensivo. Em 30 dias você não muda tudo, mas você treina as situações específicas da sua entrevista: apresentação pessoal, perguntas comportamentais, vocabulário do setor. Já preparamos candidatos com janelas de 3 semanas.",
   },
   {
     q: "Já tenho inglês médio mas trao na hora de falar. O curso funciona para mim?",

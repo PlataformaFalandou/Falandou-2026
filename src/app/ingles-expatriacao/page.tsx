@@ -47,9 +47,9 @@ const situations = [
 ];
 
 const proof = [
-  { value: "90 dias", label: "para chegar preparado — ciclo padrão com resultado medido por exame CEFR" },
+  { value: "90 dias", label: "para chegar capaz de liderar times e conduzir reuniões no novo país" },
   { value: "1 a 1", label: "todas as sessões individuais — o plano é montado para o seu destino e setor" },
-  { value: "79%", label: "dos alunos subiram pelo menos 1 nível CEFR no ciclo — com exame pré e pós" },
+  { value: "79%", label: "dos alunos chegaram ao destino se comunicando com segurança no trabalho" },
 ];
 
 const faqs = [
