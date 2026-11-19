@@ -48,15 +48,17 @@ function StatStatic({ display, label, delay = 0 }: { display: string; label: str
   );
 }
 
+// Credenciais institucionais da escola (ponto 36). 600+ formados e 4.9★ já estão
+// na Hero — aqui ficam as credenciais que a Hero não mostra.
 export default function StatsBar() {
   return (
     <section style={{ backgroundColor: "#161616" }} className="border-y border-white/10 py-4">
       <div className="max-w-5xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
-          <StatItem value={600} suffix="+" label="Profissionais formados" delay={0} />
-          <StatItem value={7} suffix="+" label="Anos de experiência" delay={100} />
-          <StatItem value={90} label="Dias para resultado visível" delay={200} />
-          <StatStatic display="4.9★" label="Avaliação média" delay={300} />
+          <StatItem value={7} suffix="+" label="Anos de operação da escola" delay={0} />
+          <StatStatic display="CEFR" label="Exame antes e depois de cada ciclo" delay={100} />
+          <StatStatic display="1:1" label="Sessões individuais" delay={200} />
+          <StatItem value={90} label="Dias por ciclo" delay={300} />
         </div>
       </div>
     </section>

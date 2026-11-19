@@ -26,9 +26,10 @@ const LinkedinIcon = () => (
 
 const footerLinks = {
   Escola: [
-    { label: "Como funciona", href: "#como-funciona" },
-    { label: "Para quem é", href: "#para-quem" },
-    { label: "Depoimentos", href: "#depoimentos" },
+    { label: "Como funciona", href: "/#como-funciona" },
+    { label: "Para quem é", href: "/#para-quem" },
+    { label: "Depoimentos", href: "/#depoimentos" },
+    { label: "Professores", href: "/professores" },
   ],
   Recursos: [
     { label: "Blog", href: "/blog" },
