@@ -11,7 +11,7 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { trackPageView, resetScroll50 } from "@/lib/analytics";
+import { trackPageView, resetScroll50, trackPlansPageView, trackWhatsAppClick } from "@/lib/analytics";
 
 const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID;
 const PIXEL_ID = process.env.NEXT_PUBLIC_PIXEL_ID;
@@ -72,9 +72,26 @@ export default function AnalyticsProvider() {
     const timer = setTimeout(() => {
       trackPageView(pathname);
       resetScroll50(); // reset do scroll tracker a cada rota nova
+
+      // Ponto 46 — público de remarketing "viu /planos" (ViewContent no Pixel).
+      // pathname pode vir com barra final (trailingSlash no export estático).
+      if (pathname.replace(/\/+$/, "") === "/planos") {
+        trackPlansPageView();
+      }
     }, 100);
     return () => clearTimeout(timer);
   }, [pathname]);
+
+  // Ponto 46 — todo clique em link do WhatsApp vira sinal de "já iniciou contato",
+  // usado para excluir essa pessoa do remarketing.
+  useEffect(() => {
+    function onClick(e: MouseEvent) {
+      const link = (e.target as Element | null)?.closest?.('a[href*="wa.me/"]');
+      if (link) trackWhatsAppClick(window.location.pathname);
+    }
+    document.addEventListener("click", onClick, true);
+    return () => document.removeEventListener("click", onClick, true);
+  }, []);
 
   return null; // componente invisível
 }

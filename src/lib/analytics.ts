@@ -102,6 +102,21 @@ export function trackABImpression(testName: string, variant: string) {
   });
 }
 
+// ─── Clique em qualquer link do WhatsApp ─────────────────────────────────────
+/**
+ * Disparado por um listener global (AnalyticsProvider) em todo clique num
+ * link wa.me — inclusive nos botões dos planos, que não chamam trackCTAClick.
+ * Serve para EXCLUIR do remarketing quem já iniciou contato (ponto 46).
+ * Evento próprio para não contar o Lead duas vezes.
+ */
+export function trackWhatsAppClick(path: string) {
+  gtag("event", "whatsapp_click", {
+    event_category: "funnel",
+    event_label: path,
+  });
+  fbq("trackCustom", "WhatsAppClick", { page: path });
+}
+
 // ─── Chegada em /planos ───────────────────────────────────────────────────────
 /**
  * Dispara quando o visitante chega à página /planos.
