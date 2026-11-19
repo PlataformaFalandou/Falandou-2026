@@ -36,7 +36,7 @@ const footerLinks = {
     { label: "Plataforma do aluno", href: "https://falandou-hub-learn.lovable.app" },
   ],
   Contato: [
-    { label: "WhatsApp", href: getWhatsAppUrlForContext("hero") },
+    { label: "WhatsApp", href: getWhatsAppUrlForContext("cta") },
     { label: "contato@falandou.com", href: "mailto:contato@falandou.com" },
   ],
 };
@@ -66,7 +66,7 @@ export default function Footer() {
             style={{ backgroundColor: "#FF6820" }}
           >
             <MessageCircle size={18} />
-            Falar no WhatsApp
+            Quero começar
           </a>
         </div>
       </div>
