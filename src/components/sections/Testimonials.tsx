@@ -5,110 +5,75 @@ import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Ana Carolina Lima",
-    role: "Arquiteta",
-    company: "São Paulo",
-    text: "Sempre tive vergonha de falar em inglês nas reuniões com clientes internacionais. Depois de 90 dias com a Falandou, apresentei meu portfólio para uma firma em Lisboa sem travar uma vez.",
+    name: "Renata N.",
+    role: "Profissional",
+    source: "E-mail · Out 2024",
+    text: "As aulas foram muito úteis, principalmente para melhorar minha comunicação no trabalho. Obrigada pela dedicação de vocês!",
     stars: 5,
-    level: "B1 → B2+",
-    img: "/images/prof-arquiteta.png",
+    initial: "R",
   },
   {
-    name: "Rafael Mendes",
-    role: "Gerente de Operações",
-    company: "Campinas",
-    text: "Fiz cursos em três escolas diferentes antes de chegar aqui. Nenhuma entendia o que eu precisava. Na Falandou, na primeira semana já estava treinando vocabulário de supply chain e negociação.",
+    name: "Camila",
+    role: "Aluna",
+    source: "WhatsApp",
+    text: "Eu realmente gosto do material visual, das revisões e de como as aulas me ajudam a perder a vergonha de falar. O material torna o conteúdo mais dinâmico, as revisões fixam o que aprendi e poder conversar sobre temas do dia a dia me dá mais confiança para estudar fora da sala.",
     stars: 5,
-    level: "A2 → B2",
-    img: "/images/logistica-briefing.png",
+    initial: "C",
   },
   {
-    name: "Dra. Priya Nair",
-    role: "Médica Cardiologista",
-    company: "Brasília",
-    text: "A Falandou não só me ajudou com o idioma, mas entendeu o vocabulário técnico médico. Meu primeiro artigo foi aprovado em 4 meses após o início do programa.",
+    name: "Diego C.",
+    role: "Profissional",
+    source: "E-mail · Jun 2024",
+    text: "Gostaria de agradecer aos professores pelas orientações e pela disponibilidade ao longo do curso. As aulas, as atividades práticas contribuíram bastante para o meu desenvolvimento. Me senti mais confiante ao longo do processo.",
     stars: 5,
-    level: "B2 → C1",
-    img: "/images/medico-solucao.png",
+    initial: "D",
   },
   {
-    name: "Lucas Figueiredo",
-    role: "Analista de TI",
-    company: "Recife",
-    text: "Comecei a Falandou com medo de qualquer ligação em inglês. Hoje lidero stand-ups diários com o time de São Francisco. O exame CEFR no início foi revelador.",
+    name: "Aluno",
+    role: "Aluno",
+    source: "WhatsApp",
+    text: "Tem sido boa. O conteúdo é direto, as trilhas são bem divididas e consigo estudar mesmo nos dias corridos.",
     stars: 5,
-    level: "B1 → C1",
-    img: "/images/aula-video-call.png",
-  },
-  {
-    name: "Mariana Costa",
-    role: "Head de Marketing",
-    company: "Rio de Janeiro",
-    text: "O que mais me surpreendeu foi o acompanhamento pelo WhatsApp. Sempre que eu tinha uma situação real de trabalho, eu podia perguntar ao meu professor na hora. Isso faz toda a diferença.",
-    stars: 5,
-    level: "A2 → B2",
-    img: "/images/email-profissional.png",
-  },
-  {
-    name: "Carlos Braga",
-    role: "Engenheiro Civil",
-    company: "Belo Horizonte",
-    text: "Resultado concreto: em 90 dias passei de não conseguir fazer uma ligação para fechar uma parceria com construtora americana. O exame final comprovou o que eu já sentia no dia a dia.",
-    stars: 5,
-    level: "B1 → B2+",
-    img: "/images/reuniao-produto.png",
+    initial: "A",
   },
 ];
 
 function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
   return (
     <div
-      className="flex-shrink-0 w-80 md:w-96 rounded-2xl overflow-hidden border border-black/5 hover:shadow-xl transition-all duration-300 flex flex-col"
-      style={{ backgroundColor: "white" }}
+      className="flex-shrink-0 w-80 md:w-96 rounded-2xl overflow-hidden border border-white/10 hover:border-white/25 transition-all duration-300 flex flex-col"
+      style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
     >
-      {/* Top photo strip */}
-      <div className="relative h-44 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${t.img})`, filter: "brightness(0.85)" }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(to bottom, transparent 40%, rgba(22,22,22,0.6) 100%)" }}
-        />
-        {/* Level badge */}
-        <div className="absolute top-4 right-4">
-          <span
-            className="text-xs font-bold px-2.5 py-1 rounded-full text-white"
-            style={{ backgroundColor: "#FF6820" }}
-          >
-            {t.level}
-          </span>
-        </div>
-        {/* Quote icon */}
-        <div className="absolute bottom-4 left-4">
-          <Quote size={28} style={{ color: "rgba(255,255,255,0.5)" }} />
-        </div>
-      </div>
-
       {/* Content */}
       <div className="p-6 flex flex-col flex-1">
         {/* Stars */}
-        <div className="flex gap-1 mb-4">
+        <div className="flex gap-1 mb-5">
           {Array.from({ length: t.stars }).map((_, i) => (
             <Star key={i} size={14} fill="#FF6820" stroke="none" />
           ))}
         </div>
 
+        {/* Quote icon */}
+        <Quote size={24} className="mb-3" style={{ color: "rgba(255,104,32,0.4)" }} />
+
         {/* Quote */}
-        <p className="text-sm leading-relaxed mb-5 flex-1" style={{ color: "rgba(22,22,22,0.65)" }}>
+        <p className="text-sm leading-relaxed mb-6 flex-1" style={{ color: "rgba(255,255,255,0.75)" }}>
           &ldquo;{t.text}&rdquo;
         </p>
 
         {/* Author */}
-        <div className="border-t border-black/5 pt-4">
-          <div className="font-display font-bold text-sm" style={{ color: "#161616" }}>{t.name}</div>
-          <div className="text-xs mt-0.5" style={{ color: "rgba(22,22,22,0.45)" }}>{t.role} • {t.company}</div>
+        <div className="flex items-center gap-3 border-t pt-4" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
+          {/* Avatar com inicial */}
+          <div
+            className="w-10 h-10 rounded-full flex items-center justify-center font-display font-extrabold text-white text-sm flex-shrink-0"
+            style={{ backgroundColor: "#FF6820" }}
+          >
+            {t.initial}
+          </div>
+          <div>
+            <div className="font-display font-bold text-sm text-white">{t.name}</div>
+            <div className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{t.source}</div>
+          </div>
         </div>
       </div>
     </div>
