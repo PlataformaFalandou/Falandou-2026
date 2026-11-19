@@ -53,13 +53,13 @@ export default function CompanyLogos() {
               key={logo.name}
               className="opacity-30 hover:opacity-60 transition-opacity duration-300 flex items-center justify-center"
               title={logo.name}
-              style={{ height: "28px" }}
+              style={{ height: "44px" }}
             >
               <svg
                 role="img"
                 viewBox={logo.viewBox ?? "0 0 24 24"}
                 xmlns="http://www.w3.org/2000/svg"
-                style={{ height: "100%", width: "auto", maxWidth: "120px", fill: "#ffffff" }}
+                style={{ height: "100%", width: "auto", maxWidth: "160px", fill: "#ffffff" }}
                 aria-label={logo.name}
               >
                 <path d={logo.path} />
