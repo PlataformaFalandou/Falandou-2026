@@ -60,13 +60,13 @@ export default function Navbar() {
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
           <a
-            href={getWhatsAppUrlForContext("hero")}
+            href={getWhatsAppUrlForContext("navbar")}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-base font-semibold text-white transition-all duration-200 hover:scale-105 active:scale-95"
             style={{ backgroundColor: "#FF6820" }}
           >
-            Falar com consultor
+            Quero começar
           </a>
         </div>
 
@@ -95,14 +95,14 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href={getWhatsAppUrlForContext("hero")}
+            href={getWhatsAppUrlForContext("navbar")}
             target="_blank"
             rel="noopener noreferrer"
             className="block mt-2 px-5 py-3 rounded-full text-sm font-semibold text-white text-center transition-all duration-200"
             style={{ backgroundColor: "#FF6820" }}
             onClick={() => setMenuOpen(false)}
           >
-            Falar com consultor
+            Quero começar
           </a>
         </div>
       )}

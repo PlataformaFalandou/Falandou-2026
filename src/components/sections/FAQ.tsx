@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
+import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 
 const faqs = [
   {
@@ -90,13 +91,13 @@ export default function FAQ() {
             </p>
 
             <a
-              href="https://wa.me/5511999999999"
+              href={getWhatsAppUrlForContext("faq")}
               target="_blank"
               rel="noopener noreferrer"
               className="reveal inline-flex items-center gap-2 mt-8 px-6 py-3.5 rounded-full text-sm font-bold text-white transition-all duration-200 hover:scale-105 delay-300"
               style={{ backgroundColor: "#161616" }}
             >
-              Perguntar no WhatsApp
+              Falar com nossa equipe
             </a>
           </div>
 

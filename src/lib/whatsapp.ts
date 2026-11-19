@@ -1,17 +1,30 @@
 export const WHATSAPP_NUMBER = "5511971419047";
 
 export function getWhatsAppUrl(message?: string): string {
-  const defaultMessage = "Olá! Tenho interesse em conhecer os planos da Falandou para profissionais.";
+  const defaultMessage = "Olá! Quero saber como a Falandou pode me ajudar com inglês profissional.";
   const encoded = encodeURIComponent(message || defaultMessage);
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
 }
 
+/**
+ * Mensagens pré-preenchidas por contexto de entrada.
+ * Objetivo: qualificar o lead antes do primeiro contato humano.
+ *
+ * hero    — topo do funil, primeiro contato com a escola
+ * journey — visitante entendeu o processo, quer detalhes
+ * plans   — visitante viu preços, intenção de compra mais alta
+ * cta     — mid-page CTA, já leu a proposta central
+ * navbar  — clique impulsivo, chegou rápido ao botão
+ * faq     — veio do FAQ, tem dúvida específica não respondida
+ */
 export function getWhatsAppUrlForContext(context: string): string {
   const messages: Record<string, string> = {
-    hero: "Olá! Quero saber mais sobre o inglês profissional da Falandou.",
-    journey: "Olá! Quero começar minha jornada de inglês com a Falandou!",
-    plans: "Olá! Tenho interesse nos planos da Falandou. Podem me ajudar?",
-    cta: "Olá! Quero falar inglês com confiança no trabalho. Como funciona?",
+    hero: "Olá! Vi o site da Falandou e quero entender como funciona o plano para profissionais.",
+    journey: "Olá! Quero saber mais sobre como o plano é montado para o meu objetivo profissional.",
+    plans: "Olá! Quero conhecer os planos da Falandou. Podem me indicar qual faz mais sentido para o meu caso?",
+    cta: "Olá! Quero começar na Falandou. Como é o processo para dar o primeiro passo?",
+    navbar: "Olá! Quero falar com a equipe da Falandou sobre inglês profissional.",
+    faq: "Olá! Fiquei com uma dúvida depois de ler o FAQ da Falandou e gostaria de conversar com a equipe.",
   };
-  return getWhatsAppUrl(messages[context]);
+  return getWhatsAppUrl(messages[context] ?? messages.hero);
 }

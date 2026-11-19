@@ -87,7 +87,7 @@ export default function Hero() {
               style={{ backgroundColor: "#FF6820", boxShadow: "0 8px 32px rgba(255,104,32,0.5)" }}
             >
               <MessageCircle size={20} />
-              Começar agora no WhatsApp
+              Quero começar
             </a>
             <a
               href="#como-funciona"
