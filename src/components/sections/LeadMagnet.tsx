@@ -78,7 +78,7 @@ export default function LeadMagnet() {
           </h2>
           <p className="font-body text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
             Sem matrícula, sem compromisso. Quatro semanas com atividades concretas
-            para sair do "quero aprender" e entrar em modo profissional.
+            para sair do &ldquo;quero aprender&rdquo; e entrar em modo profissional.
           </p>
         </div>
 
