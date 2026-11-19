@@ -86,7 +86,8 @@ export default function AnalyticsProvider() {
   // usado para excluir essa pessoa do remarketing.
   useEffect(() => {
     function onClick(e: MouseEvent) {
-      const link = (e.target as Element | null)?.closest?.('a[href*="wa.me/"]');
+      // [data-share]: compartilhamento com terceiros (ex.: /indique), não contato com a escola.
+      const link = (e.target as Element | null)?.closest?.('a[href*="wa.me/"]:not([data-share])');
       if (link) trackWhatsAppClick(window.location.pathname);
     }
     document.addEventListener("click", onClick, true);

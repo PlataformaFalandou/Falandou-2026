@@ -117,6 +117,19 @@ export function trackWhatsAppClick(path: string) {
   fbq("trackCustom", "WhatsAppClick", { page: path });
 }
 
+// ─── Compartilhamento do programa de indicação ───────────────────────────────
+/**
+ * Aluno compartilhou /indique (ponto 48). Não é Lead — quem compartilha já é aluno.
+ * @param method "whatsapp" | "copiar"
+ */
+export function trackReferralShare(method: string) {
+  gtag("event", "referral_share", {
+    event_category: "referral",
+    event_label: method,
+  });
+  fbq("trackCustom", "ReferralShare", { method });
+}
+
 // ─── Chegada em /planos ───────────────────────────────────────────────────────
 /**
  * Dispara quando o visitante chega à página /planos.

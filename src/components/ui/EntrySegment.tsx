@@ -83,7 +83,8 @@ export default function EntrySegment() {
   // No clique em qualquer link do WhatsApp, acrescenta o objetivo do segmento.
   useEffect(() => {
     function onClick(e: MouseEvent) {
-      const link = (e.target as Element | null)?.closest?.('a[href*="wa.me/"]') as HTMLAnchorElement | null;
+      // [data-share]: link de compartilhamento para terceiros, não contato com a escola.
+      const link = (e.target as Element | null)?.closest?.('a[href*="wa.me/"]:not([data-share])') as HTMLAnchorElement | null;
       if (!link) return;
 
       const key = readSegment();

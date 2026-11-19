@@ -30,6 +30,7 @@ const footerLinks = {
     { label: "Para quem é", href: "/#para-quem" },
     { label: "Depoimentos", href: "/#depoimentos" },
     { label: "Professores", href: "/professores" },
+    { label: "Indique um colega", href: "/indique" },
   ],
   Recursos: [
     { label: "Blog", href: "/blog" },
