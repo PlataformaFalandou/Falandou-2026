@@ -85,11 +85,16 @@ export default function Hero({
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24 md:pt-40 md:pb-32 min-h-screen flex flex-col justify-center">
-        <div className="max-w-3xl">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-24 sm:pt-32 md:pt-40 md:pb-32 min-h-screen flex flex-col justify-center">
+        {/*
+          Ponto 37 — acima da dobra no celular: promessa + prova + ação sem rolar.
+          Abaixo de sm a coluna vira flex e a ordem muda (H1 → prova → CTA → subtítulo).
+          A partir de sm volta ao fluxo normal (block ignora `order`).
+        */}
+        <div className="max-w-3xl flex flex-col sm:block">
           {/* Eyebrow */}
           <div
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-8 border border-white/20 backdrop-blur-sm transition-all duration-700 ${
+            className={`order-1 self-start inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-5 sm:mb-8 border border-white/20 backdrop-blur-sm transition-all duration-700 ${
               loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
             style={{ background: "rgba(255,104,32,0.2)", color: "#FF9A6C" }}
@@ -100,7 +105,7 @@ export default function Hero({
 
           {/* Headline */}
           <h1
-            className={`font-display font-extrabold text-white leading-[1.05] tracking-tight mb-6 transition-all duration-700 delay-100 ${
+            className={`order-2 font-display font-extrabold text-white leading-[1.05] tracking-tight mb-4 sm:mb-6 transition-all duration-700 delay-100 ${
               loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
             style={{ fontSize: "clamp(2.8rem, 6vw, 5rem)" }}
@@ -108,9 +113,20 @@ export default function Hero({
             {headline}
           </h1>
 
+          {/* Prova social compacta — só no celular, antes do CTA */}
+          <p
+            className={`order-3 sm:hidden text-sm text-white/70 mb-5 transition-all duration-700 delay-150 ${
+              loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
+            <strong className="text-white font-extrabold">600+</strong> profissionais formados
+            <span className="text-white/30"> · </span>
+            <strong className="text-white font-extrabold">4.9★</strong> de avaliação
+          </p>
+
           {/* Subheadline */}
           <p
-            className={`text-white/70 text-xl md:text-2xl leading-relaxed mb-10 max-w-2xl transition-all duration-700 delay-200 ${
+            className={`order-5 text-white/70 text-lg sm:text-xl md:text-2xl leading-relaxed mb-10 max-w-2xl transition-all duration-700 delay-200 ${
               loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
@@ -120,7 +136,7 @@ export default function Hero({
           {/* Stat chip — dado de suporte ao claim do subheadline */}
           {statChip && (
             <p
-              className={`text-sm font-medium mb-10 -mt-6 transition-all duration-700 delay-250 ${
+              className={`order-6 text-sm font-medium mb-10 -mt-6 transition-all duration-700 delay-250 ${
                 loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
               style={{ color: "rgba(255,104,32,0.85)" }}
@@ -131,7 +147,7 @@ export default function Hero({
 
           {/* CTAs */}
           <div
-            className={`flex flex-col sm:flex-row gap-4 mb-16 transition-all duration-700 delay-300 ${
+            className={`order-4 flex flex-col sm:flex-row gap-4 mb-10 sm:mb-16 transition-all duration-700 delay-300 ${
               loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
@@ -158,7 +174,7 @@ export default function Hero({
 
           {/* Stats strip — 4 números concretos visíveis sem rolar */}
           <div
-            className={`transition-all duration-700 delay-500 ${
+            className={`order-7 transition-all duration-700 delay-500 ${
               loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
