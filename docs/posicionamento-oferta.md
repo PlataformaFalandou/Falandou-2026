@@ -31,7 +31,7 @@ Estes preços valem para o **novo site e a nova plataforma**. O falandou.com (si
 | 2. Nomes por objetivo | Planos renomeados para **Consistência** (Starter), **Resultado** (Professional) e **Urgente** (Intensive). Valem para o novo site e a nova plataforma; o falandou.com (site antigo) não muda. |
 | 2. Diferencial qualitativo por plano | **Não aplicado.** As sugestões do PDF (estudo assíncrono, simulações, feedback no dia 30) não existem hoje, então os cartões mantêm os itens reais. |
 | 2. Plano anual com valor explícito | Cada cartão mostra a mensalidade no compromisso de 12 meses (20% de desconto) e a economia no ano. O FAQ traz um exemplo. |
-| 3. Preço depois do valor | Na home, o preço aparece só no FAQ (na última pergunta, depois do retorno) e no CTA final, junto com o retorno. Em /planos aparece "menos de R$ 4,50 por dia". |
+| 3. Preço depois do valor | Na home, o preço aparece só no FAQ (na última pergunta, depois do retorno) e no CTA final, junto com o retorno. Em /planos aparece "menos de R$ 7,27 por dia" (calculado a partir do menor preço). |
 | 3. Âncoras "aula avulsa R$ 80–200" e "diferença salarial média R$ 2.500" | **Não aplicado.** São números de mercado sem fonte. O site usa os relatos de alunos que já estão publicados (R$ 1.500–4.000/mês). |
 | 7. Regras | Publicadas em /planos, /metodo e /termos: reagendamento com 24h, pausa de até 30 dias e máximo de 25 alunos por professor. |
 | 8. Escassez estrutural | "Até 25 alunos por professor" aparece em /planos, /sobre e /metodo. Não há "vagas do próximo ciclo com data", porque o ciclo começa quando o aluno começa. |
@@ -63,7 +63,7 @@ Premissas (ajuste se forem diferentes):
 - A coluna "máximo por sessão sem prejuízo" é o teto que cada plano aguenta pagar ao professor. Exemplo: o Resultado de 50 min aguenta pagar cerca de R$ 33 por sessão.
 - Quando o próprio dono dá a aula, a margem fica entre 84% e 88%. Mas a receita tem teto: 25 alunos por professor.
 
-## 3. Caminhos de preço (decisão da escola; nada mudou no site)
+## 3. Caminhos de preço (decidido em 20/11/2026: reajuste para ~40% de margem, ver seção 0)
 
 1. **Ajuste incremental** (cenário 1 do PDF): aumento de 30% a 40% nos planos. Ainda não sustenta professor externo a R$ 45.
 2. **Reposicionamento premium** (cenário 2): preços na faixa da coluna "preço para 40% de margem" da tabela acima.
@@ -158,14 +158,14 @@ CAC sustentável na fase atual: cerca de R$ 250–350, considerando a margem com
 **Meses 1–3**
 - Contrato de matrícula.
 - Nome na fatura e política de reembolso configurados no meio de pagamento.
-- GA4 e Pixel no ar.
+- ~~GA4 e Pixel no ar.~~ Feito em 20/11/2026, com carregamento só após o consentimento de cookies.
 - Google Ads de teste.
 - NPS no fim do ciclo.
 - Documentar o método.
 
 **Meses 4–9**
 - Segundo professor treinado.
-- Decisão de preço (seção 3).
+- ~~Decisão de preço (seção 3).~~ Feito em 20/11/2026 (seção 0).
 - Depoimentos em vídeo.
 - Mensagem de boas-vindas pós-matrícula, por e-mail ou WhatsApp.
 
