@@ -23,6 +23,7 @@ export const INCLUDED_IN_ALL = [
   "Plano personalizado para o seu setor",
   "Acompanhamento via WhatsApp",
   "Material de estudo incluso",
+  "Acesso à Plataforma do Aluno",
 ];
 
 export const PLANS: Plan[] = [

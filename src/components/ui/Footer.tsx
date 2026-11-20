@@ -35,6 +35,7 @@ const footerLinks = {
     { label: "Resultados", href: "/resultados" },
     { label: "Professores", href: "/professores" },
     { label: "Indique um colega", href: "/indique" },
+    { label: "Para empresas", href: "/planos#empresas" },
   ],
   Recursos: [
     { label: "Blog", href: "/blog" },

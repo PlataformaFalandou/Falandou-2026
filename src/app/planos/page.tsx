@@ -17,7 +17,16 @@ export const metadata: Metadata = {
 // Ponto 44 — comparação clara: o que é igual fica numa faixa única;
 // cada cartão mostra só o que muda. Planos e preços: src/data/plans.ts.
 
+// Valor por sessão do plano de entrada (2 sessões/semana ≈ 8 no mês), calculado do preço.
+const essencialValue = Number(PLANS[0].price.replace(/[^\d,]/g, "").replace(",", "."));
+const PER_SESSION = `R$ ${(essencialValue / 8).toFixed(2).replace(".", ",")}`;
+
 const FAQS = [
+  {
+    // Arquitetura §9: a objeção de preço mais comum, respondida na própria página.
+    q: "Por que custa mais do que uma escola de inglês em grupo?",
+    a: `Porque o que você compra é diferente. Em grupo, o tempo do professor é dividido e o conteúdo segue a turma. Aqui, 100% de cada sessão é seu, com um plano montado para o seu objetivo, exame CEFR antes e depois e acompanhamento pelo WhatsApp entre as sessões. No plano ${PLANS[0].name}, isso dá cerca de ${PER_SESSION} por sessão individual (considerando 8 sessões no mês).`,
+  },
   {
     q: "Posso trocar de plano durante o ciclo?",
     a: "Sim. Se você perceber que precisa de mais sessões, é possível fazer o upgrade para o próximo plano. A troca é feita via WhatsApp com a equipe e entra em vigor no mês seguinte.",
@@ -129,6 +138,21 @@ export default function PlanosPage() {
                 <PriceCard key={plan.id} plan={plan} />
               ))}
             </div>
+
+            {/* Arquitetura §9 — redução de risco perto do CTA. A escola não oferece
+                garantia: aqui só fatos já publicados (consulta grátis, exame, revisão do plano). */}
+            <ul className="mt-8 flex flex-col md:flex-row md:justify-center gap-3 md:gap-8">
+              {[
+                "Consulta inicial gratuita e sem compromisso",
+                "Exame CEFR no início e no fim: você vê a evolução em número",
+                "Objetivo do ciclo não atingido? O plano é revisado com você",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2 font-body text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>
+                  <span className="font-bold" style={{ color: "#FF6820" }}>✓</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
 
             {/* Free consult callout */}
             <div
@@ -294,6 +318,45 @@ export default function PlanosPage() {
             </div>
           </div>
         </section>
+
+        {/* ── Para empresas — Arquitetura §3/§9: jornada corporativa com CTA próprio.
+             Sem preço publicado: a proposta é montada com a equipe. */}
+        <section id="empresas" className="py-16 md:py-20" style={{ backgroundColor: "#F5F6F1" }}>
+          <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-[1fr_auto] gap-8 items-center">
+            <div>
+              <p className="font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+                Para empresas
+              </p>
+              <h2 className="font-display font-extrabold leading-tight mb-3" style={{ fontSize: "clamp(1.6rem, 3vw, 2.25rem)", color: "#161616" }}>
+                Inglês profissional para a sua equipe.
+              </h2>
+              <p className="font-body text-base leading-relaxed" style={{ color: "rgba(22,22,22,0.65)", maxWidth: "560px" }}>
+                O mesmo ciclo — diagnóstico CEFR, plano individual por profissional, sessões 1 a 1 e
+                exame de evolução — para times que precisam usar o inglês no trabalho. A proposta é
+                montada com a nossa equipe, de acordo com o número de pessoas e os objetivos.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 md:items-end">
+              <a
+                href={getWhatsAppUrlForContext("empresas")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-7 py-4 rounded-full font-body font-bold text-base text-white transition-all duration-200 hover:scale-105"
+                style={{ backgroundColor: "#161616" }}
+              >
+                Falar sobre a minha equipe
+              </a>
+              <a
+                href="mailto:contato@falandou.com?subject=Ingl%C3%AAs%20para%20equipes"
+                className="font-body text-sm font-semibold underline underline-offset-4 text-center"
+                style={{ color: "rgba(22,22,22,0.6)" }}
+              >
+                ou escreva para contato@falandou.com
+              </a>
+            </div>
+          </div>
+        </section>
+
         <LeadMagnetCompact />
       </main>
       <Footer />
