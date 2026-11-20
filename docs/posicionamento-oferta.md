@@ -10,6 +10,19 @@ O PDF partiu de dados que não são os da escola:
 
 Aqui as contas e o texto foram refeitos com o que vale hoje.
 
+## 0. Preços vigentes no site (reajuste de 20/11/2026)
+
+A escola escolheu os preços com **~40% de margem com professor externo** (R$ 45 por sessão de 50 min, R$ 25 por sessão de 25 min), terminados em ,90:
+
+| Plano | Sessões/mês | 25 min: antes → agora | 50 min: antes → agora |
+|---|---|---|---|
+| Consistência (Starter) | 4 | R$ 134,90 → **R$ 217,90** | R$ 184,90 → **R$ 379,90** |
+| Resultado (Professional) | 8 | R$ 169,20 → **R$ 419,90** | R$ 305,20 → **R$ 742,90** |
+| Urgente (Intensive) | 16 | R$ 319,20 → **R$ 822,90** | R$ 579,20 → **R$ 1.467,90** |
+
+Fonte única: `src/data/plans.ts`. As tabelas das seções 2 e 6 abaixo usam os preços anteriores (a análise que levou ao reajuste).
+**Pendente:** atualizar a cobrança no falandou.com/Plataforma do Aluno e comunicar a base atual (seção 3).
+
 ## 1. O que já foi aplicado no site
 
 | Ponto do PDF | No site |
