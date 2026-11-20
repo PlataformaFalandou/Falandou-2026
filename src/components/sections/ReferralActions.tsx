@@ -80,7 +80,7 @@ export function ReferredForm() {
         value={referrer}
         onChange={(e) => setReferrer(e.target.value)}
         placeholder="Nome de quem indicou você"
-        className="flex-1 px-5 py-4 rounded-full font-body text-base bg-white border border-black/10 outline-none focus:border-laranja"
+        className="flex-1 px-5 py-4 rounded-full font-body text-base bg-white border border-black/10 outline-none focus:border-[#FF6820]"
         style={{ color: "#161616" }}
       />
       <button

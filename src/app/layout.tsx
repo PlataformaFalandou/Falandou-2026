@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import AnalyticsProvider from "@/components/ui/AnalyticsProvider";
 import EntrySegment from "@/components/ui/EntrySegment";
+import CookieBanner from "@/components/ui/CookieBanner";
 
 export const metadata: Metadata = {
   title: "Falandou — Inglês para Profissionais",
@@ -35,6 +36,7 @@ export default function RootLayout({
         <AnalyticsProvider />
         <EntrySegment />
         {children}
+        <CookieBanner />
       </body>
     </html>
   );

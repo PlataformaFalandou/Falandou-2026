@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
+import { CookiePreferencesButton } from "@/components/ui/CookieBanner";
+import { COMPANY } from "@/data/company";
 
 // Social SVG icons (lucide-react doesn't include these)
 const InstagramIcon = () => (
@@ -135,9 +137,14 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-white/5 py-5">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-2">
-          <p className="font-body text-xs text-white/30">
-            © {new Date().getFullYear()} Falandou Escola de Inglês. Todos os direitos reservados.
+          <p className="font-body text-xs text-white/30 text-center md:text-left">
+            © {new Date().getFullYear()} {COMPANY.legalName}. Todos os direitos reservados.
           </p>
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-1 font-body text-xs text-white/40">
+            <Link href="/politica-de-privacidade" className="hover:text-white transition-colors">Política de privacidade</Link>
+            <Link href="/termos" className="hover:text-white transition-colors">Termos de uso</Link>
+            <CookiePreferencesButton className="hover:text-white transition-colors" />
+          </div>
         </div>
       </div>
     </footer>
