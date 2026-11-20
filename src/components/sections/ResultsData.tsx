@@ -17,7 +17,7 @@ const BARS = [
 ];
 
 const DESTAQUES = [
-  { valor: STATS.cefrUpPct, desc: "dos profissionais passaram a usar inglês no trabalho após o ciclo" },
+  { valor: STATS.cefrUpPct, desc: "dos profissionais subiram pelo menos 1 nível CEFR no ciclo" },
   { valor: `${STATS.b1b2Weeks} semanas`, desc: "tempo médio para ir de B1 a B2"   },
   { valor: STATS.rating, desc: "avaliação média no ciclo"       },
   { valor: STATS.completionPct, desc: "concluíram o plano sem abandonar"           },
@@ -40,9 +40,9 @@ export default function ResultsData() {
              style={{ color: "#FF6820" }}>
             Resultado verificável
           </p>
-          <h2 className="font-heading font-black text-3xl md:text-4xl leading-tight mb-3"
-              style={{ color: "var(--color-text)" }}>
-            {evolved}% dos profissionais passou a conduzir reuniões,<br className="hidden md:block" /> entrevistas e negociações em inglês em até 90 dias.
+          <h2 className="font-display font-extrabold leading-tight mb-3"
+              style={{ color: "var(--color-text)", fontSize: "var(--text-h2)" }}>
+            {evolved}% dos profissionais subiram pelo menos 1 nível CEFR<br className="hidden md:block" /> em até {STATS.cycleDays} dias.
           </h2>
           <p className="font-body text-sm text-white/55">
             {CYCLE_LABEL} · {TOTAL_ALUNOS} profissionais avaliados com exame pré e pós-ciclo.
@@ -94,7 +94,7 @@ export default function ResultsData() {
                 style={{ background: "var(--color-surface)", border: "1px solid rgba(255,255,255,0.1)" }}
               >
                 <p
-                  className="font-heading font-black text-2xl mb-1"
+                  className="font-display font-black text-2xl mb-1"
                   style={{ color: "#FF6820" }}
                 >
                   {d.valor}

@@ -68,7 +68,7 @@ export default function PromocaoCargoPage() {
               <span style={{ color: "#FF6820" }}>Consiga a promoção.</span>
             </>
           }
-          subheadline="Você tem a experiência e a entrega — mas o inglês continua como critério visível para o próximo nível. Em um ciclo de 90 dias, 79% dos nossos profissionais passou a conduzir reuniões e entrevistas em inglês. Para muitos, isso é exatamente a diferença entre candidato e aprovado."
+          subheadline="Você tem a experiência e a entrega — mas o inglês continua como critério visível para o próximo nível. Em um ciclo de 90 dias, 79% dos nossos profissionais subiram pelo menos 1 nível CEFR — mais segurança para conduzir reuniões e entrevistas em inglês. Para muitos, isso é exatamente a diferença entre candidato e aprovado."
           whatsappContext="promocao"
           ctaLabel="Falar com a equipe agora"
           statChip="79% sobe pelo menos 1 nível CEFR em 90 dias · 70% aprovado em seletivas com etapa em inglês"

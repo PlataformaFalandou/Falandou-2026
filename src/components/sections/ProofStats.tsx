@@ -15,7 +15,7 @@ import { STATS } from "@/data/stats";
 const PROOF = [
   {
     value: STATS.cefrUpPct,
-    label: "passaram a usar inglês no trabalho",
+    label: "subiram pelo menos 1 nível CEFR",
     sub: `em até ${STATS.cycleDays} dias · medido por exame pré e pós`,
   },
   {
@@ -53,8 +53,8 @@ export default function ProofStats() {
           className="reveal font-display font-extrabold text-white leading-tight mb-3 delay-100"
           style={{ fontSize: "var(--text-h2)" }}
         >
-          {STATS.cefrUpPct} dos profissionais passou a conduzir reuniões{" "}
-          <span style={{ color: "#FF6820" }}>e entrevistas em inglês em até 90 dias.</span>
+          {STATS.cefrUpPct} dos profissionais subiram pelo menos 1 nível CEFR{" "}
+          <span style={{ color: "#FF6820" }}>em até {STATS.cycleDays} dias.</span>
         </h2>
         <p className="reveal font-body text-base delay-150" style={{ color: "rgba(255,255,255,0.45)" }}>
           Medido com exame antes e depois do ciclo — não autoavaliação, não percepção.

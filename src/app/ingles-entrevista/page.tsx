@@ -116,7 +116,7 @@ export default function InglesEntrevistaPage() {
             </p>
 
             <p className="text-sm font-medium mb-10 -mt-6" style={{ color: "rgba(255,104,32,0.85)" }}>
-              79% dos profissionais passou a conduzir entrevistas e reuniões em inglês em até 90 dias
+              79% dos profissionais subiram pelo menos 1 nível CEFR em até 90 dias
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
