@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Turma Online de Inglês Profissional | Falandou",
   description:
     "Simulações ao vivo de reuniões, entrevistas e apresentações em inglês. Grupos reduzidos com profissionais do mesmo nível — complemento ao plano individual.",
+  // "Em breve": fora do Google até o lançamento (Arquitetura §12, princípio 6).
+  // No lançamento: remover esta linha e voltar a página para src/app/sitemap.ts.
+  robots: { index: false, follow: true },
   alternates: {
     canonical: "https://2026.falandou.com/turma-online",
   },

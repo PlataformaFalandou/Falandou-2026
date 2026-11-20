@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Inglês Intensivo para Profissionais | Falandou",
   description:
     "Programa intensivo de inglês para profissionais com prazo definido: entrevista, transferência internacional ou promoção em 60 dias.",
+  // "Em breve": fora do Google até o lançamento (Arquitetura §12, princípio 6).
+  // No lançamento: remover esta linha e voltar a página para src/app/sitemap.ts.
+  robots: { index: false, follow: true },
   alternates: {
     canonical: "https://2026.falandou.com/intensivo",
   },
