@@ -5,6 +5,8 @@ import CTASection from "@/components/sections/CTASection";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
 
+import JsonLd from "@/components/ui/JsonLd";
+import { faqSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Como Funciona | Falandou — Inglês Profissional",
   description:
@@ -133,6 +135,8 @@ export default function MetodoPage() {
       <ScrollRevealInit />
       <Navbar />
       <main>
+        {/* Dados estruturados — Arquitetura §10 */}
+        <JsonLd data={faqSchema(faqs)} />
 
         {/* ── HERO ─────────────────────────────────────────────────────────── */}
         <section

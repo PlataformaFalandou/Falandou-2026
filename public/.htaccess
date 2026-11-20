@@ -2,6 +2,12 @@
 # Sem esta linha, o servidor mostra a pagina de erro padrao da hospedagem.
 ErrorDocument 404 /404.html
 
+# Imagens de compartilhamento geradas pelo Next saem sem extensao
+# (ex.: /metodo/opengraph-image). Servir como PNG para Facebook/WhatsApp/LinkedIn.
+<FilesMatch "^opengraph-image$">
+  ForceType image/png
+</FilesMatch>
+
 # /entrevista-emprego duplicava /ingles-entrevista (mesmo titulo, mesma busca).
 # 301 mantem links antigos e anuncios funcionando e concentra o SEO numa pagina so.
 RedirectMatch 301 ^/entrevista-emprego/?$ /ingles-entrevista/

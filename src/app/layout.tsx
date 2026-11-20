@@ -4,7 +4,11 @@ import AnalyticsProvider from "@/components/ui/AnalyticsProvider";
 import EntrySegment from "@/components/ui/EntrySegment";
 import CookieBanner from "@/components/ui/CookieBanner";
 
+// Arquitetura §10 — metadataBase resolve URLs relativas (canonical, og:url, og:image)
+// para o domínio do site. Sem `url`/`canonical` aqui: cada página define os seus
+// (antes o og:url herdado apontava para falandou.com em várias páginas).
 export const metadata: Metadata = {
+  metadataBase: new URL("https://2026.falandou.com"),
   title: "Falandou — Inglês para Profissionais",
   description: "Aprenda inglês com foco no seu objetivo profissional. Plano personalizado, professores especializados e acompanhamento ativo. Junte-se a mais de 600 profissionais que já evoluíram com a Falandou.",
   keywords: ["inglês profissional", "curso de inglês", "inglês para trabalho", "inglês executivo", "falandou"],
@@ -13,8 +17,9 @@ export const metadata: Metadata = {
     description: "Plano personalizado, professores especializados e acompanhamento ativo.",
     type: "website",
     locale: "pt_BR",
-    url: "https://falandou.com",
+    siteName: "Falandou",
   },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({

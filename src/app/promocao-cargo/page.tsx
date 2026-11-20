@@ -13,6 +13,8 @@ import BlogPreview from "@/components/sections/BlogPreview";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
 
+import JsonLd from "@/components/ui/JsonLd";
+import { courseSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Inglês para Promoção de Cargo | Falandou",
   description:
@@ -54,6 +56,8 @@ export default function PromocaoCargoPage() {
       <ScrollRevealInit />
       <Navbar />
       <main>
+        {/* Dados estruturados — Arquitetura §10 */}
+        <JsonLd data={courseSchema({ name: "Inglês para promoção de cargo", description: "Ciclo de 90 dias para demonstrar liderança em inglês: reuniões, apresentações e alinhamento de times.", path: "/promocao-cargo/" })} />
         <Hero
           eyebrow="O inglês está te impedindo de crescer — e você sabe disso."
           headline={
@@ -82,7 +86,7 @@ export default function PromocaoCargoPage() {
         <Testimonials persona="Promoção e liderança" />
         <Journey />
         <MidCTA />
-        <FAQ title="Dúvidas de quem quer ser promovido." items={FAQS} />
+        <FAQ title="Dúvidas de quem quer ser promovido." items={FAQS} moreLink={{ href: "/planos", label: "Ver planos e valores" }} />
         {/* Arquitetura §4/§10: âncora de autoridade + link para posts relevantes */}
         <BlogPreview slugs={["vocabulario-reunioes-negocios", "ingles-para-apresentacoes", "como-aprender-ingles-profissional"]} title="Para quem quer o próximo cargo." />
         <LeadMagnetCompact />

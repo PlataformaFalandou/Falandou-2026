@@ -8,6 +8,8 @@ import ResultsData from "@/components/sections/ResultsData";
 import Testimonials from "@/components/sections/Testimonials";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 
+import JsonLd from "@/components/ui/JsonLd";
+import { faqSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Resultados | Falandou — Inglês Profissional",
   description:
@@ -79,6 +81,8 @@ export default function ResultadosPage() {
       <ScrollRevealInit />
       <Navbar />
       <main>
+        {/* Dados estruturados — Arquitetura §10 */}
+        <JsonLd data={faqSchema(FAQS)} />
         {/* ── HERO ─────────────────────────────────────────────────────────── */}
         <section className="pt-40 pb-20 md:pt-52 md:pb-24" style={{ backgroundColor: "#161616" }}>
           <div className="max-w-5xl mx-auto px-6">

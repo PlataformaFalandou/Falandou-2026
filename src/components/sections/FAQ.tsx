@@ -7,6 +7,8 @@ import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 import { DEFAULT_FAQS, type FAQEntry } from "@/data/faq";
 
+import JsonLd from "@/components/ui/JsonLd";
+import { faqSchema } from "@/lib/schema";
 export type { FAQEntry };
 
 function FAQItem({ faq, isOpen, onToggle }: { faq: FAQEntry; isOpen: boolean; onToggle: () => void }) {
@@ -60,6 +62,7 @@ export default function FAQ({
 
   return (
     <section id="faq" className="py-24 md:py-32" style={{ backgroundColor: "#F5F6F1" }}>
+      <JsonLd data={faqSchema(items)} />
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-5 gap-14 items-start">
           {/* Left: header */}

@@ -18,28 +18,32 @@ export async function generateMetadata({
   const article = getArticleBySlug(slug);
   if (!article) return { title: "Artigo não encontrado" };
 
-  const ogImage = article.imagem_capa
+  // Imagem de compartilhamento: capa do artigo, se houver; senão a gerada em
+  // ./opengraph-image.tsx (título do artigo sobre o fundo da marca).
+  const cover = article.imagem_capa
     ? article.imagem_capa.startsWith("http")
       ? article.imagem_capa
       : `https://2026.falandou.com${article.imagem_capa}`
-    : "https://2026.falandou.com/og-default.png";
+    : null;
 
   return {
     title: `${article.titulo} — Blog Falandou`,
     description: article.resumo,
+    alternates: { canonical: `/blog/${slug}/` },
     openGraph: {
       title: article.titulo,
       description: article.resumo,
-      url: `https://2026.falandou.com/blog/${slug}`,
+      url: `/blog/${slug}/`,
       siteName: "Falandou",
-      images: [{ url: ogImage, width: 1200, height: 630, alt: article.titulo }],
+      locale: "pt_BR",
       type: "article",
+      ...(cover ? { images: [{ url: cover, width: 1200, height: 630, alt: article.titulo }] } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title: article.titulo,
       description: article.resumo,
-      images: [ogImage],
+      ...(cover ? { images: [cover] } : {}),
     },
   };
 }

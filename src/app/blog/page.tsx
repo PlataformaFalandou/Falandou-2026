@@ -7,6 +7,15 @@ import { getArticles, getCategories } from "@/lib/blog";
 export const metadata: Metadata = {
   title: "Blog — Falandou | Inglês para Profissionais",
   description: "Artigos sobre pronúncia, vocabulário e comunicação em inglês para profissionais — com base no que realmente funciona em reuniões, entrevistas e apresentações.",
+  alternates: { canonical: "/blog/" },
+  openGraph: {
+    title: "Blog Falandou — Inglês para Profissionais",
+    description: "Vocabulário profissional, carreira internacional, método e CEFR.",
+    url: "/blog/",
+    siteName: "Falandou",
+    locale: "pt_BR",
+    type: "website",
+  },
 };
 
 export default function BlogPage() {

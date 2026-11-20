@@ -7,6 +7,8 @@ import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import InterestForm from "@/components/sections/InterestForm";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 
+import JsonLd from "@/components/ui/JsonLd";
+import { courseSchema, faqSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Inglês para Entrevista de Emprego | Falandou",
   description:
@@ -78,6 +80,9 @@ export default function InglesEntrevistaPage() {
     <>
       <Navbar />
       <main>
+        {/* Dados estruturados — Arquitetura §10 */}
+        <JsonLd data={courseSchema({ name: "Inglês para entrevista de emprego", description: "Preparação individual para processos seletivos com etapa em inglês, com simulações.", path: "/ingles-entrevista/" })} />
+        <JsonLd data={faqSchema(faqs)} />
 
         {/* ── HERO: momento de vida ── */}
         <section
@@ -278,6 +283,10 @@ export default function InglesEntrevistaPage() {
             <p className="mt-6">
               <Link href="/metodo" className="font-body text-sm underline underline-offset-4" style={{ color: "rgba(255,255,255,0.35)" }}>
                 Entender o método completo →
+              </Link>
+              <span style={{ color: "rgba(255,255,255,0.2)" }}> · </span>
+              <Link href="/planos" className="font-body text-sm underline underline-offset-4" style={{ color: "rgba(255,255,255,0.35)" }}>
+                Ver planos e valores →
               </Link>
             </p>
           </div>

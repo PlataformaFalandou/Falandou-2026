@@ -8,10 +8,21 @@ import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import PriceCard from "@/components/sections/PriceCard";
 import { PLANS, INCLUDED_IN_ALL, PRICE_FROM, PRICE_FROM_ROUNDED } from "@/data/plans";
 
+import JsonLd from "@/components/ui/JsonLd";
+import { courseSchema, faqSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Planos e Preços | Falandou",
   description:
     `Veja os planos de inglês profissional da Falandou: sessões individuais 1 a 1, ciclo de 90 dias e exame CEFR antes e depois. Planos a partir de ${PRICE_FROM}/mês.`,
+  alternates: { canonical: "/planos/" },
+  openGraph: {
+    title: "Planos e Preços | Falandou",
+    description: `Sessões 1 a 1, ciclo de 90 dias e exame CEFR antes e depois. A partir de ${PRICE_FROM}/mês.`,
+    url: "/planos/",
+    siteName: "Falandou",
+    locale: "pt_BR",
+    type: "website",
+  },
 };
 
 // Ponto 44 — comparação clara: o que é igual fica numa faixa única;
@@ -54,6 +65,9 @@ export default function PlanosPage() {
     <>
       <Navbar />
       <main>
+        {/* Dados estruturados — Arquitetura §10 */}
+        <JsonLd data={courseSchema({ name: "Inglês profissional — ciclo de 90 dias", description: "Plano individual, sessões 1 a 1 e exame CEFR antes e depois do ciclo.", path: "/planos/" })} />
+        <JsonLd data={faqSchema(FAQS)} />
         {/* ── Hero ── */}
         <section
           className="pt-28 pb-20 md:pt-36 md:pb-24"

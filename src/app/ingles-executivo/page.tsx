@@ -13,6 +13,8 @@ import BlogPreview from "@/components/sections/BlogPreview";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
 
+import JsonLd from "@/components/ui/JsonLd";
+import { courseSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Inglês Executivo para Profissionais | Falandou",
   description:
@@ -54,6 +56,8 @@ export default function InglesExecutivoPage() {
       <ScrollRevealInit />
       <Navbar />
       <main>
+        {/* Dados estruturados — Arquitetura §10 */}
+        <JsonLd data={courseSchema({ name: "Inglês executivo para reuniões e apresentações", description: "Ciclo de 90 dias para conduzir reuniões, apresentações e negociações em inglês.", path: "/ingles-executivo/" })} />
         <Hero
           eyebrow="Você entende a reunião. Mas raramente toma a palavra."
           headline={
@@ -81,7 +85,7 @@ export default function InglesExecutivoPage() {
         <Testimonials persona="Reuniões e apresentações" />
         <Journey />
         <MidCTA />
-        <FAQ title="Dúvidas de quem conduz reuniões em inglês." items={FAQS} />
+        <FAQ title="Dúvidas de quem conduz reuniões em inglês." items={FAQS} moreLink={{ href: "/planos", label: "Ver planos e valores" }} />
         {/* Arquitetura §4/§10: âncora de autoridade + link para posts relevantes */}
         <BlogPreview slugs={["vocabulario-reunioes-negocios", "ingles-para-apresentacoes", "emails-profissionais-ingles"]} title="Para conduzir reuniões em inglês." />
         <LeadMagnetCompact />

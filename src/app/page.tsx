@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/ui/Navbar";
 import HeroAB from "@/components/sections/HeroAB";
 import StatsBar from "@/components/sections/StatsBar";
@@ -16,6 +17,20 @@ import Footer from "@/components/ui/Footer";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
 import ScrollTracker from "@/components/ui/ScrollTracker";
 
+import JsonLd from "@/components/ui/JsonLd";
+import { organizationSchema } from "@/lib/schema";
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Falandou — Inglês para Profissionais",
+    description: "Plano personalizado, sessões 1 a 1 e exame CEFR antes e depois de cada ciclo de 90 dias.",
+    type: "website",
+    locale: "pt_BR",
+    siteName: "Falandou",
+    url: "/",
+  },
+};
+
 // Estrutura da home — Arquitetura da Informação §5, versão híbrida com a planilha:
 // cada seção resolve a dúvida que a anterior gerou. A home "fecha curiosidade, não
 // detalhe": preço detalhado, comparação e currículo de professor ficam em
@@ -27,6 +42,8 @@ export default function HomePage() {
       <ScrollTracker />
       <Navbar />
       <main>
+        {/* Dados estruturados — Arquitetura §10 */}
+        <JsonLd data={organizationSchema()} />
         {/* 1. Promessa + prova (600+, logos) + ação */}
         <HeroAB />
         {/* 2. Identificação logo após a Hero (planilha, ponto 38) */}
