@@ -6,7 +6,7 @@ import ComparisonTable from "@/components/sections/ComparisonTable";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import PlansGrid from "@/components/sections/PlansGrid";
-import { COMMITMENT_DISCOUNTS, COMMITMENT_TEXT, INCLUDED_IN_ALL, PAUSE_RULE, PLAN_TERMS, PRICE_FROM, PRICE_FROM_ROUNDED, RESCHEDULE_RULE, STUDENTS_PER_TEACHER, commitmentPrice, getPlan, perDay, perSession } from "@/data/plans";
+import { COMMITMENT_DISCOUNTS, COMMITMENT_TEXT, INCLUDED_IN_ALL, PAUSE_RULE, PLAN_TERMS, MIN_REPORTED_RAISE, PRICE_FROM, PRICE_FROM_ROUNDED, PRICE_TO_VALUE, RESCHEDULE_RULE, STUDENTS_PER_TEACHER, commitmentPrice, getPlan, perDay, perSession } from "@/data/plans";
 
 import JsonLd from "@/components/ui/JsonLd";
 import { courseSchema, faqSchema } from "@/lib/schema";
@@ -101,9 +101,10 @@ export default function PlanosPage() {
               className="font-body text-lg max-w-2xl mx-auto mb-8"
               style={{ color: "rgba(255,255,255,0.55)" }}
             >
-              Profissionais que trocam de emprego após a Falandou relatam aumentos de
-              R$ 1.500 a R$ 4.000/mês. O investimento se paga em menos de 60 dias
-              para quem consegue uma promoção ou aprovação em processo seletivo.
+              Profissionais que trocam de emprego ou são promovidos após a Falandou relatam
+              aumentos de R$ 1.500 a R$ 4.000/mês.
+              {MIN_REPORTED_RAISE > PRICE_TO_VALUE &&
+                " Mesmo o menor desses aumentos é maior que a mensalidade de qualquer plano."}
             </p>
 
             {/* Product anchor — o que é o produto */}
@@ -258,20 +259,20 @@ export default function PlanosPage() {
                 {
                   scenario: "Promoção de cargo",
                   gain: "+R$ 2.000–4.000/mês",
+                  gainMin: 2000,
                   note: "Salário maior dentro da empresa atual",
-                  payback: "Retorno em < 2 meses",
                 },
                 {
                   scenario: "Novo emprego",
                   gain: "+R$ 1.500–3.000/mês",
-                  note: "Passa a candidatar em vagas internacionais",
-                  payback: "Retorno em < 3 meses",
+                  gainMin: 1500,
+                  note: "Passa a se candidatar a vagas internacionais",
                 },
                 {
                   scenario: "Transferência internacional",
                   gain: "Pacote 2–4× o salário atual",
+                  gainMin: 0,
                   note: "Relocação com suporte da empresa",
-                  payback: "Retorno imediato",
                 },
               ].map((item) => (
                 <div
@@ -300,18 +301,24 @@ export default function PlanosPage() {
                   >
                     {item.note}
                   </p>
-                  <div
-                    className="inline-flex px-3 py-1 rounded-full text-xs font-semibold"
-                    style={{
-                      background: "rgba(255,104,32,0.12)",
-                      color: "#FF6820",
-                    }}
-                  >
-                    {item.payback}
-                  </div>
+                  {/* Só afirma o que a conta sustenta: o menor ganho relatado vs. a maior mensalidade */}
+                  {item.gainMin > PRICE_TO_VALUE && (
+                    <div
+                      className="inline-flex px-3 py-1 rounded-full text-xs font-semibold"
+                      style={{
+                        background: "rgba(255,104,32,0.12)",
+                        color: "#FF6820",
+                      }}
+                    >
+                      Cobre a mensalidade de qualquer plano
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
+            <p className="font-body text-xs text-center mt-8" style={{ color: "rgba(255,255,255,0.35)" }}>
+              Valores relatados por profissionais da Falandou. Não são garantia de resultado individual.
+            </p>
           </div>
         </section>
 

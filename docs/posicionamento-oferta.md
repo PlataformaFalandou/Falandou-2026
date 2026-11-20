@@ -21,14 +21,14 @@ A escola escolheu os preços com **~40% de margem com professor externo** (R$ 45
 | Urgente (Intensive) | 16 | R$ 319,20 → **R$ 822,90** | R$ 579,20 → **R$ 1.467,90** |
 
 Fonte única: `src/data/plans.ts`. As tabelas das seções 2 e 6 abaixo usam os preços anteriores (a análise que levou ao reajuste).
-**Pendente:** atualizar a cobrança no falandou.com/Plataforma do Aluno e comunicar a base atual (seção 3).
+Estes preços valem para o **novo site e a nova plataforma**. O falandou.com (site antigo) não muda nada, e **quem já é aluno mantém as condições atuais** — por isso a seção 3 sobre comunicar reajuste à base não se aplica.
 
 ## 1. O que já foi aplicado no site
 
 | Ponto do PDF | No site |
 |---|---|
 | 1. Diferencial como mecanismo | /sobre ganhou a seção "Por que o 1 a 1 muda o resultado": um parágrafo de causa e efeito e 4 diferenciais, cada um com o que é e por que importa. |
-| 2. Nomes por objetivo | Planos renomeados para **Consistência** (Starter), **Resultado** (Professional) e **Urgente** (Intensive). A troca vale só para o site novo: no falandou.com e na Plataforma do Aluno continuam os nomes antigos. |
+| 2. Nomes por objetivo | Planos renomeados para **Consistência** (Starter), **Resultado** (Professional) e **Urgente** (Intensive). Valem para o novo site e a nova plataforma; o falandou.com (site antigo) não muda. |
 | 2. Diferencial qualitativo por plano | **Não aplicado.** As sugestões do PDF (estudo assíncrono, simulações, feedback no dia 30) não existem hoje, então os cartões mantêm os itens reais. |
 | 2. Plano anual com valor explícito | Cada cartão mostra a mensalidade no compromisso de 12 meses (20% de desconto) e a economia no ano. O FAQ traz um exemplo. |
 | 3. Preço depois do valor | Na home, o preço aparece só no FAQ (na última pergunta, depois do retorno) e no CTA final, junto com o retorno. Em /planos aparece "menos de R$ 4,50 por dia". |
@@ -69,10 +69,7 @@ Premissas (ajuste se forem diferentes):
 2. **Reposicionamento premium** (cenário 2): preços na faixa da coluna "preço para 40% de margem" da tabela acima.
 3. **Mudar o modelo:** concentrar a venda nas sessões de 25 min (custo menor por sessão) ou rever o valor pago ao professor por sessão.
 
-Se houver reajuste:
-- anunciar como "novo ciclo 2026", com melhorias concretas;
-- congelar o preço para quem renovar antes da data do reajuste;
-- justificar pelo resultado (79% sobem 1 nível CEFR), nunca pelo custo.
+Comunicação do reajuste: **não se aplica** — os novos preços valem só para o novo site e a nova plataforma, e quem já é aluno mantém as condições atuais.
 
 ## 4. Desconto e retenção
 

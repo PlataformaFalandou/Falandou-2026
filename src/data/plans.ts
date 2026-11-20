@@ -1,7 +1,8 @@
 // Fonte única dos planos e preços (Arquitetura da Informação §4, §9 e gap 8).
 // Preços reajustados em 20/11/2026 (decisão da escola): margem de ~40% com professor externo
 // a R$ 45 (50 min) / R$ 25 (25 min) por sessão — ver docs/posicionamento-oferta.md.
-// ATENÇÃO: a cobrança no falandou.com/Plataforma do Aluno precisa ser atualizada à parte.
+// Valem para o NOVO site e a NOVA plataforma. O falandou.com (site antigo) não muda, e quem
+// já é aluno mantém as condições atuais.
 // Para mudar um preço, um plano ou o que ele inclui, altere SÓ este arquivo:
 // /planos, /intensivo, FAQs, schema Course e os textos de "a partir de" leem daqui.
 
@@ -10,7 +11,7 @@ export const DURATIONS: Duration[] = [50, 25];
 export const DEFAULT_DURATION: Duration = 50;
 
 // Nomes por objetivo (Posicionamento e Oferta §2, nov/2026): Consistência, Resultado e Urgente.
-// No falandou.com e na Plataforma do Aluno os mesmos planos se chamam Starter, Professional e Intensive.
+// Equivalem a Starter, Professional e Intensive do falandou.com (site antigo, que não muda).
 export type Plan = {
   id: string;
   name: string;
@@ -77,7 +78,7 @@ export const PLANS: Plan[] = [
   },
 ];
 
-/** Regras de contratação (iguais às de falandou.com). */
+/** Regras de contratação. */
 export const PLAN_TERMS =
   "Planos mensais com renovação automática. Cancele quando quiser: o acesso vale até o fim do ciclo pago. Créditos não usados expiram ao fim de cada ciclo. Reembolso integral em até 7 dias se nenhuma sessão tiver sido feita.";
 
@@ -142,5 +143,10 @@ export function getPlan(id: string): Plan {
 /** Menor preço entre todos os planos e durações — "a partir de R$ X/mês". */
 const cheapest = Math.min(...PLANS.flatMap((p) => DURATIONS.map((d) => priceValue(p.prices[d]))));
 export const PRICE_FROM = formatBRL(cheapest); // "R$ 217,90"
+/** Maior mensalidade entre todos os planos — usada nas frases de retorno ("cobre qualquer plano"). */
+export const PRICE_TO_VALUE = Math.max(...PLANS.flatMap((p) => DURATIONS.map((d) => priceValue(p.prices[d]))));
+/** Menor aumento mensal relatado por alunos (R$ 1.500) — fonte: relatos publicados no site. */
+export const MIN_REPORTED_RAISE = 1500;
+
 /** Menor preço arredondado, para frases de comparação ("~R$ 135/mês"). */
 export const PRICE_FROM_ROUNDED = `R$ ${Math.round(cheapest)}`;

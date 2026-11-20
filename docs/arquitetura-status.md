@@ -1,7 +1,7 @@
 # Arquitetura da Informação — status de implementação
 
 Referência: *Arquitetura da Informação — Escola Falandou* (PDF, 19/11/2026).
-Atualizado em 20/11/2026. Planos e preços alinhados a falandou.com (no site novo os planos se chamam Consistência, Resultado e Urgente; no falandou.com, Starter, Professional e Intensive; 25 ou 50 min). Seções 1 a 10 implementadas no site; abaixo, a revisão
+Atualizado em 20/11/2026. Planos e preços do novo site e da nova plataforma: Consistência, Resultado e Urgente, com sessões de 25 ou 50 min (o falandou.com antigo não muda; alunos atuais mantêm as condições). Seções 1 a 10 implementadas no site; abaixo, a revisão
 das seções 11 (gaps) e 12 (princípios).
 
 ## Seção 11 — Gaps críticos

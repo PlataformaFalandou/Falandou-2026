@@ -5,7 +5,7 @@ import { MessageCircle } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 import { STATS } from "@/data/stats";
-import { PRICE_FROM } from "@/data/plans";
+import { MIN_REPORTED_RAISE, PRICE_FROM, PRICE_TO_VALUE } from "@/data/plans";
 
 export default function MidCTA() {
   return (
@@ -66,7 +66,7 @@ export default function MidCTA() {
         </p>
         {/* Posicionamento e Oferta §3: preço só depois de problema, solução, prova e retorno */}
         <p className="reveal font-body text-sm mt-2 delay-300" style={{ color: "rgba(255,255,255,0.75)" }}>
-          Planos a partir de {PRICE_FROM}/mês. Para quem conquista uma promoção, o investimento costuma se pagar em menos de 60 dias.
+          Planos a partir de {PRICE_FROM}/mês.{MIN_REPORTED_RAISE > PRICE_TO_VALUE && " O menor aumento relatado pelos alunos (R$ 1.500/mês) já é maior que a mensalidade de qualquer plano."}
         </p>
 
         {/* Trust chips — só fatos verificáveis (a escola não oferece consulta gratuita) */}
