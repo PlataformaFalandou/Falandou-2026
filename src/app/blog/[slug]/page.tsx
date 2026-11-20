@@ -5,7 +5,8 @@ import { ArrowLeft, ChevronRight, Clock, MessageCircle } from "lucide-react";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import { getArticleBySlug, getArticles } from "@/lib/blog";
-import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { getBlogCTA } from "@/data/blogCTAs";
 
 export async function generateMetadata({
   params,
@@ -57,6 +58,7 @@ export default async function ArticlePage({
   const article = getArticleBySlug(slug);
 
   if (!article) notFound();
+  const cta = getBlogCTA(slug);
 
   return (
     <>
@@ -143,30 +145,41 @@ export default async function ArticlePage({
             dangerouslySetInnerHTML={{ __html: article.conteudo }}
           />
 
-          {/* CTA box */}
+          {/* CTA contextual — Arquitetura §3/§6: ligado ao tema do artigo + página relacionada */}
           <div
             className="mt-16 rounded-2xl p-8 text-center"
             style={{ backgroundColor: "#161616" }}
           >
             <p className="font-body text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
-              Pronto para praticar?
+              Da leitura para a prática
             </p>
             <h3 className="font-display font-extrabold text-white text-xl md:text-2xl mb-3">
-              Leve este conhecimento para as suas sessões.
+              {cta.heading}
             </h3>
-            <p className="font-body text-white/50 text-sm mb-6 max-w-md mx-auto">
-              Na Falandou, o conteúdo do blog vira prática real nas suas sessões individuais, com foco no seu contexto profissional.
+            <p className="font-body text-sm mb-6 max-w-md mx-auto" style={{ color: "rgba(255,255,255,0.55)" }}>
+              {cta.text}
             </p>
-            <a
-              href={getWhatsAppUrlForContext("cta")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-7 py-4 rounded-full text-sm font-semibold text-white transition-all duration-200 hover:scale-105"
-              style={{ backgroundColor: "#FF6820" }}
-            >
-              <MessageCircle size={16} />
-              Falar com a Falandou
-            </a>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href={getWhatsAppUrl(
+                  `Olá! Li o artigo “${article.titulo}” no blog da Falandou e quero treinar isso nas sessões. Como funciona?`
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-7 py-4 rounded-full text-sm font-semibold text-white transition-all duration-200 hover:scale-105"
+                style={{ backgroundColor: "#FF6820" }}
+              >
+                <MessageCircle size={16} />
+                Quero treinar isso nas sessões
+              </a>
+              <Link
+                href={cta.related.href}
+                className="font-body text-sm font-semibold underline underline-offset-4"
+                style={{ color: "rgba(255,255,255,0.6)" }}
+              >
+                {cta.related.label} →
+              </Link>
+            </div>
           </div>
         </div>
       </main>
