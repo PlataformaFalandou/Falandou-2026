@@ -7,6 +7,8 @@ export type Duration = 25 | 50;
 export const DURATIONS: Duration[] = [50, 25];
 export const DEFAULT_DURATION: Duration = 50;
 
+// Nomes por objetivo (Posicionamento e Oferta §2, nov/2026): Consistência, Resultado e Urgente.
+// No falandou.com e na Plataforma do Aluno os mesmos planos se chamam Starter, Professional e Intensive.
 export type Plan = {
   id: string;
   name: string;
@@ -35,7 +37,7 @@ export const INCLUDED_IN_ALL = [
 export const PLANS: Plan[] = [
   {
     id: "starter",
-    name: "Starter",
+    name: "Consistência",
     tagline: "Ideal para começar sua jornada",
     forWho: "Para quem quer constância sem pressão de prazo: uma sessão por semana.",
     prices: { 25: "R$ 134,90", 50: "R$ 184,90" },
@@ -46,7 +48,7 @@ export const PLANS: Plan[] = [
   },
   {
     id: "professional",
-    name: "Professional",
+    name: "Resultado",
     tagline: "Para quem quer evoluir mais rápido",
     forWho: "Para quem usa inglês toda semana no trabalho e quer ganhar ritmo.",
     prices: { 25: "R$ 169,20", 50: "R$ 305,20" },
@@ -57,7 +59,7 @@ export const PLANS: Plan[] = [
   },
   {
     id: "intensive",
-    name: "Intensive",
+    name: "Urgente",
     tagline: "Máxima imersão e resultados",
     forWho: "Para quem tem processo seletivo, promoção ou mudança com data marcada.",
     prices: { 25: "R$ 319,20", 50: "R$ 579,20" },
@@ -77,6 +79,13 @@ export const PLANS: Plan[] = [
 export const PLAN_TERMS =
   "Planos mensais com renovação automática. Cancele quando quiser: o acesso vale até o fim do ciclo pago. Créditos não usados expiram ao fim de cada ciclo. Reembolso integral em até 7 dias se nenhuma sessão tiver sido feita.";
 
+/** Regras de sessão confirmadas pela escola (nov/2026) — Posicionamento e Oferta §7/§11. */
+export const RESCHEDULE_RULE =
+  "Reagendamento sem custo com pelo menos 24h de antecedência. Avisos com menos de 24h contam como sessão realizada.";
+export const PAUSE_RULE = "Imprevisto no meio do caminho? Você pode pausar o plano por até 30 dias, sem cancelar.";
+/** Limite de alunos ativos por professor — escassez real, não tática. */
+export const STUDENTS_PER_TEACHER = 25;
+
 /** Desconto por compromisso mais longo (informado pela escola, nov/2026). */
 export const COMMITMENT_DISCOUNTS = [
   { months: 6, pct: 10 },
@@ -90,12 +99,27 @@ export function priceValue(price: string): number {
 }
 
 export function formatBRL(value: number): string {
-  return `R$ ${value.toFixed(2).replace(".", ",")}`;
+  const [int, dec] = value.toFixed(2).split(".");
+  return `R$ ${int.replace(/\B(?=(\d{3})+(?!\d))/g, ".")},${dec}`;
 }
 
 /** Valor por sessão (preço mensal ÷ sessões do mês). */
 export function perSession(plan: Plan, duration: Duration): string {
   return formatBRL(Math.round((priceValue(plan.prices[duration]) / plan.sessionsPerMonth) * 100) / 100);
+}
+
+/** Mensalidade com o desconto de compromisso e a economia no período. */
+export function commitmentPrice(plan: Plan, duration: Duration, months: number) {
+  const d = COMMITMENT_DISCOUNTS.find((x) => x.months === months);
+  if (!d) throw new Error(`Compromisso inexistente: ${months} meses`);
+  const base = priceValue(plan.prices[duration]);
+  const monthly = Math.round(base * (1 - d.pct / 100) * 100) / 100;
+  return { monthly: formatBRL(monthly), saving: formatBRL(Math.round((base - monthly) * months * 100) / 100), pct: d.pct };
+}
+
+/** Preço mensal ÷ 30, para o reenquadramento "por dia". */
+export function perDay(price: string): string {
+  return formatBRL(Math.round((priceValue(price) / 30) * 100) / 100);
 }
 
 export function sessionsLabel(plan: Plan): string {

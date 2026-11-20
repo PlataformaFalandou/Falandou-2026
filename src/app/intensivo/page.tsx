@@ -9,16 +9,16 @@ import { getWhatsAppUrl } from "@/lib/whatsapp";
 import { courseSchema } from "@/lib/schema";
 import { INCLUDED_IN_ALL, PLAN_TERMS, getPlan, perSession, planWhatsAppMsg } from "@/data/plans";
 
-// /intensivo apresenta o plano Intensive vigente (falandou.com): 16 sessões por mês.
+// /intensivo apresenta o plano Urgente (Intensive no falandou.com): 16 sessões por mês.
 // Preços e itens vêm de src/data/plans.ts.
 const INT = getPlan("intensive");
 
 export const metadata: Metadata = {
-  title: "Plano Intensive — Inglês Intensivo para Profissionais | Falandou",
-  description: `Plano Intensive: ${INT.sessionsPerMonth} sessões individuais por mês, de 25 ou 50 minutos, para quem tem entrevista, promoção ou transferência com data marcada. A partir de ${INT.prices[25]}/mês.`,
+  title: "Plano Urgente — Inglês Intensivo para Profissionais | Falandou",
+  description: `Plano Urgente: ${INT.sessionsPerMonth} sessões individuais por mês, de 25 ou 50 minutos, para quem tem entrevista, promoção ou transferência com data marcada. A partir de ${INT.prices[25]}/mês.`,
   alternates: { canonical: "/intensivo/" },
   openGraph: {
-    title: "Plano Intensive | Falandou",
+    title: "Plano Urgente | Falandou",
     description: `${INT.sessionsPerMonth} sessões individuais por mês para quem tem prazo. ${INT.prices[50]}/mês com sessões de 50 minutos.`,
     url: "/intensivo/",
     siteName: "Falandou",
@@ -60,7 +60,7 @@ export default function IntensivoPage() {
       <main>
         <JsonLd
           data={courseSchema({
-            name: "Inglês profissional — plano Intensive",
+            name: "Inglês profissional — plano Urgente",
             description: `${INT.sessionsPerMonth} sessões individuais por mês, de 25 ou 50 minutos, com plano personalizado e exame CEFR antes e depois.`,
             path: "/intensivo/",
           })}
@@ -70,7 +70,7 @@ export default function IntensivoPage() {
         <section className="pt-40 pb-24 md:pt-52 md:pb-28" style={{ backgroundColor: "#161616" }}>
           <div className="max-w-4xl mx-auto px-6">
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
-              Plano Intensive
+              Plano Urgente
             </p>
             <h1
               className="reveal font-display font-extrabold text-white leading-tight mb-6 delay-100"
@@ -98,7 +98,7 @@ export default function IntensivoPage() {
                 className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-bold text-white transition-all duration-200 hover:scale-105"
                 style={{ backgroundColor: "#FF6820" }}
               >
-                Quero o plano Intensive
+                Quero o plano Urgente
               </a>
               <Link
                 href="/planos"
@@ -156,7 +156,7 @@ export default function IntensivoPage() {
             <div className="grid md:grid-cols-2 gap-10">
               <div>
                 <p className="font-body text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "rgba(22,22,22,0.45)" }}>
-                  Exclusivo do Intensive
+                  Exclusivo do plano Urgente
                 </p>
                 <ul className="flex flex-col gap-3">
                   {INT.features.map((f) => (
@@ -195,7 +195,7 @@ export default function IntensivoPage() {
             </h2>
             <p className="font-body text-lg mb-10" style={{ color: "rgba(255,255,255,0.65)" }}>
               Conte a data e o objetivo. A equipe responde em até 1h e diz com franqueza se o
-              Intensive é o plano certo ou se outro ritmo resolve.
+              plano Urgente é o certo ou se outro ritmo resolve.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
@@ -205,7 +205,7 @@ export default function IntensivoPage() {
                 className="inline-flex items-center justify-center px-10 py-5 rounded-full text-base font-bold text-white transition-all duration-200 hover:scale-105"
                 style={{ backgroundColor: "#FF6820" }}
               >
-                Quero o plano Intensive
+                Quero o plano Urgente
               </a>
               <Link
                 href="/planos"

@@ -148,3 +148,18 @@ export function trackPlansPageView() {
     content_category: "pricing",
   });
 }
+
+// ─── Tempo na página de planos ────────────────────────────────────────────────
+/**
+ * Posicionamento e Oferta §10 — "duração na página de planos": marca quem ficou
+ * 30 s e 90 s em /planos (interesse real em preço). Vira público de remarketing
+ * e sinal de qualidade de lead nos anúncios.
+ */
+export function trackPlansEngaged(seconds: number) {
+  gtag("event", "plans_engaged", {
+    event_category: "funnel",
+    event_label: `plans_${seconds}s`,
+    value: seconds,
+  });
+  fbq("trackCustom", "PlansEngaged", { seconds });
+}

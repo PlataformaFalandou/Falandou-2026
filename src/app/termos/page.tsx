@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import LegalLayout from "@/components/ui/LegalLayout";
 import { COMPANY } from "@/data/company";
+import { PAUSE_RULE, PLAN_TERMS, RESCHEDULE_RULE } from "@/data/plans";
 
 export const metadata: Metadata = {
   title: "Termos de Uso | Falandou",
@@ -25,6 +26,7 @@ export default function TermosPage() {
 
       <h2>2. Preços, planos e resultados</h2>
       <p>Valores, planos e condições exibidos no site podem mudar sem aviso prévio. Em caso de diferença, valem as condições informadas pela equipe e registradas no contrato.</p>
+      <p><strong>Resumo das regras dos planos</strong> (o contrato traz a versão completa): {PLAN_TERMS} {RESCHEDULE_RULE} {PAUSE_RULE}</p>
       <p>Os números de resultado publicados (por exemplo, a porcentagem de profissionais que subiram de nível CEFR) referem-se a ciclos já concluídos e à metodologia descrita em <Link href="/resultados">Resultados</Link>. Eles não são garantia de resultado individual, que depende do ponto de partida, da frequência e da dedicação de cada pessoa.</p>
 
       <h2>3. Programa de indicação</h2>

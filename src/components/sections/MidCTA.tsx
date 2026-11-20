@@ -5,6 +5,7 @@ import { MessageCircle } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 import { STATS } from "@/data/stats";
+import { PRICE_FROM } from "@/data/plans";
 
 export default function MidCTA() {
   return (
@@ -62,6 +63,10 @@ export default function MidCTA() {
         {/* Arquitetura §5: CTA final com o número de profissionais formados */}
         <p className="reveal font-body text-sm mt-6 delay-300" style={{ color: "rgba(255,255,255,0.75)" }}>
           {STATS.formed} profissionais formados em {STATS.yearsOperating} anos
+        </p>
+        {/* Posicionamento e Oferta §3: preço só depois de problema, solução, prova e retorno */}
+        <p className="reveal font-body text-sm mt-2 delay-300" style={{ color: "rgba(255,255,255,0.75)" }}>
+          Planos a partir de {PRICE_FROM}/mês. Para quem conquista uma promoção, o investimento costuma se pagar em menos de 60 dias.
         </p>
 
         {/* Trust chips — só fatos verificáveis (a escola não oferece consulta gratuita) */}

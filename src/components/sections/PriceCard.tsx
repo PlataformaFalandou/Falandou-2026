@@ -1,5 +1,5 @@
 import { getWhatsAppUrl } from "@/lib/whatsapp";
-import { type Duration, type Plan, perSession, planWhatsAppMsg, sessionsLabel } from "@/data/plans";
+import { type Duration, type Plan, commitmentPrice, perSession, planWhatsAppMsg, sessionsLabel } from "@/data/plans";
 
 /**
  * PriceCard — cartão de um plano (Arquitetura §4). Dados em src/data/plans.ts.
@@ -51,6 +51,15 @@ export default function PriceCard({ plan, duration }: { plan: Plan; duration: Du
           <p className="font-body text-xs mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>
             Sessões de {duration} minutos · {perSession(plan, duration)} por sessão
           </p>
+          {/* Posicionamento e Oferta §2: compromisso anual com valor explícito (âncora de valor) */}
+          {(() => {
+            const y = commitmentPrice(plan, duration, 12);
+            return (
+              <p className="font-body text-xs mt-3 px-3 py-2 rounded-lg inline-block" style={{ background: "rgba(255,104,32,0.1)", color: "rgba(255,255,255,0.8)" }}>
+                No compromisso de 12 meses: <strong className="text-white">{y.monthly}/mês</strong> — economia de {y.saving} no ano
+              </p>
+            );
+          })()}
         </div>
 
         {/* Sessões por mês — a principal diferença entre os planos */}

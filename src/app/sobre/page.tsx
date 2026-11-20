@@ -8,6 +8,7 @@ import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import { YOUTUBE_CHANNEL_URL } from "@/lib/teachers";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { STATS } from "@/data/stats";
+import { STUDENTS_PER_TEACHER } from "@/data/plans";
 
 export const metadata: Metadata = {
   title: "Sobre a Falandou | Escola de Inglês Profissional",
@@ -24,18 +25,28 @@ export const metadata: Metadata = {
 // Copywriting §3 — /sobre em 5 blocos: abertura · diferenciais · números ·
 // professores · CTA institucional (para /metodo, não comercial).
 // Tom sóbrio: sem exclamações, sem promessa. Só fatos já publicados no site.
+// Posicionamento e Oferta §1 — diferencial como mecanismo causal, não como lista:
+// o que é + por que muda o resultado.
 const DIFFERENTIATORS = [
   {
-    title: "Ciclo individual de 90 dias",
-    body: "Sem turma e sem data de início. O ciclo começa quando você começa e segue o seu ritmo, com sessões 1 a 1 e professor fixo.",
+    title: "Sessões 100% 1 a 1",
+    what: "Um professor, um aluno. Sem turma, sem grupo, sem exceção.",
+    why: "O professor aprende o seu jeito de travar — e trabalha exatamente isso.",
+  },
+  {
+    title: "Ciclo de 90 dias",
+    what: "Prazo definido, com começo, meio e fim.",
+    why: "Você sabe o que vai conseguir antes de começar.",
   },
   {
     title: "Exame CEFR antes e depois",
-    body: "O ciclo abre e fecha com o mesmo exame, nas quatro habilidades. A evolução é medida em nível — não estimada pela impressão de quem ensina.",
+    what: "O mesmo exame, nas quatro habilidades, no início e no fim.",
+    why: "O resultado aparece em número — não em sensação.",
   },
   {
-    title: "Plano montado para o seu contexto",
-    body: "O professor parte do seu cargo, do seu setor e das situações em que você trava: reuniões, e-mails, apresentações, entrevistas.",
+    title: "Plano do seu contexto",
+    what: "Vocabulário do seu setor, situações do seu cargo.",
+    why: "O que você pratica é o que você vai usar na semana seguinte.",
   },
 ];
 
@@ -89,14 +100,21 @@ export default function SobrePage() {
               className="reveal font-display font-extrabold leading-tight mb-14 delay-100"
               style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}
             >
-              Três decisões que guiam cada ciclo.
+              Por que o 1 a 1 muda o resultado.
             </h2>
-            <div className="grid md:grid-cols-3 gap-5">
+            <p className="reveal font-body text-lg leading-relaxed mb-12 delay-150" style={{ color: "rgba(22,22,22,0.65)", maxWidth: "720px" }}>
+              A maioria dos métodos fracassa porque foi feita para muitas pessoas ao mesmo tempo. A
+              Falandou parte do contrário: um professor dedicado ao seu contexto, um plano feito para a
+              sua semana, um ciclo de 90 dias com exame CEFR antes e depois. O resultado aparece em
+              números — não em sensação.
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {DIFFERENTIATORS.map((p, i) => (
-                <div key={p.title} className="reveal rounded-2xl p-8" style={{ backgroundColor: "#F5F6F1" }}>
+                <div key={p.title} className="reveal rounded-2xl p-7 flex flex-col" style={{ backgroundColor: "#F5F6F1" }}>
                   <span className="font-display font-black text-sm" style={{ color: "#FF6820" }}>0{i + 1}</span>
                   <h3 className="font-display font-extrabold text-lg mt-3 mb-2" style={{ color: "#161616" }}>{p.title}</h3>
-                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(22,22,22,0.6)" }}>{p.body}</p>
+                  <p className="font-body text-sm leading-relaxed mb-4" style={{ color: "rgba(22,22,22,0.55)" }}>{p.what}</p>
+                  <p className="font-body text-sm font-semibold leading-relaxed mt-auto" style={{ color: "#161616" }}>{p.why}</p>
                 </div>
               ))}
             </div>
@@ -144,7 +162,8 @@ export default function SobrePage() {
               <p className="reveal font-body text-base leading-relaxed mb-6" style={{ color: "rgba(22,22,22,0.65)" }}>
                 A equipe reúne formação em linguística e pedagogia e certificações como Cambridge,
                 CELTA e DELTA. O professor é escolhido pelo seu diagnóstico CEFR, pelo seu setor e
-                pelo objetivo do ciclo.
+                pelo objetivo do ciclo — e acompanha no máximo {STUDENTS_PER_TEACHER} alunos ativos ao
+                mesmo tempo, para que a atenção continue individual.
               </p>
               <Link
                 href="/professores"

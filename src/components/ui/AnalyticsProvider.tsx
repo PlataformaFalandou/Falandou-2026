@@ -11,7 +11,7 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { trackPageView, resetScroll50, trackPlansPageView, trackWhatsAppClick } from "@/lib/analytics";
+import { trackPageView, resetScroll50, trackPlansEngaged, trackPlansPageView, trackWhatsAppClick } from "@/lib/analytics";
 import { getConsent, CONSENT_EVENT } from "@/lib/consent";
 
 const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID;
@@ -97,6 +97,13 @@ export default function AnalyticsProvider() {
     // Aguarda um tick para os scripts estarem disponíveis no window
     const timer = setTimeout(() => trackRoute(pathname), 100);
     return () => clearTimeout(timer);
+  }, [pathname, consented]);
+
+  // Tempo em /planos (30 s e 90 s) — só com consentimento e enquanto a rota não mudar
+  useEffect(() => {
+    if (!consented || pathname.replace(/\/+$/, "") !== "/planos") return;
+    const timers = [30, 90].map((s) => setTimeout(() => trackPlansEngaged(s), s * 1000));
+    return () => timers.forEach(clearTimeout);
   }, [pathname, consented]);
 
   // Ponto 46 — todo clique em link do WhatsApp vira sinal de "já iniciou contato",

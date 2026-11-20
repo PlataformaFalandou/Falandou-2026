@@ -59,7 +59,7 @@ const proof = [
 const faqs = [
   {
     q: "Minha entrevista é em 30 dias. Dá tempo?",
-    a: "Sim — para isso existe o plano Intensive, com 16 sessões individuais por mês. Em 30 dias você não muda tudo, mas você treina as situações específicas da sua entrevista: apresentação pessoal, perguntas comportamentais, vocabulário do setor. Já preparamos candidatos com janelas de 3 semanas.",
+    a: "Sim — para isso existe o plano Urgente, com 16 sessões individuais por mês. Em 30 dias você não muda tudo, mas você treina as situações específicas da sua entrevista: apresentação pessoal, perguntas comportamentais, vocabulário do setor. Já preparamos candidatos com janelas de 3 semanas.",
   },
   {
     q: "Já tenho inglês médio, mas travo na hora de falar. O curso funciona para mim?",

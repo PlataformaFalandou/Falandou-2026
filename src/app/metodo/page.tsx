@@ -6,6 +6,7 @@ import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
 
 import JsonLd from "@/components/ui/JsonLd";
+import { PAUSE_RULE, RESCHEDULE_RULE, STUDENTS_PER_TEACHER } from "@/data/plans";
 import { faqSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Como Funciona | Falandou — Inglês Profissional",
@@ -79,7 +80,7 @@ const steps = [
     detail: [
       "De 4 a 16 sessões por mês, de 25 ou 50 minutos, conforme o plano",
       "Professor fixo — você não recomeça do zero a cada sessão",
-      "Reagendamento sem burocracia — avisa pelo WhatsApp",
+      "Reagendamento sem custo com 24h de antecedência, pelo WhatsApp",
     ],
     when: "Durante todo o ciclo",
     color: "#FF6820",
@@ -130,11 +131,11 @@ const faqs = [
   },
   {
     q: "Como o professor é escolhido?",
-    a: "Pelo resultado do diagnóstico CEFR, pelo seu setor e pelo objetivo do ciclo. O professor é fixo: ele acompanha o seu plano do começo ao fim, e você não recomeça do zero a cada sessão.",
+    a: `Pelo resultado do diagnóstico CEFR, pelo seu setor e pelo objetivo do ciclo. O professor é fixo e acompanha no máximo ${STUDENTS_PER_TEACHER} alunos ativos ao mesmo tempo — você não recomeça do zero a cada sessão.`,
   },
   {
     q: "E se eu faltar a uma sessão?",
-    a: "Você avisa pelo WhatsApp e reagenda com o professor, sem burocracia. Os créditos de sessão valem dentro do ciclo mensal do plano — por isso vale reagendar no mesmo mês.",
+    a: `${RESCHEDULE_RULE} Os créditos de sessão valem dentro do ciclo mensal do plano — por isso vale reagendar no mesmo mês. ${PAUSE_RULE}`,
   },
   {
     q: "O plano muda durante o ciclo?",

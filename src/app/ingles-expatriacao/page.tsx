@@ -59,7 +59,7 @@ const proof = [
 const faqs = [
   {
     q: "Minha transferência é em 60 dias. Dá tempo de fazer diferença real?",
-    a: "Sim — para isso existe o plano Intensive, com 16 sessões individuais por mês. Em dois meses você não elimina todas as lacunas, mas chega ao destino com as situações críticas preparadas: apresentação, reuniões, comunicação escrita. A diferença entre chegar perdido e chegar funcional é enorme.",
+    a: "Sim — para isso existe o plano Urgente, com 16 sessões individuais por mês. Em dois meses você não elimina todas as lacunas, mas chega ao destino com as situações críticas preparadas: apresentação, reuniões, comunicação escrita. A diferença entre chegar perdido e chegar funcional é enorme.",
   },
   {
     q: "Meu inglês é razoável mas não me sinto confortável em reunião com nativos.",

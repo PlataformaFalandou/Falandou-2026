@@ -84,7 +84,7 @@ export function getWhatsAppUrlForContext(context: string): string {
     leadmagnet: "Olá! Vi o roteiro de 30 dias no site da Falandou e quero receber o PDF completo.",
     engenheiros: "Olá! Sou da área de engenharia/arquitetura e preciso usar inglês com clientes e times de fora. Quero entender como a Falandou trabalha com esse perfil.",
     gestores: "Olá! Sou gestor(a) e preciso conduzir reuniões com o time global em inglês. Quero entender como a Falandou trabalha com esse perfil.",
-    intensivo: "Olá! Tenho interesse no plano Intensive da Falandou (16 sessões/mês). Podem me contar mais sobre como funciona?",
+    intensivo: "Olá! Tenho interesse no plano Urgente da Falandou (16 sessões/mês). Podem me contar mais sobre como funciona?",
   };
   return getWhatsAppUrl(messages[context] ?? messages.hero);
 }

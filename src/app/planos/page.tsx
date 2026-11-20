@@ -6,7 +6,7 @@ import ComparisonTable from "@/components/sections/ComparisonTable";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import PlansGrid from "@/components/sections/PlansGrid";
-import { COMMITMENT_DISCOUNTS, COMMITMENT_TEXT, INCLUDED_IN_ALL, PLAN_TERMS, PRICE_FROM, PRICE_FROM_ROUNDED, getPlan, perSession } from "@/data/plans";
+import { COMMITMENT_DISCOUNTS, COMMITMENT_TEXT, INCLUDED_IN_ALL, PAUSE_RULE, PLAN_TERMS, PRICE_FROM, PRICE_FROM_ROUNDED, RESCHEDULE_RULE, STUDENTS_PER_TEACHER, commitmentPrice, getPlan, perDay, perSession } from "@/data/plans";
 
 import JsonLd from "@/components/ui/JsonLd";
 import { courseSchema, faqSchema } from "@/lib/schema";
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/planos/" },
   openGraph: {
     title: "Planos e Preços | Falandou",
-    description: `Starter, Professional e Intensive: sessões 1 a 1 de 25 ou 50 minutos. A partir de ${PRICE_FROM}/mês.`,
+    description: `Consistência, Resultado e Urgente: sessões 1 a 1 de 25 ou 50 minutos. A partir de ${PRICE_FROM}/mês.`,
     url: "/planos/",
     siteName: "Falandou",
     locale: "pt_BR",
@@ -47,11 +47,15 @@ const FAQS = [
   },
   {
     q: "O que acontece se eu precisar faltar a uma sessão?",
-    a: "As sessões são reagendadas diretamente com o professor. Os créditos de sessão não usados expiram ao fim de cada ciclo mensal — por isso vale reagendar dentro do mesmo mês.",
+    a: `${RESCHEDULE_RULE} Os créditos de sessão não usados expiram ao fim de cada ciclo mensal — por isso vale reagendar dentro do mesmo mês.`,
   },
   {
     q: "Há desconto para compromisso mais longo?",
-    a: `Sim. Com compromisso de ${COMMITMENT_DISCOUNTS[0].months} meses, a mensalidade tem ${COMMITMENT_DISCOUNTS[0].pct}% de desconto; com ${COMMITMENT_DISCOUNTS[1].months} meses, ${COMMITMENT_DISCOUNTS[1].pct}%. A equipe confirma os valores do seu plano pelo WhatsApp antes de você assinar.`,
+    a: `Sim. Com compromisso de ${COMMITMENT_DISCOUNTS[0].months} meses, a mensalidade tem ${COMMITMENT_DISCOUNTS[0].pct}% de desconto; com ${COMMITMENT_DISCOUNTS[1].months} meses, ${COMMITMENT_DISCOUNTS[1].pct}%. No plano ${PRO.name} com sessões de 50 minutos, por exemplo, o compromisso de 12 meses sai por ${commitmentPrice(PRO, 50, 12).monthly}/mês — economia de ${commitmentPrice(PRO, 50, 12).saving} no ano.`,
+  },
+  {
+    q: "E se eu tiver uma viagem ou um mês de trabalho intenso?",
+    a: `${PAUSE_RULE} Combine a pausa com a equipe pelo WhatsApp; o plano retoma de onde parou.`,
   },
   {
     q: "Posso cancelar? E se eu desistir logo no começo?",
@@ -107,7 +111,7 @@ export default function PlanosPage() {
               className="font-body text-sm max-w-xl mx-auto mb-8 -mt-2"
               style={{ color: "rgba(255,255,255,0.35)" }}
             >
-              Cada plano inclui diagnóstico CEFR, sessões individuais 1 a 1 e exame de evolução ao fim dos 90 dias.
+              Cada plano inclui diagnóstico CEFR, sessões individuais 1 a 1 e exame de evolução ao fim dos 90 dias. A partir de {PRICE_FROM}/mês — menos de {perDay(PRICE_FROM)} por dia.
             </p>
 
             {/* Proof bar */}
@@ -124,7 +128,7 @@ export default function PlanosPage() {
               <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
               <span className="font-body text-sm font-semibold text-white">Ciclo de 90 dias</span>
               <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
-              <span className="font-body text-sm font-semibold text-white">Cancele quando quiser</span>
+              <span className="font-body text-sm font-semibold text-white">Até {STUDENTS_PER_TEACHER} alunos por professor</span>
             </div>
           </div>
         </section>
@@ -175,6 +179,8 @@ export default function PlanosPage() {
               {[
                 "Resposta da equipe em até 1h",
                 "Cancele quando quiser",
+                "Reagende sem custo com 24h de antecedência",
+                "Pausa de até 30 dias sem cancelar",
                 "Reembolso integral em até 7 dias se nenhuma sessão tiver sido feita",
                 "Exame CEFR no início e no fim do ciclo",
               ].map((item) => (

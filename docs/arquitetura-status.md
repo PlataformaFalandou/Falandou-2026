@@ -1,7 +1,7 @@
 # Arquitetura da Informação — status de implementação
 
 Referência: *Arquitetura da Informação — Escola Falandou* (PDF, 19/11/2026).
-Atualizado em 20/11/2026. Planos e preços alinhados a falandou.com (Starter, Professional, Intensive; 25 ou 50 min). Seções 1 a 10 implementadas no site; abaixo, a revisão
+Atualizado em 20/11/2026. Planos e preços alinhados a falandou.com (no site novo os planos se chamam Consistência, Resultado e Urgente; no falandou.com, Starter, Professional e Intensive; 25 ou 50 min). Seções 1 a 10 implementadas no site; abaixo, a revisão
 das seções 11 (gaps) e 12 (princípios).
 
 ## Seção 11 — Gaps críticos
@@ -30,7 +30,7 @@ das seções 11 (gaps) e 12 (princípios).
 | 3 | Escassez legítima | ✅ Sem contador, "últimas vagas" ou desconto por tempo limitado |
 | 4 | 1:1 é o diferencial | ✅ Todos os planos são de sessões individuais. /turma-online (grupo) foi removida — a escola não vende esse formato (301 para /planos) |
 | 5 | CEFR como linguagem comum | ✅ Escala explicada em /resultados, tooltip CEFR, nível nos depoimentos quando houver dado |
-| 6 | Menos páginas, bem feitas | ✅ Sem páginas "Em breve": /turma-online removida; /intensivo apresenta o plano Intensive vigente (23 páginas indexáveis) |
+| 6 | Menos páginas, bem feitas | ✅ Sem páginas "Em breve": /turma-online removida; /intensivo apresenta o plano Urgente (Intensive no falandou.com) (23 páginas indexáveis) |
 | 7 | Consistência de promessa | ✅ Mesma promessa e mesmos números em todas as entradas; dado enganoso de /ingles-expatriacao corrigido |
 | 8 | Mobile first | ✅ Hero com promessa + prova + CTA sem rolar no celular; menu mobile em tela cheia |
 | 9 | Velocidade | ✅ SSG; imagens com dimensão definida |
@@ -65,3 +65,7 @@ das seções 11 (gaps) e 12 (princípios).
 - Todas as menções a consulta/conversa inicial gratuita removidas (site, roteiro PDF).
 - Guia de voz: `docs/brand-voice.md`. Depoimentos de seletiva e de retorno financeiro: pedir (ver `docs/coleta-depoimentos.md`).
 - Quiz de nível CEFR (lead magnet): fica para depois; exigiria coleta de e-mail, hoje fora da política do site.
+
+## Posicionamento e oferta (nov/2026)
+
+Ver `docs/posicionamento-oferta.md`: o que foi aplicado no site, custos e margens com os planos reais, retenção, vendas, métricas, tráfego pago e riscos.
