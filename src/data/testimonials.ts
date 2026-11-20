@@ -21,7 +21,27 @@ export type Testimonial = {
   cycle?: string;
   /** Aparece na versão compacta (home e páginas internas). Máximo 3. */
   featured?: boolean;
+  /**
+   * Perfil/momento do profissional, para o filtro da /depoimentos (Arquitetura §7).
+   * O filtro só aparece quando houver 2+ perfis com 2+ depoimentos cada.
+   */
+  persona?: Persona;
+  /** ID de um vídeo curto do depoimento no YouTube (formato misto texto + vídeo). */
+  videoId?: string;
 };
+
+export const PERSONAS = [
+  "Reuniões e apresentações",
+  "Entrevista e processo seletivo",
+  "Promoção e liderança",
+  "Trabalho no exterior",
+] as const;
+export type Persona = (typeof PERSONAS)[number];
+
+/** Perfis com pelo menos `min` depoimentos — o filtro só mostra esses. */
+export function personasWithEnough(items: Testimonial[], min = 2): Persona[] {
+  return PERSONAS.filter((p) => items.filter((t) => t.persona === p).length >= min);
+}
 
 export const testimonials: Testimonial[] = [
   {
@@ -29,6 +49,7 @@ export const testimonials: Testimonial[] = [
     role: "Analista de TI",
     company: "IBM",
     result: "Passou a conduzir reuniões técnicas com clientes externos",
+    persona: "Reuniões e apresentações",
     source: "WhatsApp",
     text: "Em seis meses passei a conduzir reuniões técnicas em inglês com clientes externos. Nunca imaginei que conseguiria avançar tão rápido — a metodologia é séria e os professores cobram resultado de verdade.",
     featured: true,
@@ -73,6 +94,7 @@ export const testimonials: Testimonial[] = [
     role: "Analista de Comunicação",
     company: "JPMorgan Chase",
     result: "Diferença real na carreira após melhorar comunicação",
+    persona: "Reuniões e apresentações",
     source: "E-mail · 2024",
     text: "As aulas foram essenciais para melhorar minha comunicação no trabalho. Passei a me expressar com muito mais clareza nas reuniões — e isso fez diferença real na minha carreira.",
   },

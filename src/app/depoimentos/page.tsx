@@ -5,7 +5,7 @@ import Footer from "@/components/ui/Footer";
 import CTASection from "@/components/sections/CTASection";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
-import { TestimonialsGrid } from "@/components/sections/Testimonials";
+import { TestimonialsBrowser } from "@/components/sections/Testimonials";
 import { testimonials } from "@/data/testimonials";
 
 export const metadata: Metadata = {
@@ -60,7 +60,7 @@ export default function DepoimentosPage() {
         {/* ── GRADE ────────────────────────────────────────────────────────── */}
         <section className="pb-24 md:pb-32" style={{ backgroundColor: "#161616" }}>
           <div className="max-w-7xl mx-auto px-6">
-            <TestimonialsGrid />
+            <TestimonialsBrowser />
           </div>
         </section>
 

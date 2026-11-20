@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Quote } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight, PlayCircle, Quote } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
-import { testimonials, type Testimonial } from "@/data/testimonials";
+import { testimonials, personasWithEnough, type Persona, type Testimonial } from "@/data/testimonials";
 
 // Seção de humanização: só depoimentos. Os dados de resultado ficam em ProofStats,
 // e os logos das empresas já aparecem na Hero.
@@ -83,6 +84,30 @@ function TestimonialCard({ t }: { t: Testimonial }) {
           &ldquo;{t.text}&rdquo;
         </p>
 
+        {/* Formato misto (Arquitetura §7): vídeo curto quando houver. Miniatura com
+            link — o YouTube não carrega na página, então não há cookies sem consentimento. */}
+        {t.videoId && (
+          <a
+            href={`https://www.youtube.com/watch?v=${t.videoId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative block mb-6 rounded-xl overflow-hidden aspect-video bg-black"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`https://i.ytimg.com/vi/${t.videoId}/hqdefault.jpg`}
+              alt={`Depoimento em vídeo de ${t.name}`}
+              width={480}
+              height={360}
+              loading="lazy"
+              className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+            />
+            <span className="absolute inset-0 flex items-center justify-center">
+              <PlayCircle size={40} color="#fff" strokeWidth={1.5} />
+            </span>
+          </a>
+        )}
+
         {/* Identity footer — cargo, empresa e logo */}
         <div className="border-t pt-4" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
           <div className="font-display font-extrabold text-base text-white">{t.name}</div>
@@ -117,6 +142,43 @@ export function TestimonialsGrid({ items = testimonials }: { items?: Testimonial
         <TestimonialCard key={t.name} t={t} />
       ))}
     </div>
+  );
+}
+
+/**
+ * Grade completa com filtro por perfil (página /depoimentos — Arquitetura §7).
+ * O filtro só aparece quando há 2+ perfis com 2+ depoimentos cada; antes disso,
+ * mostra a grade sem filtro (um filtro de uma opção só não ajuda ninguém).
+ */
+export function TestimonialsBrowser() {
+  const personas = personasWithEnough(testimonials);
+  const [active, setActive] = useState<Persona | "Todos">("Todos");
+  const items = active === "Todos" ? testimonials : testimonials.filter((t) => t.persona === active);
+
+  return (
+    <>
+      {personas.length >= 2 && (
+        <div className="flex flex-wrap gap-2 mb-8" role="group" aria-label="Filtrar depoimentos por perfil">
+          {(["Todos", ...personas] as const).map((p) => (
+            <button
+              key={p}
+              type="button"
+              onClick={() => setActive(p)}
+              aria-pressed={active === p}
+              className="px-4 py-2 rounded-full text-sm font-semibold transition-colors"
+              style={{
+                backgroundColor: active === p ? "#FF6820" : "rgba(255,255,255,0.06)",
+                color: "white",
+                border: active === p ? "1px solid #FF6820" : "1px solid rgba(255,255,255,0.15)",
+              }}
+            >
+              {p}
+            </button>
+          ))}
+        </div>
+      )}
+      <TestimonialsGrid items={items} />
+    </>
   );
 }
 
