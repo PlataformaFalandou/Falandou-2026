@@ -51,8 +51,8 @@ function VideoCard({ videoId, title, description, tag, isShort = false }: VideoC
   const [playing, setPlaying] = useState(false);
 
   const embedUrl = isShort
-    ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`
-    : `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+    ? `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`
+    : `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
 
   const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 

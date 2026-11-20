@@ -46,7 +46,10 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./out/
           server-dir: ${{ secrets.FTP_REMOTE_DIR }}
-          dangerous-clean-slate: true
+          # Envio incremental: só os arquivos alterados sobem e os removidos são apagados
+          # (estado em .ftp-deploy-sync-state.json no servidor). Com clean-slate, a pasta
+          # era apagada antes do envio e o site ficava com 404 durante o deploy.
+          dangerous-clean-slate: false
           exclude: |
             **/.git*
             **/.git*/**

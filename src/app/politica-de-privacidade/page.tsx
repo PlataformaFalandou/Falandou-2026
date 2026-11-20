@@ -47,6 +47,7 @@ export default function PoliticaDePrivacidadePage() {
         <li><strong>Google</strong> — Google Analytics 4 (só com consentimento).</li>
         <li><strong>Meta</strong> — Meta Pixel (só com consentimento) e WhatsApp (quando você inicia a conversa).</li>
         <li><strong>Hostinger</strong> — hospedagem do site.</li>
+        <li><strong>YouTube (Google)</strong> — só quando você dá play em um vídeo da página inicial; o player é carregado no modo de privacidade aprimorada (youtube-nocookie.com). Nos artigos e depoimentos, os vídeos abrem no próprio YouTube.</li>
       </ul>
       <p>Esses provedores podem tratar dados fora do Brasil. Nesses casos, a transferência internacional segue as hipóteses do art. 33 da LGPD.</p>
 
