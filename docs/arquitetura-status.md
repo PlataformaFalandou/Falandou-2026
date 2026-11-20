@@ -30,7 +30,7 @@ das seções 11 (gaps) e 12 (princípios).
 | 3 | Escassez legítima | ✅ Só o limite real de 25 profissionais por professor (/turma-online). Sem contador ou "últimas vagas" |
 | 4 | 1:1 é o diferencial | 🟡 Confirmado em todas as páginas. **Atenção:** /turma-online (simulações em grupo, "Em breve") precisa continuar apresentada como complemento ao 1:1 |
 | 5 | CEFR como linguagem comum | ✅ Escala explicada em /resultados, tooltip CEFR, nível nos depoimentos quando houver dado |
-| 6 | Menos páginas, bem feitas | 🟡 O site tem 24 páginas indexáveis. **Sugestão:** marcar /intensivo e /turma-online ("Em breve") como `noindex` até o lançamento |
+| 6 | Menos páginas, bem feitas | ✅ /intensivo e /turma-online ("Em breve") estão como `noindex` e fora do sitemap até o lançamento (22 páginas indexáveis) |
 | 7 | Consistência de promessa | ✅ Mesma promessa e mesmos números em todas as entradas; dado enganoso de /ingles-expatriacao corrigido |
 | 8 | Mobile first | ✅ Hero com promessa + prova + CTA sem rolar no celular; menu mobile em tela cheia |
 | 9 | Velocidade | ✅ SSG; imagens com dimensão definida |
