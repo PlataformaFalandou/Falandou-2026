@@ -1,12 +1,15 @@
 "use client";
 
-import { useRef } from "react";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Quote } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
+import { testimonials, type Testimonial } from "@/data/testimonials";
 
 // Seção de humanização: só depoimentos. Os dados de resultado ficam em ProofStats,
 // e os logos das empresas já aparecem na Hero.
+// Variantes (Arquitetura §7): "compact" = 3 cartões fixos + link para /depoimentos;
+// "full" = grade com todos (página /depoimentos). Sem carrossel automático.
 
 // Logos inline — mesmas paths usadas em CompanyLogos.tsx
 const COMPANY_LOGOS: Record<string, { viewBox?: string; path: string }> = {
@@ -51,62 +54,10 @@ function CompanyLogoInline({ company }: { company: string }) {
   );
 }
 
-// Depoimentos como suporte qualitativo — com resultado específico quando possível
-const testimonials = [
-  {
-    name: "Rafael Souza",
-    role: "Analista de TI",
-    company: "IBM",
-    result: "Passou a conduzir reuniões técnicas com clientes externos",
-    source: "WhatsApp",
-    text: "Em seis meses passei a conduzir reuniões técnicas em inglês com clientes externos. Nunca imaginei que conseguiria avançar tão rápido — a metodologia é séria e os professores cobram resultado de verdade.",
-  },
-  {
-    name: "Camila Ferreira",
-    role: "Coordenadora de Projetos",
-    company: "Accenture",
-    result: "Perdeu o bloqueio de fala — resultado em 90 dias",
-    source: "WhatsApp · Ciclo 90 dias",
-    text: "O que eu não esperava era perder a vergonha de falar. As sessões individuais fixam muito mais do que qualquer aula em grupo — e conversar sobre temas do meu trabalho me deu confiança para usar o inglês fora do escritório também.",
-  },
-  {
-    name: "Diego Carvalho",
-    role: "Gerente Comercial",
-    company: "Amazon",
-    result: "Comunicação clara em qualquer ambiente profissional",
-    source: "E-mail · Jun 2024",
-    text: "A atenção dos professores ao longo do ciclo foi o que me surpreendeu. Sempre disponíveis, sempre diretos. Terminei os 90 dias com muito mais do que inglês — saí com clareza para me comunicar em qualquer ambiente profissional.",
-  },
-  {
-    name: "Lucas Andrade",
-    role: "Engenheiro de Produtos",
-    company: "Google",
-    result: "Confiança crescente semana a semana",
-    source: "E-mail",
-    text: "As aulas, as atividades práticas e o acompanhamento constante contribuíram bastante para o meu desenvolvimento. Me senti mais confiante a cada semana.",
-  },
-  {
-    name: "Mariana Costa",
-    role: "Gestora de Marketing",
-    company: "Unilever",
-    result: "Encaixou o plano na rotina sem abrir mão do resultado",
-    source: "WhatsApp",
-    text: "Consigo avançar mesmo nos dias mais corridos. O plano é direto e focado no meu contexto — é exatamente o formato que eu precisava para encaixar na rotina.",
-  },
-  {
-    name: "Renata Nogueira",
-    role: "Analista de Comunicação",
-    company: "JPMorgan Chase",
-    result: "Diferença real na carreira após melhorar comunicação",
-    source: "E-mail · Out 2024",
-    text: "As aulas foram essenciais para melhorar minha comunicação no trabalho. Passei a me expressar com muito mais clareza nas reuniões — e isso fez diferença real na minha carreira.",
-  },
-];
-
-function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
+function TestimonialCard({ t }: { t: Testimonial }) {
   return (
     <div
-      className="flex-shrink-0 w-80 md:w-96 rounded-2xl overflow-hidden border border-white/10 hover:border-white/25 transition-all duration-300 flex flex-col"
+      className="h-full rounded-2xl overflow-hidden border border-white/10 hover:border-white/25 transition-all duration-300 flex flex-col"
       style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
     >
       <div className="p-6 flex flex-col flex-1">
@@ -117,6 +68,14 @@ function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
         >
           {t.result}
         </div>
+
+        {/* Evolução medida — só quando houver o dado real do exame */}
+        {t.levelBefore && t.levelAfter && (
+          <p className="font-display font-extrabold text-sm text-white mb-4">
+            {t.levelBefore} → {t.levelAfter}
+            {t.cycle && <span className="font-body font-normal text-white/40"> · {t.cycle}</span>}
+          </p>
+        )}
 
         <Quote size={22} className="mb-3" style={{ color: "rgba(255,104,32,0.35)" }} />
 
@@ -150,19 +109,25 @@ function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
   );
 }
 
-export default function Testimonials() {
-  const scrollRef = useRef<HTMLDivElement>(null);
+/** Só a grade de cartões — usada pela página /depoimentos. */
+export function TestimonialsGrid({ items = testimonials }: { items?: Testimonial[] }) {
+  return (
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {items.map((t) => (
+        <TestimonialCard key={t.name} t={t} />
+      ))}
+    </div>
+  );
+}
 
-  const scroll = (dir: "left" | "right") => {
-    if (!scrollRef.current) return;
-    scrollRef.current.scrollBy({ left: dir === "right" ? 420 : -420, behavior: "smooth" });
-  };
+export default function Testimonials() {
+  const featured = testimonials.filter((t) => t.featured).slice(0, 3);
+  const items = featured.length ? featured : testimonials.slice(0, 3);
 
   return (
-    <section id="depoimentos" className="py-24 md:py-32 overflow-hidden" style={{ backgroundColor: "#161616" }}>
+    <section id="depoimentos" className="py-24 md:py-32" style={{ backgroundColor: "#161616" }}>
       <div className="max-w-7xl mx-auto px-6">
-
-        <div className="flex items-end justify-between mb-10">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
           <div>
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
               O que dizem os profissionais
@@ -171,44 +136,23 @@ export default function Testimonials() {
               Os números em palavras.
             </h2>
           </div>
-          <div className="hidden md:flex gap-2">
-            <button
-              onClick={() => scroll("left")}
-              className="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-laranja hover:bg-laranja/10 transition-all"
-              aria-label="Rolar para esquerda"
-            >
-              <ChevronLeft size={18} />
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              className="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-laranja hover:bg-laranja/10 transition-all"
-              aria-label="Rolar para direita"
-            >
-              <ChevronRight size={18} />
-            </button>
-          </div>
+          <Link
+            href="/depoimentos"
+            className="inline-flex items-center gap-1.5 font-body text-sm font-semibold transition-colors duration-200 hover:text-white"
+            style={{ color: "rgba(255,255,255,0.55)" }}
+          >
+            Ver todos os {testimonials.length} depoimentos
+            <ArrowRight size={14} />
+          </Link>
         </div>
-      </div>
 
-      {/* Scrollable row */}
-      <div
-        ref={scrollRef}
-        className="flex gap-5 overflow-x-auto scroll-smooth pb-4 pl-6 pr-6 md:pl-[calc((100vw-80rem)/2+1.5rem)] snap-x snap-mandatory"
-        style={{ scrollbarWidth: "none" }}
-      >
-        {testimonials.map((t) => (
-          <div key={t.name} className="snap-start">
-            <TestimonialCard t={t} />
-          </div>
-        ))}
-      </div>
+        <TestimonialsGrid items={items} />
 
-      {/* CTA */}
-      <div className="max-w-7xl mx-auto px-6 mt-14 text-center">
-        <p className="font-body text-base mb-6" style={{ color: "rgba(255,255,255,0.4)" }}>
-          A próxima história pode ser a sua.
-        </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        {/* CTA */}
+        <div className="mt-14 text-center">
+          <p className="font-body text-base mb-6" style={{ color: "rgba(255,255,255,0.4)" }}>
+            A próxima história pode ser a sua.
+          </p>
           <a
             href={getWhatsAppUrlForContext("cta")}
             target="_blank"
@@ -218,13 +162,6 @@ export default function Testimonials() {
             style={{ backgroundColor: "#FF6820" }}
           >
             Quero começar
-          </a>
-          <a
-            href="#faq"
-            className="font-body text-sm font-semibold underline underline-offset-4 transition-colors duration-200"
-            style={{ color: "rgba(255,255,255,0.35)" }}
-          >
-            Ver perguntas frequentes →
           </a>
         </div>
       </div>
