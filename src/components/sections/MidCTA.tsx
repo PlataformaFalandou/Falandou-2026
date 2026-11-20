@@ -4,6 +4,7 @@ import Image from "next/image";
 import { MessageCircle } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
+import { STATS } from "@/data/stats";
 
 export default function MidCTA() {
   return (
@@ -38,7 +39,7 @@ export default function MidCTA() {
         >
           Quanto custa mais um ano sem inglês fluente?
         </h2>
-        {/* Seção de ação: só o convite e o botão. Prova fica em ProofStats e ROIFrame. */}
+        {/* Seção de ação: só o convite e o botão. Prova fica em ProofStats e /resultados. */}
         <p className="reveal font-body text-white/80 text-lg leading-relaxed mb-10 max-w-xl mx-auto delay-200">
           Você conversa com a equipe para entender como funciona e recebe um plano montado para o seu objetivo. Sem pressão, sem compromisso.
         </p>
@@ -56,6 +57,11 @@ export default function MidCTA() {
               Quero começar
           </a>
         </div>
+
+        {/* Arquitetura §5: CTA final com o número de profissionais avaliados */}
+        <p className="reveal font-body text-sm mt-6 delay-300" style={{ color: "rgba(255,255,255,0.75)" }}>
+          {STATS.formed} profissionais formados · {STATS.evaluated} avaliados com exame CEFR no último ciclo
+        </p>
 
         {/* Trust chips */}
         <div className="reveal flex flex-wrap gap-4 justify-center mt-10 delay-400">

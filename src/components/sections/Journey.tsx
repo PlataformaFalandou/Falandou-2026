@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 import CEFRTooltip from "@/components/ui/CEFRTooltip";
@@ -108,6 +109,16 @@ export default function Journey() {
           >
             Quero começar
           </a>
+          {/* Arquitetura §5: rota de aprofundamento antes da decisão */}
+          <div className="mt-5">
+            <Link
+              href="/metodo"
+              className="font-body text-sm font-semibold underline underline-offset-4"
+              style={{ color: "rgba(22,22,22,0.55)" }}
+            >
+              Ver o método completo →
+            </Link>
+          </div>
         </div>
       </div>
     </section>

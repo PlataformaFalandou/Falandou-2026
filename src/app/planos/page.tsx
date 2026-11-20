@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import CompanyLogos from "@/components/sections/CompanyLogos";
+import ComparisonTable from "@/components/sections/ComparisonTable";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import PriceCard from "@/components/sections/PriceCard";
@@ -163,6 +164,9 @@ export default function PlanosPage() {
 
         {/* Arquitetura §4: logos das empresas dos profissionais (Home + /sobre + /planos) */}
         <CompanyLogos />
+
+        {/* Arquitetura §9: tabela de diferenciação na página de decisão (saiu da home) */}
+        <ComparisonTable />
 
         {/* ── ROI anchor ── */}
         <section className="py-16 md:py-20" style={{ backgroundColor: "#161616" }}>

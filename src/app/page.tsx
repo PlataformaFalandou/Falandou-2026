@@ -4,22 +4,22 @@ import StatsBar from "@/components/sections/StatsBar";
 import ForWhom from "@/components/sections/ForWhom";
 import Journey from "@/components/sections/Journey";
 import MetodoTeaser from "@/components/sections/MetodoTeaser";
-import ComparisonTable from "@/components/sections/ComparisonTable";
 import ProofStats from "@/components/sections/ProofStats";
 import Testimonials from "@/components/sections/Testimonials";
 import YouTubeVideos from "@/components/sections/YouTubeVideos";
-import Teachers from "@/components/sections/Teachers";
 import MidCTA from "@/components/sections/MidCTA";
-import ROIFrame from "@/components/sections/ROIFrame";
 import FAQ from "@/components/sections/FAQ";
+import { DEFAULT_FAQS } from "@/data/faq";
 import LeadMagnet from "@/components/sections/LeadMagnet";
 import BlogPreview from "@/components/sections/BlogPreview";
 import Footer from "@/components/ui/Footer";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
 import ScrollTracker from "@/components/ui/ScrollTracker";
 
-// Uma coisa por seção (ponto 35): promessa → identificação → processo →
-// diferença → prova → humanização → valor → objeções → ação → nutrição.
+// Estrutura da home — Arquitetura da Informação §5, versão híbrida com a planilha:
+// cada seção resolve a dúvida que a anterior gerou. A home "fecha curiosidade, não
+// detalhe": preço detalhado, comparação e currículo de professor ficam em
+// /planos e /professores.
 export default function HomePage() {
   return (
     <>
@@ -27,22 +27,30 @@ export default function HomePage() {
       <ScrollTracker />
       <Navbar />
       <main>
+        {/* 1. Promessa + prova (600+, logos) + ação */}
         <HeroAB />
-        {/* Ponto 38: identificação logo após a Hero; credenciais vêm depois */}
+        {/* 2. Identificação logo após a Hero (planilha, ponto 38) */}
         <ForWhom />
+        {/* 3. Credenciais institucionais */}
         <StatsBar />
+        {/* 4. Como funciona — 5 etapas + link para o método completo */}
         <Journey />
+        {/* 5. Por que o inglês não avançou — diferenciação */}
         <MetodoTeaser />
-        <ComparisonTable />
+        {/* 6. Prova quantitativa antes dos depoimentos */}
         <ProofStats />
+        {/* 7. Depoimentos — 3 cartões + "ver todos" */}
         <Testimonials />
+        {/* 8. Como a escola ensina, em vídeo */}
         <YouTubeVideos />
-        <Teachers />
-        <ROIFrame />
-        <FAQ />
-        <MidCTA />
-        <LeadMagnet />
+        {/* 9. Autoridade + links internos */}
         <BlogPreview />
+        {/* 10. FAQ resumido: as 3 objeções principais */}
+        <FAQ items={DEFAULT_FAQS.slice(0, 3)} moreLink={{ href: "/metodo", label: "Mais dúvidas sobre o ciclo" }} />
+        {/* 11. CTA final */}
+        <MidCTA />
+        {/* 12. Alternativa para quem ainda não está pronto */}
+        <LeadMagnet />
       </main>
       <Footer />
     </>
