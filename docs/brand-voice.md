@@ -22,6 +22,7 @@ Regras práticas:
 ## 2. O que a escola NÃO promete (nunca escrever)
 
 - **Consulta, conversa inicial ou aula experimental gratuita** — a escola não oferece.
+- **Turma, aula em grupo ou turma online** — toda aula é de um aluno para um professor. "Grupo" só aparece como contraste.
 - **Garantia de resultado** — o que existe é o exame antes e depois e a revisão do plano.
 - Datas de oferta, vagas limitadas ou qualquer urgência inventada. Urgência legítima é a do aluno (a data dele).
 - Depoimentos, cargos ou empresas sem autorização e sem a fala real do aluno.
