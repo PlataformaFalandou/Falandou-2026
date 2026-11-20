@@ -1,7 +1,7 @@
 ---
 titulo: "Como escrever e-mails profissionais em inglês sem soar robótico"
 resumo: "Estrutura, tom e as expressões certas para cada situação — de pedidos e follow-ups a feedback e recusas delicadas."
-categoria: Vocabulário
+categoria: Vocabulário Profissional
 created_at: "2026-11-15T10:00:00.000Z"
 tempo_leitura: 6
 publicado: true

@@ -1,16 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { categoryColor } from "@/data/blogCategories";
 import { getArticles } from "@/lib/blog";
-
-const categoryColors: Record<string, string> = {
-  "Pronúncia": "#FF6820",
-  "Vocabulário": "#20B7FF",
-  "Dicas": "#FFD820",
-  "Gramática": "#B7FF20",
-  "Listening": "#20FF68",
-  "Motivação": "#6820FF",
-  "Entretenimento": "#FF2099",
-};
 
 /**
  * Arquitetura §4/§10 — na home mostra os 3 mais recentes; nas páginas de SEO,
@@ -64,7 +55,7 @@ export default function BlogPreview({
               {/* Color header bar */}
               <div
                 className="h-1.5 w-full"
-                style={{ backgroundColor: categoryColors[post.categoria] || "#FF6820" }}
+                style={{ backgroundColor: categoryColor(post.categoria) }}
               />
 
               <div className="p-6 flex flex-col flex-1">
@@ -72,8 +63,8 @@ export default function BlogPreview({
                   <span
                     className="text-xs font-semibold px-2.5 py-1 rounded-full"
                     style={{
-                      background: `${categoryColors[post.categoria] || "#FF6820"}18`,
-                      color: categoryColors[post.categoria] || "#FF6820",
+                      background: `${categoryColor(post.categoria)}18`,
+                      color: categoryColor(post.categoria),
                     }}
                   >
                     {post.categoria}

@@ -1,7 +1,7 @@
 ---
 titulo: "Inglês para apresentações: como estruturar e conduzir sem travar"
 resumo: "As frases de transição, abertura e encerramento que transformam uma apresentação nervosa em uma comunicação clara e segura."
-categoria: Vocabulário
+categoria: Vocabulário Profissional
 created_at: "2026-11-18T10:00:00.000Z"
 tempo_leitura: 6
 publicado: true

@@ -1,7 +1,8 @@
 ---
 titulo: "Como aprender inglês profissional de verdade"
 resumo: "A diferença entre inglês acadêmico e inglês profissional é enorme. Descubra por que a maioria das pessoas trava na hora de usar o idioma no trabalho — e o que fazer para mudar isso."
-categoria: Dicas
+categoria: Método
+video: SdofxASoPk8
 created_at: "2026-11-01T10:00:00.000Z"
 tempo_leitura: 5
 publicado: true

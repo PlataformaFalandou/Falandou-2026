@@ -1,19 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Clock } from "lucide-react";
+import { categoryColor } from "@/data/blogCategories";
 import type { Article } from "@/lib/blog";
-
-const categoryColors: Record<string, string> = {
-  "Dicas": "#FF6820",
-  "Pronúncia": "#20B7FF",
-  "Vocabulário": "#FFD820",
-  "Gramática": "#B7FF20",
-  "Listening": "#20FF68",
-  "Motivação": "#6820FF",
-  "Entretenimento": "#FF2099",
-};
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString("pt-BR", {
@@ -31,6 +22,16 @@ export default function BlogClient({
   categories: string[];
 }) {
   const [activeCategory, setActiveCategory] = useState("Todos");
+
+  // /blog?categoria=X (links da barra lateral do artigo). Aplicado após a montagem:
+  // o HTML estático sai com "Todos".
+  useEffect(() => {
+    const t = setTimeout(() => {
+      const wanted = new URLSearchParams(window.location.search).get("categoria");
+      if (wanted && categories.includes(wanted)) setActiveCategory(wanted);
+    }, 0);
+    return () => clearTimeout(t);
+  }, [categories]);
 
   const filtered =
     activeCategory === "Todos"
@@ -79,7 +80,7 @@ export default function BlogClient({
                 className="h-1.5 w-full"
                 style={{
                   backgroundColor:
-                    categoryColors[article.categoria] || "#FF6820",
+                    categoryColor(article.categoria),
                 }}
               />
 
@@ -88,8 +89,8 @@ export default function BlogClient({
                   <span
                     className="text-xs font-semibold px-2.5 py-1 rounded-full"
                     style={{
-                      background: `${categoryColors[article.categoria] || "#FF6820"}18`,
-                      color: categoryColors[article.categoria] || "#FF6820",
+                      background: `${categoryColor(article.categoria)}18`,
+                      color: categoryColor(article.categoria),
                     }}
                   >
                     {article.categoria}

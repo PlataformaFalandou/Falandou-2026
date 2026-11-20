@@ -1,7 +1,8 @@
 ---
 titulo: "Como melhorar sua pronúncia em inglês sem morar fora do Brasil"
 resumo: "Técnicas práticas usadas por professores de fonética para corrigir os erros mais comuns de brasileiros — sem precisar viajar."
-categoria: Pronúncia
+categoria: Método
+video: JBsRqQqR13c
 created_at: "2026-11-05T10:00:00.000Z"
 tempo_leitura: 5
 publicado: true

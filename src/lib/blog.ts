@@ -16,6 +16,8 @@ export type Article = {
   created_at: string;
   tempo_leitura?: number;
   publicado: boolean;
+  /** ID de um vídeo do canal @falandou relacionado (Arquitetura §6). */
+  video?: string;
 };
 
 function readArticleFile(filename: string): Article | null {
@@ -38,6 +40,7 @@ function readArticleFile(filename: string): Article | null {
       created_at: data.created_at ?? new Date().toISOString(),
       tempo_leitura: data.tempo_leitura,
       publicado: data.publicado ?? true,
+      video: data.video,
       conteudo: marked(content) as string,
     };
   } catch {
@@ -75,13 +78,22 @@ export function getArticleBySlug(slug: string): Article | null {
   return readArticleFile(path.basename(file));
 }
 
-export const categories = [
-  "Todos",
-  "Dicas",
-  "Pronúncia",
-  "Vocabulário",
-  "Gramática",
-  "Listening",
-  "Motivação",
-  "Entretenimento",
+// Arquitetura §6 — categorias recomendadas, nesta ordem. O filtro do blog mostra
+// só as que têm artigos publicados (sem categoria vazia).
+export const BLOG_CATEGORIES = [
+  "Vocabulário Profissional",
+  "Gramática Funcional",
+  "Carreira Internacional",
+  "Método",
+  "CEFR",
 ];
+
+export function getCategories(): string[] {
+  const used = new Set(getArticles().map((a) => a.categoria));
+  const known = BLOG_CATEGORIES.filter((c) => used.has(c));
+  const others = [...used].filter((c) => !BLOG_CATEGORIES.includes(c));
+  return ["Todos", ...known, ...others];
+}
+
+/** Mantido por compatibilidade: categorias com artigos publicados. */
+export const categories = getCategories();

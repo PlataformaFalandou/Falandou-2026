@@ -1,7 +1,7 @@
 ---
 titulo: "50 expressões essenciais para reuniões de negócios em inglês"
 resumo: "Do 'let's circle back' ao 'take this offline' — expressões que todo profissional que participa de reuniões internacionais precisa dominar."
-categoria: Vocabulário
+categoria: Vocabulário Profissional
 created_at: "2026-11-08T10:00:00.000Z"
 tempo_leitura: 7
 publicado: true

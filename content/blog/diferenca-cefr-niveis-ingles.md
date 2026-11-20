@@ -1,7 +1,7 @@
 ---
 titulo: "CEFR: o que significa cada nível de inglês e onde você provavelmente está"
 resumo: "Entenda o quadro europeu de referências e o que representa cada nível — do A1 ao C2 — para saber exatamente onde você está e o que falta para chegar onde precisa."
-categoria: Dicas
+categoria: CEFR
 created_at: "2026-11-10T10:00:00.000Z"
 tempo_leitura: 6
 publicado: true

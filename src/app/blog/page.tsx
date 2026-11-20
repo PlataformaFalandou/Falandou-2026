@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import BlogClient from "./BlogClient";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-import { getArticles, categories } from "@/lib/blog";
+import { getArticles, getCategories } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "Blog — Falandou | Inglês para Profissionais",
@@ -32,7 +32,7 @@ export default function BlogPage() {
             </p>
           </div>
 
-          <BlogClient articles={articles} categories={categories} />
+          <BlogClient articles={articles} categories={getCategories()} />
         </div>
       </main>
       <Footer />

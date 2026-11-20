@@ -1,7 +1,7 @@
 ---
 titulo: "Como se preparar para uma entrevista de emprego em inglês"
 resumo: "O que os recrutadores de multinacionais realmente avaliam — e como preparar as respostas certas para as perguntas que sempre aparecem."
-categoria: Dicas
+categoria: Carreira Internacional
 created_at: "2026-11-12T10:00:00.000Z"
 tempo_leitura: 7
 publicado: true
