@@ -2,11 +2,12 @@
 
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
+import { STATS } from "@/data/stats";
 
 // ─── dados editáveis ──────────────────────────────────────────────────────────
 // Troque pelos seus números reais quando tiver o ciclo fechado.
-const CYCLE_LABEL = "Último ciclo · Jan–Set 2024"; // ex.: "Jan–Set 2024"
-const TOTAL_ALUNOS = 87; // alunos avaliados no ciclo
+const CYCLE_LABEL = `Último ciclo · ${STATS.cycleLabel}`;
+const TOTAL_ALUNOS = STATS.evaluated;
 
 const BARS = [
   { label: "2+ níveis",   pct: 18, sublabel: "ex.: A2 → B2" },
@@ -16,10 +17,10 @@ const BARS = [
 ];
 
 const DESTAQUES = [
-  { valor: "79%",        desc: "dos profissionais passaram a usar inglês no trabalho após o ciclo" },
-  { valor: "11 semanas", desc: "tempo médio para ir de B1 a B2"   },
-  { valor: "4,9 ★",      desc: "avaliação média no ciclo"       },
-  { valor: "92%",        desc: "concluíram o plano sem abandonar"           },
+  { valor: STATS.cefrUpPct, desc: "dos profissionais passaram a usar inglês no trabalho após o ciclo" },
+  { valor: `${STATS.b1b2Weeks} semanas`, desc: "tempo médio para ir de B1 a B2"   },
+  { valor: STATS.rating, desc: "avaliação média no ciclo"       },
+  { valor: STATS.completionPct, desc: "concluíram o plano sem abandonar"           },
 ];
 // ─────────────────────────────────────────────────────────────────────────────
 

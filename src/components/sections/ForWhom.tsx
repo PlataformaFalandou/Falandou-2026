@@ -42,7 +42,17 @@ const profiles = [
   },
 ];
 
-export default function ForWhom() {
+/**
+ * Arquitetura §4/§8 — `persona` troca o cabeçalho por um texto específico da
+ * landing page; nas LPs o bloco "Ou comece pelo seu momento" fica oculto para
+ * uma LP não levar o visitante às outras.
+ */
+export type ForWhomPersona = {
+  title: React.ReactNode;
+  intro: string;
+};
+
+export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) {
   return (
     <section id="para-quem" className="py-24 md:py-32" style={{ backgroundColor: "#F5F6F1" }}>
       <div className="max-w-7xl mx-auto px-6">
@@ -53,12 +63,18 @@ export default function ForWhom() {
               Para quem é
             </p>
             <h2 className="reveal font-display font-extrabold leading-tight delay-100" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", color: "#161616" }}>
-              Feito para quem precisa de inglês{" "}
-              <em className="not-italic" style={{ color: "#FF6820" }}>no trabalho, de verdade.</em>
+              {persona ? (
+                persona.title
+              ) : (
+                <>
+                  Feito para quem precisa de inglês{" "}
+                  <em className="not-italic" style={{ color: "#FF6820" }}>no trabalho, de verdade.</em>
+                </>
+              )}
             </h2>
           </div>
           <p className="reveal font-body text-base leading-relaxed md:max-w-xs delay-200" style={{ color: "rgba(22,22,22,0.55)" }}>
-            Não ensinamos inglês genérico. Cada plano é montado em torno do seu contexto profissional.
+            {persona?.intro ?? "Não ensinamos inglês genérico. Cada plano é montado em torno do seu contexto profissional."}
           </p>
         </div>
 
@@ -110,7 +126,8 @@ export default function ForWhom() {
           ))}
         </div>
 
-        {/* Momentos — identificação por situação, não só por profissão */}
+        {/* Momentos — identificação por situação, não só por profissão (só fora das LPs) */}
+        {!persona && (
         <div className="mt-14">
           <p className="font-body text-sm font-bold uppercase tracking-widest mb-5 text-center" style={{ color: "rgba(22,22,22,0.45)" }}>
             Ou comece pelo seu momento
@@ -130,6 +147,8 @@ export default function ForWhom() {
             ))}
           </div>
         </div>
+
+        )}
 
         {/* CTA — visitante acabou de se reconhecer em um dos perfis */}
         <div className="mt-16 text-center">

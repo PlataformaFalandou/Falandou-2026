@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import BlogPreview from "@/components/sections/BlogPreview";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import InterestForm from "@/components/sections/InterestForm";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
@@ -283,6 +284,8 @@ export default function InglesExpatriacaoPage() {
           </div>
         </section>
 
+        {/* Arquitetura §4/§10: âncora de autoridade + link para posts relevantes */}
+        <BlogPreview slugs={["como-aprender-ingles-profissional", "como-melhorar-pronuncia-ingles", "emails-profissionais-ingles"]} title="Para trabalhar em inglês lá fora." />
         <LeadMagnetCompact />
 
       </main>

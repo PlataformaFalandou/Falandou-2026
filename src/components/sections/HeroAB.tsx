@@ -38,10 +38,15 @@ export default function HeroAB() {
   const [variant, setVariant] = useState<ABVariant>("A");
 
   useEffect(() => {
-    forceVariantFromURL();
-    const v = getHeroVariant();
-    setVariant(v);
-    trackABImpression("hero_framing", v);
+    // A variante vem do localStorage, só disponível no cliente: aplicada logo após a
+    // montagem (o HTML estático renderiza a A) — fora do corpo síncrono do efeito.
+    const t = setTimeout(() => {
+      forceVariantFromURL();
+      const v = getHeroVariant();
+      setVariant(v);
+      trackABImpression("hero_framing", v);
+    }, 0);
+    return () => clearTimeout(t);
   }, []);
 
   return (

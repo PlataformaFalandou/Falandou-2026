@@ -4,11 +4,15 @@ import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
+import { PRICE_FROM } from "@/data/plans";
 
-const faqs = [
+export type FAQEntry = { q: string; a: string };
+
+// Perguntas padrão (home). Páginas podem passar as suas via prop `items` (Arquitetura §4).
+export const DEFAULT_FAQS: FAQEntry[] = [
   {
     q: "Qual é o investimento?",
-    a: "Depende do seu objetivo. Profissionais que usam a Falandou para mudar de emprego relatam aumentos salariais de R$ 1.500 a R$ 4.000/mês. Quem consegue uma promoção ou transferência internacional costuma recuperar o investimento em menos de 60 dias. Os planos começam em R$ 184,90/mês — a consulta inicial é gratuita e é nela que você entende qual plano faz sentido para o que você quer alcançar.",
+    a: `Depende do seu objetivo. Profissionais que usam a Falandou para mudar de emprego relatam aumentos salariais de R$ 1.500 a R$ 4.000/mês. Quem consegue uma promoção ou transferência internacional costuma recuperar o investimento em menos de 60 dias. Os planos começam em ${PRICE_FROM}/mês — a consulta inicial é gratuita e é nela que você entende qual plano faz sentido para o que você quer alcançar.`,
   },
   {
     q: "Quanto tempo leva para ter resultado?",
@@ -32,7 +36,7 @@ const faqs = [
   },
 ];
 
-function FAQItem({ faq, isOpen, onToggle }: { faq: typeof faqs[0]; isOpen: boolean; onToggle: () => void }) {
+function FAQItem({ faq, isOpen, onToggle }: { faq: FAQEntry; isOpen: boolean; onToggle: () => void }) {
   return (
     <div
       className="border-b border-black/8 last:border-0"
@@ -69,7 +73,13 @@ function FAQItem({ faq, isOpen, onToggle }: { faq: typeof faqs[0]; isOpen: boole
   );
 }
 
-export default function FAQ() {
+export default function FAQ({
+  items = DEFAULT_FAQS,
+  title = "Tudo que você precisa saber antes de começar.",
+}: {
+  items?: FAQEntry[];
+  title?: string;
+} = {}) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -85,7 +95,7 @@ export default function FAQ() {
               className="reveal font-display font-extrabold leading-tight delay-100"
               style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}
             >
-              Tudo que você precisa saber antes de começar.
+              {title}
             </h2>
             <p className="reveal font-body text-base mt-4 delay-200" style={{ color: "rgba(22,22,22,0.55)" }}>
               Não encontrou sua resposta? Fale diretamente com a gente pelo WhatsApp.
@@ -105,7 +115,7 @@ export default function FAQ() {
 
           {/* Right: FAQ list */}
           <div className="reveal lg:col-span-3 bg-white rounded-2xl p-8 md:p-10 shadow-sm delay-200">
-            {faqs.map((faq, i) => (
+            {items.map((faq, i) => (
               <FAQItem
                 key={i}
                 faq={faq}

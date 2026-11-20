@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
+import { STATS } from "@/data/stats";
 
 // Inline SVG paths — Simple Icons (CC0). Logos são marcas dos respectivos proprietários.
 // Contexto: empregadores dos alunos matriculados — não implica endosso.
@@ -119,9 +120,9 @@ export default function Hero({
               loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            <strong className="text-white font-extrabold">600+</strong> profissionais formados
+            <strong className="text-white font-extrabold">{STATS.formed}</strong> profissionais formados
             <span className="text-white/30"> · </span>
-            <strong className="text-white font-extrabold">4.9★</strong> de avaliação
+            <strong className="text-white font-extrabold">{STATS.rating}</strong> de avaliação
           </p>
 
           {/* Subheadline */}
@@ -180,10 +181,10 @@ export default function Hero({
           >
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-4 max-w-xl">
               {[
-                { value: "600+",    label: "Profissionais formados" },
-                { value: "11 sem",  label: "B1→B2 em média" },
-                { value: "79%",     label: "Sobem 1 nível em 90 dias" },
-                { value: "4.9★",    label: "Avaliação média" },
+                { value: STATS.formed, label: "Profissionais formados" },
+                { value: `${STATS.b1b2Weeks} sem`, label: "B1→B2 em média" },
+                { value: STATS.cefrUpPct, label: `Sobem 1 nível em ${STATS.cycleDays} dias` },
+                { value: STATS.rating, label: "Avaliação média" },
               ].map((s) => (
                 <div key={s.label} className="text-center sm:text-left">
                   <div className="font-display font-extrabold text-2xl md:text-3xl text-white">{s.value}</div>

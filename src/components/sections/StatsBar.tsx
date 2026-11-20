@@ -1,6 +1,7 @@
 "use client";
 
 import { useCounter } from "@/hooks/useCounter";
+import { STATS } from "@/data/stats";
 
 function StatItem({
   value,
@@ -50,15 +51,28 @@ function StatStatic({ display, label, delay = 0 }: { display: string; label: str
 
 // Credenciais institucionais da escola (ponto 36). 600+ formados e 4.9★ já estão
 // na Hero — aqui ficam as credenciais que a Hero não mostra.
-export default function StatsBar() {
+// Arquitetura §4: valores vêm de src/data/stats.ts; páginas podem passar `items`.
+export type StatsBarItem = { value: number | string; suffix?: string; label: string };
+
+export const DEFAULT_STATS_BAR: StatsBarItem[] = [
+  { value: STATS.yearsOperating, suffix: "+", label: "Anos de operação da escola" },
+  { value: "CEFR", label: "Exame antes e depois de cada ciclo" },
+  { value: "1:1", label: "Sessões individuais" },
+  { value: STATS.cycleDays, label: "Dias por ciclo" },
+];
+
+export default function StatsBar({ items = DEFAULT_STATS_BAR }: { items?: StatsBarItem[] } = {}) {
   return (
     <section style={{ backgroundColor: "#161616" }} className="border-y border-white/10 py-4">
       <div className="max-w-5xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
-          <StatItem value={7} suffix="+" label="Anos de operação da escola" delay={0} />
-          <StatStatic display="CEFR" label="Exame antes e depois de cada ciclo" delay={100} />
-          <StatStatic display="1:1" label="Sessões individuais" delay={200} />
-          <StatItem value={90} label="Dias por ciclo" delay={300} />
+          {items.map((s, i) =>
+            typeof s.value === "number" ? (
+              <StatItem key={s.label} value={s.value} suffix={s.suffix} label={s.label} delay={i * 100} />
+            ) : (
+              <StatStatic key={s.label} display={`${s.value}${s.suffix ?? ""}`} label={s.label} delay={i * 100} />
+            )
+          )}
         </div>
       </div>
     </section>

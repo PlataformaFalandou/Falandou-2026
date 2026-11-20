@@ -12,8 +12,19 @@ const categoryColors: Record<string, string> = {
   "Entretenimento": "#FF2099",
 };
 
-export default function BlogPreview() {
-  const posts = getArticles().slice(0, 3);
+/**
+ * Arquitetura §4/§10 — na home mostra os 3 mais recentes; nas páginas de SEO,
+ * `slugs` escolhe os artigos relacionados ao tema (âncora de autoridade + link interno).
+ */
+export default function BlogPreview({
+  slugs,
+  title = "Aprenda enquanto decide.",
+}: { slugs?: string[]; title?: string } = {}) {
+  const all = getArticles();
+  const picked = slugs
+    ? slugs.map((s) => all.find((a) => a.slug === s)).filter((a): a is NonNullable<typeof a> => !!a)
+    : [];
+  const posts = (picked.length ? picked : all).slice(0, 3);
 
   return (
     <section className="py-20 md:py-28 bg-white">
@@ -28,7 +39,7 @@ export default function BlogPreview() {
               className="reveal font-display font-extrabold text-grafite leading-tight delay-100"
               style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)" }}
             >
-              Aprenda enquanto decide.
+              {title}
             </h2>
           </div>
           <Link

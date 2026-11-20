@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import CEFRTooltip from "@/components/ui/CEFRTooltip";
+import { STATS } from "@/data/stats";
 
 /**
  * ProofStats — seção de prova quantitativa da home.
@@ -11,32 +12,32 @@ import CEFRTooltip from "@/components/ui/CEFRTooltip";
  */
 
 // ─── dados verificáveis — edite com seus números reais ───────────────────────
-const STATS = [
+const PROOF = [
   {
-    value: "79%",
+    value: STATS.cefrUpPct,
     label: "passaram a usar inglês no trabalho",
-    sub: "em até 90 dias · medido por exame pré e pós",
+    sub: `em até ${STATS.cycleDays} dias · medido por exame pré e pós`,
   },
   {
-    value: "11 sem",
+    value: `${STATS.b1b2Weeks} sem`,
     label: "B1 → B2 em média",
-    sub: "mediana do último ciclo · exame antes e depois",
+    sub: "último ciclo · exame antes e depois",
   },
   {
-    value: "70%",
+    value: STATS.selectivePct,
     label: "aprovados em seletivas",
     sub: "dentro de 14 meses do início",
   },
   {
-    value: "92%",
+    value: STATS.completionPct,
     label: "concluíram sem abandonar",
     sub: "versus ~50% da média do setor",
   },
 ];
 
 const METHODOLOGY_NOTES: React.ReactNode[] = [
-  <>Exame <CEFRTooltip /> aplicado pela escola antes e após cada ciclo de 90 dias.</>,
-  "Dados do último ciclo fechado (Jan–Set 2024) · 87 profissionais avaliados.",
+  <>Exame <CEFRTooltip /> aplicado pela escola antes e após cada ciclo de {STATS.cycleDays} dias.</>,
+  `Dados do último ciclo fechado (${STATS.cycleLabel}) · ${STATS.evaluated} profissionais avaliados.`,
   <>Níveis: A1 · A2 · B1 · B2 · C1 · C2 — padrão europeu usado por Cambridge e IELTS. <CEFRTooltip>O que é CEFR?</CEFRTooltip></>,
 ];
 // ─────────────────────────────────────────────────────────────────────────────
@@ -52,7 +53,7 @@ export default function ProofStats() {
           className="reveal font-display font-extrabold text-white leading-tight mb-3 delay-100"
           style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)" }}
         >
-          79% dos profissionais passou a conduzir reuniões{" "}
+          {STATS.cefrUpPct} dos profissionais passou a conduzir reuniões{" "}
           <span style={{ color: "#FF6820" }}>e entrevistas em inglês em até 90 dias.</span>
         </h2>
         <p className="reveal font-body text-base delay-150" style={{ color: "rgba(255,255,255,0.45)" }}>
@@ -61,7 +62,7 @@ export default function ProofStats() {
 
         {/* Stat grid */}
         <div className="reveal grid grid-cols-2 md:grid-cols-4 gap-5 mt-10 delay-200">
-          {STATS.map((s) => (
+          {PROOF.map((s) => (
             <div
               key={s.value}
               className="rounded-2xl p-6"

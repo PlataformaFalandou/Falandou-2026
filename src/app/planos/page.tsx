@@ -1,75 +1,20 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import CompanyLogos from "@/components/sections/CompanyLogos";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
-import { getWhatsAppUrl, getWhatsAppUrlForContext } from "@/lib/whatsapp";
+import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
+import PriceCard from "@/components/sections/PriceCard";
+import { PLANS, INCLUDED_IN_ALL, PRICE_FROM, PRICE_FROM_ROUNDED } from "@/data/plans";
 
 export const metadata: Metadata = {
   title: "Planos e Preços | Falandou",
   description:
-    "Veja os planos de inglês profissional da Falandou: sessões individuais 1 a 1, ciclo de 90 dias e exame CEFR antes e depois. Planos a partir de R$ 184,90/mês.",
+    `Veja os planos de inglês profissional da Falandou: sessões individuais 1 a 1, ciclo de 90 dias e exame CEFR antes e depois. Planos a partir de ${PRICE_FROM}/mês.`,
 };
 
 // Ponto 44 — comparação clara: o que é igual fica numa faixa única;
-// cada cartão mostra só o que muda (sessões por semana + extras).
-const INCLUDED_IN_ALL = [
-  "Exame CEFR diagnóstico e de evolução",
-  "Plano personalizado para o seu setor",
-  "Acompanhamento via WhatsApp",
-  "Material de estudo incluso",
-];
-
-const PLANS = [
-  {
-    id: "essencial",
-    name: "Essencial",
-    tagline: "Para quem quer consistência sem correria",
-    price: "R$ 184,90",
-    period: "/mês",
-    cycle: "Ciclo de 90 dias",
-    sessions: "2 sessões individuais por semana",
-    highlight: false,
-    featuresLabel: "Inclui",
-    features: ["Tudo o que está incluso em todos os planos"],
-    cta: "Quero o plano Essencial",
-    whatsappMsg: "Olá! Tenho interesse no plano Essencial da Falandou (2 sessões/semana). Podem me contar mais sobre como funciona?",
-  },
-  {
-    id: "profissional",
-    name: "Profissional",
-    tagline: "O mais escolhido por quem tem prazo definido",
-    price: "R$ 299,90",
-    period: "/mês",
-    cycle: "Ciclo de 90 dias",
-    sessions: "3 sessões individuais por semana",
-    highlight: true,
-    featuresLabel: "Tudo do Essencial, mais",
-    features: [
-      "Simulações de reunião e apresentação",
-      "Prioridade no reagendamento",
-    ],
-    cta: "Quero o plano Profissional",
-    whatsappMsg: "Olá! Tenho interesse no plano Profissional da Falandou (3 sessões/semana). Podem me contar mais sobre como funciona?",
-  },
-  {
-    id: "acelerado",
-    name: "Acelerado",
-    tagline: "Para quem tem data marcada: entrevista, transferência, promoção",
-    price: "R$ 429,90",
-    period: "/mês",
-    cycle: "Ciclo de 90 dias",
-    sessions: "5 sessões individuais por semana",
-    highlight: false,
-    featuresLabel: "Tudo do Profissional, mais",
-    features: [
-      "Simulações de entrevista",
-      "Prioridade máxima no reagendamento",
-      "Sessão extra de feedback a cada 30 dias",
-    ],
-    cta: "Quero o plano Acelerado",
-    whatsappMsg: "Olá! Tenho interesse no plano Acelerado da Falandou (5 sessões/semana). Podem me contar mais sobre como funciona?",
-  },
-];
+// cada cartão mostra só o que muda. Planos e preços: src/data/plans.ts.
 
 const FAQS = [
   {
@@ -180,127 +125,7 @@ export default function PlanosPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
               {PLANS.map((plan) => (
-                <div
-                  key={plan.id}
-                  className="relative rounded-2xl overflow-hidden flex flex-col"
-                  style={{
-                    background: plan.highlight
-                      ? "linear-gradient(145deg, rgba(255,104,32,0.12) 0%, rgba(255,104,32,0.04) 100%)"
-                      : "rgba(255,255,255,0.04)",
-                    border: plan.highlight
-                      ? "1px solid rgba(255,104,32,0.4)"
-                      : "1px solid rgba(255,255,255,0.08)",
-                  }}
-                >
-                  {plan.highlight && (
-                    <div
-                      className="text-center py-2 text-xs font-bold uppercase tracking-widest"
-                      style={{ backgroundColor: "#FF6820", color: "#fff" }}
-                    >
-                      Mais escolhido
-                    </div>
-                  )}
-
-                  <div className="p-8 flex flex-col flex-1">
-                    {/* Plan name + tagline */}
-                    <div className="mb-8">
-                      <h2
-                        className="font-display font-extrabold text-2xl text-white mb-2"
-                      >
-                        {plan.name}
-                      </h2>
-                      <p
-                        className="font-body text-sm"
-                        style={{ color: "rgba(255,255,255,0.45)" }}
-                      >
-                        {plan.tagline}
-                      </p>
-                    </div>
-
-                    {/* Price */}
-                    <div className="mb-8">
-                      <div className="flex items-end gap-1">
-                        <span
-                          className="font-display font-extrabold"
-                          style={{
-                            fontSize: "clamp(2rem, 3.5vw, 2.5rem)",
-                            color: plan.highlight ? "#FF6820" : "#fff",
-                          }}
-                        >
-                          {plan.price}
-                        </span>
-                        <span
-                          className="font-body text-base pb-1"
-                          style={{ color: "rgba(255,255,255,0.4)" }}
-                        >
-                          {plan.period}
-                        </span>
-                      </div>
-                      <p
-                        className="font-body text-xs mt-1"
-                        style={{ color: "rgba(255,255,255,0.3)" }}
-                      >
-                        {plan.cycle}
-                      </p>
-                    </div>
-
-                    {/* Sessões por semana — a principal diferença entre os planos */}
-                    <p
-                      className="font-display font-bold text-base text-white mb-6 pb-6 border-b"
-                      style={{ borderColor: "rgba(255,255,255,0.08)" }}
-                    >
-                      {plan.sessions}
-                    </p>
-
-                    {/* Features — só o que muda */}
-                    <p
-                      className="font-body text-xs font-semibold uppercase tracking-widest mb-3"
-                      style={{ color: "rgba(255,255,255,0.35)" }}
-                    >
-                      {plan.featuresLabel}
-                    </p>
-                    <ul className="flex flex-col gap-3 mb-10 flex-1">
-                      {plan.features.map((f) => (
-                        <li key={f} className="flex items-start gap-3">
-                          <span
-                            className="mt-0.5 text-sm font-bold flex-shrink-0"
-                            style={{ color: "#FF6820" }}
-                          >
-                            ✓
-                          </span>
-                          <span
-                            className="font-body text-sm"
-                            style={{ color: "rgba(255,255,255,0.7)" }}
-                          >
-                            {f}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {/* CTA */}
-                    <a
-                      href={getWhatsAppUrl(plan.whatsappMsg)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-center font-body font-bold text-base px-6 py-4 rounded-full transition-all duration-300"
-                      style={
-                        plan.highlight
-                          ? {
-                              backgroundColor: "#FF6820",
-                              color: "#fff",
-                            }
-                          : {
-                              backgroundColor: "rgba(255,255,255,0.08)",
-                              color: "#fff",
-                              border: "1px solid rgba(255,255,255,0.15)",
-                            }
-                      }
-                    >
-                      {plan.cta}
-                    </a>
-                  </div>
-                </div>
+                <PriceCard key={plan.id} plan={plan} />
               ))}
             </div>
 
@@ -336,6 +161,9 @@ export default function PlanosPage() {
           </div>
         </section>
 
+        {/* Arquitetura §4: logos das empresas dos profissionais (Home + /sobre + /planos) */}
+        <CompanyLogos />
+
         {/* ── ROI anchor ── */}
         <section className="py-16 md:py-20" style={{ backgroundColor: "#161616" }}>
           <div className="max-w-4xl mx-auto px-6">
@@ -355,7 +183,7 @@ export default function PlanosPage() {
               className="font-body text-base text-center mb-12 max-w-xl mx-auto"
               style={{ color: "rgba(255,255,255,0.55)" }}
             >
-              De um lado, a partir de R$ 185/mês. Do outro, o que fica na mesa enquanto o inglês segura a sua carreira:
+              De um lado, a partir de {PRICE_FROM_ROUNDED}/mês. Do outro, o que fica na mesa enquanto o inglês segura a sua carreira:
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[

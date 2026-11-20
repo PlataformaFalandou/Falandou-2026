@@ -1,3 +1,5 @@
+import { PRICE_FROM_ROUNDED } from "@/data/plans";
+
 // Seção de prova de valor: sem botões. A ação fica no MidCTA, depois do FAQ.
 const scenarios = [
   {
@@ -97,7 +99,7 @@ export default function ROIFrame() {
           <p
             className="font-display font-extrabold text-2xl md:text-3xl text-white mb-3"
           >
-            Conta simples: o plano custa ~R$ 185/mês.<br className="hidden md:block" />
+            Conta simples: o plano custa ~{PRICE_FROM_ROUNDED}/mês.<br className="hidden md:block" />
             Uma promoção traz R$ 2.000+/mês a mais.
           </p>
           <p

@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import CompanyLogos from "@/components/sections/CompanyLogos";
+import CTASection from "@/components/sections/CTASection";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
-import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { YOUTUBE_CHANNEL_URL } from "@/lib/teachers";
+import { STATS } from "@/data/stats";
 
 export const metadata: Metadata = {
   title: "Sobre a Falandou | Escola de Inglês Profissional",
@@ -22,10 +24,10 @@ export const metadata: Metadata = {
 // Ponto 57 — história e credenciais institucionais (escola, não pessoa).
 // Só fatos já publicados no site; atualizar aqui quando os números mudarem.
 const NUMBERS = [
-  { value: "600+", label: "profissionais formados" },
-  { value: "7+", label: "anos de operação" },
-  { value: "4.9★", label: "avaliação média dos profissionais" },
-  { value: "79%", label: "sobem 1 nível CEFR ou mais em 90 dias" },
+  { value: STATS.formed, label: "profissionais formados" },
+  { value: `${STATS.yearsOperating}+`, label: "anos de operação" },
+  { value: STATS.rating, label: "avaliação média dos profissionais" },
+  { value: STATS.cefrUpPct, label: `sobem 1 nível CEFR ou mais em ${STATS.cycleDays} dias` },
 ];
 
 const PRINCIPLES = [
@@ -90,6 +92,9 @@ export default function SobrePage() {
             ))}
           </div>
         </section>
+
+        {/* Arquitetura §4: logos das empresas dos profissionais (Home + /sobre + /planos) */}
+        <CompanyLogos />
 
         {/* ── FILOSOFIA ────────────────────────────────────────────────────── */}
         <section className="py-24 md:py-32 bg-white">
@@ -170,35 +175,13 @@ export default function SobrePage() {
           </div>
         </section>
 
-        {/* ── CTA ──────────────────────────────────────────────────────────── */}
-        <section className="py-24 md:py-32" style={{ backgroundColor: "#FF6820" }}>
-          <div className="max-w-3xl mx-auto px-6 text-center">
-            <h2 className="font-display font-extrabold text-white leading-tight mb-4" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-              Conheça a escola por dentro.
-            </h2>
-            <p className="font-body text-lg mb-10" style={{ color: "rgba(255,255,255,0.8)" }}>
-              A conversa inicial é gratuita: você entende o ciclo, tira dúvidas e decide sem pressão.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href={getWhatsAppUrlForContext("sobre")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-10 py-5 rounded-full text-base font-bold transition-all duration-200 hover:scale-105 active:scale-95"
-                style={{ backgroundColor: "#161616", color: "white" }}
-              >
-                Quero começar
-              </a>
-              <Link
-                href="/metodo"
-                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold transition-all duration-200 hover:scale-105"
-                style={{ background: "rgba(255,255,255,0.2)", color: "white", border: "1px solid rgba(255,255,255,0.4)" }}
-              >
-                Ver o método
-              </Link>
-            </div>
-          </div>
-        </section>
+        {/* ── CTA (componente reutilizável — Arquitetura §4) ── */}
+        <CTASection
+          heading="Conheça a escola por dentro."
+          text="A conversa inicial é gratuita: você entende o ciclo, tira dúvidas e decide sem pressão."
+          whatsappContext="sobre"
+          secondary={{ href: "/metodo", label: "Ver o método" }}
+        />
 
         <LeadMagnetCompact />
       </main>

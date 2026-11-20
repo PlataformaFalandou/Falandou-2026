@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import BlogPreview from "@/components/sections/BlogPreview";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import InterestForm from "@/components/sections/InterestForm";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
@@ -282,6 +283,8 @@ export default function InglesEntrevistaPage() {
           </div>
         </section>
 
+        {/* Arquitetura §4/§10: âncora de autoridade + link para posts relevantes */}
+        <BlogPreview slugs={["ingles-para-entrevista-emprego", "diferenca-cefr-niveis-ingles", "como-aprender-ingles-profissional"]} title="Para se preparar para a entrevista." />
         <LeadMagnetCompact />
 
       </main>

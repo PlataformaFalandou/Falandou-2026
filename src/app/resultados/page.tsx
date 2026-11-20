@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import CTASection from "@/components/sections/CTASection";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
 import ResultsData from "@/components/sections/ResultsData";
 import Testimonials from "@/components/sections/Testimonials";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
-import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Resultados | Falandou — Inglês Profissional",
@@ -192,35 +192,13 @@ export default function ResultadosPage() {
           </div>
         </section>
 
-        {/* ── CTA ──────────────────────────────────────────────────────────── */}
-        <section className="py-24 md:py-32" style={{ backgroundColor: "#FF6820" }}>
-          <div className="max-w-3xl mx-auto px-6 text-center">
-            <h2 className="font-display font-extrabold text-white leading-tight mb-4" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-              Comece pelo seu ponto de partida.
-            </h2>
-            <p className="font-body text-lg mb-10" style={{ color: "rgba(255,255,255,0.8)" }}>
-              O primeiro passo é o diagnóstico. A conversa inicial é gratuita e sem compromisso.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href={getWhatsAppUrlForContext("resultados")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-10 py-5 rounded-full text-base font-bold transition-all duration-200 hover:scale-105 active:scale-95"
-                style={{ backgroundColor: "#161616", color: "white" }}
-              >
-                Quero começar
-              </a>
-              <Link
-                href="/planos"
-                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold transition-all duration-200 hover:scale-105"
-                style={{ background: "rgba(255,255,255,0.2)", color: "white", border: "1px solid rgba(255,255,255,0.4)" }}
-              >
-                Ver planos e valores
-              </Link>
-            </div>
-          </div>
-        </section>
+        {/* ── CTA (componente reutilizável — Arquitetura §4) ── */}
+        <CTASection
+          heading="Comece pelo seu ponto de partida."
+          text="O primeiro passo é o diagnóstico. A conversa inicial é gratuita e sem compromisso."
+          whatsappContext="resultados"
+          secondary={{ href: "/planos", label: "Ver planos e valores" }}
+        />
 
         <LeadMagnetCompact />
       </main>
