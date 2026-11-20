@@ -53,6 +53,34 @@ Hoje o site publicado **não carrega** o Pixel nem o GA4: os IDs não chegam ao 
 - Destino: **https://2026.falandou.com/planos** com UTM, por exemplo
   `?utm_source=meta&utm_medium=paid&utm_campaign=remarketing-planos`
 
+## Landing pages em campanhas pagas (Arquitetura §8)
+
+Cada página de entrada usada em anúncio leva um **UTM próprio**, para o GA4 separar
+o resultado de cada uma. Use `utm_source` do canal (`meta`, `google`, `linkedin`),
+`utm_medium=paid` e a campanha abaixo:
+
+| Página | URL de destino (exemplo para Meta) |
+|---|---|
+| Inglês executivo | `https://2026.falandou.com/ingles-executivo/?utm_source=meta&utm_medium=paid&utm_campaign=lp-executivo` |
+| Entrevista | `https://2026.falandou.com/ingles-entrevista/?utm_source=meta&utm_medium=paid&utm_campaign=lp-entrevista` |
+| Expatriação | `https://2026.falandou.com/ingles-expatriacao/?utm_source=meta&utm_medium=paid&utm_campaign=lp-expatriacao` |
+| Promoção | `https://2026.falandou.com/promocao-cargo/?utm_source=meta&utm_medium=paid&utm_campaign=lp-promocao` |
+| Planos (remarketing) | `https://2026.falandou.com/planos/?utm_source=meta&utm_medium=paid&utm_campaign=remarketing-planos` |
+
+Hoje essas 4 páginas também servem à busca orgânica (estão no sitemap), então ficam
+**indexadas**. Se um dia for criada uma página **só para anúncio** (com texto quase igual
+ao de outra), marque-a como `noindex` para não competir com a versão orgânica no Google —
+no `page.tsx` dela:
+
+```ts
+export const metadata: Metadata = {
+  // ...título e descrição...
+  robots: { index: false, follow: true },
+};
+```
+
+e não a inclua em `src/app/sitemap.ts`.
+
 ## Passo 3 — medir
 
 - GA4: compare `view_plans` → `whatsapp_click` por origem (`utm_source=meta`)

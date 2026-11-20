@@ -182,9 +182,13 @@ export function TestimonialsBrowser() {
   );
 }
 
-export default function Testimonials() {
-  const featured = testimonials.filter((t) => t.featured).slice(0, 3);
-  const items = featured.length ? featured : testimonials.slice(0, 3);
+export default function Testimonials({ persona }: { persona?: Persona } = {}) {
+  // Arquitetura §8 — nas LPs, prova social filtrada: primeiro os depoimentos do
+  // perfil da página, completando com os destacados até 3 cartões.
+  const fromPersona = persona ? testimonials.filter((t) => t.persona === persona) : [];
+  const featured = testimonials.filter((t) => t.featured && !fromPersona.includes(t));
+  const rest = testimonials.filter((t) => !fromPersona.includes(t) && !featured.includes(t));
+  const items = [...fromPersona, ...featured, ...rest].slice(0, 3);
 
   return (
     <section id="depoimentos" className="py-24 md:py-32" style={{ backgroundColor: "#161616" }}>

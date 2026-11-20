@@ -40,6 +40,8 @@ interface HeroProps {
   /** Chip de dado imediatamente abaixo do subheadline — ancora qualquer claim de resultado. */
   statChip?: string;
   whatsappContext?: string;
+  /** Texto do botão principal. LPs de mídia usam algo mais urgente (Arquitetura §8). */
+  ctaLabel?: string;
 }
 
 export default function Hero({
@@ -53,6 +55,7 @@ export default function Hero({
   subheadline = "A maioria dos profissionais entende inglês razoavelmente bem. O problema é na hora de falar — reunião, apresentação, entrevista. A Falandou resolve exatamente isso: inglês funcional para o seu contexto. B1 → B2 em 11 semanas em média.",
   statChip,
   whatsappContext = "hero",
+  ctaLabel = "Quero começar",
 }: HeroProps) {
   const [loaded, setLoaded] = useState(false);
 
@@ -161,7 +164,7 @@ export default function Hero({
               style={{ backgroundColor: "#FF6820", boxShadow: "0 8px 32px rgba(255,104,32,0.5)" }}
             >
               <MessageCircle size={20} />
-              Quero começar
+              {ctaLabel}
             </a>
             <a
               href="#como-funciona"

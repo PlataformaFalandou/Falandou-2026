@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/ui/Navbar";
 import Hero from "@/components/sections/Hero";
-import StatsBar from "@/components/sections/StatsBar";
 import ForWhom from "@/components/sections/ForWhom";
-import CompanyLogos from "@/components/sections/CompanyLogos";
 import Journey from "@/components/sections/Journey";
-import ResultsData from "@/components/sections/ResultsData";
 import Testimonials from "@/components/sections/Testimonials";
-import Teachers from "@/components/sections/Teachers";
 import MidCTA from "@/components/sections/MidCTA";
 import FAQ from "@/components/sections/FAQ";
 import type { FAQEntry } from "@/data/faq";
@@ -68,8 +64,9 @@ export default function PromocaoCargoPage() {
           }
           subheadline="Você tem a experiência e a entrega — mas o inglês continua como critério visível para o próximo nível. Em um ciclo de 90 dias, 79% dos nossos profissionais passou a conduzir reuniões e entrevistas em inglês. Para muitos, isso é exatamente a diferença entre candidato e aprovado."
           whatsappContext="promocao"
+          ctaLabel="Falar com a equipe agora"
+          statChip="79% sobe pelo menos 1 nível CEFR em 90 dias · 70% aprovado em seletivas com etapa em inglês"
         />
-        <StatsBar />
         <ForWhom
           persona={{
             title: (
@@ -82,11 +79,8 @@ export default function PromocaoCargoPage() {
             intro: "Profissionais com experiência e entrega comprovadas, para quem o inglês virou o critério visível do próximo nível.",
           }}
         />
-        <CompanyLogos />
+        <Testimonials persona="Promoção e liderança" />
         <Journey />
-        <ResultsData />
-        <Testimonials />
-        <Teachers />
         <MidCTA />
         <FAQ title="Dúvidas de quem quer ser promovido." items={FAQS} />
         {/* Arquitetura §4/§10: âncora de autoridade + link para posts relevantes */}

@@ -51,7 +51,7 @@ const situations = [
 const proof = [
   { value: "90 dias", label: "para chegar capaz de liderar times e conduzir reuniões no novo país" },
   { value: "1 a 1", label: "todas as sessões individuais — o plano é montado para o seu destino e setor" },
-  { value: "79%", label: "dos profissionais chegaram ao destino se comunicando com segurança no trabalho" },
+  { value: "79%", label: "dos profissionais sobem pelo menos 1 nível CEFR em 90 dias — medido por exame antes e depois" },
 ];
 
 const faqs = [
@@ -113,7 +113,7 @@ export default function InglesExpatriacaoPage() {
             </p>
 
             <p className="text-sm font-medium mb-10 -mt-6" style={{ color: "rgba(255,104,32,0.85)" }}>
-              79% dos profissionais chegou ao destino se comunicando com segurança no trabalho em até 90 dias
+              79% dos profissionais sobe pelo menos 1 nível CEFR em 90 dias — medido por exame antes e depois
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">

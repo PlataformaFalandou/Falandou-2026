@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/ui/Navbar";
 import Hero from "@/components/sections/Hero";
-import StatsBar from "@/components/sections/StatsBar";
 import ForWhom from "@/components/sections/ForWhom";
-import CompanyLogos from "@/components/sections/CompanyLogos";
 import Journey from "@/components/sections/Journey";
-import ResultsData from "@/components/sections/ResultsData";
 import Testimonials from "@/components/sections/Testimonials";
-import Teachers from "@/components/sections/Teachers";
 import MidCTA from "@/components/sections/MidCTA";
 import FAQ from "@/components/sections/FAQ";
 import type { FAQEntry } from "@/data/faq";
@@ -69,8 +65,8 @@ export default function InglesExecutivoPage() {
           subheadline="Participar de reuniões internacionais sem contribuir é invisibilidade profissional. Em 90 dias você aprende a tomar a palavra, conduzir discussões e apresentar com clareza — no inglês do seu contexto executivo."
           statChip="79% dos profissionais passou a conduzir reuniões e entrevistas em inglês em até 90 dias"
           whatsappContext="executivo"
+          ctaLabel="Falar com a equipe agora"
         />
-        <StatsBar />
         <ForWhom
           persona={{
             title: (
@@ -82,11 +78,8 @@ export default function InglesExecutivoPage() {
             intro: "Gestores, coordenadores e especialistas que já entendem a reunião, mas ainda não tomam a palavra.",
           }}
         />
-        <CompanyLogos />
+        <Testimonials persona="Reuniões e apresentações" />
         <Journey />
-        <ResultsData />
-        <Testimonials />
-        <Teachers />
         <MidCTA />
         <FAQ title="Dúvidas de quem conduz reuniões em inglês." items={FAQS} />
         {/* Arquitetura §4/§10: âncora de autoridade + link para posts relevantes */}
