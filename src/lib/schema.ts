@@ -1,7 +1,7 @@
 // Dados estruturados (schema.org) — Arquitetura da Informação §10.
 // Renderizados com <JsonLd data={...} /> (src/components/ui/JsonLd.tsx).
 import { COMPANY } from "@/data/company";
-import { PLANS } from "@/data/plans";
+import { DURATIONS, PLANS, priceValue } from "@/data/plans";
 import { YOUTUBE_CHANNEL_URL } from "@/lib/teachers";
 
 const BASE = "https://2026.falandou.com";
@@ -23,10 +23,6 @@ export function organizationSchema() {
   };
 }
 
-function priceNumber(price: string) {
-  return Number(price.replace(/[^\d,]/g, "").replace(",", "."));
-}
-
 /** Course — /planos e páginas por perfil. Ofertas = planos de src/data/plans.ts. */
 export function courseSchema(opts: { name: string; description: string; path: string }) {
   return {
@@ -39,14 +35,16 @@ export function courseSchema(opts: { name: string; description: string; path: st
     provider: ORG_REF,
     educationalCredentialAwarded: "Exame de nível CEFR antes e depois do ciclo (aplicado pela escola)",
     timeRequired: "P90D",
-    offers: PLANS.map((p) => ({
-      "@type": "Offer",
-      name: `Plano ${p.name} — ${p.sessions}`,
-      price: priceNumber(p.price).toFixed(2),
-      priceCurrency: "BRL",
-      category: "Mensalidade",
-      url: `${BASE}/planos/`,
-    })),
+    offers: PLANS.flatMap((p) =>
+      DURATIONS.map((d) => ({
+        "@type": "Offer",
+        name: `Plano ${p.name} — ${p.sessionsPerMonth} sessões/mês de ${d} minutos`,
+        price: priceValue(p.prices[d]).toFixed(2),
+        priceCurrency: "BRL",
+        category: "Mensalidade",
+        url: `${BASE}/planos/`,
+      }))
+    ),
   };
 }
 

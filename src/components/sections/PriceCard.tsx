@@ -1,12 +1,11 @@
 import { getWhatsAppUrl } from "@/lib/whatsapp";
-import type { Plan } from "@/data/plans";
+import { type Duration, type Plan, perSession, planWhatsAppMsg, sessionsLabel } from "@/data/plans";
 
 /**
- * PriceCard — cartão de um plano (Arquitetura §4: isolado para poder ser
- * embutido em outras páginas como preview). Dados em src/data/plans.ts.
- * O CTA abre o WhatsApp com a mensagem do plano escolhido (§9).
+ * PriceCard — cartão de um plano (Arquitetura §4). Dados em src/data/plans.ts.
+ * O CTA abre o WhatsApp com o plano e a duração escolhidos (§9).
  */
-export default function PriceCard({ plan }: { plan: Plan }) {
+export default function PriceCard({ plan, duration }: { plan: Plan; duration: Duration }) {
   return (
     <div
       className="relative rounded-2xl overflow-hidden flex flex-col"
@@ -22,7 +21,7 @@ export default function PriceCard({ plan }: { plan: Plan }) {
           className="text-center py-2 text-xs font-bold uppercase tracking-widest"
           style={{ backgroundColor: "#FF6820", color: "#fff" }}
         >
-          Mais escolhido
+          Mais popular
         </div>
       )}
 
@@ -42,23 +41,23 @@ export default function PriceCard({ plan }: { plan: Plan }) {
               className="font-display font-extrabold"
               style={{ fontSize: "clamp(2rem, 3.5vw, 2.5rem)", color: plan.highlight ? "#FF6820" : "#fff" }}
             >
-              {plan.price}
+              {plan.prices[duration]}
             </span>
             <span className="font-body text-base pb-1" style={{ color: "rgba(255,255,255,0.4)" }}>
-              {plan.period}
+              /mês
             </span>
           </div>
-          <p className="font-body text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>
-            {plan.cycle}
+          <p className="font-body text-xs mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>
+            Sessões de {duration} minutos · {perSession(plan, duration)} por sessão
           </p>
         </div>
 
-        {/* Sessões por semana — a principal diferença entre os planos */}
+        {/* Sessões por mês — a principal diferença entre os planos */}
         <p
           className="font-display font-bold text-base text-white mb-6 pb-6 border-b"
           style={{ borderColor: "rgba(255,255,255,0.08)" }}
         >
-          {plan.sessions}
+          {sessionsLabel(plan)}
         </p>
 
         {/* Features — só o que muda */}
@@ -83,7 +82,7 @@ export default function PriceCard({ plan }: { plan: Plan }) {
 
         {/* CTA */}
         <a
-          href={getWhatsAppUrl(plan.whatsappMsg)}
+          href={getWhatsAppUrl(planWhatsAppMsg(plan, duration))}
           target="_blank"
           rel="noopener noreferrer"
           className="block text-center font-body font-bold text-base px-6 py-4 rounded-full transition-all duration-300"
@@ -97,7 +96,7 @@ export default function PriceCard({ plan }: { plan: Plan }) {
                 }
           }
         >
-          {plan.cta}
+          Quero o plano {plan.name}
         </a>
       </div>
     </div>

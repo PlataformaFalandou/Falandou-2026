@@ -50,7 +50,7 @@ export function withUTM(
  *   linkedinUrl("planos", "post-semana-12")
  */
 export function linkedinUrl(
-  page: "home" | "planos" | "metodo" | "ingles-entrevista" | "ingles-executivo" | "ingles-expatriacao" | "promocao-cargo" | "intensivo" | "turma-online" | string,
+  page: "home" | "planos" | "metodo" | "ingles-entrevista" | "ingles-executivo" | "ingles-expatriacao" | "promocao-cargo" | "intensivo" | string,
   campaign?: string
 ): string {
   const BASE = "https://2026.falandou.com";
@@ -82,10 +82,7 @@ export function getWhatsAppUrlForContext(context: string): string {
     executivo: "Olá! Preciso de inglês executivo para reuniões e apresentações. Quero entender como a Falandou trabalha com esse objetivo.",
     promocao: "Olá! Estou buscando uma promoção e o inglês é requisito. Quero saber como a Falandou pode acelerar meu desenvolvimento.",
     leadmagnet: "Olá! Vi o roteiro de 30 dias no site da Falandou e quero receber o PDF completo.",
-    "turma-online": "Olá! Tenho interesse na turma online de inglês profissional da Falandou e gostaria de saber quando a próxima turma abre.",
-    "turma-online-footer": "Olá! Tenho interesse na turma online de inglês profissional da Falandou e gostaria de saber quando a próxima turma abre.",
-    intensivo: "Olá! Tenho interesse no programa intensivo da Falandou e gostaria de entender como funciona e quando começa a próxima turma.",
-    "intensivo-footer": "Olá! Tenho interesse no programa intensivo da Falandou e gostaria de entender como funciona e quando começa a próxima turma.",
+    intensivo: "Olá! Tenho interesse no plano Intensive da Falandou (16 sessões/mês). Podem me contar mais sobre como funciona?",
   };
   return getWhatsAppUrl(messages[context] ?? messages.hero);
 }

@@ -5,19 +5,19 @@ import CompanyLogos from "@/components/sections/CompanyLogos";
 import ComparisonTable from "@/components/sections/ComparisonTable";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
-import PriceCard from "@/components/sections/PriceCard";
-import { PLANS, INCLUDED_IN_ALL, PRICE_FROM, PRICE_FROM_ROUNDED } from "@/data/plans";
+import PlansGrid from "@/components/sections/PlansGrid";
+import { INCLUDED_IN_ALL, PLAN_TERMS, PRICE_FROM, PRICE_FROM_ROUNDED, getPlan, perSession } from "@/data/plans";
 
 import JsonLd from "@/components/ui/JsonLd";
 import { courseSchema, faqSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Planos e Preços | Falandou",
   description:
-    `Veja os planos de inglês profissional da Falandou: sessões individuais 1 a 1, ciclo de 90 dias e exame CEFR antes e depois. Planos a partir de ${PRICE_FROM}/mês.`,
+    `Veja os planos de inglês profissional da Falandou: sessões individuais de 25 ou 50 minutos, plano personalizado e exame CEFR antes e depois. Planos a partir de ${PRICE_FROM}/mês.`,
   alternates: { canonical: "/planos/" },
   openGraph: {
     title: "Planos e Preços | Falandou",
-    description: `Sessões 1 a 1, ciclo de 90 dias e exame CEFR antes e depois. A partir de ${PRICE_FROM}/mês.`,
+    description: `Starter, Professional e Intensive: sessões 1 a 1 de 25 ou 50 minutos. A partir de ${PRICE_FROM}/mês.`,
     url: "/planos/",
     siteName: "Falandou",
     locale: "pt_BR",
@@ -28,15 +28,18 @@ export const metadata: Metadata = {
 // Ponto 44 — comparação clara: o que é igual fica numa faixa única;
 // cada cartão mostra só o que muda. Planos e preços: src/data/plans.ts.
 
-// Valor por sessão do plano de entrada (2 sessões/semana ≈ 8 no mês), calculado do preço.
-const essencialValue = Number(PLANS[0].price.replace(/[^\d,]/g, "").replace(",", "."));
-const PER_SESSION = `R$ ${(essencialValue / 8).toFixed(2).replace(".", ",")}`;
+// Valor por sessão calculado dos preços reais (src/data/plans.ts).
+const PRO = getPlan("professional");
 
 const FAQS = [
   {
     // Arquitetura §9: a objeção de preço mais comum, respondida na própria página.
     q: "Por que custa mais do que uma escola de inglês em grupo?",
-    a: `Porque o que você compra é diferente. Em grupo, o tempo do professor é dividido e o conteúdo segue a turma. Aqui, 100% de cada sessão é seu, com um plano montado para o seu objetivo, exame CEFR antes e depois e acompanhamento pelo WhatsApp entre as sessões. No plano ${PLANS[0].name}, isso dá cerca de ${PER_SESSION} por sessão individual (considerando 8 sessões no mês).`,
+    a: `Porque o que você compra é diferente. Em grupo, o tempo do professor é dividido e o conteúdo segue a turma. Aqui, 100% de cada sessão é seu, com um plano montado para o seu objetivo, exame CEFR antes e depois e acompanhamento pelo WhatsApp entre as sessões. No plano ${PRO.name}, cada sessão individual de 50 minutos sai por ${perSession(PRO, 50)}.`,
+  },
+  {
+    q: "Qual a diferença entre sessões de 25 e de 50 minutos?",
+    a: "A estrutura é a mesma: sessões individuais e ao vivo, com o mesmo plano e acompanhamento. A de 25 minutos encaixa em agendas apertadas e custa menos; a de 50 minutos permite simulações mais longas, como uma reunião ou entrevista completa. Você escolhe ao contratar.",
   },
   {
     q: "Posso trocar de plano durante o ciclo?",
@@ -44,7 +47,11 @@ const FAQS = [
   },
   {
     q: "O que acontece se eu precisar faltar a uma sessão?",
-    a: "As sessões são reagendadas diretamente com o professor. Nos planos Profissional e Acelerado há prioridade no reagendamento — você não perde a sessão, reorganiza o horário.",
+    a: "As sessões são reagendadas diretamente com o professor. Os créditos de sessão não usados expiram ao fim de cada ciclo mensal — por isso vale reagendar dentro do mesmo mês.",
+  },
+  {
+    q: "Posso cancelar? E se eu desistir logo no começo?",
+    a: PLAN_TERMS,
   },
   {
     q: "O exame CEFR está incluso no preço?",
@@ -54,12 +61,7 @@ const FAQS = [
     q: "Como funciona a consulta gratuita antes de assinar?",
     a: "Antes de escolher o plano, você tem uma conversa de 20 minutos com a equipe para mapear seu objetivo, nível atual e prazo. Nessa conversa fica claro qual plano faz mais sentido — sem pressão para fechar na hora.",
   },
-  {
-    q: "Há desconto para pagamento anual?",
-    a: "Sim. Planos com comprometimento de 6 ou 12 meses têm desconto. Os valores aparecem na consulta inicial — cada caso é avaliado de acordo com o objetivo e plano escolhido.",
-  },
 ];
-
 export default function PlanosPage() {
   return (
     <>
@@ -147,19 +149,17 @@ export default function PlanosPage() {
               </ul>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-              {PLANS.map((plan) => (
-                <PriceCard key={plan.id} plan={plan} />
-              ))}
-            </div>
+            {/* Planos reais (falandou.com) com seletor de 25/50 minutos */}
+            <PlansGrid />
 
-            {/* Arquitetura §9 — redução de risco perto do CTA. A escola não oferece
-                garantia: aqui só fatos já publicados (consulta grátis, exame, revisão do plano). */}
-            <ul className="mt-8 flex flex-col md:flex-row md:justify-center gap-3 md:gap-8">
+            {/* Arquitetura §9 — redução de risco perto do CTA: só regras e fatos reais
+                (consulta grátis, cancelamento, reembolso de 7 dias, exame). */}
+            <ul className="mt-8 flex flex-col md:flex-row md:flex-wrap md:justify-center gap-3 md:gap-x-8">
               {[
                 "Consulta inicial gratuita e sem compromisso",
-                "Exame CEFR no início e no fim: você vê a evolução em número",
-                "Objetivo do ciclo não atingido? O plano é revisado com você",
+                "Cancele quando quiser",
+                "Reembolso integral em até 7 dias se nenhuma sessão tiver sido feita",
+                "Exame CEFR no início e no fim do ciclo",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2 font-body text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>
                   <span className="font-bold" style={{ color: "#FF6820" }}>✓</span>
@@ -167,6 +167,9 @@ export default function PlanosPage() {
                 </li>
               ))}
             </ul>
+            <p className="mt-4 text-center font-body text-xs max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.4)" }}>
+              {PLAN_TERMS}
+            </p>
 
             {/* Free consult callout */}
             <div

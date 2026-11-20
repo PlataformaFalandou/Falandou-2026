@@ -11,3 +11,6 @@ ErrorDocument 404 /404.html
 # /entrevista-emprego duplicava /ingles-entrevista (mesmo titulo, mesma busca).
 # 301 mantem links antigos e anuncios funcionando e concentra o SEO numa pagina so.
 RedirectMatch 301 ^/entrevista-emprego/?$ /ingles-entrevista/
+
+# Turma online removida (a escola nao vende esse formato).
+RedirectMatch 301 ^/turma-online/?$ /planos/

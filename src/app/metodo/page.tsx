@@ -77,7 +77,7 @@ const steps = [
     sub: "100% do tempo de cada sessão dedicado a você",
     body: "Sem dividir atenção com outros. O professor conhece seu plano, seu nível, seu objetivo. Cada sessão é uma conversa sobre o que você precisa usar — não sobre o que está no livro.",
     detail: [
-      "2 a 5 sessões por semana conforme o plano escolhido",
+      "De 4 a 16 sessões por mês, de 25 ou 50 minutos, conforme o plano",
       "Professor fixo — você não recomeça do zero a cada sessão",
       "Reagendamento sem burocracia — avisa pelo WhatsApp",
     ],

@@ -7,7 +7,9 @@ import Testimonials from "@/components/sections/Testimonials";
 import MidCTA from "@/components/sections/MidCTA";
 import FAQ from "@/components/sections/FAQ";
 import type { FAQEntry } from "@/data/faq";
-import { PLANS, PRICE_FROM } from "@/data/plans";
+import { PRICE_FROM, getPlan } from "@/data/plans";
+
+const PRO = getPlan("professional");
 import Footer from "@/components/ui/Footer";
 import BlogPreview from "@/components/sections/BlogPreview";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
@@ -46,7 +48,7 @@ const FAQS: FAQEntry[] = [
   },
   {
     q: "Quanto custa?",
-    a: `Os planos começam em ${PRICE_FROM}/mês. As simulações de reunião e apresentação entram a partir do plano ${PLANS[1].name} (${PLANS[1].price}/mês). A conversa inicial é gratuita.`,
+    a: `Os planos começam em ${PRICE_FROM}/mês. Para treinar reuniões e apresentações com frequência, o ${PRO.name} tem ${PRO.sessionsPerMonth} sessões por mês (${PRO.prices[50]} com sessões de 50 minutos). A conversa inicial é gratuita.`,
   },
 ];
 

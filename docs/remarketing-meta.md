@@ -48,7 +48,7 @@ Hoje o site publicado **não carrega** o Pixel nem o GA4: os IDs não chegam ao 
 - Público: **Público A**
 - Orçamento baixo e contínuo (ex.: R$ 10–20/dia); frequência alvo de 1–2 vezes por dia
 - Janela de 24–72h: use o público de 7 dias e acompanhe a frequência — se passar de ~4 na semana, reduza o orçamento
-- Criativos: fale com quem **já viu os preços** — retorno do investimento ("a partir de R$ 184,90/mês"),
+- Criativos: fale com quem **já viu os preços** — retorno do investimento ("a partir de R$ 134,90/mês"),
   o exame CEFR antes e depois, depoimentos com cargo e empresa. Nada de contador ou "últimas vagas".
 - Destino: **https://2026.falandou.com/planos** com UTM, por exemplo
   `?utm_source=meta&utm_medium=paid&utm_campaign=remarketing-planos`

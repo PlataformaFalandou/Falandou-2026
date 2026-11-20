@@ -3,45 +3,53 @@ import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
-import InterestForm from "@/components/sections/InterestForm";
+import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
+import JsonLd from "@/components/ui/JsonLd";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { courseSchema } from "@/lib/schema";
+import { INCLUDED_IN_ALL, PLAN_TERMS, getPlan, perSession, planWhatsAppMsg } from "@/data/plans";
+
+// /intensivo apresenta o plano Intensive vigente (falandou.com): 16 sessões por mês.
+// Preços e itens vêm de src/data/plans.ts.
+const INT = getPlan("intensive");
 
 export const metadata: Metadata = {
-  title: "Inglês Intensivo para Profissionais | Falandou",
-  description:
-    "Programa intensivo de inglês para profissionais com prazo definido: entrevista, transferência internacional ou promoção em 60 dias.",
-  // "Em breve": fora do Google até o lançamento (Arquitetura §12, princípio 6).
-  // No lançamento: remover esta linha e voltar a página para src/app/sitemap.ts.
-  robots: { index: false, follow: true },
-  alternates: {
-    canonical: "https://2026.falandou.com/intensivo",
-  },
+  title: "Plano Intensive — Inglês Intensivo para Profissionais | Falandou",
+  description: `Plano Intensive: ${INT.sessionsPerMonth} sessões individuais por mês, de 25 ou 50 minutos, para quem tem entrevista, promoção ou transferência com data marcada. A partir de ${INT.prices[25]}/mês.`,
+  alternates: { canonical: "/intensivo/" },
   openGraph: {
-    title: "Inglês Intensivo para Profissionais | Falandou",
-    description:
-      "60 dias de imersão focada. Para quem tem prazo e não pode esperar. Registre interesse agora.",
-    url: "https://2026.falandou.com/intensivo",
+    title: "Plano Intensive | Falandou",
+    description: `${INT.sessionsPerMonth} sessões individuais por mês para quem tem prazo. ${INT.prices[50]}/mês com sessões de 50 minutos.`,
+    url: "/intensivo/",
+    siteName: "Falandou",
+    locale: "pt_BR",
+    type: "website",
   },
 };
 
-const WHATSAPP_MSG =
-  "Olá! Tenho interesse no programa intensivo da Falandou e gostaria de entender como funciona e quando começa a próxima turma.";
+const forWhom = [
+  {
+    title: "Você tem uma entrevista nas próximas semanas",
+    desc: "Recrutadores avaliam clareza e ritmo, não só gramática. Com quatro sessões por semana, dá para simular o processo seletivo várias vezes antes do dia.",
+  },
+  {
+    title: "Você foi promovido e o inglês virou requisito",
+    desc: "A promoção chegou antes do idioma. O ritmo intensivo acelera o que o novo cargo exige: reuniões, apresentações e alinhamento com times de fora.",
+  },
+  {
+    title: "Você vai trabalhar no exterior",
+    desc: "Transferência, projeto internacional ou intercâmbio corporativo: você precisa estar funcional rápido, com o vocabulário do seu trabalho.",
+  },
+  {
+    title: "Você entende bem, mas trava na hora de falar",
+    desc: "Mais horas de fala por semana são o caminho mais direto para destravar. É aqui que o volume de sessões faz diferença.",
+  },
+];
 
-const timeline = [
-  {
-    week: "Semanas 1–2",
-    focus: "Diagnóstico e base",
-    desc: "Avaliação de nível, identificação das lacunas críticas e construção do vocabulário do seu setor.",
-  },
-  {
-    week: "Semanas 3–5",
-    focus: "Comunicação essencial",
-    desc: "Reuniões, e-mails e apresentações. Os contextos mais frequentes no ambiente de trabalho.",
-  },
-  {
-    week: "Semanas 6–8",
-    focus: "Fluência sob pressão",
-    desc: "Negociação, tomada de decisão e improviso. Inglês que funciona quando o stress é alto.",
-  },
+const rhythm = [
+  { n: `${INT.sessionsPerMonth}`, label: "sessões individuais por mês", sub: "4 por semana, ao vivo" },
+  { n: "25 ou 50", label: "minutos por sessão", sub: "você escolhe ao contratar" },
+  { n: "CEFR", label: "exame no início e no fim", sub: "a evolução em número" },
 ];
 
 export default function IntensivoPage() {
@@ -49,284 +57,170 @@ export default function IntensivoPage() {
     <>
       <ScrollRevealInit />
       <Navbar />
-      <main style={{ background: "#F5F6F1", minHeight: "100vh" }}>
+      <main>
+        <JsonLd
+          data={courseSchema({
+            name: "Inglês profissional — plano Intensive",
+            description: `${INT.sessionsPerMonth} sessões individuais por mês, de 25 ou 50 minutos, com plano personalizado e exame CEFR antes e depois.`,
+            path: "/intensivo/",
+          })}
+        />
 
-        {/* ── Hero ─────────────────────────────────────────────────────── */}
-        <section
-          style={{
-            background: "#161616",
-            color: "#F5F6F1",
-            padding: "80px 24px 72px",
-            textAlign: "center",
-          }}
-        >
-          <div style={{ maxWidth: "680px", margin: "0 auto" }}>
-            <span
-              style={{
-                display: "inline-block",
-                background: "#FF6820",
-                color: "#fff",
-                fontSize: "12px",
-                fontWeight: 700,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                padding: "4px 12px",
-                borderRadius: "4px",
-                marginBottom: "20px",
-              }}
-            >
-              Em breve
-            </span>
+        {/* ── HERO ─────────────────────────────────────────────────────────── */}
+        <section className="pt-40 pb-24 md:pt-52 md:pb-28" style={{ backgroundColor: "#161616" }}>
+          <div className="max-w-4xl mx-auto px-6">
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
+              Plano Intensive
+            </p>
             <h1
-              style={{
-                fontSize: "clamp(32px, 6vw, 52px)",
-                fontWeight: 800,
-                lineHeight: 1.1,
-                letterSpacing: "-0.03em",
-                margin: "0 0 20px",
-              }}
+              className="reveal font-display font-extrabold text-white leading-tight mb-6 delay-100"
+              style={{ fontSize: "clamp(2.2rem, 5vw, 3.75rem)" }}
             >
-              De travar a falar com segurança.{" "}
-              <span style={{ color: "#FF6820" }}>Em 60 dias.</span>
+              Tem prazo?{" "}
+              <span style={{ color: "#FF6820" }}>{INT.sessionsPerMonth} sessões individuais por mês.</span>
             </h1>
-            <p
-              style={{
-                fontSize: "clamp(16px, 2.5vw, 20px)",
-                lineHeight: 1.6,
-                color: "#c8c8c8",
-                margin: "0 0 40px",
-              }}
-            >
-              Para quem tem um prazo concreto — uma entrevista, uma promoção,
-              uma transferência internacional — e não pode esperar meses para
-              ver progresso. Registre interesse e saiba quando o próximo
-              intensivo começa.
+            <p className="reveal font-body text-lg leading-relaxed mb-8 delay-150" style={{ color: "rgba(255,255,255,0.65)", maxWidth: "620px" }}>
+              Para quem tem uma entrevista, uma promoção ou uma transferência com data marcada e não
+              pode esperar. Quatro sessões por semana, atividades personalizadas e professores
+              especialistas.
             </p>
-            <p
-              style={{
-                fontSize: "13px",
-                fontWeight: 600,
-                color: "rgba(255,104,32,0.85)",
-                margin: "-24px 0 32px",
-              }}
-            >
-              79% dos profissionais passou a conduzir reuniões e entrevistas em inglês em até 90 dias
+            <p className="reveal font-body text-base mb-10 delay-200" style={{ color: "rgba(255,255,255,0.85)" }}>
+              <strong className="text-white">{INT.prices[50]}/mês</strong> com sessões de 50 minutos
+              <span style={{ color: "rgba(255,255,255,0.3)" }}> · </span>
+              <strong className="text-white">{INT.prices[25]}/mês</strong> com sessões de 25 minutos
             </p>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <InterestForm
-                context="intensivo"
-                whatsappMessage={WHATSAPP_MSG}
-                ctaLabel="Quero saber quando começa"
-              />
+            <div className="reveal flex flex-col sm:flex-row gap-4 delay-200">
+              <a
+                href={getWhatsAppUrl(planWhatsAppMsg(INT, 50))}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-bold text-white transition-all duration-200 hover:scale-105"
+                style={{ backgroundColor: "#FF6820" }}
+              >
+                Quero o plano Intensive
+              </a>
+              <Link
+                href="/planos"
+                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold text-white transition-all duration-200 hover:scale-105"
+                style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.2)" }}
+              >
+                Comparar os planos
+              </Link>
             </div>
           </div>
         </section>
 
-        {/* ── Para quem é ─────────────────────────────────────────────── */}
-        <section style={{ padding: "72px 24px", maxWidth: "760px", margin: "0 auto" }}>
-          <h2
-            style={{
-              fontSize: "clamp(24px, 4vw, 36px)",
-              fontWeight: 800,
-              letterSpacing: "-0.03em",
-              color: "#161616",
-              marginBottom: "32px",
-            }}
-          >
-            Para quem é o intensivo
-          </h2>
-          {[
-            {
-              title: "Você tem uma entrevista em até 2 meses",
-              desc: "Recrutadores eliminam candidatos por clareza e ritmo — não só por gramática. Um ciclo focado de 60 dias aumenta a probabilidade de passar para a próxima fase.",
-            },
-            {
-              title: "Você foi promovido e o inglês é requisito agora",
-              desc: "A promoção chegou antes do idioma. Precisa se comunicar com confiança desde o primeiro dia no novo cargo.",
-            },
-            {
-              title: "Você vai para o exterior em um projeto",
-              desc: "Transferência, intercâmbio corporativo ou projeto internacional. Precisa estar funcionando bem, rápido.",
-            },
-            {
-              title: "Você tem inglês intermediário e quer dar o salto final",
-              desc: "Lê bem, escreve razoavelmente, mas trava na hora de falar. O intensivo quebra esse padrão.",
-            },
-          ].map((item) => (
-            <div
-              key={item.title}
-              style={{
-                background: "#fff",
-                borderRadius: "12px",
-                padding: "24px",
-                border: "1px solid #e8e8e8",
-                marginBottom: "16px",
-              }}
-            >
-              <h3 style={{ fontSize: "17px", fontWeight: 700, color: "#161616", margin: "0 0 8px" }}>
-                {item.title}
-              </h3>
-              <p style={{ fontSize: "15px", lineHeight: 1.6, color: "#555", margin: 0 }}>
-                {item.desc}
-              </p>
-            </div>
-          ))}
+        {/* ── RITMO ────────────────────────────────────────────────────────── */}
+        <section style={{ backgroundColor: "#FF6820" }} className="py-14">
+          <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-8 text-center">
+            {rhythm.map((r) => (
+              <div key={r.label}>
+                <p className="font-display font-extrabold text-4xl text-white">{r.n}</p>
+                <p className="font-body text-sm font-semibold text-white mt-1">{r.label}</p>
+                <p className="font-body text-xs mt-1" style={{ color: "rgba(255,255,255,0.8)" }}>{r.sub}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
-        {/* ── Como funciona (timeline) ─────────────────────────────────── */}
-        <section
-          style={{
-            background: "#fff",
-            padding: "72px 24px",
-            borderTop: "1px solid #e8e8e8",
-            borderBottom: "1px solid #e8e8e8",
-          }}
-        >
-          <div style={{ maxWidth: "760px", margin: "0 auto" }}>
-            <h2
-              style={{
-                fontSize: "clamp(24px, 4vw, 36px)",
-                fontWeight: 800,
-                letterSpacing: "-0.03em",
-                color: "#161616",
-                marginBottom: "40px",
-              }}
-            >
-              Como são as 8 semanas
+        {/* ── PARA QUEM É ──────────────────────────────────────────────────── */}
+        <section className="py-24 md:py-28" style={{ backgroundColor: "#F5F6F1" }}>
+          <div className="max-w-5xl mx-auto px-6">
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+              Para quem é
+            </p>
+            <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}>
+              Quando o ritmo do prazo é mais rápido que o seu.
             </h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-              {timeline.map((step, i) => (
-                <div
-                  key={step.week}
-                  style={{
-                    display: "flex",
-                    gap: "24px",
-                    alignItems: "flex-start",
-                    paddingBottom: i < timeline.length - 1 ? "32px" : "0",
-                    borderLeft: i < timeline.length - 1 ? "2px solid #FF6820" : "2px solid transparent",
-                    marginLeft: "16px",
-                    paddingLeft: "24px",
-                    position: "relative",
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "absolute",
-                      left: "-9px",
-                      top: "4px",
-                      width: "16px",
-                      height: "16px",
-                      background: "#FF6820",
-                      borderRadius: "50%",
-                      flexShrink: 0,
-                    }}
-                  />
-                  <div>
-                    <span
-                      style={{
-                        fontSize: "12px",
-                        fontWeight: 700,
-                        color: "#FF6820",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.06em",
-                        display: "block",
-                        marginBottom: "4px",
-                      }}
-                    >
-                      {step.week}
-                    </span>
-                    <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#161616", margin: "0 0 6px" }}>
-                      {step.focus}
-                    </h3>
-                    <p style={{ fontSize: "15px", lineHeight: 1.6, color: "#555", margin: 0 }}>
-                      {step.desc}
-                    </p>
-                  </div>
+            <div className="grid md:grid-cols-2 gap-5">
+              {forWhom.map((item) => (
+                <div key={item.title} className="reveal rounded-2xl bg-white border border-black/5 p-7">
+                  <h3 className="font-display font-extrabold text-lg mb-2" style={{ color: "#161616" }}>{item.title}</h3>
+                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(22,22,22,0.6)" }}>{item.desc}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ── Diferencial ─────────────────────────────────────────────── */}
-        <section style={{ padding: "72px 24px", maxWidth: "760px", margin: "0 auto" }}>
-          <h2
-            style={{
-              fontSize: "clamp(24px, 4vw, 36px)",
-              fontWeight: 800,
-              letterSpacing: "-0.03em",
-              color: "#161616",
-              marginBottom: "16px",
-            }}
-          >
-            O que é diferente em um intensivo
-          </h2>
-          <p style={{ fontSize: "16px", lineHeight: 1.7, color: "#444", marginBottom: "24px" }}>
-            No plano padrão, o ritmo é o do profissional. No intensivo, o ritmo é o
-            do prazo. Mais horas semanais, exercícios diários entre as sessões,
-            simulações de situações reais e feedback contínuo do professor.
-          </p>
-          <p style={{ fontSize: "16px", lineHeight: 1.7, color: "#444" }}>
-            Não é para todo mundo. É para quem tem um objetivo concreto com
-            data definida e está disposto a investir energia para chegar lá.
-          </p>
-        </section>
-
-        {/* ── CTA final ───────────────────────────────────────────────── */}
-        <section
-          style={{
-            padding: "72px 24px",
-            textAlign: "center",
-            background: "#161616",
-          }}
-        >
-          <div style={{ maxWidth: "520px", margin: "0 auto" }}>
-            <h2
-              style={{
-                fontSize: "clamp(24px, 4vw, 36px)",
-                fontWeight: 800,
-                letterSpacing: "-0.03em",
-                color: "#F5F6F1",
-                marginBottom: "16px",
-              }}
-            >
-              Qual é o seu prazo?
-            </h2>
-            <p
-              style={{
-                fontSize: "16px",
-                lineHeight: 1.7,
-                color: "#c8c8c8",
-                marginBottom: "36px",
-              }}
-            >
-              Se você tem uma data concreta, deixe seu nome. Quando o
-              próximo intensivo abrir, você será o primeiro a saber —
-              e podemos verificar se o formato é adequado para o seu objetivo.
+        {/* ── O QUE INCLUI ─────────────────────────────────────────────────── */}
+        <section className="py-24 md:py-28 bg-white">
+          <div className="max-w-5xl mx-auto px-6">
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+              O que inclui
             </p>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <InterestForm
-                context="intensivo-footer"
-                whatsappMessage={WHATSAPP_MSG}
-                ctaLabel="Quero saber quando começa"
-              />
+            <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}>
+              Tudo dos outros planos, no ritmo mais alto.
+            </h2>
+            <div className="grid md:grid-cols-2 gap-10">
+              <div>
+                <p className="font-body text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "rgba(22,22,22,0.45)" }}>
+                  Exclusivo do Intensive
+                </p>
+                <ul className="flex flex-col gap-3">
+                  {INT.features.map((f) => (
+                    <li key={f} className="flex items-start gap-3 font-body text-base" style={{ color: "#161616" }}>
+                      <span className="font-bold" style={{ color: "#FF6820" }}>✓</span>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="font-body text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "rgba(22,22,22,0.45)" }}>
+                  Incluso em todos os planos
+                </p>
+                <ul className="flex flex-col gap-3">
+                  {INCLUDED_IN_ALL.map((f) => (
+                    <li key={f} className="flex items-start gap-3 font-body text-base" style={{ color: "rgba(22,22,22,0.7)" }}>
+                      <span className="font-bold" style={{ color: "#FF6820" }}>✓</span>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <p style={{ marginTop: "24px" }}>
-              <Link
-                href="/planos"
-                style={{
-                  fontSize: "14px",
-                  color: "rgba(255,255,255,0.35)",
-                  textDecoration: "underline",
-                  textUnderlineOffset: "4px",
-                }}
-              >
-                Enquanto isso, ver o plano padrão →
-              </Link>
+            <p className="font-body text-sm mt-10" style={{ color: "rgba(22,22,22,0.55)" }}>
+              Cada sessão de 50 minutos sai por {perSession(INT, 50)}; a de 25 minutos, por {perSession(INT, 25)}.
             </p>
           </div>
         </section>
 
+        {/* ── CTA FINAL ────────────────────────────────────────────────────── */}
+        <section className="py-24 md:py-28" style={{ backgroundColor: "#161616" }}>
+          <div className="max-w-3xl mx-auto px-6 text-center">
+            <h2 className="font-display font-extrabold text-white leading-tight mb-4" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+              Qual é o seu prazo?
+            </h2>
+            <p className="font-body text-lg mb-10" style={{ color: "rgba(255,255,255,0.65)" }}>
+              Conte a data e o objetivo. A conversa inicial é gratuita: a equipe confirma se o
+              Intensive é o plano certo ou se outro ritmo resolve.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href={getWhatsAppUrl(planWhatsAppMsg(INT, 50))}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-10 py-5 rounded-full text-base font-bold text-white transition-all duration-200 hover:scale-105"
+                style={{ backgroundColor: "#FF6820" }}
+              >
+                Quero o plano Intensive
+              </a>
+              <Link
+                href="/planos"
+                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold text-white transition-all duration-200 hover:scale-105"
+                style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.2)" }}
+              >
+                Ver todos os planos
+              </Link>
+            </div>
+            <p className="font-body text-xs mt-8 max-w-xl mx-auto" style={{ color: "rgba(255,255,255,0.4)" }}>
+              {PLAN_TERMS}
+            </p>
+          </div>
+        </section>
+
+        <LeadMagnetCompact />
       </main>
       <Footer />
     </>

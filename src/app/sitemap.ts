@@ -22,7 +22,7 @@ const PAGES: Entry[] = [
   { path: "/ingles-entrevista/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/ingles-expatriacao/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/promocao-cargo/", priority: 0.7, changeFrequency: "monthly" },
-  // /intensivo e /turma-online ficam fora enquanto forem "Em breve" (noindex).
+  { path: "/intensivo/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/indique/", priority: 0.4, changeFrequency: "monthly" },
   { path: "/politica-de-privacidade/", priority: 0.2, changeFrequency: "yearly" },
   { path: "/termos/", priority: 0.2, changeFrequency: "yearly" },
