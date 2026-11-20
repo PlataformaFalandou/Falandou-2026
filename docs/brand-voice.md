@@ -69,3 +69,17 @@ Preservar: "Você não travou por falta de esforço." — a melhor linha do site
 - [ ] Dá para cortar um adjetivo sem perder sentido? Corte.
 - [ ] Tem exclamação em página institucional? Tire.
 - [ ] Lido em voz alta, soa como uma escola séria falando com um adulto?
+
+## 6. Voz editorial do blog (SEO §19)
+
+- **Quem fala:** a escola. Os artigos são assinados como "Equipe Falandou", nunca em primeira pessoa de um professor.
+- **Tom:** especialista acessível. Profissional sem ser pedante, como alguém que já percorreu o caminho e explica o atalho.
+- **Vocabulário nos artigos:**
+  - "profissional", não "aluno";
+  - "atividade", não "tarefa";
+  - "sessão", não "aula";
+  - "aula em grupo" ou "turma" nunca como proposta de valor.
+- **Parágrafos curtos:** no máximo três linhas na tela do celular.
+- **Use:** dados concretos e com fonte (os de `stats.ts`, ou exames e instituições citados por nome), exemplos reais do trabalho e transições claras entre as seções.
+- **Evite:** jargão pedagógico, generalizações ("todo mundo sabe que…"), promessas vagas ("em pouco tempo", "sem compromisso") e números sem fonte.
+- **Estrutura e SEO de cada post:** ver `docs/seo-conteudo.md`, seção 11.

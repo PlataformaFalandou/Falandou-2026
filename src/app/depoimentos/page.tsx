@@ -11,7 +11,7 @@ import { testimonials } from "@/data/testimonials";
 export const metadata: Metadata = {
   title: "Depoimentos | Falandou — Inglês Profissional",
   description:
-    "O que dizem profissionais de empresas como IBM, Accenture, Amazon e Google depois do ciclo de inglês profissional da Falandou.",
+    "Depoimentos de profissionais que estudaram na Falandou: reuniões, entrevistas, promoções e mudança de país, com o resultado de cada um em inglês.",
   alternates: { canonical: "/depoimentos/" },
   openGraph: {
     title: "Depoimentos | Falandou",

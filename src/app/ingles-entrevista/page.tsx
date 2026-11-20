@@ -12,7 +12,7 @@ import { courseSchema, faqSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Inglês para Entrevista de Emprego | Falandou",
   description:
-    "Você tem o perfil. A entrevista em inglês não pode ser o gargalo. Prepare-se com plano individual, simulações reais e resultado em 90 dias.",
+    "Inglês para entrevista de emprego: simulações 1 a 1 com as perguntas reais do seu processo seletivo, plano individual e exame CEFR no início e no fim do ciclo.",
   alternates: { canonical: "/ingles-entrevista/" },
   openGraph: {
     title: "Inglês para Entrevista de Emprego | Falandou",

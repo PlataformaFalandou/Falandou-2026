@@ -12,13 +12,15 @@ export type VocabEntry = {
   level: CEFRLevel;
 };
 
-export type VocabArea = { slug: string; name: string; intro: string; entries: VocabEntry[] };
+/** guide: artigo do blog que aprofunda a área (topic cluster, SEO §9). */
+export type VocabArea = { slug: string; name: string; intro: string; guide?: { href: string; label: string }; entries: VocabEntry[] };
 
 export const VOCABULARY: VocabArea[] = [
   {
     slug: "negocios",
     name: "Negócios e reuniões",
     intro: "Termos que aparecem toda semana em reuniões, e-mails e alinhamentos de projeto.",
+    guide: { href: "/blog/vocabulario-reunioes-negocios/", label: "Veja as 50 expressões de inglês para reuniões" },
     entries: [
       { term: "stakeholder", ipa: "/ˈsteɪkˌhoʊldər/", definition: "Parte interessada: pessoa ou grupo afetado por um projeto ou decisão.", example: "We need to align with all stakeholders before the launch.", level: "B1" },
       { term: "to follow up", ipa: "/ˌfɑːloʊ ˈʌp/", definition: "Dar retorno ou retomar um assunto depois de um primeiro contato.", example: "I'll follow up with the client by Friday.", level: "B1" },
@@ -45,6 +47,7 @@ export const VOCABULARY: VocabArea[] = [
     slug: "direito",
     name: "Direito e contratos",
     intro: "Termos de contratos internacionais, compliance e negociações com escritórios estrangeiros.",
+    guide: { href: "/blog/ingles-juridico-advogados/", label: "Leia o guia de inglês jurídico para advogados" },
     entries: [
       { term: "clause", ipa: "/klɔːz/", definition: "Cláusula: cada item de um contrato.", example: "Clause 7 covers termination.", level: "B1" },
       { term: "to comply with", ipa: "/kəmˈplaɪ wɪð/", definition: "Cumprir uma regra ou lei; estar em conformidade.", example: "All vendors must comply with data protection laws.", level: "B2" },

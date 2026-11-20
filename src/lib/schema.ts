@@ -18,6 +18,10 @@ export function organizationSchema() {
     alternateName: COMPANY.brand,
     url: `${BASE}/`,
     email: COMPANY.privacyEmail,
+    logo: `${BASE}/icon-512.png`,
+    image: `${BASE}/opengraph-image`,
+    areaServed: "BR",
+    knowsLanguage: ["pt-BR", "en"],
     description:
       "Escola de inglês profissional: plano individual, sessões 1 a 1 e exame CEFR antes e depois de cada ciclo de 90 dias.",
     sameAs: [YOUTUBE_CHANNEL_URL, "https://instagram.com/falandou", "https://linkedin.com/company/falandou"],
@@ -36,6 +40,12 @@ export function courseSchema(opts: { name: string; description: string; path: st
     provider: ORG_REF,
     educationalCredentialAwarded: "Exame de nível CEFR antes e depois do ciclo (aplicado pela escola)",
     timeRequired: "P90D",
+    // SEO §3: instância do curso (Google pede para o resultado enriquecido de curso).
+    hasCourseInstance: {
+      "@type": "CourseInstance",
+      courseMode: "Online",
+      instructor: { "@type": "Organization", name: COMPANY.legalName },
+    },
     offers: PLANS.flatMap((p) =>
       DURATIONS.map((d) => ({
         "@type": "Offer",

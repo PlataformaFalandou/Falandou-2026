@@ -1,10 +1,21 @@
 ---
-titulo: "50 expressões essenciais para reuniões de negócios em inglês"
-resumo: "Do 'let's circle back' ao 'take this offline' — expressões que todo profissional que participa de reuniões internacionais precisa dominar."
-categoria: Vocabulário Profissional
-created_at: "2026-11-08T10:00:00.000Z"
-tempo_leitura: 7
+titulo: 'Inglês para reuniões: 50 expressões para usar no trabalho'
+titulo_seo: 'Inglês para Reuniões: 50 Expressões | Falandou'
+resumo: Do 'let's circle back' ao 'take this offline' — expressões que todo profissional que participa de reuniões internacionais precisa dominar.
+descricao: 'Inglês para reuniões de negócios: 50 expressões para abrir, pedir a palavra, discordar com educação e definir próximos passos, com exemplos prontos.'
+categoria: Carreira
+cluster: Carreira
+palavra_chave: inglês para reuniões
+created_at: '2026-11-08T10:00:00.000Z'
+atualizado_em: '2026-11-20T10:00:00.000Z'
 publicado: true
+faq:
+- q: Quais expressões em inglês usar para abrir uma reunião?
+  a: 'Frases curtas e diretas funcionam melhor: “Let''s get started”, “Thanks for joining” e “The goal for today is…”. Elas sinalizam que a reunião começou e deixam claro o objetivo.'
+- q: Como discordar em inglês sem parecer rude?
+  a: 'Reconheça o ponto do outro antes de discordar: “I see your point, but…” ou “I''m not sure I agree, because…”. O tom suaviza a discordância sem esconder a sua posição.'
+- q: Como pedir para alguém repetir em uma reunião em inglês?
+  a: Use “Sorry, could you repeat that?” ou “Could you clarify what you mean by…?”. Pedir clareza é comum em reuniões internacionais e mostra atenção, não falta de inglês.
 ---
 
 ## Por que expressões importam mais que gramática em reuniões
@@ -83,3 +94,11 @@ Abaixo estão 50 expressões organizadas por momento da reunião. Aprenda 5 por 
 Não tente decorar a lista inteira de uma vez. Escolha 5 expressões da categoria mais relevante para o seu trabalho agora. Use nas próximas três reuniões — mesmo que seja internamente, em português, para criar o hábito muscular.
 
 Depois mude para as próximas 5. Em dois meses você terá incorporado todas de forma natural.
+
+## Para ir além
+
+- Leia [o guia de inglês profissional, com o caminho completo do básico às reuniões](/blog/como-aprender-ingles-profissional/).
+- Leia [como escrever o e-mail de follow-up depois da reunião](/blog/emails-profissionais-ingles/).
+- Veja [o vocabulário de negócios com pronúncia e nível CEFR](/vocabulario/).
+- Veja [os planos de sessões individuais para treinar reuniões reais](/planos/).
+

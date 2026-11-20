@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, ChevronRight, Clock, MessageCircle, PlayCircle } from "lucide-react";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-import { getArticleBySlug, getArticles, getCategories } from "@/lib/blog";
+import { getArticleBySlug, getArticles, getCategories, lastModified, splitForMidCTA } from "@/lib/blog";
 import { categoryColor } from "@/data/blogCategories";
 import { getWhatsAppUrl, getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { getBlogCTA } from "@/data/blogCTAs";
@@ -27,14 +27,20 @@ export async function generateMetadata({
       : absoluteUrl(article.imagem_capa)
     : null;
 
+  const title = article.titulo_seo ?? `${article.titulo} | Falandou`;
+  const description = article.descricao ?? article.resumo;
   return {
-    title: `${article.titulo} — Blog Falandou`,
-    description: article.resumo,
+    title,
+    description,
+    ...(article.palavra_chave ? { keywords: [article.palavra_chave] } : {}),
     alternates: { canonical: `/blog/${slug}/` },
     openGraph: {
       title: article.titulo,
-      description: article.resumo,
+      description,
       url: `/blog/${slug}/`,
+      publishedTime: article.created_at,
+      modifiedTime: lastModified(article),
+      section: article.categoria,
       siteName: "Falandou",
       locale: "pt_BR",
       type: "article",
@@ -43,7 +49,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: article.titulo,
-      description: article.resumo,
+      description,
       ...(cover ? { images: [cover] } : {}),
     },
   };
@@ -75,6 +81,14 @@ export default async function ArticlePage({
   ].slice(0, 3);
   const categories = getCategories().filter((c) => c !== "Todos");
   const url = absoluteUrl(`/blog/${slug}/`);
+  const updated = lastModified(article);
+  const [contentA, contentB] = splitForMidCTA(article.conteudo);
+  const fmt = (d: string) => new Date(d).toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" });
+  const image = article.imagem_capa
+    ? article.imagem_capa.startsWith("http")
+      ? article.imagem_capa
+      : absoluteUrl(article.imagem_capa)
+    : absoluteUrl(`/blog/${slug}/opengraph-image`);
 
   return (
     <>
@@ -87,24 +101,25 @@ export default async function ArticlePage({
             "@context": "https://schema.org",
             "@graph": [
               {
-                "@type": "Article",
+                "@type": "BlogPosting",
                 headline: article.titulo,
-                description: article.resumo,
+                description: article.descricao ?? article.resumo,
                 datePublished: article.created_at,
-                dateModified: article.created_at,
+                dateModified: updated,
+                ...(article.palavra_chave ? { keywords: article.palavra_chave } : {}),
+                wordCount: article.tempo_leitura * 200,
                 inLanguage: "pt-BR",
                 articleSection: article.categoria,
                 mainEntityOfPage: url,
                 url,
-                ...(article.imagem_capa
-                  ? {
-                      image: article.imagem_capa.startsWith("http")
-                        ? article.imagem_capa
-                        : absoluteUrl(article.imagem_capa),
-                    }
-                  : {}),
-                author: { "@type": "Organization", name: "Falandou", url: absoluteUrl("/") },
-                publisher: { "@type": "Organization", name: "Falandou", url: absoluteUrl("/") },
+                image,
+                author: { "@type": "Organization", name: "Equipe Falandou", url: absoluteUrl("/sobre/") },
+                publisher: {
+                  "@type": "Organization",
+                  name: "Falandou",
+                  url: absoluteUrl("/"),
+                  logo: { "@type": "ImageObject", url: absoluteUrl("/icon-512.png") },
+                },
               },
               {
                 "@type": "BreadcrumbList",
@@ -114,6 +129,18 @@ export default async function ArticlePage({
                   { "@type": "ListItem", position: 3, name: article.titulo, item: url },
                 ],
               },
+              ...(article.faq.length
+                ? [
+                    {
+                      "@type": "FAQPage",
+                      mainEntity: article.faq.map((f) => ({
+                        "@type": "Question",
+                        name: f.q,
+                        acceptedAnswer: { "@type": "Answer", text: f.a },
+                      })),
+                    },
+                  ]
+                : []),
             ],
           }),
         }}
@@ -154,18 +181,9 @@ export default async function ArticlePage({
               >
                 {article.categoria}
               </Link>
-              {article.tempo_leitura && (
-                <span className="flex items-center gap-1.5 font-body text-xs" style={{ color: "rgba(245,246,241,0.6)" }}>
-                  <Clock size={12} />
-                  {article.tempo_leitura} min de leitura
-                </span>
-              )}
-              <span className="font-body text-xs" style={{ color: "rgba(245,246,241,0.5)" }}>
-                {new Date(article.created_at).toLocaleDateString("pt-BR", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                })}
+              <span className="flex items-center gap-1.5 font-body text-xs" style={{ color: "rgba(245,246,241,0.65)" }}>
+                <Clock size={12} aria-hidden="true" />
+                {article.tempo_leitura} min de leitura
               </span>
             </div>
 
@@ -178,16 +196,95 @@ export default async function ArticlePage({
             </h1>
 
             {/* Resumo */}
-            <p className="font-body text-lg leading-relaxed mb-10 pb-10 border-b border-white/15" style={{ color: "rgba(245,246,241,0.7)" }}>
+            <p className="font-body text-lg leading-relaxed mb-6" style={{ color: "rgba(245,246,241,0.75)" }}>
               {article.resumo}
             </p>
 
-            {/* Content — rendered as markdown */}
+            {/* Assinatura e revisão (SEO §21): escrito pela escola, com data de revisão */}
+            <p className="text-sm mb-10 pb-8 border-b border-white/15" style={{ color: "rgba(245,246,241,0.65)" }}>
+              Por{" "}
+              <Link href="/professores" className="font-semibold text-white hover:underline underline-offset-2">
+                Equipe Falandou
+              </Link>{" "}
+              · Publicado em <time dateTime={article.created_at}>{fmt(article.created_at)}</time>
+              {updated !== article.created_at && (
+                <>
+                  {" "}· Revisado em <time dateTime={updated}>{fmt(updated)}</time>
+                </>
+              )}
+            </p>
+
+            {/* Sumário navegável nas páginas pilar (SEO §17) */}
+            {article.pilar && article.toc.length > 2 && (
+              <nav
+                aria-label="Neste guia"
+                className="mb-10 rounded-2xl p-6"
+                style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
+              >
+                <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+                  Neste guia
+                </p>
+                <ol className="grid gap-2 list-decimal pl-5 text-sm" style={{ color: "var(--color-text-body)" }}>
+                  {article.toc.map((h) => (
+                    <li key={h.id}>
+                      <a href={`#${h.id}`} className="link-hover">
+                        {h.text}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            )}
+
+            {/* Conteúdo — markdown; CTA de meio de artigo depois do 3º H2 (SEO §15) */}
             <div
               className="font-body text-base leading-relaxed prose-custom"
               style={{ color: "rgba(245,246,241,0.9)" }}
-              dangerouslySetInnerHTML={{ __html: article.conteudo }}
+              dangerouslySetInnerHTML={{ __html: contentA }}
             />
+            {contentB && (
+              <>
+                <aside
+                  className="my-10 rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center gap-4"
+                  style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)", borderLeft: "4px solid #FF6820" }}
+                >
+                  <p className="flex-1 text-base text-white">
+                    <strong>Quer praticar isso com um professor?</strong>{" "}
+                    <span style={{ color: "var(--color-text-body)" }}>
+                      Nas sessões individuais, você treina com o vocabulário e as situações do seu trabalho.
+                    </span>
+                  </p>
+                  <Link href="/metodo" className="cta-secondary inline-flex items-center justify-center px-5 py-3 rounded-full text-sm font-semibold flex-shrink-0">
+                    Ver como funciona a sessão individual
+                  </Link>
+                </aside>
+                <div
+                  className="font-body text-base leading-relaxed prose-custom"
+                  style={{ color: "rgba(245,246,241,0.9)" }}
+                  dangerouslySetInnerHTML={{ __html: contentB }}
+                />
+              </>
+            )}
+
+            {/* FAQ do artigo (SEO §15) — também vai no FAQPage schema */}
+            {article.faq.length > 0 && (
+              <section className="mt-14" aria-labelledby="faq-artigo">
+                <h2 id="faq-artigo" className="font-display font-extrabold text-white mb-6" style={{ fontSize: "var(--text-h3)" }}>
+                  Perguntas frequentes
+                </h2>
+                <div className="flex flex-col gap-3">
+                  {article.faq.map((f) => (
+                    <details key={f.q} className="group rounded-2xl p-5" style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
+                      <summary className="cursor-pointer list-none flex justify-between items-center gap-4 font-display font-bold text-base text-white">
+                        {f.q}
+                        <span className="text-xl transition-transform group-open:rotate-45" style={{ color: "#FF6820" }} aria-hidden="true">+</span>
+                      </summary>
+                      <p className="text-sm leading-relaxed mt-3" style={{ color: "var(--color-text-body)" }}>{f.a}</p>
+                    </details>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* Vídeo do canal relacionado (Arquitetura §6). Miniatura com link: nada do
                 YouTube carrega na página, então não há cookies de terceiros sem consentimento. */}
@@ -229,7 +326,7 @@ export default async function ArticlePage({
               style={{ backgroundColor: "var(--color-bg)" }}
             >
               <p className="font-body text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
-                Da leitura para a prática
+                Quer acelerar esse processo?
               </p>
               <h3 className="font-display font-extrabold text-white text-[length:var(--text-h3)] md:text-2xl mb-3">
                 {cta.heading}
@@ -246,7 +343,7 @@ export default async function ArticlePage({
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-7 py-4 rounded-full text-sm font-semibold text-white cta-primary">
                   <MessageCircle size={16} />
-                  Quero treinar isso nas sessões
+                  Quero começar
                 </a>
                 <Link
                   href={cta.related.href}
@@ -257,6 +354,19 @@ export default async function ArticlePage({
                 </Link>
               </div>
             </div>
+            {/* Sobre a escola (SEO §21) */}
+            <p className="mt-10 text-sm" style={{ color: "var(--color-text-muted)" }}>
+              <strong className="text-white">Sobre a Falandou:</strong> escola de inglês para profissionais, com sessões 1 a 1,
+              plano individual e exame CEFR antes e depois de cada ciclo de 90 dias.{" "}
+              <Link href="/sobre" className="cta-tertiary text-white font-semibold">
+                Conheça a escola
+              </Link>{" "}
+              ou{" "}
+              <Link href="/planos" className="cta-tertiary text-white font-semibold">
+                veja os planos e valores
+              </Link>
+              .
+            </p>
           </div>
 
           {/* ── Barra lateral (desktop) — Arquitetura §6 ── */}

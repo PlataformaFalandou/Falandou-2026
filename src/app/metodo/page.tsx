@@ -11,9 +11,9 @@ import JsonLd from "@/components/ui/JsonLd";
 import { PAUSE_RULE, RESCHEDULE_RULE, STUDENTS_PER_TEACHER } from "@/data/plans";
 import { faqSchema } from "@/lib/schema";
 export const metadata: Metadata = {
-  title: "Como Funciona | Falandou — Inglês Profissional",
+  title: "Método Falandou: o Ciclo de Inglês de 90 Dias | Falandou",
   description:
-    "O ciclo de 90 dias da Falandou: diagnóstico CEFR → plano individualizado → sessões 1 a 1 → avaliação de evolução. Processo claro, resultado em número.",
+    "Como funciona o método Falandou: exame CEFR, plano individual, sessões 1 a 1 e avaliação no fim de cada ciclo de 90 dias. Resultado medido em número.",
   alternates: {
     canonical: "/metodo/",
   },

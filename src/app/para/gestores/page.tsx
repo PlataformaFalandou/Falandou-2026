@@ -4,7 +4,7 @@ import ProfileLanding, { type ProfileData } from "@/components/sections/ProfileL
 export const metadata: Metadata = {
   title: "Inglês para Gestores e Líderes | Falandou",
   description:
-    "Inglês para gestores: conduzir a reunião com o time global, dar feedback, negociar e apresentar resultados para a matriz. Plano individual de 90 dias com exame CEFR.",
+    "Inglês para gestores e líderes: conduza reuniões, apresente para a diretoria e alinhe times globais com sessões 1 a 1 e exame CEFR no ciclo.",
   alternates: { canonical: "/para/gestores/" },
   openGraph: {
     title: "Inglês para Gestores e Líderes | Falandou",

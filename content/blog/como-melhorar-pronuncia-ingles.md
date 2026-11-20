@@ -1,11 +1,22 @@
 ---
-titulo: "Como melhorar sua pronúncia em inglês sem morar fora do Brasil"
-resumo: "Técnicas práticas usadas por professores de fonética para corrigir os erros mais comuns de brasileiros — sem precisar viajar."
-categoria: Método
+titulo: 'Pronúncia em inglês: como melhorar sem morar fora do Brasil'
+titulo_seo: Como Melhorar a Pronúncia em Inglês | Falandou
+resumo: Técnicas práticas usadas por professores de fonética para corrigir os erros mais comuns de brasileiros — sem precisar viajar.
+descricao: 'Como melhorar a pronúncia em inglês sem morar fora: os erros mais comuns de brasileiros, a técnica de shadowing e o que praticar para ser entendido.'
+categoria: Dicas de Estudo
+cluster: Carreira
+palavra_chave: como melhorar a pronúncia em inglês
 video: JBsRqQqR13c
-created_at: "2026-11-05T10:00:00.000Z"
-tempo_leitura: 5
+created_at: '2026-11-05T10:00:00.000Z'
+atualizado_em: '2026-11-20T10:00:00.000Z'
 publicado: true
+faq:
+- q: Preciso ter sotaque de nativo para trabalhar em inglês?
+  a: Não. O objetivo é ser entendido com clareza. Sotaque brasileiro com pronúncia clara funciona em qualquer reunião internacional.
+- q: O que é shadowing em inglês?
+  a: É repetir um áudio em inglês ao mesmo tempo que o falante, imitando ritmo e entonação. Com trechos curtos e prática frequente, a fala fica mais natural.
+- q: Quais sons os brasileiros mais erram em inglês?
+  a: 'Os mais comuns: o “th” de think e this, a diferença entre vogais curtas e longas (ship / sheep), a vogal extra no fim das palavras e a sílaba tônica errada.'
 ---
 
 ## O mito do sotaque perfeito
@@ -24,7 +35,7 @@ Exercício: grave a si mesmo dizendo "I work at a bank" e ouça se está adicion
 
 **2. Confundir /ɪ/ e /iː/**
 
-"Shit" e "sheet" são palavras diferentes por uma razão. O /ɪ/ (como em "sit") é uma vogal curta e relaxada. O /iː/ (como em "seat") é longa e tensa.
+"Ship" e "sheep" são palavras diferentes por uma razão. O /ɪ/ (como em "sit") é uma vogal curta e relaxada. O /iː/ (como em "seat") é longa e tensa.
 
 Prática: alterne entre "it / eat", "bit / beat", "fit / feet" até sentir a diferença muscular na boca.
 
@@ -57,3 +68,11 @@ Faça isso 10 minutos por dia. Em 30 dias, sua prosódia — o ritmo da fala —
 Praticar pronúncia de palavras do **seu setor** vale mais do que praticar palavras aleatórias. Um médico que pratica os 50 termos que usa em reuniões internacionais evolui mais rápido do que um médico que pratica listas genéricas de vocabulário.
 
 Mapeie as palavras que você usa — ou precisará usar — no trabalho. Aprenda a pronúncia correta de cada uma. Essa lista curta tem impacto desproporcional.
+
+## Para ir além
+
+- Leia [o guia de inglês profissional](/blog/como-aprender-ingles-profissional/).
+- Leia [como aplicar a pronúncia em apresentações](/blog/ingles-para-apresentacoes/).
+- Veja [como funcionam as sessões individuais com correção na hora](/metodo/).
+- Veja [os planos e valores](/planos/).
+

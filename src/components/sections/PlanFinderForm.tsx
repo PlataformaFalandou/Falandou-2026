@@ -152,7 +152,7 @@ export default function PlanFinderForm({ context = "plan-finder" }: { context?: 
         )}
       </button>
       <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
-        Pelo WhatsApp · resposta em até 1h · sem compromisso. Nada fica gravado no site.
+        Pelo WhatsApp · a equipe responde em até 1h. Nada fica gravado no site.
       </p>
     </form>
   );

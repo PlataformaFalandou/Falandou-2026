@@ -20,7 +20,7 @@ import { courseSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Inglês Executivo para Profissionais | Falandou",
   description:
-    "Inglês executivo para conduzir reuniões, apresentações e negociações com autoridade. Plano personalizado com professores especializados em 90 dias.",
+    "Inglês executivo para profissionais: tome a palavra em reuniões internacionais, conduza discussões e apresente com clareza. Sessões 1 a 1 e CEFR.",
   alternates: {
     canonical: "/ingles-executivo/",
   },

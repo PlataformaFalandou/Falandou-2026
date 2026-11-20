@@ -20,7 +20,7 @@ import { courseSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Inglês para Promoção de Cargo | Falandou",
   description:
-    "O inglês é o critério que define quem avança para cargos sênior e de liderança. Plano individualizado de 90 dias para profissionais que buscam crescimento na carreira.",
+    "Inglês para promoção de cargo: plano de 90 dias para conduzir reuniões, apresentar resultados e liderar em inglês, com exame CEFR no início e no fim.",
   alternates: {
     canonical: "/promocao-cargo/",
   },

@@ -12,9 +12,9 @@ import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import JsonLd from "@/components/ui/JsonLd";
 import { faqSchema } from "@/lib/schema";
 export const metadata: Metadata = {
-  title: "Resultados | Falandou — Inglês Profissional",
+  title: "Resultados em CEFR: 79% Subiram de Nível | Falandou",
   description:
-    "Resultados do último ciclo fechado da Falandou: 79% dos profissionais subiram pelo menos 1 nível CEFR em 90 dias. Veja como medimos, o que cada nível significa no trabalho e a distribuição completa.",
+    "Resultados da Falandou medidos em CEFR: 79% dos 87 profissionais do último ciclo subiram pelo menos um nível em 90 dias. Veja a metodologia completa.",
   alternates: { canonical: "/resultados/" },
   openGraph: {
     title: "Resultados medidos, não prometidos | Falandou",

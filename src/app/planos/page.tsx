@@ -12,9 +12,10 @@ import { COMMITMENT_DISCOUNTS, COMMITMENT_TEXT, INCLUDED_IN_ALL, PAUSE_RULE, PLA
 import JsonLd from "@/components/ui/JsonLd";
 import { courseSchema, faqSchema } from "@/lib/schema";
 export const metadata: Metadata = {
-  title: "Planos e Preços | Falandou",
+  // SEO §2: preço no título aumenta o CTR em páginas de planos.
+  title: `Planos de Inglês a partir de ${PRICE_FROM}/mês | Falandou`,
   description:
-    `Veja os planos de inglês profissional da Falandou: sessões individuais de 25 ou 50 minutos, plano personalizado e exame CEFR antes e depois. Planos a partir de ${PRICE_FROM}/mês.`,
+    `Planos de inglês 1 a 1 da Falandou: sessões de 25 ou 50 minutos, plano individual e exame CEFR antes e depois. A partir de ${PRICE_FROM}/mês, sem turma.`,
   alternates: { canonical: "/planos/" },
   openGraph: {
     title: "Planos e Preços | Falandou",

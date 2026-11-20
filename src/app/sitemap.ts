@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
-import { getArticles } from "@/lib/blog";
+import { getArticles, lastModified } from "@/lib/blog";
 
 // sitemap.xml gerado no build (Arquitetura §6 e §10). Com `output: "export"`,
 // o Next grava out/sitemap.xml estático. Ao criar uma página nova, inclua aqui.
@@ -40,11 +40,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: p.changeFrequency,
     priority: p.priority,
   }));
+  // SEO §5: posts 0.8 (pilares 0.85), data da última revisão.
   const posts = getArticles().map((a) => ({
     url: `${BASE}/blog/${a.slug}/`,
-    lastModified: new Date(a.created_at),
-    changeFrequency: "weekly" as const,
-    priority: 0.6,
+    lastModified: new Date(lastModified(a)),
+    changeFrequency: "monthly" as const,
+    priority: a.pilar ? 0.85 : 0.8,
   }));
   return [...pages, ...posts];
 }

@@ -21,10 +21,14 @@ import ScrollTracker from "@/components/ui/ScrollTracker";
 import JsonLd from "@/components/ui/JsonLd";
 import { organizationSchema } from "@/lib/schema";
 export const metadata: Metadata = {
+  title: "Inglês para Profissionais com Aulas 1 a 1 | Falandou",
+  description:
+    "Inglês para profissionais com sessões 1 a 1, plano individual e exame CEFR no início e no fim do ciclo de 90 dias. Mais de 600 profissionais formados.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Falandou — Inglês para Profissionais",
-    description: "Plano personalizado, sessões 1 a 1 e exame CEFR antes e depois de cada ciclo de 90 dias.",
+    title: "Inglês para Profissionais com Aulas 1 a 1 | Falandou",
+    description:
+    "Inglês para profissionais com sessões 1 a 1, plano individual e exame CEFR no início e no fim do ciclo de 90 dias. Mais de 600 profissionais formados.",
     type: "website",
     locale: "pt_BR",
     siteName: "Falandou",

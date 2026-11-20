@@ -10,9 +10,9 @@ import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import JsonLd from "@/components/ui/JsonLd";
 import { courseSchema, faqSchema } from "@/lib/schema";
 export const metadata: Metadata = {
-  title: "Inglês para Expatriação e Transferência Internacional | Falandou",
+  title: "Inglês para Expatriação e Mudança de País | Falandou",
   description:
-    "Sua transferência está confirmada. O inglês do dia a dia no trabalho é diferente do inglês de escola. Prepare-se para o contexto real do exterior em 90 dias.",
+    "Inglês para expatriação: prepare a mudança de país com sessões 1 a 1 para o trabalho e a vida no exterior, com plano individual e exame CEFR.",
   alternates: { canonical: "/ingles-expatriacao/" },
   openGraph: {
     title: "Inglês para Expatriação | Falandou",

@@ -14,7 +14,7 @@ import { absoluteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Vocabulário de Inglês Profissional por Área | Falandou",
   description:
-    "Glossário de inglês para o trabalho: termos de negócios, engenharia, direito e saúde com pronúncia, definição em português, exemplo de uso e nível CEFR sugerido.",
+    "Vocabulário de inglês profissional por área: negócios, engenharia, direito e saúde, com pronúncia, definição, exemplo de uso e nível CEFR sugerido.",
   alternates: { canonical: "/vocabulario/" },
   openGraph: {
     title: "Vocabulário de inglês profissional | Falandou",
@@ -91,6 +91,15 @@ export default function VocabularioPage() {
               </h2>
               <p className="reveal mb-10 text-base" style={{ color: "var(--color-text-muted)" }}>
                 {area.intro}
+                {area.guide && (
+                  <>
+                    {" "}
+                    <Link href={area.guide.href} className="cta-tertiary text-white font-semibold">
+                      {area.guide.label}
+                    </Link>
+                    .
+                  </>
+                )}
               </p>
               <dl className="grid md:grid-cols-2 gap-4">
                 {area.entries.map((e) => (

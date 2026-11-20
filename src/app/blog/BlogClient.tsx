@@ -4,7 +4,16 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Clock } from "lucide-react";
 import { categoryColor } from "@/data/blogCategories";
-import type { Article } from "@/lib/blog";
+/** Só o que o cartão usa — o conteúdo dos artigos não vai para o JavaScript do cliente. */
+export type ArticleCard = {
+  id: string;
+  slug: string;
+  titulo: string;
+  resumo: string;
+  categoria: string;
+  created_at: string;
+  tempo_leitura: number;
+};
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString("pt-BR", {
@@ -18,7 +27,7 @@ export default function BlogClient({
   articles,
   categories,
 }: {
-  articles: Article[];
+  articles: ArticleCard[];
   categories: string[];
 }) {
   const [activeCategory, setActiveCategory] = useState("Todos");
@@ -49,7 +58,7 @@ export default function BlogClient({
             className="px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200"
             style={{
               backgroundColor:
-                activeCategory === cat ? "#FF6820" : "white",
+                activeCategory === cat ? "#FF6820" : "transparent",
               color: activeCategory === cat ? "white" : "var(--color-text)",
               border:
                 activeCategory === cat
@@ -73,7 +82,7 @@ export default function BlogClient({
             <Link
               key={article.id}
               href={`/blog/${article.slug}`}
-              className="group flex flex-col bg-surface rounded-2xl overflow-hidden border border-white/10 hover:border-laranja/30 hover:shadow-md transition-all duration-300"
+              className="card-hover group flex flex-col bg-surface rounded-2xl overflow-hidden border border-white/10"
             >
               {/* Color header */}
               <div
@@ -95,12 +104,10 @@ export default function BlogClient({
                   >
                     {article.categoria}
                   </span>
-                  {article.tempo_leitura && (
-                    <span className="flex items-center gap-1 font-body text-xs text-ink/40">
-                      <Clock size={11} />
-                      {article.tempo_leitura} min
-                    </span>
-                  )}
+                  <span className="flex items-center gap-1 font-body text-xs text-ink/60">
+                    <Clock size={11} aria-hidden="true" />
+                    {article.tempo_leitura} min de leitura
+                  </span>
                 </div>
 
                 <h2 className="font-display font-bold text-ink text-base leading-snug mb-2 group-hover:text-laranja transition-colors line-clamp-2">
@@ -112,7 +119,7 @@ export default function BlogClient({
                 </p>
 
                 <div className="flex items-center justify-between mt-5">
-                  <span className="font-body text-xs text-ink/40">
+                  <span className="font-body text-xs text-ink/55">
                     {formatDate(article.created_at)}
                   </span>
                   <span
@@ -129,7 +136,7 @@ export default function BlogClient({
         </div>
       )}
 
-      <p className="font-body text-sm text-ink/40 mt-8 text-center">
+      <p className="font-body text-sm text-ink/55 mt-8 text-center">
         {filtered.length} artigo{filtered.length !== 1 ? "s" : ""} encontrado{filtered.length !== 1 ? "s" : ""}
       </p>
     </>

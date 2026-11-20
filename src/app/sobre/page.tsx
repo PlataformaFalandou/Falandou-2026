@@ -11,9 +11,9 @@ import { STATS } from "@/data/stats";
 import { STUDENTS_PER_TEACHER } from "@/data/plans";
 
 export const metadata: Metadata = {
-  title: "Sobre a Falandou | Escola de Inglês Profissional",
+  title: "Sobre a Falandou: Escola de Inglês Profissional",
   description:
-    "A Falandou é uma escola de inglês profissional: 600+ profissionais formados, 7+ anos de operação, plano individual, sessões 1 a 1 e exame CEFR antes e depois de cada ciclo.",
+    "Sobre a Falandou: escola de inglês para profissionais, com sessões 1 a 1, até 25 alunos por professor e exame CEFR no início e no fim de cada ciclo.",
   alternates: { canonical: "/sobre/" },
   openGraph: {
     title: "Sobre a Falandou",

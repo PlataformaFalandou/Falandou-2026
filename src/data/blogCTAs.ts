@@ -16,6 +16,11 @@ export const DEFAULT_BLOG_CTA: BlogCTA = {
 };
 
 export const BLOG_CTAS: Record<string, BlogCTA> = {
+  "ingles-juridico-advogados": {
+    heading: "Treine os contratos e as reuniões do seu escritório.",
+    text: "Nas sessões individuais, você trabalha com as cláusulas, os e-mails e as negociações da sua prática jurídica, com exame CEFR no início e no fim do ciclo.",
+    related: { href: "/vocabulario#direito", label: "Ver o vocabulário de Direito" },
+  },
   "como-aprender-ingles-profissional": {
     heading: "Saia do inglês de sala de aula para o inglês do seu trabalho.",
     text: "O ciclo de 90 dias parte de um diagnóstico CEFR e monta o plano em torno das situações que você enfrenta no trabalho.",

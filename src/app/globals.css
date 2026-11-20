@@ -461,3 +461,29 @@ img, video {
 }
 .prose-custom tr:last-child td { border-bottom: none; }
 .prose-custom tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+
+/* Links dentro dos artigos (SEO §14): visíveis como links, com o texto âncora descritivo */
+.prose-custom a {
+  color: #FF8A4C;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 150ms ease-out;
+}
+.prose-custom a:hover {
+  color: #fff;
+  text-decoration-color: var(--color-brand);
+}
+/* Tabelas largas rolam na horizontal no celular, sem estourar a página */
+@media (max-width: 767px) {
+  .prose-custom table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .prose-custom td,
+  .prose-custom th {
+    white-space: normal;
+    min-width: 140px;
+  }
+}

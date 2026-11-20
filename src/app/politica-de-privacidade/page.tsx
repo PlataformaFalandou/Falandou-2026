@@ -6,7 +6,8 @@ import { COMPANY } from "@/data/company";
 
 export const metadata: Metadata = {
   title: "Política de Privacidade | Falandou",
-  description: "Como a Falandou trata dados pessoais no site, de acordo com a LGPD (Lei 13.709/2018).",
+  description:
+    "Política de privacidade da Falandou: quais dados o site coleta, para que servem, cookies de medição com consentimento e como exercer os seus direitos.",
   alternates: { canonical: "/politica-de-privacidade/" },
 };
 

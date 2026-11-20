@@ -6,7 +6,8 @@ import { PAUSE_RULE, PLAN_TERMS, RESCHEDULE_RULE } from "@/data/plans";
 
 export const metadata: Metadata = {
   title: "Termos de Uso | Falandou",
-  description: "Condições de uso do site da Falandou.",
+  description:
+    "Termos de uso do site da Falandou: como o site funciona, o resumo das regras dos planos e onde ficam as condições completas do contrato do aluno.",
   alternates: { canonical: "/termos/" },
 };
 

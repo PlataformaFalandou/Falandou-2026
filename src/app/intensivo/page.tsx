@@ -14,8 +14,8 @@ import { INCLUDED_IN_ALL, PLAN_TERMS, getPlan, perSession, planWhatsAppMsg } fro
 const INT = getPlan("intensive");
 
 export const metadata: Metadata = {
-  title: "Plano Urgente — Inglês Intensivo para Profissionais | Falandou",
-  description: `Plano Urgente: ${INT.sessionsPerMonth} sessões individuais por mês, de 25 ou 50 minutos, para quem tem entrevista, promoção ou transferência com data marcada. A partir de ${INT.prices[25]}/mês.`,
+  title: "Inglês Intensivo: Plano Urgente | Falandou",
+  description: `Plano Urgente: ${INT.sessionsPerMonth} sessões 1 a 1 por mês para quem tem entrevista, promoção ou mudança com data marcada. Exame CEFR incluso. A partir de ${INT.prices[25]}/mês.`,
   alternates: { canonical: "/intensivo/" },
   openGraph: {
     title: "Plano Urgente | Falandou",

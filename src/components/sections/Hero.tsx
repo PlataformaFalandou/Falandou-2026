@@ -196,7 +196,7 @@ export default function Hero({
             </div>
             {/* Redução de fricção (§10) */}
             <p className="mt-3 text-sm" style={{ color: "var(--color-text-muted)" }}>
-              Pelo WhatsApp · resposta em até 1h · sem compromisso
+              Pelo WhatsApp · a equipe responde em até 1h
             </p>
           </div>
 

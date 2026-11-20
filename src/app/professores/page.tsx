@@ -9,9 +9,9 @@ import { TeacherCard, YouTubeLink } from "@/components/sections/Teachers";
 import { teachers } from "@/lib/teachers";
 
 export const metadata: Metadata = {
-  title: "Professores | Falandou — Inglês Profissional",
+  title: "Professores de Inglês da Falandou | Falandou",
   description:
-    "Conheça os professores da Falandou: formação e certificações verificáveis (Cambridge, CELTA, DELTA, IELTS, TOEFL). O professor de cada profissional é escolhido pelo diagnóstico CEFR.",
+    "Conheça os professores da Falandou: credenciais como Cambridge C2, CELTA e DELTA, especialidades e como a escola indica o professor certo para você.",
   alternates: {
     canonical: "/professores/",
   },

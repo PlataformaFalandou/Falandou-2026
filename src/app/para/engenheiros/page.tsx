@@ -4,7 +4,7 @@ import ProfileLanding, { type ProfileData } from "@/components/sections/ProfileL
 export const metadata: Metadata = {
   title: "Inglês para Engenheiros e Arquitetos | Falandou",
   description:
-    "Inglês para engenheiros e arquitetos: defender o projeto na call com o cliente de fora, revisar escopo, escrever relatórios técnicos. Plano individual de 90 dias com exame CEFR.",
+    "Inglês para engenheiros e arquitetos: sessões 1 a 1 com o vocabulário técnico do seu projeto, reuniões com times globais e exame CEFR no ciclo.",
   alternates: { canonical: "/para/engenheiros/" },
   openGraph: {
     title: "Inglês para Engenheiros e Arquitetos | Falandou",

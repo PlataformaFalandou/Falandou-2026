@@ -9,7 +9,7 @@ import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 export const metadata: Metadata = {
   title: "Indique um colega | Falandou",
   description:
-    "Indique um colega para a Falandou: quando ele fechar um plano, vocês dois ganham 4 sessões individuais bônus.",
+    "Indique um colega para a Falandou: compartilhe o link pelo WhatsApp ou LinkedIn e ajude outro profissional a destravar o inglês no trabalho.",
   alternates: { canonical: "/indique/" },
   openGraph: {
     title: "Indique um colega — vocês dois ganham 4 sessões bônus | Falandou",
