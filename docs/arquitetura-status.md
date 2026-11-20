@@ -41,7 +41,7 @@ das seções 11 (gaps) e 12 (princípios).
 ## Pendências fora do código
 
 1. Configurar os secrets do Pixel e do GA4 no GitHub e rodar o deploy.
-2. Cadastrar o site no Google Search Console e enviar `https://2026.falandou.com/sitemap.xml`.
+2. Google Search Console: **só no domínio definitivo** (falandou.com), na migração. O 2026.falandou.com é temporário e fica fora do Google (noindex). Ver `docs/migracao-dominio.md`.
 3. Publicar 2 artigos por mês, com revisão editorial.
 4. Coletar depoimentos ao fim de cada ciclo ([guia](coleta-depoimentos.md)) — com nível antes/depois.
 5. Revisão jurídica da política de privacidade e dos termos.

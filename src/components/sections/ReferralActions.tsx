@@ -9,9 +9,10 @@
 
 import { useState } from "react";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { absoluteUrl } from "@/lib/site";
 import { trackCTAClick, trackReferralShare } from "@/lib/analytics";
 
-const PAGE_URL = "https://2026.falandou.com/indique";
+const PAGE_URL = absoluteUrl("/indique/");
 
 const SHARE_TEXT =
   `Estou fazendo inglês profissional na Falandou: plano individual, sessões 1 a 1 e exame CEFR antes e depois. ` +

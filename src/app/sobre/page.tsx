@@ -14,11 +14,11 @@ export const metadata: Metadata = {
   title: "Sobre a Falandou | Escola de Inglês Profissional",
   description:
     "A Falandou é uma escola de inglês profissional: 600+ profissionais formados, 7+ anos de operação, plano individual, sessões 1 a 1 e exame CEFR antes e depois de cada ciclo.",
-  alternates: { canonical: "https://2026.falandou.com/sobre" },
+  alternates: { canonical: "/sobre/" },
   openGraph: {
     title: "Sobre a Falandou",
     description: "Escola de inglês profissional — plano individual, sessões 1 a 1 e resultado medido em CEFR.",
-    url: "https://2026.falandou.com/sobre",
+    url: "/sobre/",
   },
 };
 

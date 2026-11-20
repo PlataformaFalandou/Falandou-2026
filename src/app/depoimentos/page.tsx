@@ -12,11 +12,11 @@ export const metadata: Metadata = {
   title: "Depoimentos | Falandou — Inglês Profissional",
   description:
     "O que dizem profissionais de empresas como IBM, Accenture, Amazon e Google depois do ciclo de inglês profissional da Falandou.",
-  alternates: { canonical: "https://2026.falandou.com/depoimentos" },
+  alternates: { canonical: "/depoimentos/" },
   openGraph: {
     title: "Depoimentos | Falandou",
     description: "Profissionais contam o que mudou no inglês do trabalho depois do ciclo de 90 dias.",
-    url: "https://2026.falandou.com/depoimentos",
+    url: "/depoimentos/",
   },
 };
 

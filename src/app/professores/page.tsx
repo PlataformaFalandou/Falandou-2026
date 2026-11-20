@@ -12,13 +12,13 @@ export const metadata: Metadata = {
   description:
     "Conheça os professores da Falandou: formação e certificações verificáveis (Cambridge, CELTA, DELTA, IELTS, TOEFL). O professor de cada profissional é escolhido pelo diagnóstico CEFR.",
   alternates: {
-    canonical: "https://2026.falandou.com/professores",
+    canonical: "/professores/",
   },
   openGraph: {
     title: "Professores | Falandou",
     description:
       "Formação e certificações verificáveis. Seu professor é escolhido pelo diagnóstico CEFR e pelo seu objetivo profissional.",
-    url: "https://2026.falandou.com/professores",
+    url: "/professores/",
   },
 };
 

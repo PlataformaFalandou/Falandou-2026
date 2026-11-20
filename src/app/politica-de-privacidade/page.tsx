@@ -7,7 +7,7 @@ import { COMPANY } from "@/data/company";
 export const metadata: Metadata = {
   title: "Política de Privacidade | Falandou",
   description: "Como a Falandou trata dados pessoais no site, de acordo com a LGPD (Lei 13.709/2018).",
-  alternates: { canonical: "https://2026.falandou.com/politica-de-privacidade" },
+  alternates: { canonical: "/politica-de-privacidade/" },
 };
 
 // Arquitetura da Informação §1 / gap 1 (LGPD). Descreve o que o site faz de fato:

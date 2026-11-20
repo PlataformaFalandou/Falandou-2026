@@ -13,13 +13,13 @@ export const metadata: Metadata = {
   description:
     "O ciclo de 90 dias da Falandou: diagnóstico CEFR → plano individualizado → sessões 1 a 1 → avaliação de evolução. Processo claro, resultado em número.",
   alternates: {
-    canonical: "https://2026.falandou.com/metodo",
+    canonical: "/metodo/",
   },
   openGraph: {
     title: "Como Funciona | Falandou",
     description:
       "Diagnóstico técnico, plano individual, sessões 1 a 1 e exame de evolução. O ciclo de 90 dias que transforma inglês travado em inglês funcional.",
-    url: "https://2026.falandou.com/metodo",
+    url: "/metodo/",
   },
 };
 

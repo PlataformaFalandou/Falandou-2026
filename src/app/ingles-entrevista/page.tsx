@@ -13,12 +13,12 @@ export const metadata: Metadata = {
   title: "Inglês para Entrevista de Emprego | Falandou",
   description:
     "Você tem o perfil. A entrevista em inglês não pode ser o gargalo. Prepare-se com plano individual, simulações reais e resultado em 90 dias.",
-  alternates: { canonical: "https://2026.falandou.com/ingles-entrevista" },
+  alternates: { canonical: "/ingles-entrevista/" },
   openGraph: {
     title: "Inglês para Entrevista de Emprego | Falandou",
     description:
       "Sua entrevista em inglês está chegando. Prepare-se com plano individual e simulações reais.",
-    url: "https://2026.falandou.com/ingles-entrevista",
+    url: "/ingles-entrevista/",
   },
 };
 

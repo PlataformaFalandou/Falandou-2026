@@ -22,13 +22,13 @@ export const metadata: Metadata = {
   description:
     "Inglês executivo para conduzir reuniões, apresentações e negociações com autoridade. Plano personalizado com professores especializados em 90 dias.",
   alternates: {
-    canonical: "https://2026.falandou.com/ingles-executivo",
+    canonical: "/ingles-executivo/",
   },
   openGraph: {
     title: "Inglês Executivo para Profissionais | Falandou",
     description:
       "Conduza reuniões e apresentações com autoridade. Plano individual de 90 dias focado no seu contexto profissional.",
-    url: "https://2026.falandou.com/ingles-executivo",
+    url: "/ingles-executivo/",
   },
 };
 

@@ -10,11 +10,11 @@ export const metadata: Metadata = {
   title: "Indique um colega | Falandou",
   description:
     "Indique um colega para a Falandou: quando ele fechar um plano, vocês dois ganham 4 sessões individuais bônus.",
-  alternates: { canonical: "https://2026.falandou.com/indique" },
+  alternates: { canonical: "/indique/" },
   openGraph: {
     title: "Indique um colega — vocês dois ganham 4 sessões bônus | Falandou",
     description: "Inglês profissional com plano individual, sessões 1 a 1 e exame CEFR antes e depois.",
-    url: "https://2026.falandou.com/indique",
+    url: "/indique/",
   },
 };
 

@@ -7,7 +7,7 @@ import { PAUSE_RULE, PLAN_TERMS, RESCHEDULE_RULE } from "@/data/plans";
 export const metadata: Metadata = {
   title: "Termos de Uso | Falandou",
   description: "Condições de uso do site da Falandou.",
-  alternates: { canonical: "https://2026.falandou.com/termos" },
+  alternates: { canonical: "/termos/" },
 };
 
 // Arquitetura da Informação §1 / gap 1. Escopo decidido: só o uso do site —

@@ -13,12 +13,12 @@ export const metadata: Metadata = {
   title: "Inglês para Expatriação e Transferência Internacional | Falandou",
   description:
     "Sua transferência está confirmada. O inglês do dia a dia no trabalho é diferente do inglês de escola. Prepare-se para o contexto real do exterior em 90 dias.",
-  alternates: { canonical: "https://2026.falandou.com/ingles-expatriacao" },
+  alternates: { canonical: "/ingles-expatriacao/" },
   openGraph: {
     title: "Inglês para Expatriação | Falandou",
     description:
       "Transferência confirmada. Prepare seu inglês profissional para o ambiente real do exterior.",
-    url: "https://2026.falandou.com/ingles-expatriacao",
+    url: "/ingles-expatriacao/",
   },
 };
 

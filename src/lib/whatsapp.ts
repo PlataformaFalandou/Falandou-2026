@@ -1,3 +1,4 @@
+import { SITE_URL } from "@/lib/site";
 export const WHATSAPP_NUMBER = "5511971419047";
 
 export function getWhatsAppUrl(message?: string): string {
@@ -53,9 +54,8 @@ export function linkedinUrl(
   page: "home" | "planos" | "metodo" | "ingles-entrevista" | "ingles-executivo" | "ingles-expatriacao" | "promocao-cargo" | "intensivo" | string,
   campaign?: string
 ): string {
-  const BASE = "https://2026.falandou.com";
   const path = page === "home" ? "/" : `/${page}`;
-  return withUTM(`${BASE}${path}`, "linkedin", campaign);
+  return withUTM(`${SITE_URL}${path}`, "linkedin", campaign);
 }
 
 export function getWhatsAppUrlForContext(context: string): string {

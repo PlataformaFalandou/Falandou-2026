@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
 import { getArticles } from "@/lib/blog";
 
 // sitemap.xml gerado no build (Arquitetura §6 e §10). Com `output: "export"`,
 // o Next grava out/sitemap.xml estático. Ao criar uma página nova, inclua aqui.
 export const dynamic = "force-static";
 
-const BASE = "https://2026.falandou.com";
+const BASE = SITE_URL;
 
 type Entry = { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] };
 

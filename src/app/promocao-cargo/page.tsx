@@ -22,13 +22,13 @@ export const metadata: Metadata = {
   description:
     "O inglês é o critério que define quem avança para cargos sênior e de liderança. Plano individualizado de 90 dias para profissionais que buscam crescimento na carreira.",
   alternates: {
-    canonical: "https://2026.falandou.com/promocao-cargo",
+    canonical: "/promocao-cargo/",
   },
   openGraph: {
     title: "Inglês para Promoção de Cargo | Falandou",
     description:
       "Desbloqueie o próximo nível da sua carreira com inglês profissional. Plano de 90 dias para liderar times, conduzir reuniões e passar em seletivas internacionais.",
-    url: "https://2026.falandou.com/promocao-cargo",
+    url: "/promocao-cargo/",
   },
 };
 

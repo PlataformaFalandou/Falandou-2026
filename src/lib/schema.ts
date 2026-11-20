@@ -1,10 +1,11 @@
 // Dados estruturados (schema.org) — Arquitetura da Informação §10.
 // Renderizados com <JsonLd data={...} /> (src/components/ui/JsonLd.tsx).
 import { COMPANY } from "@/data/company";
+import { SITE_URL } from "@/lib/site";
 import { DURATIONS, PLANS, priceValue } from "@/data/plans";
 import { YOUTUBE_CHANNEL_URL } from "@/lib/teachers";
 
-const BASE = "https://2026.falandou.com";
+const BASE = SITE_URL;
 
 const ORG_REF = { "@type": "EducationalOrganization", name: COMPANY.legalName, url: `${BASE}/` };
 

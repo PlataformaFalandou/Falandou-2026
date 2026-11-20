@@ -14,11 +14,11 @@ export const metadata: Metadata = {
   title: "Resultados | Falandou — Inglês Profissional",
   description:
     "Resultados do último ciclo fechado da Falandou: 79% dos profissionais subiram pelo menos 1 nível CEFR em 90 dias. Veja como medimos, o que cada nível significa no trabalho e a distribuição completa.",
-  alternates: { canonical: "https://2026.falandou.com/resultados" },
+  alternates: { canonical: "/resultados/" },
   openGraph: {
     title: "Resultados medidos, não prometidos | Falandou",
     description: "Exame CEFR antes e depois de cada ciclo de 90 dias. Metodologia e distribuição completa.",
-    url: "https://2026.falandou.com/resultados",
+    url: "/resultados/",
   },
 };
 

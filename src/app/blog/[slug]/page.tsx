@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { absoluteUrl } from "@/lib/site";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ChevronRight, Clock, MessageCircle, PlayCircle } from "lucide-react";
@@ -23,7 +24,7 @@ export async function generateMetadata({
   const cover = article.imagem_capa
     ? article.imagem_capa.startsWith("http")
       ? article.imagem_capa
-      : `https://2026.falandou.com${article.imagem_capa}`
+      : absoluteUrl(article.imagem_capa)
     : null;
 
   return {
@@ -73,7 +74,7 @@ export default async function ArticlePage({
     ...others.filter((a) => a.categoria !== article.categoria),
   ].slice(0, 3);
   const categories = getCategories().filter((c) => c !== "Todos");
-  const url = `https://2026.falandou.com/blog/${slug}/`;
+  const url = absoluteUrl(`/blog/${slug}/`);
 
   return (
     <>
@@ -99,17 +100,17 @@ export default async function ArticlePage({
                   ? {
                       image: article.imagem_capa.startsWith("http")
                         ? article.imagem_capa
-                        : `https://2026.falandou.com${article.imagem_capa}`,
+                        : absoluteUrl(article.imagem_capa),
                     }
                   : {}),
-                author: { "@type": "Organization", name: "Falandou", url: "https://2026.falandou.com/" },
-                publisher: { "@type": "Organization", name: "Falandou", url: "https://2026.falandou.com/" },
+                author: { "@type": "Organization", name: "Falandou", url: absoluteUrl("/") },
+                publisher: { "@type": "Organization", name: "Falandou", url: absoluteUrl("/") },
               },
               {
                 "@type": "BreadcrumbList",
                 itemListElement: [
-                  { "@type": "ListItem", position: 1, name: "Início", item: "https://2026.falandou.com/" },
-                  { "@type": "ListItem", position: 2, name: "Blog", item: "https://2026.falandou.com/blog/" },
+                  { "@type": "ListItem", position: 1, name: "Início", item: absoluteUrl("/") },
+                  { "@type": "ListItem", position: 2, name: "Blog", item: absoluteUrl("/blog/") },
                   { "@type": "ListItem", position: 3, name: article.titulo, item: url },
                 ],
               },

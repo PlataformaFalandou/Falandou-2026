@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { SITE_HOST } from "@/lib/site";
 
 // Imagem de compartilhamento (og:image) gerada no build — Arquitetura §10:
 // uma por página, com o título dela sobre o fundo da marca. 1200×630.
@@ -43,7 +44,7 @@ export function ogImage(eyebrow: string, title: string) {
           </div>
         </div>
         <div style={{ display: "flex", fontSize: 24, color: "rgba(255,255,255,0.6)" }}>
-          2026.falandou.com · Plano individual · Sessões 1 a 1 · Exame CEFR antes e depois
+          {SITE_HOST} · Plano individual · Sessões 1 a 1 · Exame CEFR antes e depois
         </div>
       </div>
     ),

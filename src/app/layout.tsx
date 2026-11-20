@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_INDEXABLE, SITE_URL } from "@/lib/site";
 import "./globals.css";
 import AnalyticsProvider from "@/components/ui/AnalyticsProvider";
 import EntrySegment from "@/components/ui/EntrySegment";
@@ -8,7 +9,9 @@ import CookieBanner from "@/components/ui/CookieBanner";
 // para o domínio do site. Sem `url`/`canonical` aqui: cada página define os seus
 // (antes o og:url herdado apontava para falandou.com em várias páginas).
 export const metadata: Metadata = {
-  metadataBase: new URL("https://2026.falandou.com"),
+  metadataBase: new URL(SITE_URL),
+  // Domínio temporário fora do Google; liga sozinho no domínio definitivo (src/lib/site.ts).
+  ...(SITE_INDEXABLE ? {} : { robots: { index: false, follow: false } }),
   title: "Falandou — Inglês para Profissionais",
   description: "Aprenda inglês com foco no seu objetivo profissional. Plano personalizado, professores especializados e acompanhamento ativo. Junte-se a mais de 600 profissionais que já evoluíram com a Falandou.",
   keywords: ["inglês profissional", "curso de inglês", "inglês para trabalho", "inglês executivo", "falandou"],
