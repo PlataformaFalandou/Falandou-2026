@@ -14,3 +14,11 @@ RedirectMatch 301 ^/entrevista-emprego/?$ /ingles-entrevista/
 
 # Turma online removida (a escola nao vende esse formato).
 RedirectMatch 301 ^/turma-online/?$ /planos/
+
+# PWA (UX/UI §16): tipo correto do manifest e service worker sempre atualizado.
+AddType application/manifest+json .webmanifest
+<IfModule mod_headers.c>
+  <Files "sw.js">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </Files>
+</IfModule>

@@ -21,7 +21,7 @@ export default function CTASection({
   return (
     <section className="py-24 md:py-32" style={{ backgroundColor: "#FF6820" }}>
       <div className="max-w-3xl mx-auto px-6 text-center">
-        <h2 className="font-display font-extrabold text-white leading-tight mb-4" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+        <h2 className="font-display font-extrabold text-white leading-tight mb-4" style={{ fontSize: "var(--text-h2)" }}>
           {heading}
         </h2>
         <p className="font-body text-lg mb-10" style={{ color: "rgba(255,255,255,0.8)" }}>
@@ -33,7 +33,7 @@ export default function CTASection({
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-10 py-5 rounded-full text-base font-bold transition-all duration-200 hover:scale-105 active:scale-95"
-            style={{ backgroundColor: "#161616", color: "white" }}
+            style={{ backgroundColor: "var(--color-bg)", color: "white" }}
           >
             Quero começar
           </a>

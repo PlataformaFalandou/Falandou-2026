@@ -42,7 +42,7 @@ const steps: { number: string; title: React.ReactNode; description: string }[] =
 
 export default function Journey() {
   return (
-    <section id="como-funciona" className="py-24 md:py-32 bg-white">
+    <section id="como-funciona" className="py-24 md:py-32 bg-surface">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-14 md:mb-16">
@@ -51,13 +51,13 @@ export default function Journey() {
           </p>
           <h2
             className="reveal font-display font-extrabold leading-tight delay-100"
-            style={{ fontSize: "clamp(2rem, 4vw, 3rem)", color: "#161616" }}
+            style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}
           >
             Sua jornada de{" "}
             <span style={{ color: "#FF6820" }}>90 dias</span>{" "}
             para o inglês profissional.
           </h2>
-          <p className="reveal font-body text-lg mt-4 delay-200" style={{ color: "rgba(22,22,22,0.55)" }}>
+          <p className="reveal font-body text-lg mt-4 delay-200" style={{ color: "rgba(245,246,241,0.65)" }}>
             Cinco etapas, do diagnóstico ao resultado medido.
           </p>
         </div>
@@ -74,7 +74,7 @@ export default function Journey() {
             <li
               key={step.number}
               className="reveal relative flex md:flex-col items-start md:items-center gap-4 md:gap-0 md:text-center rounded-2xl p-5 md:p-6"
-              style={{ backgroundColor: "#F5F6F1", transitionDelay: `${i * 60}ms` }}
+              style={{ backgroundColor: "var(--color-bg-alt)", transitionDelay: `${i * 60}ms` }}
             >
               <span
                 className="relative z-10 flex-shrink-0 w-11 h-11 md:w-12 md:h-12 md:-mt-1 md:mb-5 rounded-full flex items-center justify-center font-display font-black text-sm text-white shadow-md"
@@ -83,10 +83,10 @@ export default function Journey() {
                 {step.number}
               </span>
               <div>
-                <h3 className="font-display font-extrabold text-lg mb-1.5" style={{ color: "#161616" }}>
+                <h3 className="font-display font-extrabold text-lg lg:text-xl mb-1.5" style={{ color: "var(--color-text)" }}>
                   {step.title}
                 </h3>
-                <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(22,22,22,0.6)" }}>
+                <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(245,246,241,0.7)" }}>
                   {step.description}
                 </p>
               </div>
@@ -96,7 +96,7 @@ export default function Journey() {
 
         {/* CTA — o detalhe do plano sai da conversa, não da página */}
         <div className="mt-14 md:mt-16 text-center">
-          <p className="font-body text-base mb-6" style={{ color: "rgba(22,22,22,0.55)" }}>
+          <p className="font-body text-base mb-6" style={{ color: "rgba(245,246,241,0.65)" }}>
             O detalhe do seu plano sai do diagnóstico. Quer ver como fica o seu?
           </p>
           <a
@@ -104,9 +104,7 @@ export default function Journey() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackCTAClick("journey")}
-            className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white transition-all duration-300 hover:opacity-90 hover:scale-105"
-            style={{ backgroundColor: "#FF6820" }}
-          >
+            className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white cta-primary">
             Quero começar
           </a>
           {/* Arquitetura §5: rota de aprofundamento antes da decisão */}
@@ -114,7 +112,7 @@ export default function Journey() {
             <Link
               href="/metodo"
               className="font-body text-sm font-semibold underline underline-offset-4"
-              style={{ color: "rgba(22,22,22,0.55)" }}
+              style={{ color: "rgba(245,246,241,0.65)" }}
             >
               Ver o método completo →
             </Link>

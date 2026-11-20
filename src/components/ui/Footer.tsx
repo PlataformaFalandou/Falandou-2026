@@ -26,21 +26,26 @@ const LinkedinIcon = () => (
   </svg>
 );
 
-const footerLinks = {
+// UX/UI §14: 4 colunas no desktop, 2 no celular — Falandou · Escola · Legal · Contato.
+const footerLinks: Record<string, { label: string; href: string }[]> = {
   Escola: [
-    { label: "Sobre a Falandou", href: "/sobre" },
-    { label: "Como funciona", href: "/#como-funciona" },
-    { label: "Para quem é", href: "/#para-quem" },
-    { label: "Depoimentos", href: "/depoimentos" },
-    { label: "Resultados", href: "/resultados" },
+    { label: "Planos e valores", href: "/planos" },
     { label: "Professores", href: "/professores" },
+    { label: "Método", href: "/metodo" },
+    { label: "Resultados", href: "/resultados" },
+    { label: "Depoimentos", href: "/depoimentos" },
+    { label: "Perguntas frequentes", href: "/#faq" },
+    { label: "Sobre a Falandou", href: "/sobre" },
+    { label: "Blog", href: "/blog" },
+    { label: "Vocabulário profissional", href: "/vocabulario" },
     { label: "Indique um colega", href: "/indique" },
     { label: "Para empresas", href: "/planos#empresas" },
-  ],
-  Recursos: [
-    { label: "Blog", href: "/blog" },
-    { label: "Exame CEFR", href: "/blog/diferenca-cefr-niveis-ingles" },
     { label: "Plataforma do aluno", href: "https://falandou-hub-learn.lovable.app" },
+  ],
+  Legal: [
+    { label: "Termos de uso", href: "/termos" },
+    { label: "Política de privacidade", href: "/politica-de-privacidade" },
+    { label: "LGPD e seus dados", href: "/politica-de-privacidade" },
   ],
   Contato: [
     { label: "WhatsApp", href: getWhatsAppUrlForContext("cta") },
@@ -50,18 +55,18 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer style={{ backgroundColor: "#161616" }} className="text-white">
-      {/* Final CTA strip */}
+    <footer style={{ backgroundColor: "#161616" }} className="text-white border-t border-white/5">
+      {/* Faixa de CTA acima do rodapé: última chance antes de sair (§14) */}
       <div
         className="border-b border-white/5 py-12"
-        style={{ background: "linear-gradient(135deg, rgba(255,104,32,0.12) 0%, transparent 50%)" }}
+        style={{ background: "linear-gradient(135deg, rgba(255,104,32,0.14) 0%, transparent 55%)" }}
       >
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <h3 className="font-display font-extrabold text-2xl md:text-3xl text-white mb-1">
-              Cada processo seletivo sem inglês é uma porta a menos.
-            </h3>
-            <p className="font-body text-white/50 text-sm">
+            <p className="font-display font-extrabold text-2xl md:text-3xl text-white mb-1">
+              Comece a sua jornada CEFR.
+            </p>
+            <p className="text-sm" style={{ color: "rgba(245,246,241,0.6)" }}>
               Em 90 dias você tem o resultado medido no exame CEFR. A equipe responde em até 1h.
             </p>
           </div>
@@ -69,30 +74,27 @@ export default function Footer() {
             href={getWhatsAppUrlForContext("cta")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-7 py-4 rounded-full text-sm font-semibold text-white transition-all duration-200 hover:scale-105 active:scale-95 flex-shrink-0"
-            style={{ backgroundColor: "#FF6820" }}
+            className="cta-primary self-start md:self-auto inline-flex items-center justify-center gap-2 min-w-[220px] px-7 py-4 rounded-full text-base font-bold flex-shrink-0"
           >
-            <MessageCircle size={18} />
+            <MessageCircle size={18} aria-hidden="true" />
             Quero começar
           </a>
         </div>
       </div>
 
-      {/* Main footer */}
-      <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-2 md:grid-cols-5 gap-10">
-        {/* Brand */}
-        <div className="col-span-2">
+      {/* Colunas */}
+      <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-2 md:grid-cols-4 gap-10">
+        {/* Falandou: logo + tagline + redes */}
+        <div className="col-span-2 md:col-span-1">
           <Link href="/" className="inline-block mb-4">
             <span className="font-display font-extrabold text-2xl text-white tracking-tight">
               Falandou<span style={{ color: "#FF6820" }}>.</span>
             </span>
           </Link>
-          <p className="font-body text-white/50 text-sm leading-relaxed max-w-xs">
-            Inglês profissional para quem precisa de resultado. Plano personalizado, professores especializados e acompanhamento ativo.
+          <p className="text-sm leading-relaxed max-w-xs" style={{ color: "rgba(245,246,241,0.6)" }}>
+            Inglês profissional, 1 a 1, com resultado medido no exame CEFR.
           </p>
-
-          {/* Social */}
-          <div className="flex gap-3 mt-6">
+          <div className="flex gap-2 mt-6">
             {[
               { Icon: InstagramIcon, href: "https://instagram.com/falandou", label: "Instagram" },
               { Icon: YoutubeIcon, href: "https://youtube.com/@falandou", label: "YouTube" },
@@ -104,8 +106,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-laranja hover:border-laranja transition-colors duration-200"
-                style={{ "--laranja": "#FF6820" } as React.CSSProperties}
+                className="w-11 h-11 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-laranja hover:border-laranja transition-colors duration-200"
               >
                 <Icon />
               </a>
@@ -113,40 +114,48 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Links */}
         {Object.entries(footerLinks).map(([title, links]) => (
           <div key={title}>
-            <h4 className="font-display font-semibold text-sm text-white mb-4">{title}</h4>
-            <ul className="space-y-2.5">
-              {links.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    target={link.href.startsWith("http") ? "_blank" : undefined}
-                    rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="font-body text-sm text-white/50 hover:text-laranja transition-colors duration-200"
-                    style={{ "--laranja": "#FF6820" } as React.CSSProperties}
-                  >
-                    {link.label}
-                  </a>
+            <p className="font-display font-semibold text-sm text-white mb-4">{title}</p>
+            <ul className="space-y-1">
+              {links.map((link) => {
+                const external = link.href.startsWith("http");
+                return (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      target={external ? "_blank" : undefined}
+                      rel={external ? "noopener noreferrer" : undefined}
+                      className="link-hover inline-flex items-center min-h-[36px] text-sm"
+                      style={{ color: "rgba(245,246,241,0.65)" }}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                );
+              })}
+              {title === "Legal" && (
+                <li>
+                  <CookiePreferencesButton className="link-hover inline-flex items-center min-h-[36px] text-sm text-left text-[rgba(245,246,241,0.65)]" />
                 </li>
-              ))}
+              )}
             </ul>
+            {title === "Contato" && (
+              <p className="mt-3 text-xs leading-relaxed" style={{ color: "rgba(245,246,241,0.5)" }}>
+                Atendimento pelo WhatsApp e por e-mail. Resposta em até 1h.
+              </p>
+            )}
           </div>
         ))}
       </div>
 
-      {/* Bottom bar */}
+      {/* Rodapé */}
       <div className="border-t border-white/5 py-5">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-2">
-          <p className="font-body text-xs text-white/30 text-center md:text-left">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-2 text-xs" style={{ color: "rgba(245,246,241,0.45)" }}>
+          <p className="text-center md:text-left">
             © {new Date().getFullYear()} {COMPANY.legalName}. Todos os direitos reservados.
           </p>
-          <div className="flex flex-wrap justify-center gap-x-5 gap-y-1 font-body text-xs text-white/40">
-            <Link href="/politica-de-privacidade" className="hover:text-white transition-colors">Política de privacidade</Link>
-            <Link href="/termos" className="hover:text-white transition-colors">Termos de uso</Link>
-            <CookiePreferencesButton className="hover:text-white transition-colors" />
-          </div>
+          <p>Escola de inglês online · Brasil</p>
         </div>
       </div>
     </footer>

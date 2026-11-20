@@ -79,7 +79,7 @@ export default function InglesExpatriacaoPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="conteudo">
         {/* Dados estruturados — Arquitetura §10 */}
         <JsonLd data={courseSchema({ name: "Inglês para trabalhar no exterior", description: "Preparação individual para o inglês do trabalho em transferências internacionais.", path: "/ingles-expatriacao/" })} />
         <JsonLd data={faqSchema(faqs)} />
@@ -87,7 +87,7 @@ export default function InglesExpatriacaoPage() {
         {/* ── HERO: momento de vida ── */}
         <section
           className="pt-40 pb-28 md:pt-52 md:pb-36"
-          style={{ backgroundColor: "#161616" }}
+          style={{ backgroundColor: "var(--color-bg)" }}
         >
           <div className="max-w-4xl mx-auto px-6">
             {/* Urgency badge */}
@@ -95,13 +95,13 @@ export default function InglesExpatriacaoPage() {
               className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold"
               style={{ background: "rgba(255,104,32,0.15)", color: "#FF6820", border: "1px solid rgba(255,104,32,0.3)" }}
             >
-              <span className="w-2 h-2 rounded-full bg-current animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-current" />
               Transferência internacional confirmada
             </div>
 
             <h1
               className="font-display font-extrabold text-white leading-tight mb-6"
-              style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
+              style={{ fontSize: "var(--text-h1)" }}
             >
               Transferência confirmada.<br />
               O inglês do trabalho lá fora{" "}
@@ -126,9 +126,8 @@ export default function InglesExpatriacaoPage() {
                 href={getWhatsAppUrlForContext("ingles-expatriacao-urgente")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-5 rounded-full text-base font-bold transition-all duration-200 hover:scale-105"
-                style={{ backgroundColor: "#FF6820", color: "white" }}
-              >
+                className="inline-flex items-center justify-center gap-2 px-8 py-5 rounded-full text-base font-bold cta-primary"
+                style={{ color: "white" }}>
                 Quero me preparar para o exterior
               </a>
               <a
@@ -157,7 +156,7 @@ export default function InglesExpatriacaoPage() {
         </section>
 
         {/* ── SITUATIONS: cada desafio real da expatriação ── */}
-        <section id="situacoes" className="py-24 md:py-32" style={{ backgroundColor: "#F5F6F1" }}>
+        <section id="situacoes" className="py-24 md:py-32" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center max-w-2xl mx-auto mb-16">
               <p className="font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
@@ -165,11 +164,11 @@ export default function InglesExpatriacaoPage() {
               </p>
               <h2
                 className="font-display font-extrabold leading-tight"
-                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}
+                style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}
               >
                 Inglês de escola não prepara para isso.
               </h2>
-              <p className="font-body text-base mt-4" style={{ color: "rgba(22,22,22,0.55)" }}>
+              <p className="font-body text-base mt-4" style={{ color: "rgba(245,246,241,0.65)" }}>
                 Cada situação abaixo é um inglês diferente. Preparamos você para cada uma delas.
               </p>
             </div>
@@ -178,8 +177,8 @@ export default function InglesExpatriacaoPage() {
               {situations.map((s) => (
                 <div
                   key={s.num}
-                  className="rounded-2xl p-8 bg-white"
-                  style={{ border: "1px solid rgba(0,0,0,0.07)" }}
+                  className="rounded-2xl p-8 bg-surface"
+                  style={{ border: "1px solid rgba(255,255,255,0.1)" }}
                 >
                   <div className="flex items-start gap-5">
                     <span
@@ -189,18 +188,18 @@ export default function InglesExpatriacaoPage() {
                       {s.num}
                     </span>
                     <div>
-                      <h3 className="font-display font-extrabold text-lg mb-2" style={{ color: "#161616" }}>
+                      <h3 className="font-display font-extrabold text-[length:var(--text-h3)] mb-2" style={{ color: "var(--color-text)" }}>
                         {s.label}
                       </h3>
-                      <p className="font-body text-sm mb-4 leading-relaxed" style={{ color: "rgba(22,22,22,0.5)" }}>
-                        <span className="font-semibold" style={{ color: "#161616" }}>O desafio: </span>
+                      <p className="font-body text-sm mb-4 leading-relaxed" style={{ color: "rgba(245,246,241,0.6)" }}>
+                        <span className="font-semibold" style={{ color: "var(--color-text)" }}>O desafio: </span>
                         {s.tension}
                       </p>
                       <div
                         className="rounded-xl p-4"
                         style={{ background: "rgba(255,104,32,0.07)" }}
                       >
-                        <p className="font-body text-sm leading-relaxed" style={{ color: "#161616" }}>
+                        <p className="font-body text-sm leading-relaxed" style={{ color: "var(--color-text)" }}>
                           <span className="font-semibold" style={{ color: "#FF6820" }}>Como preparamos: </span>
                           {s.prep}
                         </p>
@@ -214,18 +213,18 @@ export default function InglesExpatriacaoPage() {
         </section>
 
         {/* ── INTEREST FORM ── */}
-        <section className="py-24 md:py-32 bg-white">
+        <section className="py-24 md:py-32 bg-surface">
           <div className="max-w-2xl mx-auto px-6 text-center">
             <p className="font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
               Próximo passo
             </p>
             <h2
               className="font-display font-extrabold leading-tight mb-4"
-              style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "#161616" }}
+              style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}
             >
               Quando você embarca?
             </h2>
-            <p className="font-body text-base mb-10" style={{ color: "rgba(22,22,22,0.55)" }}>
+            <p className="font-body text-base mb-10" style={{ color: "rgba(245,246,241,0.65)" }}>
               Conta pra gente. Montamos o plano no tempo que você tem — focado no seu destino e setor.
             </p>
             <InterestForm
@@ -237,11 +236,11 @@ export default function InglesExpatriacaoPage() {
         </section>
 
         {/* ── FAQ ── */}
-        <section className="py-24 md:py-32" style={{ backgroundColor: "#F5F6F1" }}>
+        <section className="py-24 md:py-32" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-3xl mx-auto px-6">
             <h2
               className="font-display font-extrabold text-center mb-12"
-              style={{ fontSize: "clamp(1.6rem, 3vw, 2.25rem)", color: "#161616" }}
+              style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}
             >
               Dúvidas sobre preparação para o exterior
             </h2>
@@ -249,11 +248,11 @@ export default function InglesExpatriacaoPage() {
               {faqs.map((faq) => (
                 <div
                   key={faq.q}
-                  className="rounded-2xl p-7 bg-white"
-                  style={{ border: "1px solid rgba(0,0,0,0.07)" }}
+                  className="rounded-2xl p-7 bg-surface"
+                  style={{ border: "1px solid rgba(255,255,255,0.1)" }}
                 >
-                  <p className="font-display font-bold text-base mb-3" style={{ color: "#161616" }}>{faq.q}</p>
-                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(22,22,22,0.6)" }}>{faq.a}</p>
+                  <p className="font-display font-bold text-base mb-3" style={{ color: "var(--color-text)" }}>{faq.q}</p>
+                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(245,246,241,0.7)" }}>{faq.a}</p>
                 </div>
               ))}
             </div>
@@ -261,11 +260,11 @@ export default function InglesExpatriacaoPage() {
         </section>
 
         {/* ── FINAL CTA ── */}
-        <section className="py-20 md:py-28" style={{ backgroundColor: "#161616" }}>
+        <section className="py-20 md:py-28" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-3xl mx-auto px-6 text-center">
             <h2
               className="font-display font-extrabold text-white mb-4"
-              style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)" }}
+              style={{ fontSize: "var(--text-h2)" }}
             >
               O embarque está marcado. A preparação começa agora.
             </h2>
@@ -276,9 +275,8 @@ export default function InglesExpatriacaoPage() {
               href={getWhatsAppUrlForContext("ingles-expatriacao-urgente")}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-10 py-5 rounded-full text-base font-bold transition-all duration-200 hover:scale-105"
-              style={{ backgroundColor: "#FF6820", color: "white" }}
-            >
+              className="inline-flex items-center gap-2 px-10 py-5 rounded-full text-base font-bold cta-primary"
+              style={{ color: "white" }}>
               Falar com a equipe agora
             </a>
             <p className="mt-6">

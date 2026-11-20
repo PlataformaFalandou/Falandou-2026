@@ -13,7 +13,7 @@ export default function MidCTA() {
       {/* Background image with strong overlay */}
       <div className="absolute inset-0 opacity-15">
         <Image
-          src="/images/conexao-internacional.png"
+          src="/images/conexao-internacional.webp"
           alt=""
           fill
           className="object-cover object-center"
@@ -37,7 +37,7 @@ export default function MidCTA() {
         {/* Copywriting §2: o H2 carrega o dado mais forte do site, não uma promessa vaga. */}
         <h2
           className="reveal font-display font-extrabold text-white leading-tight mb-6 delay-100"
-          style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)" }}
+          style={{ fontSize: "var(--text-h2)" }}
         >
           {STATS.cefrUpPct} sobe 1 nível CEFR em {STATS.cycleDays} dias. O próximo pode ser você.
         </h2>
@@ -53,7 +53,7 @@ export default function MidCTA() {
             rel="noopener noreferrer"
             onClick={() => trackCTAClick("midcta")}
             className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full text-base font-bold transition-all duration-200 hover:scale-105 active:scale-95 shadow-2xl"
-            style={{ backgroundColor: "#161616", color: "white", boxShadow: "0 8px 32px rgba(22,22,22,0.4)" }}
+            style={{ backgroundColor: "var(--color-bg)", color: "white", boxShadow: "0 8px 32px rgba(22,22,22,0.4)" }}
           >
             <MessageCircle size={20} />
             Falar com a equipe agora

@@ -23,7 +23,7 @@
  */
 
 import { useEffect, useState, type ReactNode } from "react";
-import Hero from "./Hero";
+import Hero, { HeadlineWords } from "./Hero";
 import { getHeroVariant, forceVariantFromURL, type ABVariant } from "@/lib/abtest";
 import { trackABImpression } from "@/lib/analytics";
 import { STATS } from "@/data/stats";
@@ -43,8 +43,9 @@ const VARIANTS: Record<ABVariant, { eyebrow: string; headline?: ReactNode; subhe
     eyebrow: `Escola de inglês para profissionais · ciclo individual de ${STATS.cycleDays} dias`,
     headline: (
       <>
-        De B1 para B2 em {STATS.b1b2Weeks} semanas.{" "}
-        <span style={{ color: "#FF6820" }}>Com um plano feito só para você.</span>
+        <HeadlineWords text={`De B1 para B2 em ${STATS.b1b2Weeks} semanas.`} />
+        <HeadlineWords text="Com um plano feito" start={7} />
+        <HeadlineWords text="só para você." accent start={11} />
       </>
     ),
     subheadline:

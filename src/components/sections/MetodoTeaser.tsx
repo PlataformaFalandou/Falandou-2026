@@ -36,7 +36,7 @@ const BENEFITS: { title: string; body: React.ReactNode }[] = [
  */
 export default function MetodoTeaser() {
   return (
-    <section className="py-20 md:py-28 bg-white border-t" style={{ borderColor: "rgba(0,0,0,0.06)" }}>
+    <section className="py-20 md:py-28 bg-surface border-t" style={{ borderColor: "rgba(255,255,255,0.09)" }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-14 items-center">
 
@@ -50,13 +50,13 @@ export default function MetodoTeaser() {
             </p>
             <h2
               className="reveal font-display font-extrabold leading-tight mb-6 delay-100"
-              style={{ fontSize: "clamp(1.6rem, 3vw, 2.5rem)", color: "#161616" }}
+              style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}
             >
               Você não travou por falta de esforço.
             </h2>
             <p
               className="reveal font-body text-lg leading-relaxed mb-8 delay-150"
-              style={{ color: "rgba(22,22,22,0.65)", maxWidth: "520px" }}
+              style={{ color: "rgba(245,246,241,0.75)", maxWidth: "520px" }}
             >
               Você já tentou aplicativo, aula em grupo e vídeo no YouTube — e na hora do meeting o
               tranco voltou. Nenhum desses formatos foi feito para o inglês do seu trabalho.
@@ -76,7 +76,7 @@ export default function MetodoTeaser() {
           <div className="reveal delay-300">
             <div
               className="rounded-2xl p-8 md:p-10"
-              style={{ background: "#161616" }}
+              style={{ background: "var(--color-bg)" }}
             >
               <p
                 className="font-body text-xs font-bold uppercase tracking-widest mb-6"
@@ -104,9 +104,8 @@ export default function MetodoTeaser() {
 
               <Link
                 href="/metodo"
-                className="mt-8 inline-flex items-center justify-center gap-2 w-full px-6 py-4 rounded-full font-bold text-sm transition-all duration-200 hover:scale-105"
-                style={{ backgroundColor: "#FF6820", color: "white" }}
-              >
+                className="mt-8 inline-flex items-center justify-center gap-2 w-full px-6 py-4 rounded-full font-bold text-sm cta-primary"
+                style={{ color: "white" }}>
                 Como funciona o meu plano?
                 <ArrowRight size={16} />
               </Link>

@@ -38,7 +38,7 @@ const COLUMNS = [
 
 export default function Benefits() {
   return (
-    <section className="py-24 md:py-28" style={{ backgroundColor: "#F5F6F1" }}>
+    <section className="py-24 md:py-28" style={{ backgroundColor: "var(--color-bg-alt)" }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="max-w-2xl mb-14">
           <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
@@ -46,7 +46,7 @@ export default function Benefits() {
           </p>
           <h2
             className="reveal font-display font-extrabold leading-tight delay-100"
-            style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}
+            style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}
           >
             O inglês que faltava para a próxima fase da sua carreira.
           </h2>
@@ -56,23 +56,23 @@ export default function Benefits() {
           {COLUMNS.map((c, i) => (
             <div
               key={c.tag}
-              className="reveal rounded-2xl bg-white border border-black/5 p-8 flex flex-col"
+              className="reveal rounded-2xl bg-surface border border-white/10 p-8 flex flex-col"
               style={{ transitionDelay: `${i * 80}ms` }}
             >
-              <p className="font-body text-xs font-bold uppercase tracking-widest mb-5" style={{ color: "rgba(22,22,22,0.45)" }}>
+              <p className="font-body text-xs font-bold uppercase tracking-widest mb-5" style={{ color: "rgba(245,246,241,0.55)" }}>
                 {c.tag}
               </p>
               <ul className="flex flex-col gap-4 mb-8">
                 {c.points.map((pt) => (
-                  <li key={pt} className="flex items-start gap-3 font-body text-sm leading-relaxed" style={{ color: "rgba(22,22,22,0.75)" }}>
+                  <li key={pt} className="flex items-start gap-3 font-body text-sm leading-relaxed" style={{ color: "rgba(245,246,241,0.85)" }}>
                     <span className="font-bold flex-shrink-0" style={{ color: "#FF6820" }}>✓</span>
                     {pt}
                   </li>
                 ))}
               </ul>
-              <div className="mt-auto pt-6 border-t border-black/5">
+              <div className="mt-auto pt-6 border-t border-white/10">
                 <p className="font-display font-extrabold text-3xl" style={{ color: "#FF6820" }}>{c.stat}</p>
-                <p className="font-body text-xs mt-1" style={{ color: "rgba(22,22,22,0.55)" }}>{c.statLabel}</p>
+                <p className="font-body text-xs mt-1" style={{ color: "rgba(245,246,241,0.65)" }}>{c.statLabel}</p>
               </div>
             </div>
           ))}

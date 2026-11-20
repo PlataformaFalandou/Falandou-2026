@@ -42,9 +42,7 @@ export function ShareReferral() {
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => trackReferralShare("whatsapp")}
-        className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full font-body font-bold text-base text-white transition-all duration-200 hover:scale-105"
-        style={{ backgroundColor: "#FF6820" }}
-      >
+        className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full font-body font-bold text-base text-white cta-primary">
         Enviar para um colega no WhatsApp
       </a>
       <button
@@ -81,14 +79,12 @@ export function ReferredForm() {
         value={referrer}
         onChange={(e) => setReferrer(e.target.value)}
         placeholder="Nome de quem indicou você"
-        className="flex-1 px-5 py-4 rounded-full font-body text-base bg-white border border-black/10 outline-none focus:border-[#FF6820]"
-        style={{ color: "#161616" }}
+        className="flex-1 px-5 py-4 rounded-full font-body text-base bg-surface border border-white/15 outline-none focus:border-[#FF6820]"
+        style={{ color: "var(--color-text)" }}
       />
       <button
         type="submit"
-        className="inline-flex items-center justify-center px-7 py-4 rounded-full font-body font-bold text-base text-white transition-all duration-200 hover:scale-105"
-        style={{ backgroundColor: "#FF6820" }}
-      >
+        className="inline-flex items-center justify-center px-7 py-4 rounded-full font-body font-bold text-base text-white cta-primary">
         Quero começar
       </button>
     </form>

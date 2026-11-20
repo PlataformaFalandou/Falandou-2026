@@ -57,7 +57,7 @@ export default function PromocaoCargoPage() {
     <>
       <ScrollRevealInit />
       <Navbar />
-      <main>
+      <main id="conteudo">
         {/* Dados estruturados — Arquitetura §10 */}
         <JsonLd data={courseSchema({ name: "Inglês para promoção de cargo", description: "Ciclo de 90 dias para demonstrar liderança em inglês: reuniões, apresentações e alinhamento de times.", path: "/promocao-cargo/" })} />
         <Hero

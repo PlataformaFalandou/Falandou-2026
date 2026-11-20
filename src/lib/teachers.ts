@@ -16,7 +16,7 @@ export const teachers: Teacher[] = [
   {
     name: "Adriel Pelegrino",
     title: "Fundador & Professor",
-    photo: "/images/prof-adriel.png",
+    photo: "/images/prof-adriel.webp",
     credentials: ["Cambridge C2", "Filólogo e Linguista"],
     focus: "B2 – C2",
     specialty: "Entrevistas internacionais",
@@ -25,7 +25,7 @@ export const teachers: Teacher[] = [
   {
     name: "Sara El Hamdaoui",
     title: "Professora",
-    photo: "/images/prof-sara.jpg",
+    photo: "/images/prof-sara.webp",
     credentials: ["CELTA", "DELTA"],
     focus: "A1 – B1",
     specialty: "Inglês cotidiano",
@@ -34,7 +34,7 @@ export const teachers: Teacher[] = [
   {
     name: "Amanda Bennett",
     title: "Professora",
-    photo: "/images/prof-amanda.png",
+    photo: "/images/prof-amanda.webp",
     credentials: ["Cambridge", "IELTS", "TOEFL"],
     focus: "A1 – C2",
     specialty: "Literatura e escrita profissional",

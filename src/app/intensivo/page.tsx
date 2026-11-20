@@ -57,7 +57,7 @@ export default function IntensivoPage() {
     <>
       <ScrollRevealInit />
       <Navbar />
-      <main>
+      <main id="conteudo">
         <JsonLd
           data={courseSchema({
             name: "Inglês profissional — plano Urgente",
@@ -67,14 +67,14 @@ export default function IntensivoPage() {
         />
 
         {/* ── HERO ─────────────────────────────────────────────────────────── */}
-        <section className="pt-40 pb-24 md:pt-52 md:pb-28" style={{ backgroundColor: "#161616" }}>
+        <section className="pt-40 pb-24 md:pt-52 md:pb-28" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-4xl mx-auto px-6">
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
               Plano Urgente
             </p>
             <h1
               className="reveal font-display font-extrabold text-white leading-tight mb-6 delay-100"
-              style={{ fontSize: "clamp(2.2rem, 5vw, 3.75rem)" }}
+              style={{ fontSize: "var(--text-h1)" }}
             >
               Você tem uma data.{" "}
               <span style={{ color: "#FF6820" }}>Este plano foi feito para isso.</span>
@@ -95,9 +95,7 @@ export default function IntensivoPage() {
                 href={getWhatsAppUrl(planWhatsAppMsg(INT, 50))}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-bold text-white transition-all duration-200 hover:scale-105"
-                style={{ backgroundColor: "#FF6820" }}
-              >
+                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-bold text-white cta-primary">
                 Quero o plano Urgente
               </a>
               <Link
@@ -125,19 +123,19 @@ export default function IntensivoPage() {
         </section>
 
         {/* ── PARA QUEM É ──────────────────────────────────────────────────── */}
-        <section className="py-24 md:py-28" style={{ backgroundColor: "#F5F6F1" }}>
+        <section className="py-24 md:py-28" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-5xl mx-auto px-6">
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
               Para quem é
             </p>
-            <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}>
+            <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100" style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}>
               Quando o ritmo do prazo é mais rápido que o seu.
             </h2>
             <div className="grid md:grid-cols-2 gap-5">
               {forWhom.map((item) => (
-                <div key={item.title} className="reveal rounded-2xl bg-white border border-black/5 p-7">
-                  <h3 className="font-display font-extrabold text-lg mb-2" style={{ color: "#161616" }}>{item.title}</h3>
-                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(22,22,22,0.6)" }}>{item.desc}</p>
+                <div key={item.title} className="reveal rounded-2xl bg-surface border border-white/10 p-7">
+                  <h3 className="font-display font-extrabold text-[length:var(--text-h3)] mb-2" style={{ color: "var(--color-text)" }}>{item.title}</h3>
+                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(245,246,241,0.7)" }}>{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -145,22 +143,22 @@ export default function IntensivoPage() {
         </section>
 
         {/* ── O QUE INCLUI ─────────────────────────────────────────────────── */}
-        <section className="py-24 md:py-28 bg-white">
+        <section className="py-24 md:py-28 bg-surface">
           <div className="max-w-5xl mx-auto px-6">
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
               O que inclui
             </p>
-            <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}>
+            <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100" style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}>
               Tudo dos outros planos, no ritmo mais alto.
             </h2>
             <div className="grid md:grid-cols-2 gap-10">
               <div>
-                <p className="font-body text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "rgba(22,22,22,0.45)" }}>
+                <p className="font-body text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "rgba(245,246,241,0.55)" }}>
                   Exclusivo do plano Urgente
                 </p>
                 <ul className="flex flex-col gap-3">
                   {INT.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3 font-body text-base" style={{ color: "#161616" }}>
+                    <li key={f} className="flex items-start gap-3 font-body text-base" style={{ color: "var(--color-text)" }}>
                       <span className="font-bold" style={{ color: "#FF6820" }}>✓</span>
                       {f}
                     </li>
@@ -168,12 +166,12 @@ export default function IntensivoPage() {
                 </ul>
               </div>
               <div>
-                <p className="font-body text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "rgba(22,22,22,0.45)" }}>
+                <p className="font-body text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "rgba(245,246,241,0.55)" }}>
                   Incluso em todos os planos
                 </p>
                 <ul className="flex flex-col gap-3">
                   {INCLUDED_IN_ALL.map((f) => (
-                    <li key={f} className="flex items-start gap-3 font-body text-base" style={{ color: "rgba(22,22,22,0.7)" }}>
+                    <li key={f} className="flex items-start gap-3 font-body text-base" style={{ color: "rgba(245,246,241,0.8)" }}>
                       <span className="font-bold" style={{ color: "#FF6820" }}>✓</span>
                       {f}
                     </li>
@@ -181,16 +179,16 @@ export default function IntensivoPage() {
                 </ul>
               </div>
             </div>
-            <p className="font-body text-sm mt-10" style={{ color: "rgba(22,22,22,0.55)" }}>
+            <p className="font-body text-sm mt-10" style={{ color: "rgba(245,246,241,0.65)" }}>
               Cada sessão de 50 minutos sai por {perSession(INT, 50)}; a de 25 minutos, por {perSession(INT, 25)}.
             </p>
           </div>
         </section>
 
         {/* ── CTA FINAL ────────────────────────────────────────────────────── */}
-        <section className="py-24 md:py-28" style={{ backgroundColor: "#161616" }}>
+        <section className="py-24 md:py-28" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-3xl mx-auto px-6 text-center">
-            <h2 className="font-display font-extrabold text-white leading-tight mb-4" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+            <h2 className="font-display font-extrabold text-white leading-tight mb-4" style={{ fontSize: "var(--text-h2)" }}>
               Qual é o seu prazo?
             </h2>
             <p className="font-body text-lg mb-10" style={{ color: "rgba(255,255,255,0.65)" }}>
@@ -202,9 +200,7 @@ export default function IntensivoPage() {
                 href={getWhatsAppUrl(planWhatsAppMsg(INT, 50))}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-10 py-5 rounded-full text-base font-bold text-white transition-all duration-200 hover:scale-105"
-                style={{ backgroundColor: "#FF6820" }}
-              >
+                className="inline-flex items-center justify-center px-10 py-5 rounded-full text-base font-bold text-white cta-primary">
                 Quero o plano Urgente
               </a>
               <Link

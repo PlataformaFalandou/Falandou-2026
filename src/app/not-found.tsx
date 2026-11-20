@@ -22,15 +22,15 @@ export default function NotFound() {
   return (
     <>
       <Navbar />
-      <main>
-        <section className="pt-40 pb-24 md:pt-52 md:pb-32 min-h-[80vh]" style={{ backgroundColor: "#161616" }}>
+      <main id="conteudo">
+        <section className="pt-40 pb-24 md:pt-52 md:pb-32 min-h-[80vh]" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-5xl mx-auto px-6">
             <p className="font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
               Erro 404
             </p>
             <h1
               className="font-display font-extrabold text-white leading-tight mb-6"
-              style={{ fontSize: "clamp(2.2rem, 5vw, 3.75rem)" }}
+              style={{ fontSize: "var(--text-h1)" }}
             >
               Esta página não existe —{" "}
               <span style={{ color: "#FF6820" }}>mas o seu próximo passo sim.</span>
@@ -45,9 +45,7 @@ export default function NotFound() {
                 href={getWhatsAppUrlForContext("hero")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full text-base font-bold text-white transition-all duration-200 hover:scale-105"
-                style={{ backgroundColor: "#FF6820" }}
-              >
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full text-base font-bold text-white cta-primary">
                 Quero começar
               </a>
               <Link

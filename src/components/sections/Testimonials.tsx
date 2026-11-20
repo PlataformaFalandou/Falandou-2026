@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { ArrowRight, PlayCircle, Quote } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ArrowRight, PlayCircle } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 import { testimonials, personasWithEnough, type Persona, type Testimonial } from "@/data/testimonials";
@@ -10,7 +10,7 @@ import { testimonials, personasWithEnough, type Persona, type Testimonial } from
 // Seção de humanização: só depoimentos. Os dados de resultado ficam em ProofStats,
 // e os logos das empresas já aparecem na Hero.
 // Variantes (Arquitetura §7): "compact" = 3 cartões fixos + link para /depoimentos;
-// "full" = grade com todos (página /depoimentos). Sem carrossel automático.
+// "full" = grade com todos (página /depoimentos). No celular, a versão compacta vira carrossel (UX/UI §12).
 
 // Logos inline — mesmas paths usadas em CompanyLogos.tsx
 const COMPANY_LOGOS: Record<string, { viewBox?: string; path: string }> = {
@@ -55,81 +55,182 @@ function CompanyLogoInline({ company }: { company: string }) {
   );
 }
 
+function initials(name: string) {
+  const parts = name.trim().split(/\s+/);
+  return ((parts[0]?.[0] ?? "") + (parts.length > 1 ? parts[parts.length - 1][0] : "")).toUpperCase();
+}
+
+/**
+ * Cartão de depoimento em 5 elementos (UX/UI §12): aspas laranja de 60px, texto em
+ * 18px itálico, resultado em destaque, avatar com iniciais + nome + cargo e, quando
+ * houver o dado real do exame, o selo CEFR antes → depois (nunca estimado).
+ */
 function TestimonialCard({ t }: { t: Testimonial }) {
   return (
-    <div
-      className="h-full rounded-2xl overflow-hidden border border-white/10 hover:border-white/25 transition-all duration-300 flex flex-col"
-      style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
+    <figure
+      className="card-hover h-full rounded-2xl border flex flex-col p-7"
+      style={{ backgroundColor: "var(--color-surface)", borderColor: "var(--color-border)" }}
     >
-      <div className="p-6 flex flex-col flex-1">
-        {/* Result badge */}
-        <div
-          className="inline-flex self-start px-3 py-1.5 rounded-full text-xs font-semibold mb-5"
-          style={{ background: "rgba(255,104,32,0.15)", color: "#FF6820" }}
-        >
-          {t.result}
-        </div>
-
-        {/* Evolução medida — só quando houver o dado real do exame */}
+      <div className="flex items-start justify-between gap-4">
+        <span aria-hidden="true" className="font-display font-black leading-none select-none" style={{ fontSize: "60px", color: "#FF6820", height: "40px" }}>
+          &ldquo;
+        </span>
         {t.levelBefore && t.levelAfter && (
-          <p className="font-display font-extrabold text-sm text-white mb-4">
-            {t.levelBefore} → {t.levelAfter}
-            {t.cycle && <span className="font-body font-normal text-white/40"> · {t.cycle}</span>}
-          </p>
-        )}
-
-        <Quote size={22} className="mb-3" style={{ color: "rgba(255,104,32,0.35)" }} />
-
-        <p className="text-sm leading-relaxed mb-6 flex-1" style={{ color: "rgba(255,255,255,0.72)" }}>
-          &ldquo;{t.text}&rdquo;
-        </p>
-
-        {/* Formato misto (Arquitetura §7): vídeo curto quando houver. Miniatura com
-            link — o YouTube não carrega na página, então não há cookies sem consentimento. */}
-        {t.videoId && (
-          <a
-            href={`https://www.youtube.com/watch?v=${t.videoId}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative block mb-6 rounded-xl overflow-hidden aspect-video bg-black"
+          <span
+            className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-extrabold tnum"
+            style={{ background: "rgba(255,104,32,0.15)", color: "#FF8A4C", border: "1px solid rgba(255,104,32,0.4)" }}
+            title="Nível CEFR no início e no fim do ciclo"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={`https://i.ytimg.com/vi/${t.videoId}/hqdefault.jpg`}
-              alt={`Depoimento em vídeo de ${t.name}`}
-              width={480}
-              height={360}
-              loading="lazy"
-              className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
-            />
-            <span className="absolute inset-0 flex items-center justify-center">
-              <PlayCircle size={40} color="#fff" strokeWidth={1.5} />
-            </span>
-          </a>
+            {t.levelBefore} → {t.levelAfter}
+          </span>
         )}
+      </div>
 
-        {/* Identity footer — cargo, empresa e logo */}
-        <div className="border-t pt-4" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
+      {/* Resultado mensurável em destaque */}
+      <p className="font-display font-bold text-white text-base leading-snug mt-4 mb-4">
+        {t.result}
+        {t.cycle && <span className="font-body font-normal" style={{ color: "var(--color-text-muted)" }}> · {t.cycle}</span>}
+      </p>
+
+      <blockquote className="flex-1 mb-6">
+        <p className="italic leading-relaxed" style={{ fontSize: "1.0625rem", color: "var(--color-text-body)" }}>
+          {t.text}
+        </p>
+      </blockquote>
+
+      {/* Formato misto (Arquitetura §7): vídeo curto quando houver. Miniatura com
+          link — o YouTube não carrega na página, então não há cookies sem consentimento. */}
+      {t.videoId && (
+        <a
+          href={`https://www.youtube.com/watch?v=${t.videoId}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative block mb-6 rounded-xl overflow-hidden aspect-video img-skeleton"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`https://i.ytimg.com/vi/${t.videoId}/hqdefault.jpg`}
+            alt={`Depoimento em vídeo de ${t.name}`}
+            width={480}
+            height={360}
+            loading="lazy"
+            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+          />
+          <span className="absolute inset-0 flex items-center justify-center">
+            <PlayCircle size={40} color="#fff" strokeWidth={1.5} />
+          </span>
+        </a>
+      )}
+
+      {/* Identidade: avatar com iniciais + nome + cargo + empresa */}
+      <figcaption className="border-t pt-4 flex items-center gap-3" style={{ borderColor: "var(--color-border)" }}>
+        <span
+          aria-hidden="true"
+          className="w-11 h-11 rounded-full flex-shrink-0 flex items-center justify-center font-display font-extrabold text-sm"
+          style={{ background: "linear-gradient(135deg, #FF6820, #E05010)", color: "#fff" }}
+        >
+          {initials(t.name)}
+        </span>
+        <div className="min-w-0">
           <div className="font-display font-extrabold text-base text-white">{t.name}</div>
-          <div className="flex items-center gap-2 mt-1 flex-wrap">
-            <span className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
+          <div className="flex items-center gap-2 mt-0.5 flex-wrap">
+            <span className="text-xs" style={{ color: "var(--color-text-muted)" }}>
               {t.role}
             </span>
             {t.company && (
               <>
                 <span style={{ color: "rgba(255,255,255,0.2)" }} className="text-xs">·</span>
-                <span className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.65)" }}>
+                <span className="text-xs font-semibold" style={{ color: "rgba(245,246,241,0.75)" }}>
                   {t.company}
                 </span>
                 <CompanyLogoInline company={t.company} />
               </>
             )}
           </div>
-          <div className="mt-1 text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+          <div className="mt-0.5 text-xs" style={{ color: "rgba(245,246,241,0.4)" }}>
             {t.source}
           </div>
         </div>
+      </figcaption>
+    </figure>
+  );
+}
+
+/**
+ * Carrossel do celular (UX/UI §12): rolagem com snap, troca lenta a cada 5s,
+ * indicadores de página e pausa ao tocar, passar o mouse ou focar. Quem pediu menos
+ * movimento no sistema não tem troca automática. No desktop, grade de 3 colunas.
+ */
+function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
+  const rowRef = useRef<HTMLDivElement>(null);
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  const goTo = useCallback((i: number) => {
+    const row = rowRef.current;
+    const card = row?.children[i] as HTMLElement | undefined;
+    if (row && card) row.scrollTo({ left: card.offsetLeft - row.offsetLeft - 24, behavior: "smooth" });
+  }, []);
+
+  useEffect(() => {
+    const row = rowRef.current;
+    if (!row) return;
+    const onScroll = () => {
+      const w = (row.children[0] as HTMLElement | undefined)?.offsetWidth ?? 1;
+      setIndex(Math.round(row.scrollLeft / (w + 16)));
+    };
+    row.addEventListener("scroll", onScroll, { passive: true });
+    return () => row.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (paused || items.length < 2) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!window.matchMedia("(max-width: 767px)").matches) return;
+    const id = setInterval(() => goTo((index + 1) % items.length), 5000);
+    return () => clearInterval(id);
+  }, [paused, index, items.length, goTo]);
+
+  return (
+    <div
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onTouchStart={() => setPaused(true)}
+      onFocusCapture={() => setPaused(true)}
+    >
+      <div
+        ref={rowRef}
+        className="snap-row -mx-6 px-6 flex md:grid md:grid-cols-3 gap-4 md:gap-5 overflow-x-auto md:overflow-visible"
+        aria-roledescription="carrossel"
+      >
+        {items.map((t) => (
+          <div key={t.name} className="shrink-0 w-[85%] sm:w-[60%] md:w-auto">
+            <TestimonialCard t={t} />
+          </div>
+        ))}
       </div>
+      {items.length > 1 && (
+        <div className="md:hidden flex justify-center gap-2 mt-5">
+          {items.map((t, i) => (
+            <button
+              key={t.name}
+              type="button"
+              onClick={() => {
+                setPaused(true);
+                goTo(i);
+              }}
+              aria-label={`Depoimento ${i + 1} de ${items.length}`}
+              aria-current={i === index}
+              className="w-11 h-11 flex items-center justify-center"
+            >
+              <span
+                className="block h-2 rounded-full transition-all duration-200"
+                style={{ width: i === index ? 24 : 8, backgroundColor: i === index ? "#FF6820" : "rgba(255,255,255,0.25)" }}
+              />
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -191,14 +292,14 @@ export default function Testimonials({ persona }: { persona?: Persona } = {}) {
   const items = [...fromPersona, ...featured, ...rest].slice(0, 3);
 
   return (
-    <section id="depoimentos" className="py-24 md:py-32" style={{ backgroundColor: "#161616" }}>
+    <section id="depoimentos" className="py-24 md:py-32" style={{ backgroundColor: "var(--color-bg)" }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
           <div>
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
               O que dizem os profissionais
             </p>
-            <h2 className="reveal font-display font-extrabold text-white leading-tight delay-100" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)" }}>
+            <h2 className="reveal font-display font-extrabold text-white leading-tight delay-100" style={{ fontSize: "var(--text-h2)" }}>
               Os números em palavras.
             </h2>
           </div>
@@ -212,7 +313,7 @@ export default function Testimonials({ persona }: { persona?: Persona } = {}) {
           </Link>
         </div>
 
-        <TestimonialsGrid items={items} />
+        <TestimonialsCarousel items={items} />
 
         {/* CTA */}
         <div className="mt-14 text-center">
@@ -224,9 +325,7 @@ export default function Testimonials({ persona }: { persona?: Persona } = {}) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackCTAClick("testimonials")}
-            className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white transition-all duration-300 hover:opacity-90 hover:scale-105"
-            style={{ backgroundColor: "#FF6820" }}
-          >
+            className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white cta-primary">
             Quero começar
           </a>
         </div>

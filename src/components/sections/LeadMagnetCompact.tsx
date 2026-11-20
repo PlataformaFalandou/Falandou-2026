@@ -12,7 +12,7 @@ import { trackCTAClick } from "@/lib/analytics";
 
 export default function LeadMagnetCompact() {
   return (
-    <section className="py-16 md:py-20" style={{ backgroundColor: "#161616" }}>
+    <section className="py-16 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
       <div className="max-w-5xl mx-auto px-6">
         <div
           className="rounded-2xl p-8 md:p-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-10"
@@ -27,7 +27,7 @@ export default function LeadMagnetCompact() {
             </p>
             <h2
               className="font-display font-extrabold text-white leading-tight mb-2"
-              style={{ fontSize: "clamp(1.3rem, 2.5vw, 1.75rem)" }}
+              style={{ fontSize: "var(--text-h2)" }}
             >
               Roteiro de 30 dias para destravar o inglês no trabalho — grátis.
             </h2>
@@ -44,9 +44,7 @@ export default function LeadMagnetCompact() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackCTAClick("leadmagnet-compact")}
-              className="inline-flex items-center gap-2 font-body font-bold text-base px-7 py-4 rounded-full text-white transition-all duration-300 hover:opacity-90 hover:scale-105"
-              style={{ backgroundColor: "#FF6820" }}
-            >
+              className="inline-flex items-center gap-2 font-body font-bold text-base px-7 py-4 rounded-full text-white cta-primary">
               Receber o roteiro gratuito
             </a>
             <p className="font-body text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>

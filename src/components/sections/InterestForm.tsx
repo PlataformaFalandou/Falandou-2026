@@ -115,8 +115,8 @@ export default function InterestForm({
               fontSize: "15px",
               fontFamily: "inherit",
               outline: "none",
-              background: "#fff",
-              color: "#161616",
+              background: "var(--color-surface)",
+              color: "var(--color-text)",
               transition: "border-color 0.2s",
             }}
             onFocus={(e) => (e.currentTarget.style.borderColor = "#FF6820")}
@@ -134,8 +134,8 @@ export default function InterestForm({
               fontSize: "15px",
               fontFamily: "inherit",
               outline: "none",
-              background: "#fff",
-              color: "#161616",
+              background: "var(--color-surface)",
+              color: "var(--color-text)",
               transition: "border-color 0.2s",
             }}
             onFocus={(e) => (e.currentTarget.style.borderColor = "#FF6820")}
@@ -145,7 +145,7 @@ export default function InterestForm({
             type="submit"
             style={{
               padding: "14px 24px",
-              background: "#161616",
+              background: "var(--color-bg)",
               color: "#fff",
               border: "none",
               borderRadius: "8px",

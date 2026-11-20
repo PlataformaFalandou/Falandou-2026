@@ -30,7 +30,7 @@ export default function ResultsData() {
   return (
     <section
       className="py-20"
-      style={{ background: "#F5F6F1" }}
+      style={{ background: "var(--color-bg-alt)" }}
     >
       <div className="max-w-5xl mx-auto px-6">
 
@@ -41,10 +41,10 @@ export default function ResultsData() {
             Resultado verificável
           </p>
           <h2 className="font-heading font-black text-3xl md:text-4xl leading-tight mb-3"
-              style={{ color: "#161616" }}>
+              style={{ color: "var(--color-text)" }}>
             {evolved}% dos profissionais passou a conduzir reuniões,<br className="hidden md:block" /> entrevistas e negociações em inglês em até 90 dias.
           </h2>
-          <p className="font-body text-sm text-gray-500">
+          <p className="font-body text-sm text-white/55">
             {CYCLE_LABEL} · {TOTAL_ALUNOS} profissionais avaliados com exame pré e pós-ciclo.
           </p>
         </div>
@@ -56,10 +56,10 @@ export default function ResultsData() {
             {BARS.map((bar) => (
               <div key={bar.label}>
                 <div className="flex justify-between items-baseline mb-1">
-                  <span className="font-body text-sm font-semibold" style={{ color: "#161616" }}>
+                  <span className="font-body text-sm font-semibold" style={{ color: "var(--color-text)" }}>
                     {bar.label}
                   </span>
-                  <span className="font-body text-xs text-gray-400">
+                  <span className="font-body text-xs text-white/45">
                     {bar.sublabel} · {bar.pct}%
                   </span>
                 </div>
@@ -80,7 +80,7 @@ export default function ResultsData() {
                 </div>
               </div>
             ))}
-            <p className="font-body text-xs text-gray-400 pt-1">
+            <p className="font-body text-xs text-white/45 pt-1">
               Evolução medida por exame CEFR aplicado pela escola antes e após o ciclo de 90 dias.
             </p>
           </div>
@@ -91,7 +91,7 @@ export default function ResultsData() {
               <div
                 key={d.desc}
                 className="rounded-2xl p-5"
-                style={{ background: "#fff", border: "1px solid rgba(0,0,0,0.07)" }}
+                style={{ background: "var(--color-surface)", border: "1px solid rgba(255,255,255,0.1)" }}
               >
                 <p
                   className="font-heading font-black text-2xl mb-1"
@@ -99,7 +99,7 @@ export default function ResultsData() {
                 >
                   {d.valor}
                 </p>
-                <p className="font-body text-xs text-gray-500 leading-snug">{d.desc}</p>
+                <p className="font-body text-xs text-white/55 leading-snug">{d.desc}</p>
               </div>
             ))}
           </div>
@@ -113,15 +113,13 @@ export default function ResultsData() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackCTAClick("results")}
-            className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white transition-all duration-300 hover:opacity-90 hover:scale-105"
-            style={{ backgroundColor: "#FF6820" }}
-          >
+            className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white cta-primary">
             Quero começar
           </a>
           <a
             href="#faq"
             className="font-body text-sm font-semibold underline underline-offset-4 transition-colors duration-200"
-            style={{ color: "rgba(22,22,22,0.5)" }}
+            style={{ color: "rgba(245,246,241,0.6)" }}
           >
             Ainda tenho dúvidas →
           </a>

@@ -41,11 +41,18 @@ export default function PlansGrid() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+      {/* Celular: rolagem horizontal com snap — cada cartão ocupa 85% da tela e o
+          próximo aparece na borda, sinalizando que há mais (UX/UI §9). Desktop: 3 colunas. */}
+      <div className="snap-row -mx-6 px-6 flex md:grid md:grid-cols-3 gap-4 md:gap-6 items-stretch overflow-x-auto md:overflow-visible pt-2 pb-4">
         {PLANS.map((plan) => (
-          <PriceCard key={plan.id} plan={plan} duration={duration} />
+          <div key={plan.id} className="shrink-0 w-[85%] sm:w-[60%] md:w-auto">
+            <PriceCard plan={plan} duration={duration} />
+          </div>
         ))}
       </div>
+      <p className="md:hidden text-center text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>
+        Deslize para ver os {PLANS.length} planos →
+      </p>
     </>
   );
 }

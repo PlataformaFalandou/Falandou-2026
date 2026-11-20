@@ -32,11 +32,11 @@ export function YouTubeLink({ className = "" }: { className?: string }) {
 export function TeacherCard({ t }: { t: Teacher }) {
   return (
     <div
-      className="rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col"
-      style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
+      className="card-hover rounded-2xl overflow-hidden border flex flex-col"
+      style={{ backgroundColor: "var(--color-surface)", borderColor: "var(--color-border)" }}
     >
       {/* Photo */}
-      <div className="relative w-full aspect-square overflow-hidden">
+      <div className="relative w-full aspect-square overflow-hidden img-skeleton">
         <Image
           src={t.photo}
           alt={t.name}
@@ -55,8 +55,9 @@ export function TeacherCard({ t }: { t: Teacher }) {
 
       {/* Info */}
       <div className="p-6 flex flex-col flex-1">
-        <h3 className="font-display font-extrabold text-white text-xl mb-0.5">{t.name}</h3>
-        <p className="font-body text-white/40 text-sm mb-4">{t.title}</p>
+        <h3 className="font-display font-extrabold text-white text-[length:var(--text-h3)] mb-0.5">{t.name}</h3>
+        <p className="font-body text-white/50 text-sm mb-1">{t.title}</p>
+        <p className="font-body text-sm font-semibold mb-4" style={{ color: "#FF8A4C" }}>Especialidade: {t.specialty}</p>
 
         {/* Credentials */}
         <div className="flex flex-wrap gap-2 mb-4">
@@ -69,12 +70,6 @@ export function TeacherCard({ t }: { t: Teacher }) {
               {c}
             </span>
           ))}
-          <span
-            className="px-3 py-1 rounded-full text-xs font-semibold text-white/50"
-            style={{ border: "1px solid rgba(255,255,255,0.15)" }}
-          >
-            {t.specialty}
-          </span>
         </div>
 
         {/* Bio */}
@@ -86,7 +81,7 @@ export function TeacherCard({ t }: { t: Teacher }) {
 
 export default function Teachers() {
   return (
-    <section className="py-24 md:py-32" style={{ backgroundColor: "#161616" }}>
+    <section className="py-24 md:py-32" style={{ backgroundColor: "var(--color-bg)" }}>
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
@@ -95,7 +90,7 @@ export default function Teachers() {
           </p>
           <h2
             className="font-display font-extrabold text-white leading-tight"
-            style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)" }}
+            style={{ fontSize: "var(--text-h2)" }}
           >
             Professores reais, credenciais verificáveis.
           </h2>
@@ -123,9 +118,8 @@ export default function Teachers() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackCTAClick("teachers")}
-              className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full transition-all duration-300 hover:opacity-90 hover:scale-105"
-              style={{ backgroundColor: "#FF6820", color: "#fff" }}
-            >
+              className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full cta-primary"
+              style={{ color: "#fff" }}>
               Quero começar
             </a>
             <Link

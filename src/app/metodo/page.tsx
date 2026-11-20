@@ -4,6 +4,8 @@ import Footer from "@/components/ui/Footer";
 import CTASection from "@/components/sections/CTASection";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
+import MethodCycle from "@/components/ui/MethodCycle";
+import CEFRScale from "@/components/ui/CEFRScale";
 
 import JsonLd from "@/components/ui/JsonLd";
 import { PAUSE_RULE, RESCHEDULE_RULE, STUDENTS_PER_TEACHER } from "@/data/plans";
@@ -156,14 +158,14 @@ export default function MetodoPage() {
     <>
       <ScrollRevealInit />
       <Navbar />
-      <main>
+      <main id="conteudo">
         {/* Dados estruturados — Arquitetura §10 */}
         <JsonLd data={faqSchema(faqs)} />
 
         {/* ── HERO ─────────────────────────────────────────────────────────── */}
         <section
           className="pt-40 pb-28 md:pt-52 md:pb-36"
-          style={{ backgroundColor: "#161616" }}
+          style={{ backgroundColor: "var(--color-bg)" }}
         >
           <div className="max-w-5xl mx-auto px-6">
             <div className="max-w-3xl">
@@ -175,7 +177,7 @@ export default function MetodoPage() {
               </p>
               <h1
                 className="reveal font-display font-extrabold text-white leading-tight mb-6 delay-100"
-                style={{ fontSize: "clamp(2.2rem, 5vw, 3.75rem)" }}
+                style={{ fontSize: "var(--text-h1)" }}
               >
                 Um ciclo de 90 dias com{" "}
                 <span style={{ color: "#FF6820" }}>processo visível</span>{" "}
@@ -218,14 +220,14 @@ export default function MetodoPage() {
         </section>
 
         {/* ── NARRATIVA EM 3 ATOS — tentou → por que não funcionou → o que muda ── */}
-        <section className="py-24 md:py-28 bg-white">
+        <section className="py-24 md:py-28 bg-surface">
           <div className="max-w-5xl mx-auto px-6">
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
               Por que outros formatos não resolveram
             </p>
             <h2
               className="reveal font-display font-extrabold leading-tight mb-14 delay-100"
-              style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616", maxWidth: "720px" }}
+              style={{ fontSize: "var(--text-h2)", color: "var(--color-text)", maxWidth: "720px" }}
             >
               Você não travou por falta de esforço.
             </h2>
@@ -235,7 +237,8 @@ export default function MetodoPage() {
                   key={act.tag}
                   className="reveal rounded-2xl p-8"
                   style={{
-                    backgroundColor: i === 2 ? "#161616" : "#F5F6F1",
+                    backgroundColor: i === 2 ? "var(--color-surface)" : "var(--color-bg-alt)",
+                    border: i === 2 ? "2px solid #FF6820" : "1px solid var(--color-border)",
                     transitionDelay: `${i * 80}ms`,
                   }}
                 >
@@ -243,14 +246,14 @@ export default function MetodoPage() {
                     {i + 1} · {act.tag}
                   </span>
                   <h3
-                    className="font-display font-extrabold text-lg mt-3 mb-3 leading-snug"
-                    style={{ color: i === 2 ? "white" : "#161616" }}
+                    className="font-display font-extrabold text-[length:var(--text-h3)] mt-3 mb-3 leading-snug"
+                    style={{ color: "var(--color-text)" }}
                   >
                     {act.title}
                   </h3>
                   <p
                     className="font-body text-sm leading-relaxed"
-                    style={{ color: i === 2 ? "rgba(255,255,255,0.7)" : "rgba(22,22,22,0.65)" }}
+                    style={{ color: i === 2 ? "rgba(255,255,255,0.7)" : "rgba(245,246,241,0.75)" }}
                   >
                     {act.body}
                   </p>
@@ -260,55 +263,45 @@ export default function MetodoPage() {
           </div>
         </section>
 
-        {/* ── CICLO: visão geral ────────────────────────────────────────────── */}
-        <section className="py-6 md:py-8" style={{ backgroundColor: "#F5F6F1" }}>
+        {/* ── CICLO: visão geral em diagrama (UX/UI §17, §25) ────────────── */}
+        <section className="py-20 md:py-24" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-5xl mx-auto px-6">
-            {/* Timeline bar */}
-            <div className="reveal flex items-center justify-between gap-0 overflow-x-auto py-6">
-              {steps.map((step, i) => (
-                <div key={step.num} className="flex items-center flex-shrink-0">
-                  <div className="flex flex-col items-center text-center px-3">
-                    <div
-                      className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm mb-2"
-                      style={{ backgroundColor: "#FF6820" }}
-                    >
-                      {step.num}
-                    </div>
-                    <span className="font-body text-xs font-bold" style={{ color: "#161616" }}>
-                      {step.tag}
-                    </span>
-                    <span className="font-body text-xs mt-0.5" style={{ color: "rgba(22,22,22,0.4)" }}>
-                      {step.when}
-                    </span>
-                  </div>
-                  {i < steps.length - 1 && (
-                    <div
-                      className="flex-1 h-0.5 mx-1 min-w-[24px] md:min-w-[40px]"
-                      style={{ background: "rgba(255,104,32,0.25)" }}
-                    />
-                  )}
-                </div>
-              ))}
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+              O ciclo em uma imagem
+            </p>
+            <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100 text-white" style={{ fontSize: "var(--text-h2)" }}>
+              Diagnóstico, plano, sessões, avaliação — e um novo nível.
+            </h2>
+            <div className="reveal">
+              <MethodCycle />
+            </div>
+
+            {/* Escala CEFR interativa: "você está aqui" */}
+            <div className="reveal mt-16 rounded-2xl p-6 md:p-8" style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
+              <h3 className="font-display font-extrabold text-white mb-6" style={{ fontSize: "var(--text-h3)" }}>
+                A escala CEFR: de onde você sai e aonde chega.
+              </h3>
+              <CEFRScale interactive />
             </div>
           </div>
         </section>
 
         {/* ── ETAPAS DETALHADAS ────────────────────────────────────────────── */}
-        <section className="py-20 md:py-28 bg-white">
+        <section className="py-20 md:py-28 bg-surface">
           <div className="max-w-5xl mx-auto px-6 space-y-8">
             {steps.map((step, i) => (
               <div
                 key={step.num}
                 className="reveal rounded-2xl overflow-hidden"
                 style={{
-                  border: "1px solid rgba(0,0,0,0.07)",
+                  border: "1px solid rgba(255,255,255,0.1)",
                   transitionDelay: `${i * 60}ms`,
                 }}
               >
                 {/* Header strip */}
                 <div
                   className="flex items-center gap-4 px-8 py-5"
-                  style={{ backgroundColor: i === 0 ? "#161616" : "#F5F6F1" }}
+                  style={{ backgroundColor: i === 0 ? "var(--color-surface)" : "var(--color-bg-alt)" }}
                 >
                   <span
                     className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-display font-black text-sm"
@@ -329,14 +322,14 @@ export default function MetodoPage() {
                       </span>
                       <span
                         className="font-body text-xs"
-                        style={{ color: i === 0 ? "rgba(255,255,255,0.4)" : "rgba(22,22,22,0.4)" }}
+                        style={{ color: i === 0 ? "rgba(255,255,255,0.4)" : "rgba(245,246,241,0.5)" }}
                       >
                         {step.when}
                       </span>
                     </div>
                     <h3
-                      className="font-display font-extrabold text-lg mt-1 leading-tight"
-                      style={{ color: i === 0 ? "white" : "#161616" }}
+                      className="font-display font-extrabold text-[length:var(--text-h3)] mt-1 leading-tight"
+                      style={{ color: "var(--color-text)" }}
                     >
                       {step.title}
                     </h3>
@@ -345,7 +338,7 @@ export default function MetodoPage() {
                 </div>
 
                 {/* Body */}
-                <div className="px-8 py-7 grid md:grid-cols-[1fr_auto] gap-8 items-start bg-white">
+                <div className="px-8 py-7 grid md:grid-cols-[1fr_auto] gap-8 items-start bg-surface">
                   <div>
                     <p
                       className="font-body text-sm font-semibold mb-3"
@@ -355,7 +348,7 @@ export default function MetodoPage() {
                     </p>
                     <p
                       className="font-body text-base leading-relaxed mb-6"
-                      style={{ color: "rgba(22,22,22,0.7)" }}
+                      style={{ color: "rgba(245,246,241,0.8)" }}
                     >
                       {step.body}
                     </p>
@@ -370,7 +363,7 @@ export default function MetodoPage() {
                           </span>
                           <span
                             className="font-body text-sm leading-snug"
-                            style={{ color: "rgba(22,22,22,0.65)" }}
+                            style={{ color: "rgba(245,246,241,0.75)" }}
                           >
                             {d}
                           </span>
@@ -397,7 +390,7 @@ export default function MetodoPage() {
                 {i < steps.length - 1 && (
                   <div
                     className="flex justify-center py-2"
-                    style={{ background: "#F5F6F1" }}
+                    style={{ background: "var(--color-bg-alt)" }}
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <path
@@ -416,7 +409,7 @@ export default function MetodoPage() {
         </section>
 
         {/* ── PERGUNTAS QUE BLOQUEIAM ───────────────────────────────────────── */}
-        <section className="py-24 md:py-32" style={{ backgroundColor: "#F5F6F1" }}>
+        <section className="py-24 md:py-32" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-14">
               <p
@@ -427,7 +420,7 @@ export default function MetodoPage() {
               </p>
               <h2
                 className="reveal font-display font-extrabold leading-tight delay-100"
-                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}
+                style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}
               >
                 Como o ciclo funciona no dia a dia.
               </h2>
@@ -437,21 +430,21 @@ export default function MetodoPage() {
               {faqs.map((faq, i) => (
                 <div
                   key={i}
-                  className="reveal rounded-2xl p-7 bg-white"
+                  className="reveal rounded-2xl p-7 bg-surface"
                   style={{
-                    border: "1px solid rgba(0,0,0,0.07)",
+                    border: "1px solid rgba(255,255,255,0.1)",
                     transitionDelay: `${i * 50}ms`,
                   }}
                 >
                   <p
                     className="font-display font-bold text-base mb-3 leading-snug"
-                    style={{ color: "#161616" }}
+                    style={{ color: "var(--color-text)" }}
                   >
                     {faq.q}
                   </p>
                   <p
                     className="font-body text-sm leading-relaxed"
-                    style={{ color: "rgba(22,22,22,0.6)" }}
+                    style={{ color: "rgba(245,246,241,0.7)" }}
                   >
                     {faq.a}
                   </p>

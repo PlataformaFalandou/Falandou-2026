@@ -18,7 +18,7 @@ export default function BlogPreview({
   const posts = (picked.length ? picked : all).slice(0, 3);
 
   return (
-    <section className="py-20 md:py-28 bg-white">
+    <section className="py-20 md:py-28 bg-surface">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="flex items-end justify-between mb-10">
@@ -27,8 +27,8 @@ export default function BlogPreview({
               Blog
             </p>
             <h2
-              className="reveal font-display font-extrabold text-grafite leading-tight delay-100"
-              style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)" }}
+              className="reveal font-display font-extrabold text-ink leading-tight delay-100"
+              style={{ fontSize: "var(--text-h2)" }}
             >
               {title}
             </h2>
@@ -49,7 +49,7 @@ export default function BlogPreview({
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="reveal group flex flex-col bg-neve rounded-2xl overflow-hidden border border-black/5 hover:border-laranja/30 hover:shadow-md transition-all duration-300"
+              className="reveal group flex flex-col bg-bg-alt rounded-2xl overflow-hidden border border-white/10 hover:border-laranja/30 hover:shadow-md transition-all duration-300"
               style={{ transitionDelay: `${i * 80}ms` }}
             >
               {/* Color header bar */}
@@ -70,15 +70,15 @@ export default function BlogPreview({
                     {post.categoria}
                   </span>
                   {post.tempo_leitura && (
-                    <span className="font-body text-xs text-grafite/40">{post.tempo_leitura} min</span>
+                    <span className="font-body text-xs text-ink/40">{post.tempo_leitura} min</span>
                   )}
                 </div>
 
-                <h3 className="font-display font-bold text-grafite text-base leading-snug mb-3 group-hover:text-laranja transition-colors line-clamp-2">
+                <h3 className="font-display font-bold text-ink text-base leading-snug mb-3 group-hover:text-laranja transition-colors line-clamp-2">
                   {post.titulo}
                 </h3>
 
-                <p className="font-body text-sm text-grafite/60 leading-relaxed line-clamp-3 flex-1">
+                <p className="font-body text-sm text-ink/60 leading-relaxed line-clamp-3 flex-1">
                   {post.resumo}
                 </p>
 

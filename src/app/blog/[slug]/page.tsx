@@ -118,12 +118,12 @@ export default async function ArticlePage({
           }),
         }}
       />
-      <main className="pt-32 md:pt-36 pb-20 min-h-screen bg-neve">
+      <main id="conteudo" className="pt-32 md:pt-36 pb-20 min-h-screen bg-bg-alt">
         <div className="max-w-6xl mx-auto px-6 lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14">
           <div className="max-w-3xl">
             {/* Breadcrumb — Arquitetura §2: só no artigo do blog */}
             <nav aria-label="Você está em" className="mb-8">
-              <ol className="flex flex-wrap items-center gap-1.5 font-body text-sm" style={{ color: "rgba(22,22,22,0.5)" }}>
+              <ol className="flex flex-wrap items-center gap-1.5 font-body text-sm" style={{ color: "rgba(245,246,241,0.6)" }}>
                 <li>
                   <Link href="/" className="hover:underline underline-offset-2">Início</Link>
                 </li>
@@ -139,7 +139,7 @@ export default async function ArticlePage({
                 <li aria-hidden className="hidden sm:block">
                   <ChevronRight size={14} />
                 </li>
-                <li aria-current="page" className="hidden sm:block max-w-[22rem] truncate" style={{ color: "#161616" }}>
+                <li aria-current="page" className="hidden sm:block max-w-[22rem] truncate" style={{ color: "var(--color-text)" }}>
                   {article.titulo}
                 </li>
               </ol>
@@ -155,12 +155,12 @@ export default async function ArticlePage({
                 {article.categoria}
               </Link>
               {article.tempo_leitura && (
-                <span className="flex items-center gap-1.5 font-body text-xs" style={{ color: "rgba(22,22,22,0.5)" }}>
+                <span className="flex items-center gap-1.5 font-body text-xs" style={{ color: "rgba(245,246,241,0.6)" }}>
                   <Clock size={12} />
                   {article.tempo_leitura} min de leitura
                 </span>
               )}
-              <span className="font-body text-xs" style={{ color: "rgba(22,22,22,0.4)" }}>
+              <span className="font-body text-xs" style={{ color: "rgba(245,246,241,0.5)" }}>
                 {new Date(article.created_at).toLocaleDateString("pt-BR", {
                   day: "numeric",
                   month: "long",
@@ -172,20 +172,20 @@ export default async function ArticlePage({
             {/* Title */}
             <h1
               className="font-display font-extrabold leading-tight mb-6"
-              style={{ fontSize: "clamp(1.9rem, 3.5vw, 2.75rem)", color: "#161616" }}
+              style={{ fontSize: "var(--text-h1)", color: "var(--color-text)" }}
             >
               {article.titulo}
             </h1>
 
             {/* Resumo */}
-            <p className="font-body text-lg leading-relaxed mb-10 pb-10 border-b border-black/10" style={{ color: "rgba(22,22,22,0.6)" }}>
+            <p className="font-body text-lg leading-relaxed mb-10 pb-10 border-b border-white/15" style={{ color: "rgba(245,246,241,0.7)" }}>
               {article.resumo}
             </p>
 
             {/* Content — rendered as markdown */}
             <div
               className="font-body text-base leading-relaxed prose-custom"
-              style={{ color: "rgba(22,22,22,0.8)" }}
+              style={{ color: "rgba(245,246,241,0.9)" }}
               dangerouslySetInnerHTML={{ __html: article.conteudo }}
             />
 
@@ -196,7 +196,7 @@ export default async function ArticlePage({
                 href={`https://www.youtube.com/watch?v=${article.video}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group mt-12 flex flex-col sm:flex-row items-stretch gap-0 rounded-2xl overflow-hidden border border-black/10 bg-white hover:shadow-lg transition-shadow"
+                className="group mt-12 flex flex-col sm:flex-row items-stretch gap-0 rounded-2xl overflow-hidden border border-white/15 bg-surface hover:shadow-lg transition-shadow"
               >
                 <span className="relative block sm:w-64 aspect-video sm:aspect-auto flex-shrink-0 bg-black">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -216,7 +216,7 @@ export default async function ArticlePage({
                   <span className="font-body text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#FF6820" }}>
                     Veja também em vídeo
                   </span>
-                  <span className="font-display font-bold text-base" style={{ color: "#161616" }}>
+                  <span className="font-display font-bold text-base" style={{ color: "var(--color-text)" }}>
                     Assista no canal @falandou no YouTube →
                   </span>
                 </span>
@@ -226,12 +226,12 @@ export default async function ArticlePage({
             {/* CTA contextual — Arquitetura §3/§6: ligado ao tema do artigo + página relacionada */}
             <div
               className="mt-16 rounded-2xl p-8 text-center"
-              style={{ backgroundColor: "#161616" }}
+              style={{ backgroundColor: "var(--color-bg)" }}
             >
               <p className="font-body text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
                 Da leitura para a prática
               </p>
-              <h3 className="font-display font-extrabold text-white text-xl md:text-2xl mb-3">
+              <h3 className="font-display font-extrabold text-white text-[length:var(--text-h3)] md:text-2xl mb-3">
                 {cta.heading}
               </h3>
               <p className="font-body text-sm mb-6 max-w-md mx-auto" style={{ color: "rgba(255,255,255,0.55)" }}>
@@ -244,9 +244,7 @@ export default async function ArticlePage({
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-7 py-4 rounded-full text-sm font-semibold text-white transition-all duration-200 hover:scale-105"
-                  style={{ backgroundColor: "#FF6820" }}
-                >
+                  className="inline-flex items-center gap-2 px-7 py-4 rounded-full text-sm font-semibold text-white cta-primary">
                   <MessageCircle size={16} />
                   Quero treinar isso nas sessões
                 </a>
@@ -264,8 +262,8 @@ export default async function ArticlePage({
           {/* ── Barra lateral (desktop) — Arquitetura §6 ── */}
           <aside className="hidden lg:block">
             <div className="sticky top-32 flex flex-col gap-6">
-              <div className="rounded-2xl bg-white border border-black/5 p-6">
-                <p className="font-body text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "rgba(22,22,22,0.45)" }}>
+              <div className="rounded-2xl bg-surface border border-white/10 p-6">
+                <p className="font-body text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "rgba(245,246,241,0.55)" }}>
                   Leia também
                 </p>
                 <ul className="flex flex-col gap-4">
@@ -275,7 +273,7 @@ export default async function ArticlePage({
                         <span className="block font-body text-xs font-semibold mb-1" style={{ color: categoryColor(r.categoria) }}>
                           {r.categoria}
                         </span>
-                        <span className="block font-display font-bold text-sm leading-snug group-hover:underline underline-offset-2" style={{ color: "#161616" }}>
+                        <span className="block font-display font-bold text-sm leading-snug group-hover:underline underline-offset-2" style={{ color: "var(--color-text)" }}>
                           {r.titulo}
                         </span>
                       </Link>
@@ -285,7 +283,7 @@ export default async function ArticlePage({
               </div>
 
               {/* Captura de contato: roteiro gratuito pelo WhatsApp (decisão da escola: sem lista de e-mail) */}
-              <div className="rounded-2xl p-6" style={{ backgroundColor: "#161616" }}>
+              <div className="rounded-2xl p-6" style={{ backgroundColor: "var(--color-bg)" }}>
                 <p className="font-body text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
                   Material gratuito
                 </p>
@@ -299,15 +297,13 @@ export default async function ArticlePage({
                   href={getWhatsAppUrlForContext("leadmagnet")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-center px-5 py-3 rounded-full font-body font-bold text-sm text-white"
-                  style={{ backgroundColor: "#FF6820" }}
-                >
+                  className="block text-center px-5 py-3 rounded-full font-body font-bold text-sm text-white cta-primary">
                   Receber o roteiro gratuito
                 </a>
               </div>
 
-              <div className="rounded-2xl bg-white border border-black/5 p-6">
-                <p className="font-body text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "rgba(22,22,22,0.45)" }}>
+              <div className="rounded-2xl bg-surface border border-white/10 p-6">
+                <p className="font-body text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "rgba(245,246,241,0.55)" }}>
                   Categorias
                 </p>
                 <ul className="flex flex-wrap gap-2">

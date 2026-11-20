@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { SITE_INDEXABLE, SITE_URL } from "@/lib/site";
 import "./globals.css";
 import AnalyticsProvider from "@/components/ui/AnalyticsProvider";
 import EntrySegment from "@/components/ui/EntrySegment";
 import CookieBanner from "@/components/ui/CookieBanner";
+import SiteChrome from "@/components/ui/SiteChrome";
 
 // Arquitetura §10 — metadataBase resolve URLs relativas (canonical, og:url, og:image)
 // para o domínio do site. Sem `url`/`canonical` aqui: cada página define os seus
@@ -25,6 +26,12 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
 };
 
+// Site escuro por padrão (UX/UI §20): barra do navegador no celular na cor do fundo.
+export const viewport: Viewport = {
+  themeColor: "#0F0F0F",
+  colorScheme: "dark",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -41,6 +48,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <SiteChrome />
         <AnalyticsProvider />
         <EntrySegment />
         {children}

@@ -23,7 +23,7 @@ export default function BlogPage() {
   return (
     <>
       <Navbar solid />
-      <main className="pt-24 pb-20 min-h-screen bg-neve">
+      <main id="conteudo" className="pt-24 pb-20 min-h-screen bg-bg-alt">
         <div className="max-w-7xl mx-auto px-6">
           {/* Header */}
           <div className="mb-12">
@@ -31,12 +31,12 @@ export default function BlogPage() {
               Blog Falandou
             </p>
             <h1
-              className="font-display font-extrabold text-grafite leading-tight"
-              style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)" }}
+              className="font-display font-extrabold text-ink leading-tight"
+              style={{ fontSize: "var(--text-h1)" }}
             >
               Aprenda enquanto decide.
             </h1>
-            <p className="font-body text-grafite/60 text-lg mt-3 max-w-xl">
+            <p className="font-body text-ink/60 text-lg mt-3 max-w-xl">
               {articles.length} artigos sobre inglês profissional, pronúncia, vocabulário e muito mais.
             </p>
           </div>

@@ -3,8 +3,8 @@
 import { trackCTAClick } from "@/lib/analytics";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
-import { ArrowRight, MessageCircle } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Check, MessageCircle } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { STATS } from "@/data/stats";
 
@@ -33,6 +33,26 @@ const HERO_LOGOS = [
   },
 ];
 
+/**
+ * Palavras que entram em sequência (UX/UI §15: stagger de 80ms por palavra).
+ * `accent` pinta de laranja e sublinha (detalhe em laranja na palavra-chave, §2).
+ * `start` continua a contagem quando a headline tem mais de um trecho.
+ */
+export function HeadlineWords({ text, accent = false, start = 0 }: { text: string; accent?: boolean; start?: number }) {
+  const words = text.trim().split(/\s+/);
+  const content = words.map((w, i) => (
+    <span key={i} className="word-in" style={{ animationDelay: `${(start + i) * 80}ms` }}>
+      {w}
+      {i < words.length - 1 ? " " : ""}
+    </span>
+  ));
+  return accent ? (
+    <span className="accent-underline" style={{ color: "#FF6820" }}>{content}</span>
+  ) : (
+    <>{content} </>
+  );
+}
+
 interface HeroProps {
   eyebrow?: string;
   headline?: React.ReactNode;
@@ -44,12 +64,19 @@ interface HeroProps {
   ctaLabel?: string;
 }
 
+// Selos de confiança do hero (UX/UI §7, §23): só fatos da escola.
+const TRUST_BADGES = ["Exame CEFR incluso", "Aulas 1 a 1", "Sem turmas"];
+
+/**
+ * Hero em 3 camadas (UX/UI §2): resultado (headline) → mecanismo (subheadline) →
+ * ação (CTA primário + secundário). Fundo tipográfico escuro, sem foto de banco de imagens.
+ */
 export default function Hero({
   eyebrow = "Você sabe inglês. Mas trava na hora de usar.",
   headline = (
     <>
-      Fale inglês com{" "}
-      <span style={{ color: "#FF6820" }}>confiança no trabalho.</span>
+      <HeadlineWords text="Fale inglês com" />
+      <HeadlineWords text="confiança no trabalho." accent start={3} />
     </>
   ),
   subheadline = "A maioria dos profissionais entende inglês razoavelmente bem. O problema é na hora de falar — reunião, apresentação, entrevista. A Falandou resolve exatamente isso: inglês funcional para o seu contexto. B1 → B2 em 11 semanas em média.",
@@ -60,174 +87,140 @@ export default function Hero({
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setLoaded(true), 100);
+    const t = setTimeout(() => setLoaded(true), 50);
     return () => clearTimeout(t);
   }, []);
 
-  return (
-    <section className="relative min-h-screen overflow-hidden">
-      {/* Full-bleed background image */}
-      <div className="absolute inset-0">
-        <Image
-          src="/images/hero-woman-meeting.png"
-          alt="Profissional apresentando com confiança em inglês"
-          fill
-          className="object-cover object-center"
-          priority
-          sizes="100vw"
-        />
-        {/* Dark overlay */}
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(135deg, rgba(22,22,22,0.85) 0%, rgba(22,22,22,0.6) 60%, rgba(22,22,22,0.4) 100%)" }}
-        />
-        {/* Orange tint bottom */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-64 pointer-events-none"
-          style={{ background: "linear-gradient(to top, rgba(255,104,32,0.15), transparent)" }}
-        />
-      </div>
+  const fade = (extra = "") =>
+    `transition-all duration-500 ${extra} ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`;
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-24 sm:pt-32 md:pt-40 md:pb-32 min-h-screen flex flex-col justify-center">
+  return (
+    <section
+      className="relative overflow-hidden"
+      style={{ background: "linear-gradient(160deg, #161616 0%, #0F0F0F 55%, #1F1F1F 100%)" }}
+    >
+      {/* Textura sutil: grade de linhas finas + brilho laranja (sem imagem, sem loop) */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
+          maskImage: "radial-gradient(ellipse at 30% 40%, black 0%, transparent 75%)",
+          WebkitMaskImage: "radial-gradient(ellipse at 30% 40%, black 0%, transparent 75%)",
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="absolute -top-40 -right-40 w-[640px] h-[640px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(255,104,32,0.18) 0%, transparent 65%)" }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-16 sm:pt-36 md:pt-44 md:pb-24 min-h-[92vh] flex flex-col justify-center">
         {/*
-          Ponto 37 — acima da dobra no celular: promessa + prova + ação sem rolar.
+          Acima da dobra no celular: promessa + prova + ação sem rolar.
           Abaixo de sm a coluna vira flex e a ordem muda (H1 → prova → CTA → subtítulo).
           A partir de sm volta ao fluxo normal (block ignora `order`).
         */}
-        <div className="max-w-3xl flex flex-col sm:block">
+        <div className="max-w-4xl flex flex-col sm:block">
           {/* Eyebrow */}
-          <div
-            className={`order-1 self-start inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-5 sm:mb-8 border border-white/20 backdrop-blur-sm transition-all duration-700 ${
-              loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-            style={{ background: "rgba(255,104,32,0.2)", color: "#FF9A6C" }}
+          <p
+            className={fade("order-1 self-start inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-5 sm:mb-8 border")}
+            style={{ background: "rgba(255,104,32,0.12)", borderColor: "rgba(255,104,32,0.35)", color: "#FF9A6C" }}
           >
-            <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: "#FF6820" }} />
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#FF6820" }} />
             {eyebrow}
-          </div>
+          </p>
 
-          {/* Headline */}
+          {/* Camada 1 — resultado */}
           <h1
-            className={`order-2 font-display font-extrabold text-white leading-[1.05] tracking-tight mb-4 sm:mb-6 transition-all duration-700 delay-100 ${
-              loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
-            style={{ fontSize: "clamp(2.8rem, 6vw, 5rem)" }}
+            className="order-2 font-display font-extrabold text-white leading-[1.05] tracking-tight mb-5 sm:mb-6"
+            style={{ fontSize: "var(--text-h1)" }}
           >
             {headline}
           </h1>
 
-          {/* Prova social compacta — só no celular, antes do CTA */}
-          <p
-            className={`order-3 sm:hidden text-sm text-white/70 mb-5 transition-all duration-700 delay-150 ${
-              loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-          >
-            <strong className="text-white font-extrabold">{STATS.formed}</strong> profissionais formados
-            <span className="text-white/30"> · </span>
-            <strong className="text-white font-extrabold">{STATS.rating}</strong> de avaliação
-          </p>
+          {/* Prova social em pill, logo abaixo da headline (§2, §23) */}
+          <div className={fade("order-3 delay-150 flex flex-wrap items-center gap-2 mb-6 sm:mb-8")}>
+            <span
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-sm font-semibold text-white tnum"
+              style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)" }}
+            >
+              <strong className="font-extrabold" style={{ color: "#FF6820" }}>{STATS.evaluated}</strong>
+              profissionais avaliados no último ciclo
+            </span>
+            {TRUST_BADGES.map((b) => (
+              <span
+                key={b}
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold"
+                style={{ background: "transparent", border: "1px solid var(--color-border)", color: "rgba(245,246,241,0.8)" }}
+              >
+                <Check size={13} strokeWidth={3} style={{ color: "#FF6820" }} aria-hidden="true" />
+                {b}
+              </span>
+            ))}
+          </div>
 
-          {/* Subheadline */}
-          <p
-            className={`order-5 text-white/70 text-lg sm:text-xl md:text-2xl leading-relaxed mb-10 max-w-2xl transition-all duration-700 delay-200 ${
-              loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
-          >
+          {/* Camada 2 — mecanismo */}
+          <p className={fade("order-5 delay-200 text-lg sm:text-xl leading-relaxed mb-8 max-w-2xl")} style={{ color: "var(--color-text-body)" }}>
             {subheadline}
           </p>
 
-          {/* Stat chip — dado de suporte ao claim do subheadline */}
           {statChip && (
-            <p
-              className={`order-6 text-sm font-medium mb-10 -mt-6 transition-all duration-700 delay-250 ${
-                loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
-              style={{ color: "rgba(255,104,32,0.85)" }}
-            >
+            <p className={fade("order-6 delay-200 text-sm font-medium mb-8 -mt-4 tnum")} style={{ color: "rgba(255,138,76,0.95)" }}>
               {statChip}
             </p>
           )}
 
-          {/* CTAs */}
-          <div
-            className={`order-4 flex flex-col sm:flex-row gap-4 mb-10 sm:mb-16 transition-all duration-700 delay-300 ${
-              loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
-          >
-            <a
-              href={getWhatsAppUrlForContext(whatsappContext)}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackCTAClick("hero")}
-              className="inline-flex items-center justify-center gap-3 px-8 py-5 rounded-full text-base font-bold text-white transition-all duration-200 hover:scale-105 active:scale-95 shadow-2xl"
-              style={{ backgroundColor: "#FF6820", boxShadow: "0 8px 32px rgba(255,104,32,0.5)" }}
-            >
-              <MessageCircle size={20} />
-              {ctaLabel}
-            </a>
-            <a
-              href="#como-funciona"
-              className="inline-flex items-center justify-center gap-2 px-8 py-5 rounded-full text-base font-semibold text-white border border-white/30 backdrop-blur-sm hover:border-white/60 transition-all duration-200 group"
-              style={{ background: "rgba(255,255,255,0.1)" }}
-            >
-              Ver como funciona
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </a>
+          {/* Camada 3 — ação: primário + secundário, hierarquia clara de cor */}
+          <div className={fade("order-4 delay-300 mb-8 sm:mb-14")}>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <a
+                href={getWhatsAppUrlForContext(whatsappContext)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackCTAClick("hero")}
+                className="cta-primary inline-flex items-center justify-center gap-3 min-w-[220px] px-8 py-4 rounded-full text-base font-bold"
+              >
+                <MessageCircle size={20} aria-hidden="true" />
+                {ctaLabel}
+              </a>
+              <Link
+                href="/planos"
+                className="cta-secondary inline-flex items-center justify-center gap-2 min-w-[180px] px-8 py-4 rounded-full text-base font-semibold group"
+              >
+                Ver planos
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+              </Link>
+            </div>
+            {/* Redução de fricção (§10) */}
+            <p className="mt-3 text-sm" style={{ color: "var(--color-text-muted)" }}>
+              Pelo WhatsApp · resposta em até 1h · sem compromisso
+            </p>
           </div>
 
-          {/* Stats strip — 4 números concretos visíveis sem rolar */}
-          <div
-            className={`order-7 transition-all duration-700 delay-500 ${
-              loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-          >
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-4 max-w-xl">
-              {[
-                { value: STATS.formed, label: "Profissionais formados" },
-                { value: `${STATS.b1b2Weeks} sem`, label: "B1→B2 em média" },
-                { value: STATS.cefrUpPct, label: `Sobem 1 nível em ${STATS.cycleDays} dias` },
-                { value: STATS.rating, label: "Avaliação média" },
-              ].map((s) => (
-                <div key={s.label} className="text-center sm:text-left">
-                  <div className="font-display font-extrabold text-2xl md:text-3xl text-white">{s.value}</div>
-                  <div className="text-white/50 text-xs mt-1 leading-tight">{s.label}</div>
-                </div>
+          {/* Logos — empresas dos alunos, em faixa cinza (§23) */}
+          <div className={fade("order-7 delay-500")}>
+            <p className="text-xs uppercase tracking-widest font-semibold mb-4" style={{ color: "var(--color-text-muted)" }}>
+              Profissionais de empresas como
+            </p>
+            <div className="flex flex-wrap gap-6 items-center">
+              {HERO_LOGOS.map((logo) => (
+                <svg
+                  key={logo.name}
+                  role="img"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-label={logo.name}
+                  style={{ height: "18px", width: "auto", maxWidth: "80px", fill: "rgba(255,255,255,0.4)" }}
+                >
+                  <path d={logo.path} />
+                </svg>
               ))}
-            </div>
-
-            {/* Logos — empresas dos alunos, compacto dentro da Hero */}
-            <div
-              className={`mt-8 transition-all duration-700 delay-700 ${
-                loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
-            >
-              <p className="text-white/30 text-xs uppercase tracking-widest font-semibold mb-4">
-                Profissionais de empresas como
-              </p>
-              <div className="flex flex-wrap gap-6 items-center">
-                {HERO_LOGOS.map((logo) => (
-                  <svg
-                    key={logo.name}
-                    role="img"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-label={logo.name}
-                    style={{ height: "18px", width: "auto", maxWidth: "80px", fill: "rgba(255,255,255,0.35)" }}
-                    className="hover:fill-white/60 transition-all duration-200"
-                  >
-                    <path d={logo.path} />
-                  </svg>
-                ))}
-              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Bottom scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-50">
-        <div className="w-px h-12 bg-white/40" style={{ animation: "pulse 2s infinite" }} />
       </div>
     </section>
   );

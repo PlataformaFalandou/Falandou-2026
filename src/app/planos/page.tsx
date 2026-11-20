@@ -6,6 +6,7 @@ import ComparisonTable from "@/components/sections/ComparisonTable";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import PlansGrid from "@/components/sections/PlansGrid";
+import PlanFinderForm from "@/components/sections/PlanFinderForm";
 import { COMMITMENT_DISCOUNTS, COMMITMENT_TEXT, INCLUDED_IN_ALL, PAUSE_RULE, PLAN_TERMS, MIN_REPORTED_RAISE, PRICE_FROM, PRICE_FROM_ROUNDED, PRICE_TO_VALUE, RESCHEDULE_RULE, STUDENTS_PER_TEACHER, commitmentPrice, getPlan, perDay, perSession } from "@/data/plans";
 
 import JsonLd from "@/components/ui/JsonLd";
@@ -74,14 +75,14 @@ export default function PlanosPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="conteudo">
         {/* Dados estruturados — Arquitetura §10 */}
         <JsonLd data={courseSchema({ name: "Inglês profissional — ciclo de 90 dias", description: "Plano individual, sessões 1 a 1 e exame CEFR antes e depois do ciclo.", path: "/planos/" })} />
         <JsonLd data={faqSchema(FAQS)} />
         {/* ── Hero ── */}
         <section
           className="pt-28 pb-20 md:pt-36 md:pb-24"
-          style={{ backgroundColor: "#161616" }}
+          style={{ backgroundColor: "var(--color-bg)" }}
         >
           <div className="max-w-4xl mx-auto px-6 text-center">
             <p
@@ -92,7 +93,7 @@ export default function PlanosPage() {
             </p>
             <h1
               className="font-display font-extrabold text-white leading-tight mb-5"
-              style={{ fontSize: "clamp(2rem, 4.5vw, 3.25rem)" }}
+              style={{ fontSize: "var(--text-h1)" }}
             >
               Quanto custa{" "}
               <span style={{ color: "#FF6820" }}>falar inglês com confiança?</span>
@@ -135,7 +136,7 @@ export default function PlanosPage() {
         </section>
 
         {/* ── Pricing cards ── */}
-        <section className="py-16 md:py-20" style={{ backgroundColor: "#0e0e0e" }}>
+        <section className="py-16 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-6xl mx-auto px-6">
             {/* Incluso em todos os planos */}
             <div
@@ -160,6 +161,12 @@ export default function PlanosPage() {
 
             {/* Planos reais (falandou.com) com seletor de 25/50 minutos */}
             <PlansGrid />
+
+            {/* UX/UI §24 — escassez real, como cuidado (sem contador nem data inventada) */}
+            <p className="mt-6 text-center text-sm max-w-2xl mx-auto" style={{ color: "rgba(245,246,241,0.75)" }}>
+              Limitamos cada professor a {STUDENTS_PER_TEACHER} alunos ativos para garantir atenção individual de
+              verdade.
+            </p>
 
             {/* Copywriting §4 — para quem NÃO é (aumenta a confiança na indicação) */}
             <p className="mt-6 text-center font-body text-sm max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.6)" }}>
@@ -195,34 +202,33 @@ export default function PlanosPage() {
               {PLAN_TERMS}
             </p>
 
-            {/* Dúvida entre planos → equipe indica pelo WhatsApp */}
+            {/* Dúvida entre planos → formulário curto que abre o WhatsApp (UX/UI §11) */}
             <div
-              className="mt-10 rounded-2xl px-8 py-6 text-center"
-              style={{
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.07)",
-              }}
+              id="qual-plano"
+              className="mt-12 rounded-2xl p-6 md:p-10 grid md:grid-cols-[1fr_1.3fr] gap-8 md:gap-12 items-start"
+              style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
             >
-              <p
-                className="font-body text-base text-white mb-1"
-              >
-                Não tem certeza de qual plano escolher?
-              </p>
-              <p
-                className="font-body text-sm mb-5"
-                style={{ color: "rgba(255,255,255,0.45)" }}
-              >
-                Conte o seu objetivo, o seu nível e o seu prazo. A equipe responde em até 1h com o plano indicado para o seu caso.
-              </p>
-              <a
-                href={getWhatsAppUrlForContext("plans")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-body font-bold text-sm px-7 py-3.5 rounded-full text-white transition-all duration-300 hover:opacity-90"
-                style={{ backgroundColor: "#FF6820" }}
-              >
-                Qual plano é para mim?
-              </a>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+                  Qual plano é para mim?
+                </p>
+                <h2 className="font-display font-extrabold text-white leading-tight mb-4" style={{ fontSize: "var(--text-h3)" }}>
+                  Conte o seu objetivo, o seu nível e a sua área.
+                </h2>
+                <p className="text-base" style={{ color: "var(--color-text-body)" }}>
+                  A equipe responde em até 1h com o plano indicado para o seu caso. Se preferir, fale direto:{" "}
+                  <a
+                    href={getWhatsAppUrlForContext("plans")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cta-tertiary font-semibold text-white"
+                  >
+                    abrir o WhatsApp
+                  </a>
+                  .
+                </p>
+              </div>
+              <PlanFinderForm context="plans" />
             </div>
           </div>
         </section>
@@ -234,7 +240,7 @@ export default function PlanosPage() {
         <ComparisonTable />
 
         {/* ── ROI anchor ── */}
-        <section className="py-16 md:py-20" style={{ backgroundColor: "#161616" }}>
+        <section className="py-16 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-4xl mx-auto px-6">
             <p
               className="font-body text-sm font-bold uppercase tracking-widest mb-4 text-center"
@@ -244,7 +250,7 @@ export default function PlanosPage() {
             </p>
             <h2
               className="font-display font-extrabold text-white leading-tight mb-4 text-center"
-              style={{ fontSize: "clamp(1.6rem, 3vw, 2.25rem)" }}
+              style={{ fontSize: "var(--text-h2)" }}
             >
               Quanto custa mais um ano sem inglês?
             </h2>
@@ -323,11 +329,11 @@ export default function PlanosPage() {
         </section>
 
         {/* ── FAQ ── */}
-        <section className="py-16 md:py-20" style={{ backgroundColor: "#0e0e0e" }}>
+        <section className="py-16 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-2xl mx-auto px-6">
             <h2
               className="font-display font-extrabold text-white mb-10 text-center"
-              style={{ fontSize: "clamp(1.4rem, 2.5vw, 1.9rem)" }}
+              style={{ fontSize: "var(--text-h2)" }}
             >
               Dúvidas sobre os planos
             </h2>
@@ -357,9 +363,7 @@ export default function PlanosPage() {
                 href={getWhatsAppUrlForContext("plans")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white transition-all duration-300 hover:opacity-90 hover:scale-105"
-                style={{ backgroundColor: "#FF6820" }}
-              >
+                className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white cta-primary">
                 Falar com nossa equipe
               </a>
             </div>
@@ -368,16 +372,16 @@ export default function PlanosPage() {
 
         {/* ── Para empresas — Arquitetura §3/§9: jornada corporativa com CTA próprio.
              Sem preço publicado: a proposta é montada com a equipe. */}
-        <section id="empresas" className="py-16 md:py-20" style={{ backgroundColor: "#F5F6F1" }}>
+        <section id="empresas" className="py-16 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-[1fr_auto] gap-8 items-center">
             <div>
               <p className="font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
                 Para empresas
               </p>
-              <h2 className="font-display font-extrabold leading-tight mb-3" style={{ fontSize: "clamp(1.6rem, 3vw, 2.25rem)", color: "#161616" }}>
+              <h2 className="font-display font-extrabold leading-tight mb-3" style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}>
                 Inglês profissional para a sua equipe.
               </h2>
-              <p className="font-body text-base leading-relaxed" style={{ color: "rgba(22,22,22,0.65)", maxWidth: "560px" }}>
+              <p className="font-body text-base leading-relaxed" style={{ color: "rgba(245,246,241,0.75)", maxWidth: "560px" }}>
                 O mesmo ciclo — diagnóstico CEFR, plano individual por profissional, sessões 1 a 1 e
                 exame de evolução — para times que precisam usar o inglês no trabalho. A proposta é
                 montada com a nossa equipe, de acordo com o número de pessoas e os objetivos.
@@ -389,14 +393,14 @@ export default function PlanosPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-7 py-4 rounded-full font-body font-bold text-base text-white transition-all duration-200 hover:scale-105"
-                style={{ backgroundColor: "#161616" }}
+                style={{ backgroundColor: "var(--color-bg)" }}
               >
                 Falar sobre a minha equipe
               </a>
               <a
                 href="mailto:contato@falandou.com?subject=Ingl%C3%AAs%20para%20equipes"
                 className="font-body text-sm font-semibold underline underline-offset-4 text-center"
-                style={{ color: "rgba(22,22,22,0.6)" }}
+                style={{ color: "rgba(245,246,241,0.7)" }}
               >
                 ou escreva para contato@falandou.com
               </a>

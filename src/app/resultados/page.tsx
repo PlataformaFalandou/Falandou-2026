@@ -5,6 +5,7 @@ import Footer from "@/components/ui/Footer";
 import CTASection from "@/components/sections/CTASection";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
 import ResultsData from "@/components/sections/ResultsData";
+import CEFRScale from "@/components/ui/CEFRScale";
 import Testimonials from "@/components/sections/Testimonials";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 
@@ -80,11 +81,11 @@ export default function ResultadosPage() {
     <>
       <ScrollRevealInit />
       <Navbar />
-      <main>
+      <main id="conteudo">
         {/* Dados estruturados — Arquitetura §10 */}
         <JsonLd data={faqSchema(FAQS)} />
         {/* ── HERO ─────────────────────────────────────────────────────────── */}
-        <section className="pt-40 pb-20 md:pt-52 md:pb-24" style={{ backgroundColor: "#161616" }}>
+        <section className="pt-40 pb-20 md:pt-52 md:pb-24" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-5xl mx-auto px-6">
             <div className="max-w-3xl">
               <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
@@ -92,7 +93,7 @@ export default function ResultadosPage() {
               </p>
               <h1
                 className="reveal font-display font-extrabold text-white leading-tight mb-6 delay-100"
-                style={{ fontSize: "clamp(2.2rem, 5vw, 3.75rem)" }}
+                style={{ fontSize: "var(--text-h1)" }}
               >
                 Resultados medidos,{" "}
                 <span style={{ color: "#FF6820" }}>não prometidos.</span>
@@ -112,28 +113,28 @@ export default function ResultadosPage() {
         <ResultsData />
 
         {/* ── COMO MEDIMOS ─────────────────────────────────────────────────── */}
-        <section className="py-24 md:py-32 bg-white">
+        <section className="py-24 md:py-32 bg-surface">
           <div className="max-w-5xl mx-auto px-6">
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
               Como medimos
             </p>
             <h2
               className="reveal font-display font-extrabold leading-tight mb-14 delay-100"
-              style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}
+              style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}
             >
               Os números saem de exame, não de opinião.
             </h2>
             <div className="grid md:grid-cols-2 gap-5">
               {METHOD.map((m) => (
-                <div key={m.title} className="reveal rounded-2xl p-8" style={{ backgroundColor: "#F5F6F1" }}>
-                  <h3 className="font-display font-extrabold text-lg mb-2" style={{ color: "#161616" }}>{m.title}</h3>
-                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(22,22,22,0.6)" }}>{m.body}</p>
+                <div key={m.title} className="reveal rounded-2xl p-8" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+                  <h3 className="font-display font-extrabold text-[length:var(--text-h3)] mb-2" style={{ color: "var(--color-text)" }}>{m.title}</h3>
+                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(245,246,241,0.7)" }}>{m.body}</p>
                 </div>
               ))}
             </div>
-            <p className="reveal font-body text-sm mt-8" style={{ color: "rgba(22,22,22,0.5)" }}>
+            <p className="reveal font-body text-sm mt-8" style={{ color: "rgba(245,246,241,0.6)" }}>
               Último ciclo fechado: jan–set 2024 · 87 profissionais avaliados.{" "}
-              <Link href="/metodo" className="underline underline-offset-4 font-semibold" style={{ color: "#161616" }}>
+              <Link href="/metodo" className="underline underline-offset-4 font-semibold" style={{ color: "var(--color-text)" }}>
                 Veja o ciclo completo no método
               </Link>
               .
@@ -142,25 +143,29 @@ export default function ResultadosPage() {
         </section>
 
         {/* ── O QUE CADA NÍVEL SIGNIFICA ───────────────────────────────────── */}
-        <section className="py-24 md:py-32" style={{ backgroundColor: "#F5F6F1" }}>
+        <section className="py-24 md:py-32" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-5xl mx-auto px-6">
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
               A escala CEFR no trabalho
             </p>
             <h2
               className="reveal font-display font-extrabold leading-tight mb-14 delay-100"
-              style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}
+              style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}
             >
               O que significa subir um nível.
             </h2>
+            {/* UX/UI §25 — escala CEFR interativa ("você está aqui") */}
+            <div className="reveal mb-10 rounded-2xl p-6 md:p-8" style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
+              <CEFRScale interactive />
+            </div>
             <div className="flex flex-col gap-3">
               {LEVELS.map((l) => (
-                <div key={l.level} className="reveal grid sm:grid-cols-[140px_1fr] gap-2 sm:gap-6 rounded-2xl bg-white p-6 border border-black/5">
+                <div key={l.level} className="reveal grid sm:grid-cols-[140px_1fr] gap-2 sm:gap-6 rounded-2xl bg-surface p-6 border border-white/10">
                   <div>
                     <p className="font-display font-black text-2xl" style={{ color: "#FF6820" }}>{l.level}</p>
-                    <p className="font-body text-xs font-semibold uppercase tracking-wide" style={{ color: "rgba(22,22,22,0.45)" }}>{l.name}</p>
+                    <p className="font-body text-xs font-semibold uppercase tracking-wide" style={{ color: "rgba(245,246,241,0.55)" }}>{l.name}</p>
                   </div>
-                  <p className="font-body text-sm leading-relaxed self-center" style={{ color: "rgba(22,22,22,0.7)" }}>{l.work}</p>
+                  <p className="font-body text-sm leading-relaxed self-center" style={{ color: "rgba(245,246,241,0.8)" }}>{l.work}</p>
                 </div>
               ))}
             </div>
@@ -171,25 +176,25 @@ export default function ResultadosPage() {
         <Testimonials />
 
         {/* ── FAQ SOBRE CEFR ───────────────────────────────────────────────── */}
-        <section id="faq" className="py-24 md:py-32 bg-white">
+        <section id="faq" className="py-24 md:py-32 bg-surface">
           <div className="max-w-3xl mx-auto px-6">
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
               Dúvidas sobre os resultados
             </p>
             <h2
               className="reveal font-display font-extrabold leading-tight mb-10 delay-100"
-              style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}
+              style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}
             >
               Perguntas frequentes sobre o CEFR.
             </h2>
             <div className="flex flex-col gap-4">
               {FAQS.map((f) => (
-                <details key={f.q} className="group rounded-2xl p-6" style={{ backgroundColor: "#F5F6F1" }}>
-                  <summary className="cursor-pointer list-none flex justify-between items-center gap-4 font-display font-bold text-base" style={{ color: "#161616" }}>
+                <details key={f.q} className="group rounded-2xl p-6" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+                  <summary className="cursor-pointer list-none flex justify-between items-center gap-4 font-display font-bold text-base" style={{ color: "var(--color-text)" }}>
                     {f.q}
                     <span className="text-xl transition-transform group-open:rotate-45" style={{ color: "#FF6820" }}>+</span>
                   </summary>
-                  <p className="font-body text-sm leading-relaxed mt-4" style={{ color: "rgba(22,22,22,0.65)" }}>{f.a}</p>
+                  <p className="font-body text-sm leading-relaxed mt-4" style={{ color: "rgba(245,246,241,0.75)" }}>{f.a}</p>
                 </details>
               ))}
             </div>

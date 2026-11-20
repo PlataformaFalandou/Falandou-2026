@@ -57,7 +57,7 @@ export default function InglesExecutivoPage() {
     <>
       <ScrollRevealInit />
       <Navbar />
-      <main>
+      <main id="conteudo">
         {/* Dados estruturados — Arquitetura §10 */}
         <JsonLd data={courseSchema({ name: "Inglês executivo para reuniões e apresentações", description: "Ciclo de 90 dias para conduzir reuniões, apresentações e negociações em inglês.", path: "/ingles-executivo/" })} />
         <Hero

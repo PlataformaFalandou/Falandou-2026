@@ -19,27 +19,27 @@ const moments = [
 // `href` leva à página do perfil (/para/...) quando ela existe.
 const profiles: { img: string; role: string; pain: string; gain: string; href?: string }[] = [
   {
-    img: "/images/prof-arquiteta.png",
+    img: "/images/prof-arquiteta.webp",
     role: "Arquitetos e Engenheiros",
     pain: "Trava na call com o cliente de fora quando precisa defender o projeto",
     gain: "Conduz a apresentação do projeto, responde objeções e fecha a reunião",
     href: "/para/engenheiros",
   },
   {
-    img: "/images/medico-solucao.png",
+    img: "/images/medico-solucao.webp",
     role: "Profissionais de Saúde",
     pain: "Lê o artigo em inglês, mas fica em silêncio na discussão de caso com a equipe de fora",
     gain: "Apresenta o caso no congresso e responde às perguntas da plateia",
   },
   {
-    img: "/images/logistica-briefing.png",
+    img: "/images/logistica-briefing.webp",
     role: "Gestores e Líderes",
     pain: "Faz o discurso em português enquanto o time de fora espera — e percebe",
     gain: "Entra na reunião com o time global e conduz, não só participa",
     href: "/para/gestores",
   },
   {
-    img: "/images/email-profissional.png",
+    img: "/images/email-profissional.webp",
     role: "Analistas e Especialistas",
     pain: "Gasta uma hora num e-mail de cinco linhas e ainda pede para alguém revisar",
     gain: "Responde o e-mail do gestor de fora na hora, sem rascunho no tradutor",
@@ -57,7 +57,7 @@ export type ForWhomPersona = {
 
 export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) {
   return (
-    <section id="para-quem" className="py-24 md:py-32" style={{ backgroundColor: "#F5F6F1" }}>
+    <section id="para-quem" className="py-24 md:py-32" style={{ backgroundColor: "var(--color-bg-alt)" }}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
@@ -65,7 +65,7 @@ export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) 
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
               Para quem é
             </p>
-            <h2 className="reveal font-display font-extrabold leading-tight delay-100" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", color: "#161616" }}>
+            <h2 className="reveal font-display font-extrabold leading-tight delay-100" style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}>
               {persona ? (
                 persona.title
               ) : (
@@ -76,7 +76,7 @@ export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) 
               )}
             </h2>
           </div>
-          <p className="reveal font-body text-base leading-relaxed md:max-w-xs delay-200" style={{ color: "rgba(22,22,22,0.55)" }}>
+          <p className="reveal font-body text-base leading-relaxed md:max-w-xs delay-200" style={{ color: "rgba(245,246,241,0.65)" }}>
             {persona?.intro ?? "Não ensinamos inglês genérico. Cada plano é montado em torno do seu contexto profissional."}
           </p>
         </div>
@@ -141,7 +141,7 @@ export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) 
         {/* Momentos — identificação por situação, não só por profissão (só fora das LPs) */}
         {!persona && (
         <div className="mt-14">
-          <p className="font-body text-sm font-bold uppercase tracking-widest mb-5 text-center" style={{ color: "rgba(22,22,22,0.45)" }}>
+          <p className="font-body text-sm font-bold uppercase tracking-widest mb-5 text-center" style={{ color: "rgba(245,246,241,0.55)" }}>
             Ou comece pelo seu momento
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -149,9 +149,9 @@ export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) 
               <Link
                 key={m.href}
                 href={m.href}
-                className="group flex items-center justify-between gap-3 px-5 py-4 rounded-2xl bg-white border border-black/5 hover:border-[rgba(255,104,32,0.4)] hover:shadow-md transition-all duration-300"
+                className="group flex items-center justify-between gap-3 px-5 py-4 rounded-2xl bg-surface border border-white/10 hover:border-[rgba(255,104,32,0.4)] hover:shadow-md transition-all duration-300"
               >
-                <span className="font-body text-sm font-semibold" style={{ color: "#161616" }}>
+                <span className="font-body text-sm font-semibold" style={{ color: "var(--color-text)" }}>
                   {m.label}
                 </span>
                 <ArrowRight size={16} className="flex-shrink-0 group-hover:translate-x-1 transition-transform" style={{ color: "#FF6820" }} />
@@ -164,7 +164,7 @@ export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) 
 
         {/* CTA — visitante acabou de se reconhecer em um dos perfis */}
         <div className="mt-16 text-center">
-          <p className="font-body text-base mb-6" style={{ color: "rgba(22,22,22,0.55)" }}>
+          <p className="font-body text-base mb-6" style={{ color: "rgba(245,246,241,0.65)" }}>
             Se você se identificou com algum desses perfis, o próximo passo é simples.
           </p>
           <a
@@ -172,9 +172,7 @@ export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) 
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackCTAClick("forwho")}
-            className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white transition-all duration-300 hover:opacity-90 hover:scale-105"
-            style={{ backgroundColor: "#FF6820" }}
-          >
+            className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white cta-primary">
             Esse sou eu — quero saber mais
           </a>
         </div>

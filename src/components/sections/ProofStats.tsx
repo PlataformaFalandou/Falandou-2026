@@ -44,14 +44,14 @@ const METHODOLOGY_NOTES: React.ReactNode[] = [
 
 export default function ProofStats() {
   return (
-    <section id="resultados" className="pt-24 md:pt-32 pb-4" style={{ backgroundColor: "#161616" }}>
+    <section id="resultados" className="pt-24 md:pt-32 pb-4" style={{ backgroundColor: "var(--color-bg)" }}>
       <div className="max-w-7xl mx-auto px-6">
         <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
           Resultado verificável
         </p>
         <h2
           className="reveal font-display font-extrabold text-white leading-tight mb-3 delay-100"
-          style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)" }}
+          style={{ fontSize: "var(--text-h2)" }}
         >
           {STATS.cefrUpPct} dos profissionais passou a conduzir reuniões{" "}
           <span style={{ color: "#FF6820" }}>e entrevistas em inglês em até 90 dias.</span>

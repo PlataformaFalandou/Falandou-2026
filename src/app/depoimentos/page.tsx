@@ -27,9 +27,9 @@ export default function DepoimentosPage() {
     <>
       <ScrollRevealInit />
       <Navbar />
-      <main>
+      <main id="conteudo">
         {/* ── HERO ─────────────────────────────────────────────────────────── */}
-        <section className="pt-40 pb-16 md:pt-52 md:pb-20" style={{ backgroundColor: "#161616" }}>
+        <section className="pt-40 pb-16 md:pt-52 md:pb-20" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-7xl mx-auto px-6">
             <div className="max-w-3xl">
               <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
@@ -37,7 +37,7 @@ export default function DepoimentosPage() {
               </p>
               <h1
                 className="reveal font-display font-extrabold text-white leading-tight mb-6 delay-100"
-                style={{ fontSize: "clamp(2.2rem, 5vw, 3.75rem)" }}
+                style={{ fontSize: "var(--text-h1)" }}
               >
                 O que muda no trabalho{" "}
                 <span style={{ color: "#FF6820" }}>depois do ciclo.</span>
@@ -58,7 +58,7 @@ export default function DepoimentosPage() {
         </section>
 
         {/* ── GRADE ────────────────────────────────────────────────────────── */}
-        <section className="pb-24 md:pb-32" style={{ backgroundColor: "#161616" }}>
+        <section className="pb-24 md:pb-32" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-7xl mx-auto px-6">
             <TestimonialsBrowser />
           </div>

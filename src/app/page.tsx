@@ -42,15 +42,15 @@ export default function HomePage() {
       <ScrollRevealInit />
       <ScrollTracker />
       <Navbar />
-      <main>
+      <main id="conteudo">
         {/* Dados estruturados — Arquitetura §10 */}
         <JsonLd data={organizationSchema()} />
         {/* 1. Promessa + prova (600+, logos) + ação */}
         <HeroAB />
-        {/* 2. Identificação logo após a Hero (planilha, ponto 38) */}
-        <ForWhom />
-        {/* 3. Credenciais institucionais */}
+        {/* 2. Faixa de números do último ciclo, logo abaixo da Hero (UX/UI §7) */}
         <StatsBar />
+        {/* 3. Identificação (planilha, ponto 38) */}
+        <ForWhom />
         {/* 4. Como funciona — 5 etapas + link para o método completo */}
         <Journey />
         {/* 4b. Benefícios consolidados: carreira · dia a dia · bolso (Copywriting §5) */}

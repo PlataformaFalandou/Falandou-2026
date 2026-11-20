@@ -57,7 +57,7 @@ export default function LeadMagnet() {
     <section
       id="roteiro-30-dias"
       className="py-24 md:py-32"
-      style={{ backgroundColor: "#161616" }}
+      style={{ backgroundColor: "var(--color-bg)" }}
     >
       <div className="max-w-5xl mx-auto px-6">
 
@@ -71,7 +71,7 @@ export default function LeadMagnet() {
           </p>
           <h2
             className="font-display font-extrabold text-white leading-tight mb-4"
-            style={{ fontSize: "clamp(1.9rem, 3.5vw, 2.75rem)" }}
+            style={{ fontSize: "var(--text-h2)" }}
           >
             Roteiro de 30 dias para quem quer começar{" "}
             <span style={{ color: "#FF6820" }}>do jeito certo.</span>
@@ -157,7 +157,7 @@ export default function LeadMagnet() {
           </p>
           <h3
             className="font-display font-extrabold text-white mb-3"
-            style={{ fontSize: "clamp(1.3rem, 2.5vw, 1.75rem)" }}
+            style={{ fontSize: "var(--text-h3)" }}
           >
             Receba o roteiro completo com todas as atividades detalhadas.
           </h3>
@@ -173,9 +173,7 @@ export default function LeadMagnet() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackCTAClick("leadmagnet")}
-            className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white transition-all duration-300 hover:opacity-90 hover:scale-105"
-            style={{ backgroundColor: "#FF6820" }}
-          >
+            className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white cta-primary">
             {/* WhatsApp icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"

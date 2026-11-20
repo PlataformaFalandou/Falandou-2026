@@ -26,6 +26,7 @@ const PAGES: Entry[] = [
   { path: "/intensivo/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/para/engenheiros/", priority: 0.6, changeFrequency: "monthly" },
   { path: "/para/gestores/", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/vocabulario/", priority: 0.6, changeFrequency: "monthly" },
   { path: "/indique/", priority: 0.4, changeFrequency: "monthly" },
   { path: "/politica-de-privacidade/", priority: 0.2, changeFrequency: "yearly" },
   { path: "/termos/", priority: 0.2, changeFrequency: "yearly" },

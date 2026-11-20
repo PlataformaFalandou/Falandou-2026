@@ -42,9 +42,9 @@ export default function IndiquePage() {
     <>
       <ScrollRevealInit />
       <Navbar />
-      <main>
+      <main id="conteudo">
         {/* ── HERO — para o aluno atual ─────────────────────────────────────── */}
-        <section className="pt-40 pb-24 md:pt-52 md:pb-32" style={{ backgroundColor: "#161616" }}>
+        <section className="pt-40 pb-24 md:pt-52 md:pb-32" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-5xl mx-auto px-6">
             <div className="max-w-3xl">
               <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
@@ -52,7 +52,7 @@ export default function IndiquePage() {
               </p>
               <h1
                 className="reveal font-display font-extrabold text-white leading-tight mb-6 delay-100"
-                style={{ fontSize: "clamp(2.2rem, 5vw, 3.75rem)" }}
+                style={{ fontSize: "var(--text-h1)" }}
               >
                 Indique um colega.{" "}
                 <span style={{ color: "#FF6820" }}>Vocês dois ganham 4 sessões bônus.</span>
@@ -72,27 +72,27 @@ export default function IndiquePage() {
         </section>
 
         {/* ── COMO FUNCIONA ─────────────────────────────────────────────────── */}
-        <section className="py-24 md:py-32 bg-white">
+        <section className="py-24 md:py-32 bg-surface">
           <div className="max-w-5xl mx-auto px-6">
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
               Como funciona
             </p>
             <h2
               className="reveal font-display font-extrabold leading-tight mb-14 delay-100"
-              style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}
+              style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}
             >
               Três passos, sem cadastro.
             </h2>
             <ol className="grid md:grid-cols-3 gap-5">
               {steps.map((s) => (
-                <li key={s.num} className="reveal rounded-2xl p-8" style={{ backgroundColor: "#F5F6F1" }}>
+                <li key={s.num} className="reveal rounded-2xl p-8" style={{ backgroundColor: "var(--color-bg-alt)" }}>
                   <span className="font-display font-black text-sm" style={{ color: "#FF6820" }}>{s.num}</span>
-                  <h3 className="font-display font-extrabold text-lg mt-3 mb-2" style={{ color: "#161616" }}>{s.title}</h3>
-                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(22,22,22,0.6)" }}>{s.body}</p>
+                  <h3 className="font-display font-extrabold text-[length:var(--text-h3)] mt-3 mb-2" style={{ color: "var(--color-text)" }}>{s.title}</h3>
+                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(245,246,241,0.7)" }}>{s.body}</p>
                 </li>
               ))}
             </ol>
-            <p className="reveal font-body text-sm mt-8" style={{ color: "rgba(22,22,22,0.5)" }}>
+            <p className="reveal font-body text-sm mt-8" style={{ color: "rgba(245,246,241,0.6)" }}>
               As sessões bônus são liberadas depois que o plano do indicado é fechado. Dúvidas sobre as regras?{" "}
               <a
                 href={getWhatsAppUrlForContext("indicacao")}
@@ -109,31 +109,31 @@ export default function IndiquePage() {
         </section>
 
         {/* ── PARA QUEM FOI INDICADO ────────────────────────────────────────── */}
-        <section id="fui-indicado" className="py-24 md:py-32" style={{ backgroundColor: "#F5F6F1" }}>
+        <section id="fui-indicado" className="py-24 md:py-32" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-5xl mx-auto px-6">
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
               Foi indicado por alguém?
             </p>
             <h2
               className="reveal font-display font-extrabold leading-tight mb-4 delay-100"
-              style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}
+              style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}
             >
               Comece com 4 sessões bônus.
             </h2>
-            <p className="reveal font-body text-base leading-relaxed mb-8 delay-150" style={{ color: "rgba(22,22,22,0.6)", maxWidth: "560px" }}>
+            <p className="reveal font-body text-base leading-relaxed mb-8 delay-150" style={{ color: "rgba(245,246,241,0.7)", maxWidth: "560px" }}>
               Diga quem indicou você e fale com a equipe. Você entende o ciclo de 90 dias —
               exame CEFR, plano individual e sessões 1 a 1 — antes de escolher o plano.
             </p>
             <div className="reveal delay-200">
               <ReferredForm />
             </div>
-            <p className="font-body text-sm mt-6" style={{ color: "rgba(22,22,22,0.5)" }}>
+            <p className="font-body text-sm mt-6" style={{ color: "rgba(245,246,241,0.6)" }}>
               Quer conhecer antes?{" "}
-              <Link href="/metodo" className="underline underline-offset-4 font-semibold" style={{ color: "#161616" }}>
+              <Link href="/metodo" className="underline underline-offset-4 font-semibold" style={{ color: "var(--color-text)" }}>
                 Veja o método
               </Link>{" "}
               ou{" "}
-              <Link href="/planos" className="underline underline-offset-4 font-semibold" style={{ color: "#161616" }}>
+              <Link href="/planos" className="underline underline-offset-4 font-semibold" style={{ color: "var(--color-text)" }}>
                 os planos e valores
               </Link>
               .

@@ -38,7 +38,7 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
     <>
       <ScrollRevealInit />
       <Navbar />
-      <main>
+      <main id="conteudo">
         <JsonLd
           data={courseSchema({
             name: `Inglês profissional — ${data.eyebrow}`,
@@ -48,14 +48,14 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
         />
 
         {/* ── HERO ── */}
-        <section className="pt-40 pb-24 md:pt-52 md:pb-28" style={{ backgroundColor: "#161616" }}>
+        <section className="pt-40 pb-24 md:pt-52 md:pb-28" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-4xl mx-auto px-6">
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
               {data.eyebrow}
             </p>
             <h1
               className="reveal font-display font-extrabold text-white leading-tight mb-6 delay-100"
-              style={{ fontSize: "clamp(2.2rem, 5vw, 3.5rem)" }}
+              style={{ fontSize: "var(--text-h1)" }}
             >
               {data.title} <span style={{ color: "#FF6820" }}>{data.titleAccent}</span>
             </h1>
@@ -67,9 +67,7 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
                 href={getWhatsAppUrlForContext(data.whatsappContext)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-bold text-white transition-all duration-200 hover:scale-105"
-                style={{ backgroundColor: "#FF6820" }}
-              >
+                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-bold text-white cta-primary">
                 {data.ctaLabel}
               </a>
               <Link
@@ -84,22 +82,22 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
         </section>
 
         {/* ── CENÁRIOS ── */}
-        <section className="py-24 md:py-28" style={{ backgroundColor: "#F5F6F1" }}>
+        <section className="py-24 md:py-28" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-5xl mx-auto px-6">
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
               As situações que o plano treina
             </p>
-            <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "#161616" }}>
+            <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100" style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}>
               Você provavelmente já passou por pelo menos uma.
             </h2>
             <div className="grid md:grid-cols-2 gap-5">
               {data.scenarios.map((s) => (
-                <div key={s.situation} className="reveal rounded-2xl bg-white border border-black/5 p-7">
-                  <h3 className="font-display font-extrabold text-lg mb-4" style={{ color: "#161616" }}>{s.situation}</h3>
-                  <p className="font-body text-sm leading-relaxed mb-3" style={{ color: "rgba(22,22,22,0.6)" }}>
-                    <strong style={{ color: "#161616" }}>Hoje:</strong> {s.today}
+                <div key={s.situation} className="reveal rounded-2xl bg-surface border border-white/10 p-7">
+                  <h3 className="font-display font-extrabold text-[length:var(--text-h3)] mb-4" style={{ color: "var(--color-text)" }}>{s.situation}</h3>
+                  <p className="font-body text-sm leading-relaxed mb-3" style={{ color: "rgba(245,246,241,0.7)" }}>
+                    <strong style={{ color: "var(--color-text)" }}>Hoje:</strong> {s.today}
                   </p>
-                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(22,22,22,0.75)" }}>
+                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(245,246,241,0.85)" }}>
                     <strong style={{ color: "#FF6820" }}>No ciclo:</strong> {s.after}
                   </p>
                 </div>
@@ -109,7 +107,7 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
         </section>
 
         {/* ── NÚMEROS ── */}
-        <section style={{ backgroundColor: "#161616" }}>
+        <section style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-5xl mx-auto px-6 py-14 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
             {[
               { v: STATS.cefrUpPct, l: `sobem 1 nível CEFR ou mais em ${STATS.cycleDays} dias` },
@@ -126,19 +124,19 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
 
         {/* ── DEPOIMENTOS DO SETOR ── */}
         {quotes.length > 0 && (
-          <section className="py-24 md:py-28 bg-white">
+          <section className="py-24 md:py-28 bg-surface">
             <div className="max-w-5xl mx-auto px-6">
               <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-10" style={{ color: "#FF6820" }}>
                 Quem já fez o ciclo
               </p>
               <div className="grid md:grid-cols-2 gap-5">
                 {quotes.map((q) => (
-                  <figure key={q.name} className="reveal rounded-2xl p-8" style={{ backgroundColor: "#F5F6F1" }}>
-                    <blockquote className="font-body text-base leading-relaxed mb-6" style={{ color: "#161616" }}>
+                  <figure key={q.name} className="reveal rounded-2xl p-8" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+                    <blockquote className="font-body text-base leading-relaxed mb-6" style={{ color: "var(--color-text)" }}>
                       &ldquo;{q.text}&rdquo;
                     </blockquote>
-                    <figcaption className="font-body text-sm" style={{ color: "rgba(22,22,22,0.6)" }}>
-                      <strong style={{ color: "#161616" }}>{q.name}</strong> · {q.role}
+                    <figcaption className="font-body text-sm" style={{ color: "rgba(245,246,241,0.7)" }}>
+                      <strong style={{ color: "var(--color-text)" }}>{q.name}</strong> · {q.role}
                       {q.company ? ` · ${q.company}` : ""}
                     </figcaption>
                   </figure>
@@ -156,7 +154,7 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
         {/* ── CTA ── */}
         <section className="py-24 md:py-28" style={{ backgroundColor: "#FF6820" }}>
           <div className="max-w-3xl mx-auto px-6 text-center">
-            <h2 className="font-display font-extrabold text-white leading-tight mb-4" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+            <h2 className="font-display font-extrabold text-white leading-tight mb-4" style={{ fontSize: "var(--text-h2)" }}>
               Esse é o seu dia a dia?
             </h2>
             <p className="font-body text-lg mb-10" style={{ color: "rgba(255,255,255,0.85)" }}>
@@ -169,7 +167,7 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-10 py-5 rounded-full text-base font-bold text-white transition-all duration-200 hover:scale-105"
-                style={{ backgroundColor: "#161616" }}
+                style={{ backgroundColor: "var(--color-bg)" }}
               >
                 Esse sou eu — quero saber mais
               </a>

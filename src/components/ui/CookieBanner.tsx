@@ -39,8 +39,8 @@ export default function CookieBanner() {
       role="dialog"
       aria-live="polite"
       aria-label="Aviso de cookies"
-      className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:max-w-md z-[60] rounded-2xl p-5 shadow-2xl"
-      style={{ backgroundColor: "#161616", border: "1px solid rgba(255,255,255,0.12)" }}
+      className="fixed bottom-[calc(76px+env(safe-area-inset-bottom))] left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:max-w-md z-[60] rounded-2xl p-5 shadow-2xl"
+      style={{ backgroundColor: "var(--color-bg)", border: "1px solid rgba(255,255,255,0.12)" }}
     >
       <p className="font-body text-sm leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.75)" }}>
         Usamos cookies de medição e publicidade (Google Analytics e Meta) para entender como o site é
@@ -54,9 +54,7 @@ export default function CookieBanner() {
         <button
           type="button"
           onClick={() => choose("granted")}
-          className="flex-1 px-4 py-2.5 rounded-full font-body font-bold text-sm text-white transition-opacity hover:opacity-90"
-          style={{ backgroundColor: "#FF6820" }}
-        >
+          className="flex-1 px-4 py-2.5 rounded-full font-body font-bold text-sm text-white transition-opacity cta-primary">
           Aceitar
         </button>
         <button

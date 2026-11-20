@@ -131,7 +131,7 @@ function VideoCard({ videoId, title, description, tag, isShort = false }: VideoC
 
 export default function YouTubeVideos() {
   return (
-    <section className="py-24" style={{ backgroundColor: "#161616" }}>
+    <section className="py-24" style={{ backgroundColor: "var(--color-bg)" }}>
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="mb-12">
@@ -144,7 +144,7 @@ export default function YouTubeVideos() {
           <div className="flex flex-col sm:flex-row sm:items-end gap-4 justify-between">
             <h2
               className="font-display font-extrabold text-white leading-tight"
-              style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)" }}
+              style={{ fontSize: "var(--text-h2)" }}
             >
               Aprenda o método antes de decidir.
             </h2>

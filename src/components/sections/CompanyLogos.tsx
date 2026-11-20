@@ -41,7 +41,7 @@ export default function CompanyLogos() {
   return (
     <section
       className="py-16"
-      style={{ backgroundColor: "#0e0e0e", borderTop: "1px solid rgba(255,255,255,0.06)" }}
+      style={{ backgroundColor: "var(--color-bg)", borderTop: "1px solid rgba(255,255,255,0.06)" }}
     >
       <div className="max-w-5xl mx-auto px-6">
         <p className="text-center font-body text-sm font-semibold uppercase tracking-widest text-white/30 mb-10">

@@ -2,39 +2,45 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export function useCounter(end: number, duration: number = 2000, start: number = 0) {
-  const [count, setCount] = useState(start);
-  const [isActive, setIsActive] = useState(false);
+/**
+ * Contador animado (UX/UI §15): conta de 0 até o valor real ao entrar na tela,
+ * com ease-out. O HTML estático já sai com o valor final (sem "0%" para quem não
+ * roda JavaScript), e quem pediu menos movimento no sistema vê o número direto (§18).
+ */
+export function useCounter(end: number, duration: number = 1200) {
+  const [count, setCount] = useState(end);
   const ref = useRef<HTMLDivElement>(null);
+  const done = useRef(false);
 
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let raf = 0;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !isActive) {
-          setIsActive(true);
-        }
+        if (!entry.isIntersecting || done.current) return;
+        done.current = true;
+        observer.disconnect();
+        let startTime: number | null = null;
+        const step = (ts: number) => {
+          if (startTime === null) startTime = ts;
+          const progress = Math.min((ts - startTime) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+          setCount(Math.round(eased * end));
+          if (progress < 1) raf = requestAnimationFrame(step);
+        };
+        raf = requestAnimationFrame(step);
       },
       { threshold: 0.5 }
     );
-
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [isActive]);
-
-  useEffect(() => {
-    if (!isActive) return;
-
-    let startTime: number | null = null;
-    const step = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-      setCount(Math.floor(eased * (end - start) + start));
-      if (progress < 1) requestAnimationFrame(step);
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(raf);
     };
-
-    requestAnimationFrame(step);
-  }, [isActive, end, start, duration]);
+  }, [end, duration]);
 
   return { count, ref };
 }
