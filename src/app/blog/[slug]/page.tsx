@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Clock, MessageCircle } from "lucide-react";
+import { ArrowLeft, ChevronRight, Clock, MessageCircle } from "lucide-react";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import { getArticleBySlug, getArticles } from "@/lib/blog";
@@ -60,18 +60,46 @@ export default async function ArticlePage({
 
   return (
     <>
-      <Navbar />
-      <main className="pt-24 pb-20 min-h-screen bg-neve">
+      <Navbar solid />
+      <main className="pt-32 md:pt-36 pb-20 min-h-screen bg-neve">
         <div className="max-w-3xl mx-auto px-6">
-          {/* Back link */}
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-medium text-grafite/50 hover:text-laranja transition-colors mb-8"
-            style={{ "--laranja": "#FF6820" } as React.CSSProperties}
-          >
-            <ArrowLeft size={15} />
-            Voltar ao blog
-          </Link>
+          {/* Breadcrumb — Arquitetura §2: só no artigo do blog (+ schema BreadcrumbList) */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Início", item: "https://2026.falandou.com/" },
+                  { "@type": "ListItem", position: 2, name: "Blog", item: "https://2026.falandou.com/blog/" },
+                  { "@type": "ListItem", position: 3, name: article.titulo, item: `https://2026.falandou.com/blog/${slug}/` },
+                ],
+              }),
+            }}
+          />
+          <nav aria-label="Você está em" className="mb-8">
+            <ol className="flex flex-wrap items-center gap-1.5 font-body text-sm" style={{ color: "rgba(22,22,22,0.5)" }}>
+              <li>
+                <Link href="/" className="hover:underline underline-offset-2">Início</Link>
+              </li>
+              <li aria-hidden>
+                <ChevronRight size={14} />
+              </li>
+              <li>
+                <Link href="/blog" className="inline-flex items-center gap-1 hover:underline underline-offset-2">
+                  <ArrowLeft size={13} className="sm:hidden" />
+                  Blog
+                </Link>
+              </li>
+              <li aria-hidden className="hidden sm:block">
+                <ChevronRight size={14} />
+              </li>
+              <li aria-current="page" className="hidden sm:block max-w-[22rem] truncate" style={{ color: "#161616" }}>
+                {article.titulo}
+              </li>
+            </ol>
+          </nav>
 
           {/* Category + meta */}
           <div className="flex items-center gap-3 mb-4">

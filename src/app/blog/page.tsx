@@ -13,7 +13,7 @@ export default function BlogPage() {
   const articles = getArticles();
   return (
     <>
-      <Navbar />
+      <Navbar solid />
       <main className="pt-24 pb-20 min-h-screen bg-neve">
         <div className="max-w-7xl mx-auto px-6">
           {/* Header */}
