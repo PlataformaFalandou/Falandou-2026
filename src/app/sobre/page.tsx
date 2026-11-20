@@ -13,7 +13,7 @@ import { STUDENTS_PER_TEACHER } from "@/data/plans";
 export const metadata: Metadata = {
   title: "Sobre a Falandou: Escola de Inglês Profissional",
   description:
-    "Sobre a Falandou: escola de inglês para profissionais, com sessões 1 a 1, até 25 alunos por professor e exame CEFR no início e no fim de cada ciclo.",
+    "Sobre a Falandou: escola de inglês para profissionais, com sessões 1 a 1, até 25 profissionais por professor e exame CEFR no início e no fim de cada ciclo.",
   alternates: { canonical: "/sobre/" },
   openGraph: {
     title: "Sobre a Falandou",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 const DIFFERENTIATORS = [
   {
     title: "Sessões 100% 1 a 1",
-    what: "Um professor, um aluno. Sem turma, sem grupo, sem exceção.",
+    what: "Um professor, um profissional. Sem turma, sem grupo, sem exceção.",
     why: "O professor aprende o seu jeito de travar — e trabalha exatamente isso.",
   },
   {
@@ -162,7 +162,7 @@ export default function SobrePage() {
               <p className="reveal font-body text-base leading-relaxed mb-6" style={{ color: "rgba(245,246,241,0.75)" }}>
                 A equipe reúne formação em linguística e pedagogia e certificações como Cambridge,
                 CELTA e DELTA. O professor é escolhido pelo seu diagnóstico CEFR, pelo seu setor e
-                pelo objetivo do ciclo — e acompanha no máximo {STUDENTS_PER_TEACHER} alunos ativos ao
+                pelo objetivo do ciclo — e acompanha no máximo {STUDENTS_PER_TEACHER} profissionais ao
                 mesmo tempo, para que a atenção continue individual.
               </p>
               <Link

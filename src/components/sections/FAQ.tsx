@@ -91,7 +91,7 @@ export default function FAQ({
               className="reveal inline-flex items-center gap-2 mt-8 px-6 py-3.5 rounded-full text-sm font-bold text-white transition-all duration-200 hover:scale-105 delay-300"
               style={{ backgroundColor: "var(--color-bg)" }}
             >
-              Perguntar à equipe
+              Falar com a equipe
             </a>
           </div>
 

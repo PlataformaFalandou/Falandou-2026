@@ -32,8 +32,8 @@ export default function NotFound() {
               className="font-display font-extrabold text-white leading-tight mb-6"
               style={{ fontSize: "var(--text-h1)" }}
             >
-              Esta página não existe —{" "}
-              <span style={{ color: "#FF6820" }}>mas o seu próximo passo sim.</span>
+              Esta página foi para o exterior —{" "}
+              <span style={{ color: "#FF6820" }}>mas a equipe continua aqui.</span>
             </h1>
             <p className="font-body text-lg leading-relaxed mb-10" style={{ color: "rgba(255,255,255,0.6)", maxWidth: "560px" }}>
               O link pode ter mudado ou estar incompleto. Escolha um caminho abaixo ou fale direto

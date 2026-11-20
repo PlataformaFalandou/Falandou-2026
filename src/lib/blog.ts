@@ -5,7 +5,16 @@ import { marked } from "marked";
 
 const CONTENT_DIR = path.join(process.cwd(), "content/blog");
 
-export type FAQItem = { q: string; a: string };
+/** q/a em texto puro (schema, cartões); qHtml/aHtml com itálico renderizado (revisão editorial §14). */
+export type FAQItem = { q: string; a: string; qHtml: string; aHtml: string };
+
+/** Markdown inline (*itálico*, **negrito**) → HTML; e a versão em texto puro. */
+function inline(md: string): string {
+  return marked.parseInline(md) as string;
+}
+function plain(md: string): string {
+  return md.replace(/\*\*([^*]+)\*\*/g, "$1").replace(/\*([^*]+)\*/g, "$1");
+}
 export type TocItem = { id: string; text: string };
 
 /**
@@ -23,7 +32,10 @@ export type Article = {
   titulo: string;
   titulo_seo?: string;
   slug: string;
+  /** Texto puro (cartões, meta). */
   resumo: string;
+  /** Com itálico renderizado (página do artigo). */
+  resumoHtml: string;
   descricao?: string;
   conteudo: string;
   categoria: string;
@@ -39,6 +51,8 @@ export type Article = {
   toc: TocItem[];
   /** ID de um vídeo do canal @falandou relacionado (Arquitetura §6). */
   video?: string;
+  /** Professor que assina (nome igual ao de src/lib/teachers.ts). Sem ele, vale a regra por categoria. */
+  autor?: string;
 };
 
 function slugify(s: string): string {
@@ -88,7 +102,8 @@ function readArticleFile(filename: string): Article | null {
       slug,
       titulo: data.titulo ?? "Sem título",
       titulo_seo: data.titulo_seo,
-      resumo: data.resumo ?? "",
+      resumo: plain(data.resumo ?? ""),
+      resumoHtml: inline(data.resumo ?? ""),
       descricao: data.descricao,
       categoria: data.categoria ?? "Dicas de Estudo",
       imagem_capa: data.imagem_capa,
@@ -99,9 +114,14 @@ function readArticleFile(filename: string): Article | null {
       palavra_chave: data.palavra_chave,
       cluster: data.cluster,
       pilar: data.pilar === true,
-      faq: Array.isArray(data.faq) ? (data.faq as FAQItem[]).filter((f) => f && f.q && f.a) : [],
+      faq: Array.isArray(data.faq)
+        ? (data.faq as { q?: string; a?: string }[])
+            .filter((f): f is { q: string; a: string } => !!(f && f.q && f.a))
+            .map((f) => ({ q: plain(f.q), a: plain(f.a), qHtml: inline(f.q), aHtml: inline(f.a) }))
+        : [],
       toc,
       video: data.video,
+      autor: data.autor,
       conteudo: html,
     };
   } catch {
@@ -163,9 +183,9 @@ export function getFeatured(): Article | null {
   return all.find((a) => a.pilar) ?? all[0] ?? null;
 }
 
-// Categorias (SEO §13): Carreira, Jurídico, CEFR e Certificações, Dicas de Estudo.
+// Categorias (SEO §13 + revisão editorial §35): Carreira e Negócios, Jurídico, CEFR e Certificações, Dicas de Estudo.
 // O filtro do blog mostra só as que têm artigos publicados.
-export const BLOG_CATEGORIES = ["Carreira", "Jurídico", "CEFR e Certificações", "Dicas de Estudo"];
+export const BLOG_CATEGORIES = ["Carreira e Negócios", "Jurídico", "CEFR e Certificações", "Dicas de Estudo"];
 
 export function getCategories(): string[] {
   const used = new Set(getArticles().map((a) => a.categoria));

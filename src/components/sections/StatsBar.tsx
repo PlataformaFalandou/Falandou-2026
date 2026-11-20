@@ -31,7 +31,7 @@ export const DEFAULT_STATS_BAR: StatsBarItem[] = [
   { value: parseInt(STATS.cefrUpPct, 10), suffix: "%", label: `subiram 1 nível CEFR em ${STATS.cycleDays} dias` },
   { value: STATS.b1b2Weeks, suffix: " sem", label: "de B1 a B2, em média" },
   { value: parseInt(STATS.completionPct, 10), suffix: "%", label: "concluíram o ciclo" },
-  { value: STATS.evaluated, label: `profissionais avaliados (${STATS.cycleLabel})` },
+  { value: STATS.evaluated, label: `avaliados com exame CEFR antes e depois (${STATS.cycleLabel})` },
 ];
 
 export default function StatsBar({ items = DEFAULT_STATS_BAR }: { items?: StatsBarItem[] } = {}) {
@@ -43,6 +43,10 @@ export default function StatsBar({ items = DEFAULT_STATS_BAR }: { items?: StatsB
             <StatItem key={s.label} item={s} delay={i * 100} />
           ))}
         </div>
+        {/* Revisão editorial §23: o modelo 1 a 1 explícito nos dois primeiros blocos da home */}
+        <p className="text-center text-sm md:text-base pt-4 pb-2 border-t border-white/10 mt-2" style={{ color: "rgba(245,246,241,0.8)" }}>
+          <strong className="text-white">Todas as sessões são individuais:</strong> você e o professor, sem turma e sem dividir a atenção.
+        </p>
       </div>
     </section>
   );

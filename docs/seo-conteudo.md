@@ -3,7 +3,7 @@
 Aplicação dos 28 pontos do PDF "SEO e Estratégia de Conteúdo".
 
 Decisões da escola nesta rodada:
-- **Sem página de autor.** Os artigos são assinados pela "Equipe Falandou".
+- **Sem página de autor.** Na revisão editorial seguinte, a escola decidiu que cada artigo é assinado por um professor, conforme a categoria, com mini-bio e link para o perfil em /professores (veja `docs/brand-voice.md`, seção 6).
 - **Com o cluster de inglês jurídico.**
 - **Sem lista de e-mail** (decisão anterior). O material gratuito é entregue pelo WhatsApp.
 
@@ -30,7 +30,7 @@ Decisões da escola nesta rodada:
 | 18 | Reescrita dos existentes | Os 7 posts passaram pelo protocolo: H1 com palavra-chave, title/description, FAQ, links internos, CTA e data de revisão (`atualizado_em`, que vira `dateModified`; a data de publicação foi mantida). Os posts não têm imagens próprias. A miniatura do vídeo é decorativa (alt vazio). |
 | 19 | Voz editorial | Seção "Voz editorial do blog" em `docs/brand-voice.md`. |
 | 20 | Mídia | Vídeos do @falandou nos posts (miniatura com link, sem cookies antes do consentimento), tabelas comparativas nos pilares. Infográficos no Canva com as cores da escola e versão em áudio ficam para o calendário. |
-| 21 | E-A-T | Assinatura "Por Equipe Falandou" com link para /professores, data de publicação e de revisão, bloco "Sobre a Falandou" no fim de cada post e no /blog. **Sem página de autor** (decisão da escola). As credenciais dos professores ficam em /professores. Logotipos da Cambridge não são usados: são marca registrada de terceiros. |
+| 21 | E-A-T | Assinatura do professor da categoria (com credenciais e link para o perfil em /professores), schema Person, data de publicação e de revisão, bloco "Sobre a Falandou" no fim de cada post e no /blog. **Sem página de autor** (decisão da escola). As credenciais dos professores ficam em /professores. Logotipos da Cambridge não são usados: são marca registrada de terceiros. |
 | 22–25, 27 | Link building, Google Meu Negócio, métricas, distribuição, governança | Playbook nas seções 7 a 11. São ações fora do código. |
 | 26 | Funil do blog | Entrada orgânica → CTA de meio de artigo (/metodo) → roteiro gratuito pelo WhatsApp (barra lateral) → CTA final "Quero começar" (/planos ou WhatsApp). A sequência de e-mails não se aplica (sem lista de e-mail), e o acompanhamento é pelo WhatsApp (seção 10). |
 | 28 | Roadmap | Seção 12. |

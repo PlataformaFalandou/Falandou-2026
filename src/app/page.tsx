@@ -8,6 +8,7 @@ import MetodoTeaser from "@/components/sections/MetodoTeaser";
 import Benefits from "@/components/sections/Benefits";
 import ProofStats from "@/components/sections/ProofStats";
 import Testimonials from "@/components/sections/Testimonials";
+import SessionFlow from "@/components/sections/SessionFlow";
 import YouTubeVideos from "@/components/sections/YouTubeVideos";
 import MidCTA from "@/components/sections/MidCTA";
 import FAQ from "@/components/sections/FAQ";
@@ -21,12 +22,12 @@ import ScrollTracker from "@/components/ui/ScrollTracker";
 import JsonLd from "@/components/ui/JsonLd";
 import { organizationSchema } from "@/lib/schema";
 export const metadata: Metadata = {
-  title: "Inglês para Profissionais com Aulas 1 a 1 | Falandou",
+  title: "Inglês para Profissionais com Sessões 1 a 1 | Falandou",
   description:
     "Inglês para profissionais com sessões 1 a 1, plano individual e exame CEFR no início e no fim do ciclo de 90 dias. Mais de 600 profissionais formados.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Inglês para Profissionais com Aulas 1 a 1 | Falandou",
+    title: "Inglês para Profissionais com Sessões 1 a 1 | Falandou",
     description:
     "Inglês para profissionais com sessões 1 a 1, plano individual e exame CEFR no início e no fim do ciclo de 90 dias. Mais de 600 profissionais formados.",
     type: "website",
@@ -63,6 +64,8 @@ export default function HomePage() {
         <MetodoTeaser />
         {/* 6. Prova quantitativa antes dos depoimentos */}
         <ProofStats />
+        {/* 6b. Como funciona uma sessão — concretiza a experiência antes dos depoimentos (revisão editorial §27) */}
+        <SessionFlow />
         {/* 7. Depoimentos — 3 cartões + "ver todos" */}
         <Testimonials />
         {/* 8. Como a escola ensina, em vídeo */}

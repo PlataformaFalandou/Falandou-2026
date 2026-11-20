@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
-import { teachers, YOUTUBE_CHANNEL_URL, type Teacher } from "@/lib/teachers";
+import { teachers, teacherSlug, YOUTUBE_CHANNEL_URL, type Teacher } from "@/lib/teachers";
 
 // Link para o canal da escola — mostra como a Falandou ensina antes da conversa.
 export function YouTubeLink({ className = "" }: { className?: string }) {
@@ -32,7 +32,8 @@ export function YouTubeLink({ className = "" }: { className?: string }) {
 export function TeacherCard({ t }: { t: Teacher }) {
   return (
     <div
-      className="card-hover rounded-2xl overflow-hidden border flex flex-col"
+      id={teacherSlug(t.name)}
+      className="card-hover rounded-2xl overflow-hidden border flex flex-col scroll-mt-28"
       style={{ backgroundColor: "var(--color-surface)", borderColor: "var(--color-border)" }}
     >
       {/* Photo */}

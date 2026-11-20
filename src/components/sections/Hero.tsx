@@ -57,6 +57,8 @@ interface HeroProps {
   eyebrow?: string;
   headline?: React.ReactNode;
   subheadline?: string;
+  /** Versão curta do subtítulo para o celular (revisão editorial §21). */
+  subheadlineShort?: string;
   /** Chip de dado imediatamente abaixo do subheadline — ancora qualquer claim de resultado. */
   statChip?: string;
   whatsappContext?: string;
@@ -65,7 +67,7 @@ interface HeroProps {
 }
 
 // Selos de confiança do hero (UX/UI §7, §23): só fatos da escola.
-const TRUST_BADGES = ["Exame CEFR incluso", "Aulas 1 a 1", "Sem turmas"];
+const TRUST_BADGES = ["Exame CEFR incluso", "Sessões 1 a 1", "Sem turmas"];
 
 /**
  * Hero em 3 camadas (UX/UI §2): resultado (headline) → mecanismo (subheadline) →
@@ -80,6 +82,7 @@ export default function Hero({
     </>
   ),
   subheadline = "A maioria dos profissionais entende inglês razoavelmente bem. O problema é na hora de falar — reunião, apresentação, entrevista. A Falandou resolve exatamente isso: inglês funcional para o seu contexto. B1 → B2 em 11 semanas em média.",
+  subheadlineShort,
   statChip,
   whatsappContext = "hero",
   ctaLabel = "Quero começar",
@@ -148,12 +151,12 @@ export default function Hero({
               style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)" }}
             >
               <strong className="font-extrabold" style={{ color: "#FF6820" }}>{STATS.evaluated}</strong>
-              profissionais avaliados no último ciclo
+              profissionais avaliados no exame CEFR no último ciclo
             </span>
             {TRUST_BADGES.map((b) => (
               <span
                 key={b}
-                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold"
                 style={{ background: "transparent", border: "1px solid var(--color-border)", color: "rgba(245,246,241,0.8)" }}
               >
                 <Check size={13} strokeWidth={3} style={{ color: "#FF6820" }} aria-hidden="true" />
@@ -164,7 +167,14 @@ export default function Hero({
 
           {/* Camada 2 — mecanismo */}
           <p className={fade("order-5 delay-200 text-lg sm:text-xl leading-relaxed mb-8 max-w-2xl")} style={{ color: "var(--color-text-body)" }}>
-            {subheadline}
+            {subheadlineShort ? (
+              <>
+                <span className="sm:hidden">{subheadlineShort}</span>
+                <span className="hidden sm:inline">{subheadline}</span>
+              </>
+            ) : (
+              subheadline
+            )}
           </p>
 
           {statChip && (

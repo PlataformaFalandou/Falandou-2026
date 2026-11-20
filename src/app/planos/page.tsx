@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import CompanyLogos from "@/components/sections/CompanyLogos";
@@ -131,7 +132,7 @@ export default function PlanosPage() {
               <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
               <span className="font-body text-sm font-semibold text-white">Ciclo de 90 dias</span>
               <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
-              <span className="font-body text-sm font-semibold text-white">Até {STUDENTS_PER_TEACHER} alunos por professor</span>
+              <span className="font-body text-sm font-semibold text-white">Até {STUDENTS_PER_TEACHER} profissionais por professor</span>
             </div>
           </div>
         </section>
@@ -165,8 +166,8 @@ export default function PlanosPage() {
 
             {/* UX/UI §24 — escassez real, como cuidado (sem contador nem data inventada) */}
             <p className="mt-6 text-center text-sm max-w-2xl mx-auto" style={{ color: "rgba(245,246,241,0.75)" }}>
-              Limitamos cada professor a {STUDENTS_PER_TEACHER} alunos ativos para garantir atenção individual de
-              verdade.
+              Cada professor acompanha no máximo {STUDENTS_PER_TEACHER} profissionais ao mesmo tempo. Acima disso, o
+              acompanhamento individual perde qualidade.
             </p>
 
             {/* Copywriting §4 — para quem NÃO é (aumenta a confiança na indicação) */}
@@ -324,7 +325,7 @@ export default function PlanosPage() {
               ))}
             </div>
             <p className="font-body text-xs text-center mt-8" style={{ color: "rgba(255,255,255,0.35)" }}>
-              Valores relatados por profissionais da Falandou. Não são garantia de resultado individual.
+              Valores relatados por profissionais da Falandou. Resultados variam conforme o nível inicial e a dedicação de cada profissional (veja os <Link href="/termos" className="underline underline-offset-2">termos</Link>).
             </p>
           </div>
         </section>

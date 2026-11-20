@@ -66,7 +66,7 @@ export default function MidCTA() {
         </p>
         {/* Posicionamento e Oferta §3: preço só depois de problema, solução, prova e retorno */}
         <p className="reveal font-body text-sm mt-2 delay-300" style={{ color: "rgba(255,255,255,0.75)" }}>
-          Planos a partir de {PRICE_FROM}/mês.{MIN_REPORTED_RAISE > PRICE_TO_VALUE && " O menor aumento relatado pelos alunos (R$ 1.500/mês) já é maior que a mensalidade de qualquer plano."}
+          Planos a partir de {PRICE_FROM}/mês.{MIN_REPORTED_RAISE > PRICE_TO_VALUE && " O menor aumento relatado pelos profissionais (R$ 1.500/mês) já é maior que a mensalidade de qualquer plano."}
         </p>
 
         {/* Trust chips — só fatos verificáveis (a escola não oferece consulta gratuita) */}

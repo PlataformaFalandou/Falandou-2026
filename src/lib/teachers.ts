@@ -41,3 +41,29 @@ export const teachers: Teacher[] = [
     bio: "Pedagoga norte-americana com formação e prática em Cambridge, IELTS e TOEFL. Atende do nível A1 ao C2 com planos individualizados — do diagnóstico inicial até a preparação para certificação.",
   },
 ];
+
+/** Âncora do perfil em /professores (ex.: "adriel-pelegrino"). */
+export function teacherSlug(name: string): string {
+  return name
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+/**
+ * Assinatura dos artigos do blog por categoria (revisão editorial §29 e §48 —
+ * decisão da escola). O frontmatter `autor` sobrepõe a regra.
+ */
+export const AUTHOR_BY_CATEGORY: Record<string, string> = {
+  "Carreira e Negócios": "Adriel Pelegrino",
+  "Jurídico": "Adriel Pelegrino",
+  "CEFR e Certificações": "Amanda Bennett",
+  "Dicas de Estudo": "Sara El Hamdaoui",
+};
+
+export function articleAuthor(categoria: string, autor?: string): Teacher {
+  const name = autor ?? AUTHOR_BY_CATEGORY[categoria] ?? "Adriel Pelegrino";
+  return teachers.find((t) => t.name === name) ?? teachers[0];
+}

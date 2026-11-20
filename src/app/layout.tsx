@@ -14,11 +14,11 @@ export const metadata: Metadata = {
   // Domínio temporário fora do Google; liga sozinho no domínio definitivo (src/lib/site.ts).
   ...(SITE_INDEXABLE ? {} : { robots: { index: false, follow: false } }),
   title: "Falandou — Inglês para Profissionais",
-  description: "Aprenda inglês com foco no seu objetivo profissional. Plano personalizado, professores especializados e acompanhamento ativo. Junte-se a mais de 600 profissionais que já evoluíram com a Falandou.",
+  description: "Aprenda inglês com foco no seu objetivo profissional. Plano individual, sessões 1 a 1 e exame CEFR no início e no fim do ciclo. Mais de 600 profissionais formados pela Falandou.",
   keywords: ["inglês profissional", "curso de inglês", "inglês para trabalho", "inglês executivo", "falandou"],
   openGraph: {
     title: "Falandou — Inglês para Profissionais",
-    description: "Plano personalizado, professores especializados e acompanhamento ativo.",
+    description: "Plano individual, sessões 1 a 1 e exame CEFR no início e no fim do ciclo.",
     type: "website",
     locale: "pt_BR",
     siteName: "Falandou",

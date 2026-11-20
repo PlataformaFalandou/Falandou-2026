@@ -3,7 +3,7 @@ titulo: 'Entrevista de emprego em inglês: como se preparar'
 titulo_seo: 'Entrevista em Inglês: Perguntas e Respostas | Falandou'
 resumo: O que os recrutadores de multinacionais realmente avaliam — e como preparar as respostas certas para as perguntas que sempre aparecem.
 descricao: 'Entrevista de emprego em inglês: o que o recrutador avalia, a estrutura STAR e como responder às perguntas que sempre aparecem, com exemplos práticos.'
-categoria: Carreira
+categoria: Carreira e Negócios
 cluster: Carreira
 palavra_chave: entrevista de emprego em inglês
 created_at: '2026-11-12T10:00:00.000Z'
@@ -30,7 +30,7 @@ Gramática perfeita é irrelevante se você não consegue demonstrar essas três
 
 ## A estrutura STAR: seu melhor aliado
 
-STAR significa Situation, Task, Action, Result. É o formato que recrutadores esperam para perguntas comportamentais:
+STAR é a sigla de *Situation, Task, Action, Result* (situação, tarefa, ação e resultado). É o formato que recrutadores esperam para perguntas comportamentais:
 
 - **"Tell me about a time you led a difficult project"**
 - **"Give me an example of when you had a conflict with a colleague"**

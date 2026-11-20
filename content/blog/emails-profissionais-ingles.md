@@ -3,7 +3,7 @@ titulo: 'E-mails profissionais em inglês: como escrever sem soar robótico'
 titulo_seo: 'E-mail Profissional em Inglês: Guia Prático | Falandou'
 resumo: Estrutura, tom e as expressões certas para cada situação — de pedidos e follow-ups a feedback e recusas delicadas.
 descricao: 'Como escrever e-mail profissional em inglês: aberturas, pedidos, follow-ups, recusas e encerramentos com o tom certo, com frases prontas para cada situação.'
-categoria: Carreira
+categoria: Carreira e Negócios
 cluster: Carreira
 palavra_chave: e-mail profissional em inglês
 created_at: '2026-11-15T10:00:00.000Z'

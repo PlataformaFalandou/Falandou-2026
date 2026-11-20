@@ -3,7 +3,7 @@ titulo: 'Inglês para apresentações: como estruturar e conduzir sem travar'
 titulo_seo: 'Inglês para Apresentações: Frases e Estrutura | Falandou'
 resumo: As frases de transição, abertura e encerramento que transformam uma apresentação nervosa em uma comunicação clara e segura.
 descricao: 'Inglês para apresentações: frases de abertura, transição e encerramento, e como responder perguntas difíceis para apresentar com clareza e segurança.'
-categoria: Carreira
+categoria: Carreira e Negócios
 cluster: Carreira
 palavra_chave: inglês para apresentações
 created_at: '2026-11-18T10:00:00.000Z'

@@ -28,14 +28,16 @@ import { getHeroVariant, forceVariantFromURL, type ABVariant } from "@/lib/abtes
 import { trackABImpression } from "@/lib/analytics";
 import { STATS } from "@/data/stats";
 
-const VARIANTS: Record<ABVariant, { eyebrow: string; headline?: ReactNode; subheadline: string }> = {
+const VARIANTS: Record<ABVariant, { eyebrow: string; headline?: ReactNode; subheadline: string; subheadlineShort: string }> = {
   A: {
     eyebrow: "Você sabe inglês. Mas trava na hora de usar.",
+    subheadlineShort: "Inglês para a reunião, a apresentação e a entrevista. De B1 a B2 em 11 semanas, em média.",
     subheadline:
       "A maioria dos profissionais entende inglês razoavelmente bem. O problema é na hora de falar — reunião, apresentação, entrevista. A Falandou resolve exatamente isso: inglês funcional para o seu contexto. B1 → B2 em 11 semanas em média.",
   },
   B: {
     eyebrow: "Pare de perder oportunidades por causa do inglês.",
+    subheadlineShort: "Promoção, projeto internacional, seletiva: o inglês não precisa ser o critério que te deixa de fora.",
     subheadline:
       "Promoções, projetos internacionais, seletivas — quantas vezes o inglês foi o critério que te deixou de fora? Nossos profissionais saem de B1 para B2 em 11 semanas em média. Tempo suficiente para mudar o próximo processo seletivo.",
   },
@@ -48,6 +50,7 @@ const VARIANTS: Record<ABVariant, { eyebrow: string; headline?: ReactNode; subhe
         <HeadlineWords text="só para você." accent start={11} />
       </>
     ),
+    subheadlineShort: "Exame CEFR no início e no fim. Sessões 1 a 1 no meio.",
     subheadline:
       "Exame CEFR no início, plano montado para o seu cargo e o seu setor, sessões 1 a 1 e o mesmo exame no fim. Você sai com um número — não com uma sensação.",
   },
@@ -74,6 +77,7 @@ export default function HeroAB() {
       eyebrow={v.eyebrow}
       {...(v.headline ? { headline: v.headline } : {})}
       subheadline={v.subheadline}
+      subheadlineShort={v.subheadlineShort}
       statChip="79% sobe pelo menos 1 nível CEFR em 90 dias · 70% aprovado em seletivas com etapa em inglês"
     />
   );

@@ -1,9 +1,9 @@
 ---
 titulo: 'Inglês para reuniões: 50 expressões para usar no trabalho'
 titulo_seo: 'Inglês para Reuniões: 50 Expressões | Falandou'
-resumo: Do 'let's circle back' ao 'take this offline' — expressões que todo profissional que participa de reuniões internacionais precisa dominar.
+resumo: Do *let's circle back* ao *take this offline* — expressões que todo profissional que participa de reuniões internacionais precisa dominar.
 descricao: 'Inglês para reuniões de negócios: 50 expressões para abrir, pedir a palavra, discordar com educação e definir próximos passos, com exemplos prontos.'
-categoria: Carreira
+categoria: Carreira e Negócios
 cluster: Carreira
 palavra_chave: inglês para reuniões
 created_at: '2026-11-08T10:00:00.000Z'

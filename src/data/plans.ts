@@ -33,7 +33,7 @@ export const INCLUDED_IN_ALL = [
   "Exame CEFR diagnóstico e de evolução",
   "Plano personalizado para o seu setor",
   "Material de estudo e videoaulas",
-  "Suporte via WhatsApp",
+  "Dúvidas respondidas pelo professor no WhatsApp, no mesmo dia",
   "Acesso à Plataforma do Aluno",
 ];
 

@@ -13,7 +13,7 @@ import { faqSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Método Falandou: o Ciclo de Inglês de 90 Dias | Falandou",
   description:
-    "Como funciona o método Falandou: exame CEFR, plano individual, sessões 1 a 1 e avaliação no fim de cada ciclo de 90 dias. Resultado medido em número.",
+    "Como funciona o Método Falandou: exame CEFR, plano individual, sessões 1 a 1 e avaliação no fim de cada ciclo de 90 dias. Resultado medido em número.",
   alternates: {
     canonical: "/metodo/",
   },
@@ -133,7 +133,7 @@ const faqs = [
   },
   {
     q: "Como o professor é escolhido?",
-    a: `Pelo resultado do diagnóstico CEFR, pelo seu setor e pelo objetivo do ciclo. O professor é fixo e acompanha no máximo ${STUDENTS_PER_TEACHER} alunos ativos ao mesmo tempo — você não recomeça do zero a cada sessão.`,
+    a: `Pelo resultado do diagnóstico CEFR, pelo seu setor e pelo objetivo do ciclo. O professor é fixo e acompanha no máximo ${STUDENTS_PER_TEACHER} profissionais ao mesmo tempo — você não recomeça do zero a cada sessão.`,
   },
   {
     q: "E se eu faltar a uma sessão?",

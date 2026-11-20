@@ -3,7 +3,7 @@ titulo: "Inglês profissional: como aprender o inglês que o seu trabalho exige"
 titulo_seo: "Inglês Profissional: Como Aprender de Verdade | Falandou"
 resumo: "Por que tantos profissionais entendem inglês mas travam na hora de usar — e o caminho prático para sair do inglês de sala de aula para o inglês de reuniões, e-mails e entrevistas."
 descricao: "Como aprender inglês profissional de verdade: por que você trava no trabalho, o que muda na abordagem e um plano prático para reuniões, e-mails e entrevistas."
-categoria: Carreira
+categoria: Carreira e Negócios
 cluster: Carreira
 palavra_chave: inglês profissional
 video: SdofxASoPk8

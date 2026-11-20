@@ -29,27 +29,27 @@ O que realmente importa é a **inteligibilidade**: você fala, a outra pessoa en
 
 **1. Adicionar vogal no final de palavras**
 
-Em português, quase todas as palavras terminam em vogal. Isso cria um hábito difícil de quebrar. "Talk" vira "tawkee", "work" vira "workee".
+Em português, quase todas as palavras terminam em vogal. Isso cria um hábito difícil de quebrar. *Talk* vira "tóki", *work* vira "uórki".
 
 Exercício: grave a si mesmo dizendo "I work at a bank" e ouça se está adicionando uma vogal no final de cada palavra.
 
 **2. Confundir /ɪ/ e /iː/**
 
-"Ship" e "sheep" são palavras diferentes por uma razão. O /ɪ/ (como em "sit") é uma vogal curta e relaxada. O /iː/ (como em "seat") é longa e tensa.
+*Ship* (navio) e *sheep* (ovelha) são palavras diferentes por uma razão. O /ɪ/, como em *sit*, é uma vogal curta, com a língua relaxada. O /iː/, como em *seat*, é longa, com a língua mais tensa e alta.
 
-Prática: alterne entre "it / eat", "bit / beat", "fit / feet" até sentir a diferença muscular na boca.
+Prática: alterne entre *it / eat*, *bit / beat* e *fit / feet* até sentir a diferença muscular na boca.
 
-**3. O "th" que todo brasileiro teme**
+**3. O *th* que todo brasileiro teme**
 
-/θ/ (como em "think") e /ð/ (como em "this") não existem em português. A maioria dos brasileiros substitui por "t/d" ou "f/v".
+/θ/, como em *think* (sem vibrar a garganta), e /ð/, como em *this* (vibrando a garganta), não existem em português. A maioria dos brasileiros substitui por /t/ e /d/ ou por /f/ e /v/.
 
 Técnica: coloque a ponta da língua levemente entre os dentes e sopre. Não é difícil — é incomum. Com 10 minutos de prática diária durante uma semana, você domina.
 
-**4. Stress na sílaba errada**
+**4. Sílaba tônica (*stress*) no lugar errado**
 
-Inglês é uma língua de stress. "PHOtograph" (substantivo) vs "phoTOGraphy" (substantivo, derivado). "PREsent" (substantivo) vs "preSENT" (verbo). O stress muda o significado.
+No inglês, a sílaba tônica — o *stress* — muda de lugar entre palavras da mesma família e pode mudar o sentido: *PHOtograph* (fotografia) e *phoTOGraphy* (a arte de fotografar); *PREsent* (presente, substantivo) e *preSENT* (apresentar, verbo).
 
-Sempre que aprender uma palavra nova, aprenda junto onde cai o stress.
+Sempre que aprender uma palavra nova, aprenda junto onde cai a sílaba tônica.
 
 ## Técnica que funciona: shadow speaking
 

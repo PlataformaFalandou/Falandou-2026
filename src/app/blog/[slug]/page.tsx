@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { absoluteUrl } from "@/lib/site";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, ChevronRight, Clock, MessageCircle, PlayCircle } from "lucide-react";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
@@ -9,6 +10,7 @@ import { getArticleBySlug, getArticles, getCategories, lastModified, splitForMid
 import { categoryColor } from "@/data/blogCategories";
 import { getWhatsAppUrl, getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { getBlogCTA } from "@/data/blogCTAs";
+import { articleAuthor, teacherSlug } from "@/lib/teachers";
 
 export async function generateMetadata({
   params,
@@ -82,6 +84,8 @@ export default async function ArticlePage({
   const categories = getCategories().filter((c) => c !== "Todos");
   const url = absoluteUrl(`/blog/${slug}/`);
   const updated = lastModified(article);
+  const author = articleAuthor(article.categoria, article.autor);
+  const authorUrl = `/professores/#${teacherSlug(author.name)}`;
   const [contentA, contentB] = splitForMidCTA(article.conteudo);
   const fmt = (d: string) => new Date(d).toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" });
   const image = article.imagem_capa
@@ -113,7 +117,14 @@ export default async function ArticlePage({
                 mainEntityOfPage: url,
                 url,
                 image,
-                author: { "@type": "Organization", name: "Equipe Falandou", url: absoluteUrl("/sobre/") },
+                author: {
+                  "@type": "Person",
+                  name: author.name,
+                  jobTitle: author.title,
+                  url: absoluteUrl(authorUrl),
+                  knowsAbout: author.specialty,
+                  worksFor: { "@type": "Organization", name: "Falandou", url: absoluteUrl("/") },
+                },
                 publisher: {
                   "@type": "Organization",
                   name: "Falandou",
@@ -196,17 +207,19 @@ export default async function ArticlePage({
             </h1>
 
             {/* Resumo */}
-            <p className="font-body text-lg leading-relaxed mb-6" style={{ color: "rgba(245,246,241,0.75)" }}>
-              {article.resumo}
-            </p>
+            <p
+              className="font-body text-lg leading-relaxed mb-6"
+              style={{ color: "rgba(245,246,241,0.75)" }}
+              dangerouslySetInnerHTML={{ __html: article.resumoHtml }}
+            />
 
             {/* Assinatura e revisão (SEO §21): escrito pela escola, com data de revisão */}
             <p className="text-sm mb-10 pb-8 border-b border-white/15" style={{ color: "rgba(245,246,241,0.65)" }}>
               Por{" "}
-              <Link href="/professores" className="font-semibold text-white hover:underline underline-offset-2">
-                Equipe Falandou
-              </Link>{" "}
-              · Publicado em <time dateTime={article.created_at}>{fmt(article.created_at)}</time>
+              <Link href={authorUrl} className="font-semibold text-white hover:underline underline-offset-2">
+                {author.name}
+              </Link>
+              , {author.credentials.join(" · ")} · Publicado em <time dateTime={article.created_at}>{fmt(article.created_at)}</time>
               {updated !== article.created_at && (
                 <>
                   {" "}· Revisado em <time dateTime={updated}>{fmt(updated)}</time>
@@ -276,10 +289,14 @@ export default async function ArticlePage({
                   {article.faq.map((f) => (
                     <details key={f.q} className="group rounded-2xl p-5" style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
                       <summary className="cursor-pointer list-none flex justify-between items-center gap-4 font-display font-bold text-base text-white">
-                        {f.q}
+                        <span dangerouslySetInnerHTML={{ __html: f.qHtml }} />
                         <span className="text-xl transition-transform group-open:rotate-45" style={{ color: "#FF6820" }} aria-hidden="true">+</span>
                       </summary>
-                      <p className="text-sm leading-relaxed mt-3" style={{ color: "var(--color-text-body)" }}>{f.a}</p>
+                      <p
+                        className="text-sm leading-relaxed mt-3"
+                        style={{ color: "var(--color-text-body)" }}
+                        dangerouslySetInnerHTML={{ __html: f.aHtml }}
+                      />
                     </details>
                   ))}
                 </div>
@@ -354,6 +371,34 @@ export default async function ArticlePage({
                 </Link>
               </div>
             </div>
+            {/* Bio curta do professor que assina (revisão editorial §48) */}
+            <div
+              className="mt-12 rounded-2xl p-6 flex gap-4 items-start"
+              style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
+            >
+              <Image
+                src={author.photo}
+                alt={`Foto de ${author.name}`}
+                width={64}
+                height={64}
+                className="w-16 h-16 rounded-full object-cover object-top flex-shrink-0 img-skeleton"
+              />
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#FF6820" }}>
+                  Sobre quem assina
+                </p>
+                <p className="font-display font-bold text-white">
+                  {author.name} · {author.credentials.join(" · ")}
+                </p>
+                <p className="text-sm mt-1" style={{ color: "var(--color-text-body)" }}>
+                  {author.title} da Falandou. Especialidade: {author.specialty.toLowerCase()}.{" "}
+                  <Link href={authorUrl} className="cta-tertiary text-white font-semibold">
+                    Ver o perfil completo
+                  </Link>
+                </p>
+              </div>
+            </div>
+
             {/* Sobre a escola (SEO §21) */}
             <p className="mt-10 text-sm" style={{ color: "var(--color-text-muted)" }}>
               <strong className="text-white">Sobre a Falandou:</strong> escola de inglês para profissionais, com sessões 1 a 1,

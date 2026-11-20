@@ -11,15 +11,15 @@ created_at: "2026-11-20T10:00:00.000Z"
 publicado: true
 faq:
   - q: "Como se diz “jurisprudência” em inglês?"
-    a: "Use “case law” ou “precedents”. “Jurisprudence” em inglês significa teoria ou filosofia do direito — um dos falsos cognatos mais comuns entre advogados brasileiros."
-  - q: "Qual a diferença entre shall, must e may em contratos?"
-    a: "“Shall” é a forma tradicional de criar obrigação; “must” é a alternativa preferida pela redação em plain English, por ser menos ambígua. “May” indica permissão ou faculdade, não obrigação."
+    a: "Use *case law* ou *precedents*. *Jurisprudence* em inglês significa teoria ou filosofia do direito — um dos falsos cognatos mais comuns entre advogados brasileiros."
+  - q: "Qual a diferença entre *shall*, *must* e *may* em contratos?"
+    a: "*Shall* é a forma tradicional de criar obrigação; *must* é a alternativa preferida pela redação em *plain English* (linguagem clara), por ser menos ambígua. *May* indica permissão ou faculdade, não obrigação."
   - q: "Existe certificado de inglês jurídico?"
     a: "O TOLES (Test of Legal English Skills) é um dos exames específicos de inglês jurídico mais conhecidos. Para estudar ou trabalhar no exterior, universidades e empregadores costumam pedir também IELTS ou TOEFL."
   - q: "Qual nível de inglês um advogado precisa para trabalhar com contratos internacionais?"
     a: "Ler e revisar contratos pede pelo menos B2 na escala CEFR. Negociar cláusulas em tempo real e redigir com precisão costuma exigir C1."
   - q: "Como “processo” se diz em inglês jurídico?"
-    a: "Depende do sentido: “lawsuit” ou “case” para a ação; “proceedings” para o andamento. “Process” em inglês jurídico costuma se referir à citação (service of process)."
+    a: "Depende do sentido: *lawsuit* ou *case* para a ação; *proceedings* para o andamento. *Process* em inglês jurídico costuma se referir à citação (*service of process*)."
 ---
 
 Contratos com partes estrangeiras, *due diligence* de empresas com sócios internacionais, audiências de arbitragem em inglês: para muitos advogados brasileiros, o inglês jurídico deixou de ser diferencial e virou parte da rotina.

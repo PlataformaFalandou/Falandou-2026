@@ -62,8 +62,8 @@ export default function ComparisonTable() {
             className="reveal font-display font-extrabold leading-tight delay-100"
             style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}
           >
-            O que você recebe aqui{" "}
-            <span style={{ color: "#FF6820" }}>não existe em app ou curso em grupo.</span>
+            Enquanto a maioria dos formatos divide o professor,{" "}
+            <span style={{ color: "#FF6820" }}>aqui ele é só seu.</span>
           </h2>
           <p
             className="reveal font-body text-base leading-relaxed mt-4 max-w-xl mx-auto delay-150"

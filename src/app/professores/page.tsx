@@ -98,7 +98,7 @@ export default function ProfessoresPage() {
             >
               <p className="flex-1 text-base md:text-lg leading-relaxed text-white">
                 Todos os professores da Falandou seguem o método da escola e acompanham a evolução CEFR de cada
-                aluno individualmente, do exame inicial ao exame final do ciclo.
+                profissional individualmente, do exame inicial ao exame final do ciclo.
               </p>
               <p className="text-sm font-semibold tnum md:text-right flex-shrink-0" style={{ color: "var(--color-text-muted)" }}>
                 <span className="text-white">{STATS.formed}</span> profissionais formados pela escola

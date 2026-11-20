@@ -127,8 +127,8 @@ export default function BlogPage() {
 
           {/* Sobre a escola (SEO §21) */}
           <p className="mt-14 text-center text-sm max-w-2xl mx-auto" style={{ color: "var(--color-text-muted)" }}>
-            O blog é escrito pela equipe da Falandou, escola de inglês para profissionais com sessões 1 a 1 e exame CEFR
-            antes e depois de cada ciclo.{" "}
+            Os artigos são assinados pelos professores da Falandou, escola de inglês para profissionais com sessões 1 a 1 e
+            exame CEFR antes e depois de cada ciclo.{" "}
             <Link href="/sobre" className="cta-tertiary text-white font-semibold">
               Conheça a escola
             </Link>
