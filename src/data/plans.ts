@@ -72,6 +72,14 @@ export const PLANS: Plan[] = [
 export const PLAN_TERMS =
   "Planos mensais com renovação automática. Cancele quando quiser: o acesso vale até o fim do ciclo pago. Créditos não usados expiram ao fim de cada ciclo. Reembolso integral em até 7 dias se nenhuma sessão tiver sido feita.";
 
+/** Desconto por compromisso mais longo (informado pela escola, nov/2026). */
+export const COMMITMENT_DISCOUNTS = [
+  { months: 6, pct: 10 },
+  { months: 12, pct: 20 },
+];
+
+export const COMMITMENT_TEXT = COMMITMENT_DISCOUNTS.map((d) => `${d.months} meses: ${d.pct}% de desconto`).join(" · ");
+
 export function priceValue(price: string): number {
   return Number(price.replace(/[^\d,]/g, "").replace(",", "."));
 }

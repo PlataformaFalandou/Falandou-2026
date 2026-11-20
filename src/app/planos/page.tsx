@@ -6,7 +6,7 @@ import ComparisonTable from "@/components/sections/ComparisonTable";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import PlansGrid from "@/components/sections/PlansGrid";
-import { INCLUDED_IN_ALL, PLAN_TERMS, PRICE_FROM, PRICE_FROM_ROUNDED, getPlan, perSession } from "@/data/plans";
+import { COMMITMENT_DISCOUNTS, COMMITMENT_TEXT, INCLUDED_IN_ALL, PLAN_TERMS, PRICE_FROM, PRICE_FROM_ROUNDED, getPlan, perSession } from "@/data/plans";
 
 import JsonLd from "@/components/ui/JsonLd";
 import { courseSchema, faqSchema } from "@/lib/schema";
@@ -48,6 +48,10 @@ const FAQS = [
   {
     q: "O que acontece se eu precisar faltar a uma sessão?",
     a: "As sessões são reagendadas diretamente com o professor. Os créditos de sessão não usados expiram ao fim de cada ciclo mensal — por isso vale reagendar dentro do mesmo mês.",
+  },
+  {
+    q: "Há desconto para compromisso mais longo?",
+    a: `Sim. Com compromisso de ${COMMITMENT_DISCOUNTS[0].months} meses, a mensalidade tem ${COMMITMENT_DISCOUNTS[0].pct}% de desconto; com ${COMMITMENT_DISCOUNTS[1].months} meses, ${COMMITMENT_DISCOUNTS[1].pct}%. A equipe confirma os valores do seu plano na conversa inicial.`,
   },
   {
     q: "Posso cancelar? E se eu desistir logo no começo?",
@@ -151,6 +155,12 @@ export default function PlanosPage() {
 
             {/* Planos reais (falandou.com) com seletor de 25/50 minutos */}
             <PlansGrid />
+
+            {/* Desconto por compromisso mais longo */}
+            <p className="mt-6 text-center font-body text-sm" style={{ color: "rgba(255,255,255,0.75)" }}>
+              <strong className="text-white">Compromisso mais longo, mensalidade menor:</strong>{" "}
+              {COMMITMENT_TEXT}.
+            </p>
 
             {/* Arquitetura §9 — redução de risco perto do CTA: só regras e fatos reais
                 (consulta grátis, cancelamento, reembolso de 7 dias, exame). */}
