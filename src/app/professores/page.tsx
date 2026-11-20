@@ -124,7 +124,7 @@ export default function ProfessoresPage() {
         {/* ── CTA (componente reutilizável — Arquitetura §4) ── */}
         <CTASection
           heading="Comece pelo diagnóstico."
-          text="A conversa inicial é gratuita. A partir dela, a escola monta o seu plano e indica o professor — sem compromisso."
+          text="Conte o seu objetivo e o seu setor. A partir disso, a escola monta o seu plano e indica o professor."
           whatsappContext="professores"
           secondary={{ href: "/metodo", label: "Ver o método completo" }}
         />

@@ -31,17 +31,18 @@ export default function MidCTA() {
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6 text-white/70">
-          O custo de esperar
+          Ciclo {STATS.cycleLabel} · {STATS.evaluated} profissionais avaliados
         </p>
+        {/* Copywriting §2: o H2 carrega o dado mais forte do site, não uma promessa vaga. */}
         <h2
           className="reveal font-display font-extrabold text-white leading-tight mb-6 delay-100"
           style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)" }}
         >
-          Quanto custa mais um ano sem inglês fluente?
+          {STATS.cefrUpPct} sobe 1 nível CEFR em {STATS.cycleDays} dias. O próximo pode ser você.
         </h2>
-        {/* Seção de ação: só o convite e o botão. Prova fica em ProofStats e /resultados. */}
+        {/* Seção de ação: convite concreto e o botão. Prova detalhada fica em ProofStats e /resultados. */}
         <p className="reveal font-body text-white/80 text-lg leading-relaxed mb-10 max-w-xl mx-auto delay-200">
-          Você conversa com a equipe para entender como funciona e recebe um plano montado para o seu objetivo. Sem pressão, sem compromisso.
+          Conte o seu objetivo e o seu prazo. A equipe explica como o ciclo fica no seu caso e indica o plano — você decide depois de entender o que está contratando.
         </p>
 
         <div className="reveal flex flex-col sm:flex-row gap-4 justify-center items-center delay-300">
@@ -54,18 +55,18 @@ export default function MidCTA() {
             style={{ backgroundColor: "#161616", color: "white", boxShadow: "0 8px 32px rgba(22,22,22,0.4)" }}
           >
             <MessageCircle size={20} />
-              Quero começar
+            Falar com a equipe agora
           </a>
         </div>
 
-        {/* Arquitetura §5: CTA final com o número de profissionais avaliados */}
+        {/* Arquitetura §5: CTA final com o número de profissionais formados */}
         <p className="reveal font-body text-sm mt-6 delay-300" style={{ color: "rgba(255,255,255,0.75)" }}>
-          {STATS.formed} profissionais formados · {STATS.evaluated} avaliados com exame CEFR no último ciclo
+          {STATS.formed} profissionais formados em {STATS.yearsOperating} anos
         </p>
 
-        {/* Trust chips */}
+        {/* Trust chips — só fatos verificáveis (a escola não oferece consulta gratuita) */}
         <div className="reveal flex flex-wrap gap-4 justify-center mt-10 delay-400">
-          {["Resposta em até 1h", "Consulta grátis", "Sem compromisso"].map((item) => (
+          {["Resposta em até 1h", "Cancele quando quiser", "Exame CEFR no início e no fim"].map((item) => (
             <div
               key={item}
               className="px-5 py-2.5 rounded-full text-sm font-semibold text-white border border-white/30 backdrop-blur-sm"

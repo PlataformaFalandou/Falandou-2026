@@ -52,9 +52,12 @@ export default function FAQ({
   items = DEFAULT_FAQS,
   title = "Tudo que você precisa saber antes de começar.",
   moreLink,
+  ctaLabel = "Montar o meu plano com a equipe",
 }: {
   items?: FAQEntry[];
   title?: string;
+  /** Botão depois da última pergunta (estágio: última objeção removida). */
+  ctaLabel?: string;
   /** Link "mais dúvidas" abaixo da lista (FAQ resumido da home). */
   moreLink?: { href: string; label: string };
 } = {}) {
@@ -88,7 +91,7 @@ export default function FAQ({
               className="reveal inline-flex items-center gap-2 mt-8 px-6 py-3.5 rounded-full text-sm font-bold text-white transition-all duration-200 hover:scale-105 delay-300"
               style={{ backgroundColor: "#161616" }}
             >
-              Falar com nossa equipe
+              Perguntar à equipe
             </a>
           </div>
 
@@ -102,15 +105,31 @@ export default function FAQ({
                 onToggle={() => setOpenIndex(openIndex === i ? null : i)}
               />
             ))}
-            {moreLink && (
-              <Link
-                href={moreLink.href}
-                className="inline-block mt-6 font-body text-sm font-semibold underline underline-offset-4"
-                style={{ color: "#FF6820" }}
+            {/* Copywriting §7 — CTA depois da última objeção: o visitante já decidiu.
+                (O documento sugeria "consulta gratuita", que a escola não oferece.) */}
+            <div className="mt-8 pt-6 border-t border-black/8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              {moreLink ? (
+                <Link
+                  href={moreLink.href}
+                  className="font-body text-sm font-semibold underline underline-offset-4"
+                  style={{ color: "#FF6820" }}
+                >
+                  {moreLink.label} →
+                </Link>
+              ) : (
+                <span />
+              )}
+              <a
+                href={getWhatsAppUrlForContext("faq")}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackCTAClick("faq_after")}
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-full text-sm font-bold text-white transition-all duration-200 hover:scale-105"
+                style={{ backgroundColor: "#FF6820" }}
               >
-                {moreLink.label} →
-              </Link>
-            )}
+                {ctaLabel}
+              </a>
+            </div>
           </div>
         </div>
       </div>

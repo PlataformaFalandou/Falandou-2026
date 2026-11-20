@@ -11,6 +11,8 @@ export type Plan = {
   id: string;
   name: string;
   tagline: string;
+  /** Copywriting §4 — linha de posicionamento: para quem é este plano. */
+  forWho: string;
   /** Preço mensal por duração da sessão. */
   prices: Record<Duration, string>;
   sessionsPerMonth: number;
@@ -35,6 +37,7 @@ export const PLANS: Plan[] = [
     id: "starter",
     name: "Starter",
     tagline: "Ideal para começar sua jornada",
+    forWho: "Para quem quer constância sem pressão de prazo: uma sessão por semana.",
     prices: { 25: "R$ 134,90", 50: "R$ 184,90" },
     sessionsPerMonth: 4,
     highlight: false,
@@ -45,6 +48,7 @@ export const PLANS: Plan[] = [
     id: "professional",
     name: "Professional",
     tagline: "Para quem quer evoluir mais rápido",
+    forWho: "Para quem usa inglês toda semana no trabalho e quer ganhar ritmo.",
     prices: { 25: "R$ 169,20", 50: "R$ 305,20" },
     sessionsPerMonth: 8,
     highlight: true,
@@ -55,6 +59,7 @@ export const PLANS: Plan[] = [
     id: "intensive",
     name: "Intensive",
     tagline: "Máxima imersão e resultados",
+    forWho: "Para quem tem processo seletivo, promoção ou mudança com data marcada.",
     prices: { 25: "R$ 319,20", 50: "R$ 579,20" },
     sessionsPerMonth: 16,
     highlight: false,

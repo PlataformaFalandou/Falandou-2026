@@ -47,7 +47,7 @@ export default function LeadMagnetCompact() {
               className="inline-flex items-center gap-2 font-body font-bold text-base px-7 py-4 rounded-full text-white transition-all duration-300 hover:opacity-90 hover:scale-105"
               style={{ backgroundColor: "#FF6820" }}
             >
-              Quero receber o PDF
+              Receber o roteiro gratuito
             </a>
             <p className="font-body text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
               Sem cadastro. Enviamos pelo WhatsApp.

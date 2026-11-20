@@ -15,33 +15,36 @@ const moments = [
   { label: "Conduzo reuniões e apresentações", href: "/ingles-executivo" },
 ];
 
-const profiles = [
+// Copywriting §10 — dor e ganho como situação concreta, não sintoma abstrato.
+// `href` leva à página do perfil (/para/...) quando ela existe.
+const profiles: { img: string; role: string; pain: string; gain: string; href?: string }[] = [
   {
     img: "/images/prof-arquiteta.png",
     role: "Arquitetos e Engenheiros",
-    pain: "Dificuldade em apresentar projetos para clientes internacionais",
-    gain: "Comunica ideias técnicas com clareza e confiança em inglês",
+    pain: "Trava na call com o cliente de fora quando precisa defender o projeto",
+    gain: "Conduz a apresentação do projeto, responde objeções e fecha a reunião",
+    href: "/para/engenheiros",
   },
   {
     img: "/images/medico-solucao.png",
     role: "Profissionais de Saúde",
-    pain: "Barreiras com literatura médica e colegas internacionais",
-    gain: "Participa de congressos, escreve artigos e lidera equipes globais",
+    pain: "Lê o artigo em inglês, mas fica em silêncio na discussão de caso com a equipe de fora",
+    gain: "Apresenta o caso no congresso e responde às perguntas da plateia",
   },
   {
     img: "/images/logistica-briefing.png",
     role: "Gestores e Líderes",
-    pain: "Travamento em reuniões, negociações e apresentações em inglês",
-    gain: "Conduz reuniões e negocia com parceiros internacionais com autoridade",
+    pain: "Faz o discurso em português enquanto o time de fora espera — e percebe",
+    gain: "Entra na reunião com o time global e conduz, não só participa",
+    href: "/para/gestores",
   },
   {
     img: "/images/email-profissional.png",
     role: "Analistas e Especialistas",
-    pain: "Emails e relatórios em inglês que levam horas para escrever",
-    gain: "Produz comunicações escritas precisas e profissionais com agilidade",
+    pain: "Gasta uma hora num e-mail de cinco linhas e ainda pede para alguém revisar",
+    gain: "Responde o e-mail do gestor de fora na hora, sem rascunho no tradutor",
   },
 ];
-
 /**
  * Arquitetura §4/§8 — `persona` troca o cabeçalho por um texto específico da
  * landing page; nas LPs o bloco "Ou comece pelo seu momento" fica oculto para
@@ -67,8 +70,8 @@ export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) 
                 persona.title
               ) : (
                 <>
-                  Feito para quem precisa de inglês{" "}
-                  <em className="not-italic" style={{ color: "#FF6820" }}>no trabalho, de verdade.</em>
+                  Feito para profissionais que usam inglês no trabalho{" "}
+                  <em className="not-italic" style={{ color: "#FF6820" }}>— ou precisarão usar.</em>
                 </>
               )}
             </h2>
@@ -121,6 +124,15 @@ export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) 
                   <span className="text-sm mt-0.5 flex-shrink-0">✅</span>
                   <p className="text-sm font-semibold text-white leading-snug">{p.gain}</p>
                 </div>
+                {p.href && !persona && (
+                  <Link
+                    href={p.href}
+                    className="mt-3 inline-flex items-center gap-1 text-xs font-bold underline underline-offset-4"
+                    style={{ color: "#FF9A6C" }}
+                  >
+                    Ver situações deste perfil <ArrowRight size={12} />
+                  </Link>
+                )}
               </div>
             </div>
           ))}
@@ -163,7 +175,7 @@ export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) 
             className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white transition-all duration-300 hover:opacity-90 hover:scale-105"
             style={{ backgroundColor: "#FF6820" }}
           >
-            Quero começar
+            Esse sou eu — quero saber mais
           </a>
         </div>
       </div>

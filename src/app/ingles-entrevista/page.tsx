@@ -225,7 +225,7 @@ export default function InglesEntrevistaPage() {
               Quando é sua entrevista?
             </h2>
             <p className="font-body text-base mb-10" style={{ color: "rgba(22,22,22,0.55)" }}>
-              Conta pra gente. Montamos o plano no tempo que você tem — sem pressão, sem compromisso.
+              Conta pra gente. Montamos o plano no tempo que você tem, de trás para frente a partir da data.
             </p>
             <InterestForm
               context="ingles-entrevista"
@@ -269,7 +269,7 @@ export default function InglesEntrevistaPage() {
               A entrevista está chegando. O preparo começa agora.
             </h2>
             <p className="font-body text-base mb-8" style={{ color: "rgba(255,255,255,0.5)" }}>
-              Consulta gratuita · Plano montado para o seu processo · Sem compromisso
+              Resposta em até 1h · Plano montado para o seu processo · Simulações da entrevista real
             </p>
             <a
               href={getWhatsAppUrlForContext("ingles-entrevista-urgente")}

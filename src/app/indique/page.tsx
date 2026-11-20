@@ -28,7 +28,7 @@ const steps = [
   {
     num: "02",
     title: "Ele fala com a equipe e cita você",
-    body: "Na conversa inicial (gratuita), o seu colega informa o seu nome. É assim que a equipe registra a indicação.",
+    body: "Na primeira mensagem para a equipe, o seu colega informa o seu nome. É assim que a equipe registra a indicação.",
   },
   {
     num: "03",
@@ -121,8 +121,8 @@ export default function IndiquePage() {
               Comece com 4 sessões bônus.
             </h2>
             <p className="reveal font-body text-base leading-relaxed mb-8 delay-150" style={{ color: "rgba(22,22,22,0.6)", maxWidth: "560px" }}>
-              Diga quem indicou você e fale com a equipe. A conversa inicial é gratuita: você entende o
-              ciclo de 90 dias — exame CEFR, plano individual e sessões 1 a 1 — e decide sem pressão.
+              Diga quem indicou você e fale com a equipe. Você entende o ciclo de 90 dias —
+              exame CEFR, plano individual e sessões 1 a 1 — antes de escolher o plano.
             </p>
             <div className="reveal delay-200">
               <ReferredForm />

@@ -48,7 +48,7 @@ const FAQS: FAQEntry[] = [
   },
   {
     q: "Quanto custa?",
-    a: `Os planos começam em ${PRICE_FROM}/mês. Para quem tem uma data definida (avaliação, entrevista interna), o plano ${INT.name} tem ${INT.sessionsPerMonth} sessões por mês. A conversa inicial é gratuita.`,
+    a: `Os planos começam em ${PRICE_FROM}/mês. Para quem tem uma data definida (avaliação, entrevista interna), o plano ${INT.name} tem ${INT.sessionsPerMonth} sessões por mês. A equipe indica o plano a partir da sua data.`,
   },
 ];
 

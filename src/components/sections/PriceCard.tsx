@@ -32,6 +32,7 @@ export default function PriceCard({ plan, duration }: { plan: Plan; duration: Du
           <p className="font-body text-sm" style={{ color: "rgba(255,255,255,0.45)" }}>
             {plan.tagline}
           </p>
+          <p className="font-body text-sm font-semibold text-white mt-3 leading-snug">{plan.forWho}</p>
         </div>
 
         {/* Price */}

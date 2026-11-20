@@ -57,3 +57,22 @@ O filtro por perfil da página /depoimentos aparece sozinho quando houver pelo m
 - Celular na vertical ou horizontal, em local silencioso, com o rosto bem iluminado.
 - Começar pelo resultado: "Hoje eu conduzo reuniões com o time de fora…".
 - Publicar no canal @falandou (pode ser não listado) e colar o ID em `videoId`.
+
+## Prioridade agora: dois depoimentos que faltam (Copywriting §6)
+
+O site já afirma dois resultados que ainda não têm um depoimento com nome por trás.
+Peça a alunos que viveram isso — **nunca escreva o texto por eles nem arredonde números**.
+
+1. **Processo seletivo** (sustenta o "70% aprovados em seletivas com etapa em inglês").
+   Pergunta: "Quantas etapas em inglês você fez, em quanto tempo desde o início, e qual foi o resultado?"
+   Formato que funciona: *"Fui aprovado em três etapas em inglês seis meses depois de começar. Consegui a vaga."*
+   Cadastrar com `persona: "Entrevista e processo seletivo"`.
+2. **Retorno financeiro** (sustenta o "aumento de R$ 1.500 a R$ 4.000/mês").
+   Pergunta: "O inglês teve impacto no seu salário? Em quanto tempo o aumento pagou o que você investiu?"
+   Formato que funciona: *"O aumento salarial pagou 14 meses de Falandou."* — só com o número real do aluno.
+
+Em todos os cartões, o formato ideal é: **nome · cargo atual · empresa (ou setor) · nível CEFR antes → depois**.
+Os níveis só entram se vierem do exame, não da memória do aluno.
+
+Também ajudam as páginas de perfil: depoimentos de **engenheiros/arquitetos** e de **gestores**
+alimentam `/para/engenheiros` e `/para/gestores` (campo `testimonialNames` em cada página).

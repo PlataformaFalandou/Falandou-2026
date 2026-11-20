@@ -199,7 +199,7 @@ export default function ResultadosPage() {
         {/* ── CTA (componente reutilizável — Arquitetura §4) ── */}
         <CTASection
           heading="Comece pelo seu ponto de partida."
-          text="O primeiro passo é o diagnóstico. A conversa inicial é gratuita e sem compromisso."
+          text="O primeiro passo é o diagnóstico CEFR: você começa o ciclo sabendo exatamente onde está."
           whatsappContext="resultados"
           secondary={{ href: "/planos", label: "Ver planos e valores" }}
         />

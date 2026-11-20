@@ -3,10 +3,10 @@ import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import CompanyLogos from "@/components/sections/CompanyLogos";
-import CTASection from "@/components/sections/CTASection";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
 import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import { YOUTUBE_CHANNEL_URL } from "@/lib/teachers";
+import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { STATS } from "@/data/stats";
 
 export const metadata: Metadata = {
@@ -21,32 +21,29 @@ export const metadata: Metadata = {
   },
 };
 
-// Ponto 57 — história e credenciais institucionais (escola, não pessoa).
-// Só fatos já publicados no site; atualizar aqui quando os números mudarem.
-const NUMBERS = [
-  { value: STATS.formed, label: "profissionais formados" },
-  { value: `${STATS.yearsOperating}+`, label: "anos de operação" },
-  { value: STATS.rating, label: "avaliação média dos profissionais" },
-  { value: STATS.cefrUpPct, label: `sobem 1 nível CEFR ou mais em ${STATS.cycleDays} dias` },
+// Copywriting §3 — /sobre em 5 blocos: abertura · diferenciais · números ·
+// professores · CTA institucional (para /metodo, não comercial).
+// Tom sóbrio: sem exclamações, sem promessa. Só fatos já publicados no site.
+const DIFFERENTIATORS = [
+  {
+    title: "Ciclo individual de 90 dias",
+    body: "Sem turma e sem data de início. O ciclo começa quando você começa e segue o seu ritmo, com sessões 1 a 1 e professor fixo.",
+  },
+  {
+    title: "Exame CEFR antes e depois",
+    body: "O ciclo abre e fecha com o mesmo exame, nas quatro habilidades. A evolução é medida em nível — não estimada pela impressão de quem ensina.",
+  },
+  {
+    title: "Plano montado para o seu contexto",
+    body: "O professor parte do seu cargo, do seu setor e das situações em que você trava: reuniões, e-mails, apresentações, entrevistas.",
+  },
 ];
 
-const PRINCIPLES = [
-  {
-    title: "Diagnóstico antes do plano",
-    body: "Ninguém começa no escuro. O exame CEFR mostra onde você está nas quatro habilidades, e o plano parte daí — não de um livro igual para todos.",
-  },
-  {
-    title: "O inglês do seu trabalho",
-    body: "Vocabulário do seu setor, situações da sua rotina: reuniões, e-mails, apresentações, entrevistas. Inglês que você usa na semana seguinte.",
-  },
-  {
-    title: "Atenção individual",
-    body: "Sessões 1 a 1 com professor fixo e acompanhamento pelo WhatsApp entre as sessões. Nenhum profissional faz o mesmo plano que outro.",
-  },
-  {
-    title: "Resultado em número",
-    body: "Ao fim de cada ciclo de 90 dias, o exame é refeito no mesmo formato. Você vê quanto evoluiu — e nós também, ciclo após ciclo.",
-  },
+const NUMBERS = [
+  { value: STATS.formed, label: "profissionais formados" },
+  { value: STATS.cefrUpPct, label: `sobem 1 nível CEFR ou mais em ${STATS.cycleDays} dias` },
+  { value: STATS.rating, label: "avaliação média dos profissionais" },
+  { value: `${STATS.b1b2Weeks} sem.`, label: "tempo médio de B1 para B2" },
 ];
 
 export default function SobrePage() {
@@ -55,7 +52,7 @@ export default function SobrePage() {
       <ScrollRevealInit />
       <Navbar />
       <main>
-        {/* ── HERO / MISSÃO ────────────────────────────────────────────────── */}
+        {/* ── 1. ABERTURA ──────────────────────────────────────────────────── */}
         <section className="pt-40 pb-24 md:pt-52 md:pb-32" style={{ backgroundColor: "#161616" }}>
           <div className="max-w-5xl mx-auto px-6">
             <div className="max-w-3xl">
@@ -71,45 +68,31 @@ export default function SobrePage() {
               </h1>
               <p
                 className="reveal font-body text-lg leading-relaxed delay-150"
-                style={{ color: "rgba(255,255,255,0.6)", maxWidth: "600px" }}
+                style={{ color: "rgba(255,255,255,0.65)", maxWidth: "620px" }}
               >
-                A Falandou existe para um problema específico: profissionais que sabem inglês, mas
-                travam na hora de usar — numa reunião, numa entrevista, numa apresentação. A nossa
-                missão é transformar esse inglês travado em resultado profissional mensurável.
+                A Falandou nasceu de uma constatação: profissionais brasileiros passam anos estudando
+                inglês e travam na hora que importa — na reunião, na entrevista, na apresentação. Há{" "}
+                {STATS.yearsOperating} anos, a escola trabalha para transformar esse inglês travado em
+                resultado medido.
               </p>
             </div>
           </div>
         </section>
 
-        {/* ── NÚMEROS ──────────────────────────────────────────────────────── */}
-        <section className="border-y border-white/10" style={{ backgroundColor: "#161616" }}>
-          <div className="max-w-5xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
-            {NUMBERS.map((n) => (
-              <div key={n.label} className="text-center">
-                <p className="font-display font-extrabold text-4xl text-white">{n.value}</p>
-                <p className="font-body text-sm mt-2" style={{ color: "rgba(255,255,255,0.55)" }}>{n.label}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Arquitetura §4: logos das empresas dos profissionais (Home + /sobre + /planos) */}
-        <CompanyLogos />
-
-        {/* ── FILOSOFIA ────────────────────────────────────────────────────── */}
+        {/* ── 2. O QUE NOS TORNA DIFERENTES ────────────────────────────────── */}
         <section className="py-24 md:py-32 bg-white">
           <div className="max-w-5xl mx-auto px-6">
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
-              Como pensamos o ensino
+              O que nos torna diferentes
             </p>
             <h2
               className="reveal font-display font-extrabold leading-tight mb-14 delay-100"
               style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}
             >
-              Quatro princípios que guiam cada ciclo.
+              Três decisões que guiam cada ciclo.
             </h2>
-            <div className="grid md:grid-cols-2 gap-5">
-              {PRINCIPLES.map((p, i) => (
+            <div className="grid md:grid-cols-3 gap-5">
+              {DIFFERENTIATORS.map((p, i) => (
                 <div key={p.title} className="reveal rounded-2xl p-8" style={{ backgroundColor: "#F5F6F1" }}>
                   <span className="font-display font-black text-sm" style={{ color: "#FF6820" }}>0{i + 1}</span>
                   <h3 className="font-display font-extrabold text-lg mt-3 mb-2" style={{ color: "#161616" }}>{p.title}</h3>
@@ -120,22 +103,47 @@ export default function SobrePage() {
           </div>
         </section>
 
-        {/* ── QUEM FAZ A ESCOLA ────────────────────────────────────────────── */}
+        {/* ── 3. OS NÚMEROS DA ESCOLA ──────────────────────────────────────── */}
+        <section style={{ backgroundColor: "#161616" }}>
+          <div className="max-w-5xl mx-auto px-6 py-16">
+            <p className="font-body text-xs font-bold uppercase tracking-widest mb-8 text-center" style={{ color: "rgba(255,255,255,0.45)" }}>
+              Os números da escola · ciclo {STATS.cycleLabel}, {STATS.evaluated} profissionais avaliados
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {NUMBERS.map((n) => (
+                <div key={n.label} className="text-center">
+                  <p className="font-display font-extrabold text-4xl text-white">{n.value}</p>
+                  <p className="font-body text-sm mt-2" style={{ color: "rgba(255,255,255,0.55)" }}>{n.label}</p>
+                </div>
+              ))}
+            </div>
+            <p className="font-body text-sm mt-10 text-center">
+              <Link href="/resultados" className="underline underline-offset-4 font-semibold" style={{ color: "#FF6820" }}>
+                Como medimos esses resultados →
+              </Link>
+            </p>
+          </div>
+        </section>
+
+        {/* Arquitetura §4: logos das empresas dos profissionais (Home + /sobre + /planos) */}
+        <CompanyLogos />
+
+        {/* ── 4. OS PROFESSORES ────────────────────────────────────────────── */}
         <section className="py-24 md:py-32" style={{ backgroundColor: "#F5F6F1" }}>
           <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
             <div>
               <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
-                Quem faz a escola
+                Os professores
               </p>
               <h2
                 className="reveal font-display font-extrabold leading-tight mb-6 delay-100"
                 style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "#161616" }}
               >
-                Professores com formação e certificação verificáveis.
+                Cada profissional é acompanhado por um professor fixo.
               </h2>
               <p className="reveal font-body text-base leading-relaxed mb-6" style={{ color: "rgba(22,22,22,0.65)" }}>
                 A equipe reúne formação em linguística e pedagogia e certificações como Cambridge,
-                CELTA e DELTA. Cada profissional é atribuído a um professor pelo diagnóstico CEFR e
+                CELTA e DELTA. O professor é escolhido pelo seu diagnóstico CEFR, pelo seu setor e
                 pelo objetivo do ciclo.
               </p>
               <Link
@@ -152,7 +160,7 @@ export default function SobrePage() {
               </p>
               <p className="font-body text-base leading-relaxed mb-6" style={{ color: "rgba(22,22,22,0.7)" }}>
                 Antes de qualquer conversa, você pode ver o nosso jeito de ensinar no canal da
-                escola e no blog — de graça e sem cadastro.
+                escola e no blog — sem cadastro.
               </p>
               <div className="flex flex-col gap-3">
                 <a
@@ -167,21 +175,43 @@ export default function SobrePage() {
                 <Link href="/blog" className="font-body font-semibold text-sm underline underline-offset-4" style={{ color: "#161616" }}>
                   Blog Falandou →
                 </Link>
-                <Link href="/resultados" className="font-body font-semibold text-sm underline underline-offset-4" style={{ color: "#161616" }}>
-                  Resultados e metodologia →
+                <Link href="/depoimentos" className="font-body font-semibold text-sm underline underline-offset-4" style={{ color: "#161616" }}>
+                  Depoimentos de profissionais →
                 </Link>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ── CTA (componente reutilizável — Arquitetura §4) ── */}
-        <CTASection
-          heading="Conheça a escola por dentro."
-          text="A conversa inicial é gratuita: você entende o ciclo, tira dúvidas e decide sem pressão."
-          whatsappContext="sobre"
-          secondary={{ href: "/metodo", label: "Ver o método" }}
-        />
+        {/* ── 5. CTA INSTITUCIONAL — leva ao método, não à venda ───────────── */}
+        <section className="py-24 md:py-28 bg-white">
+          <div className="max-w-3xl mx-auto px-6 text-center">
+            <h2 className="font-display font-extrabold leading-tight mb-4" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "#161616" }}>
+              Conheça o método antes de decidir.
+            </h2>
+            <p className="font-body text-lg mb-10" style={{ color: "rgba(22,22,22,0.6)" }}>
+              Diagnóstico, plano, sessões e exame final: as quatro etapas do ciclo, explicadas em detalhe.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link
+                href="/metodo"
+                className="inline-flex items-center justify-center px-10 py-5 rounded-full text-base font-bold text-white transition-all duration-200 hover:scale-105"
+                style={{ backgroundColor: "#161616" }}
+              >
+                Ver como funciona o método
+              </Link>
+              <a
+                href={getWhatsAppUrlForContext("sobre")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body font-semibold text-sm underline underline-offset-4"
+                style={{ color: "rgba(22,22,22,0.65)" }}
+              >
+                ou fale com a equipe
+              </a>
+            </div>
+          </div>
+        </section>
 
         <LeadMagnetCompact />
       </main>

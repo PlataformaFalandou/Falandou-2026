@@ -48,7 +48,7 @@ const FAQS: FAQEntry[] = [
   },
   {
     q: "Quanto custa?",
-    a: `Os planos começam em ${PRICE_FROM}/mês. Para treinar reuniões e apresentações com frequência, o ${PRO.name} tem ${PRO.sessionsPerMonth} sessões por mês (${PRO.prices[50]} com sessões de 50 minutos). A conversa inicial é gratuita.`,
+    a: `Os planos começam em ${PRICE_FROM}/mês. Para treinar reuniões e apresentações com frequência, o ${PRO.name} tem ${PRO.sessionsPerMonth} sessões por mês (${PRO.prices[50]} com sessões de 50 minutos). A equipe indica o plano a partir da sua agenda de reuniões.`,
   },
 ];
 

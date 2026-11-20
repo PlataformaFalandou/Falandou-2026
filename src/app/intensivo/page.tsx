@@ -76,13 +76,14 @@ export default function IntensivoPage() {
               className="reveal font-display font-extrabold text-white leading-tight mb-6 delay-100"
               style={{ fontSize: "clamp(2.2rem, 5vw, 3.75rem)" }}
             >
-              Tem prazo?{" "}
-              <span style={{ color: "#FF6820" }}>{INT.sessionsPerMonth} sessões individuais por mês.</span>
+              Você tem uma data.{" "}
+              <span style={{ color: "#FF6820" }}>Este plano foi feito para isso.</span>
             </h1>
+            {/* Copywriting §4: urgência legítima — o prazo é do aluno, nunca uma data inventada pela escola. */}
             <p className="reveal font-body text-lg leading-relaxed mb-8 delay-150" style={{ color: "rgba(255,255,255,0.65)", maxWidth: "620px" }}>
-              Para quem tem uma entrevista, uma promoção ou uma transferência com data marcada e não
-              pode esperar. Quatro sessões por semana, atividades personalizadas e professores
-              especialistas.
+              Entrevista, promoção ou transferência com data marcada: {INT.sessionsPerMonth} sessões
+              individuais por mês — quatro por semana — com atividades personalizadas e professores
+              especialistas. O plano é montado de trás para frente, a partir do seu prazo.
             </p>
             <p className="reveal font-body text-base mb-10 delay-200" style={{ color: "rgba(255,255,255,0.85)" }}>
               <strong className="text-white">{INT.prices[50]}/mês</strong> com sessões de 50 minutos
@@ -193,7 +194,7 @@ export default function IntensivoPage() {
               Qual é o seu prazo?
             </h2>
             <p className="font-body text-lg mb-10" style={{ color: "rgba(255,255,255,0.65)" }}>
-              Conte a data e o objetivo. A conversa inicial é gratuita: a equipe confirma se o
+              Conte a data e o objetivo. A equipe responde em até 1h e diz com franqueza se o
               Intensive é o plano certo ou se outro ritmo resolve.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

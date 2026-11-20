@@ -51,7 +51,7 @@ const FAQS = [
   },
   {
     q: "Há desconto para compromisso mais longo?",
-    a: `Sim. Com compromisso de ${COMMITMENT_DISCOUNTS[0].months} meses, a mensalidade tem ${COMMITMENT_DISCOUNTS[0].pct}% de desconto; com ${COMMITMENT_DISCOUNTS[1].months} meses, ${COMMITMENT_DISCOUNTS[1].pct}%. A equipe confirma os valores do seu plano na conversa inicial.`,
+    a: `Sim. Com compromisso de ${COMMITMENT_DISCOUNTS[0].months} meses, a mensalidade tem ${COMMITMENT_DISCOUNTS[0].pct}% de desconto; com ${COMMITMENT_DISCOUNTS[1].months} meses, ${COMMITMENT_DISCOUNTS[1].pct}%. A equipe confirma os valores do seu plano pelo WhatsApp antes de você assinar.`,
   },
   {
     q: "Posso cancelar? E se eu desistir logo no começo?",
@@ -62,8 +62,8 @@ const FAQS = [
     a: "Sim. O exame diagnóstico no início e o exame de evolução no fim do ciclo já estão inclusos em todos os planos. Não há custo adicional.",
   },
   {
-    q: "Como funciona a consulta gratuita antes de assinar?",
-    a: "Antes de escolher o plano, você tem uma conversa de 20 minutos com a equipe para mapear seu objetivo, nível atual e prazo. Nessa conversa fica claro qual plano faz mais sentido — sem pressão para fechar na hora.",
+    q: "Como sei qual plano é o certo para mim?",
+    a: "Conte à equipe pelo WhatsApp o seu objetivo, o seu nível atual e o seu prazo. Com essas três informações, a equipe indica o plano e a duração de sessão que fazem sentido — e você decide depois de entender o que está contratando.",
   },
 ];
 export default function PlanosPage() {
@@ -124,7 +124,7 @@ export default function PlanosPage() {
               <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
               <span className="font-body text-sm font-semibold text-white">Ciclo de 90 dias</span>
               <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
-              <span className="font-body text-sm font-semibold text-white">Consulta gratuita</span>
+              <span className="font-body text-sm font-semibold text-white">Cancele quando quiser</span>
             </div>
           </div>
         </section>
@@ -156,6 +156,12 @@ export default function PlanosPage() {
             {/* Planos reais (falandou.com) com seletor de 25/50 minutos */}
             <PlansGrid />
 
+            {/* Copywriting §4 — para quem NÃO é (aumenta a confiança na indicação) */}
+            <p className="mt-6 text-center font-body text-sm max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.6)" }}>
+              Está começando do zero (A1) ou já chegou ao C1? Fale com a equipe antes de escolher — nesses
+              níveis, o ritmo e o foco das sessões mudam bastante.
+            </p>
+
             {/* Desconto por compromisso mais longo */}
             <p className="mt-6 text-center font-body text-sm" style={{ color: "rgba(255,255,255,0.75)" }}>
               <strong className="text-white">Compromisso mais longo, mensalidade menor:</strong>{" "}
@@ -163,10 +169,11 @@ export default function PlanosPage() {
             </p>
 
             {/* Arquitetura §9 — redução de risco perto do CTA: só regras e fatos reais
-                (consulta grátis, cancelamento, reembolso de 7 dias, exame). */}
+                (resposta em até 1h, cancelamento, reembolso de 7 dias, exame).
+                A escola NÃO oferece consulta gratuita — não prometer. */}
             <ul className="mt-8 flex flex-col md:flex-row md:flex-wrap md:justify-center gap-3 md:gap-x-8">
               {[
-                "Consulta inicial gratuita e sem compromisso",
+                "Resposta da equipe em até 1h",
                 "Cancele quando quiser",
                 "Reembolso integral em até 7 dias se nenhuma sessão tiver sido feita",
                 "Exame CEFR no início e no fim do ciclo",
@@ -181,7 +188,7 @@ export default function PlanosPage() {
               {PLAN_TERMS}
             </p>
 
-            {/* Free consult callout */}
+            {/* Dúvida entre planos → equipe indica pelo WhatsApp */}
             <div
               className="mt-10 rounded-2xl px-8 py-6 text-center"
               style={{
@@ -198,7 +205,7 @@ export default function PlanosPage() {
                 className="font-body text-sm mb-5"
                 style={{ color: "rgba(255,255,255,0.45)" }}
               >
-                A consulta inicial é gratuita — 20 minutos para mapear seu objetivo e receber uma indicação sem compromisso.
+                Conte o seu objetivo, o seu nível e o seu prazo. A equipe responde em até 1h com o plano indicado para o seu caso.
               </p>
               <a
                 href={getWhatsAppUrlForContext("plans")}
@@ -207,7 +214,7 @@ export default function PlanosPage() {
                 className="inline-flex items-center gap-2 font-body font-bold text-sm px-7 py-3.5 rounded-full text-white transition-all duration-300 hover:opacity-90"
                 style={{ backgroundColor: "#FF6820" }}
               >
-                Agendar consulta gratuita
+                Qual plano é para mim?
               </a>
             </div>
           </div>

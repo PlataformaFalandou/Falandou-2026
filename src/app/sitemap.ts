@@ -23,6 +23,8 @@ const PAGES: Entry[] = [
   { path: "/ingles-expatriacao/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/promocao-cargo/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/intensivo/", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/para/engenheiros/", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/para/gestores/", priority: 0.6, changeFrequency: "monthly" },
   { path: "/indique/", priority: 0.4, changeFrequency: "monthly" },
   { path: "/politica-de-privacidade/", priority: 0.2, changeFrequency: "yearly" },
   { path: "/termos/", priority: 0.2, changeFrequency: "yearly" },

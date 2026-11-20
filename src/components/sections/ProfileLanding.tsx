@@ -1,0 +1,193 @@
+import Link from "next/link";
+import Navbar from "@/components/ui/Navbar";
+import Footer from "@/components/ui/Footer";
+import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
+import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
+import BlogPreview from "@/components/sections/BlogPreview";
+import JsonLd from "@/components/ui/JsonLd";
+import { courseSchema } from "@/lib/schema";
+import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
+import { testimonials } from "@/data/testimonials";
+import { STATS } from "@/data/stats";
+
+/**
+ * ProfileLanding — páginas de perfil /para/... (Copywriting §10, SEO long-tail).
+ * Cada página aprofunda a situação do perfil com 3–4 cenários concretos e
+ * depoimentos reais de profissionais do setor (por nome, de src/data/testimonials.ts).
+ */
+export type ProfileData = {
+  path: string;
+  eyebrow: string;
+  title: string;
+  titleAccent: string;
+  intro: string;
+  scenarios: { situation: string; today: string; after: string }[];
+  testimonialNames: string[];
+  whatsappContext: string;
+  ctaLabel: string;
+  blogSlugs: string[];
+  blogTitle: string;
+};
+
+export default function ProfileLanding({ data }: { data: ProfileData }) {
+  const quotes = data.testimonialNames
+    .map((n) => testimonials.find((t) => t.name === n))
+    .filter((t): t is NonNullable<typeof t> => !!t);
+
+  return (
+    <>
+      <ScrollRevealInit />
+      <Navbar />
+      <main>
+        <JsonLd
+          data={courseSchema({
+            name: `Inglês profissional — ${data.eyebrow}`,
+            description: data.intro,
+            path: data.path,
+          })}
+        />
+
+        {/* ── HERO ── */}
+        <section className="pt-40 pb-24 md:pt-52 md:pb-28" style={{ backgroundColor: "#161616" }}>
+          <div className="max-w-4xl mx-auto px-6">
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
+              {data.eyebrow}
+            </p>
+            <h1
+              className="reveal font-display font-extrabold text-white leading-tight mb-6 delay-100"
+              style={{ fontSize: "clamp(2.2rem, 5vw, 3.5rem)" }}
+            >
+              {data.title} <span style={{ color: "#FF6820" }}>{data.titleAccent}</span>
+            </h1>
+            <p className="reveal font-body text-lg leading-relaxed mb-10 delay-150" style={{ color: "rgba(255,255,255,0.65)", maxWidth: "620px" }}>
+              {data.intro}
+            </p>
+            <div className="reveal flex flex-col sm:flex-row gap-4 delay-200">
+              <a
+                href={getWhatsAppUrlForContext(data.whatsappContext)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-bold text-white transition-all duration-200 hover:scale-105"
+                style={{ backgroundColor: "#FF6820" }}
+              >
+                {data.ctaLabel}
+              </a>
+              <Link
+                href="/metodo"
+                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold text-white transition-all duration-200 hover:scale-105"
+                style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.2)" }}
+              >
+                Como funciona o ciclo
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ── CENÁRIOS ── */}
+        <section className="py-24 md:py-28" style={{ backgroundColor: "#F5F6F1" }}>
+          <div className="max-w-5xl mx-auto px-6">
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+              As situações que o plano treina
+            </p>
+            <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "#161616" }}>
+              Você provavelmente já passou por pelo menos uma.
+            </h2>
+            <div className="grid md:grid-cols-2 gap-5">
+              {data.scenarios.map((s) => (
+                <div key={s.situation} className="reveal rounded-2xl bg-white border border-black/5 p-7">
+                  <h3 className="font-display font-extrabold text-lg mb-4" style={{ color: "#161616" }}>{s.situation}</h3>
+                  <p className="font-body text-sm leading-relaxed mb-3" style={{ color: "rgba(22,22,22,0.6)" }}>
+                    <strong style={{ color: "#161616" }}>Hoje:</strong> {s.today}
+                  </p>
+                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(22,22,22,0.75)" }}>
+                    <strong style={{ color: "#FF6820" }}>No ciclo:</strong> {s.after}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── NÚMEROS ── */}
+        <section style={{ backgroundColor: "#161616" }}>
+          <div className="max-w-5xl mx-auto px-6 py-14 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+            {[
+              { v: STATS.cefrUpPct, l: `sobem 1 nível CEFR ou mais em ${STATS.cycleDays} dias` },
+              { v: `${STATS.b1b2Weeks} sem.`, l: "em média de B1 para B2" },
+              { v: STATS.formed, l: "profissionais formados" },
+            ].map((n) => (
+              <div key={n.l}>
+                <p className="font-display font-extrabold text-4xl text-white">{n.v}</p>
+                <p className="font-body text-sm mt-2" style={{ color: "rgba(255,255,255,0.55)" }}>{n.l}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── DEPOIMENTOS DO SETOR ── */}
+        {quotes.length > 0 && (
+          <section className="py-24 md:py-28 bg-white">
+            <div className="max-w-5xl mx-auto px-6">
+              <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-10" style={{ color: "#FF6820" }}>
+                Quem já fez o ciclo
+              </p>
+              <div className="grid md:grid-cols-2 gap-5">
+                {quotes.map((q) => (
+                  <figure key={q.name} className="reveal rounded-2xl p-8" style={{ backgroundColor: "#F5F6F1" }}>
+                    <blockquote className="font-body text-base leading-relaxed mb-6" style={{ color: "#161616" }}>
+                      &ldquo;{q.text}&rdquo;
+                    </blockquote>
+                    <figcaption className="font-body text-sm" style={{ color: "rgba(22,22,22,0.6)" }}>
+                      <strong style={{ color: "#161616" }}>{q.name}</strong> · {q.role}
+                      {q.company ? ` · ${q.company}` : ""}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+              <p className="font-body text-sm mt-8">
+                <Link href="/depoimentos" className="underline underline-offset-4 font-semibold" style={{ color: "#FF6820" }}>
+                  Ver todos os depoimentos →
+                </Link>
+              </p>
+            </div>
+          </section>
+        )}
+
+        {/* ── CTA ── */}
+        <section className="py-24 md:py-28" style={{ backgroundColor: "#FF6820" }}>
+          <div className="max-w-3xl mx-auto px-6 text-center">
+            <h2 className="font-display font-extrabold text-white leading-tight mb-4" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+              Esse é o seu dia a dia?
+            </h2>
+            <p className="font-body text-lg mb-10" style={{ color: "rgba(255,255,255,0.85)" }}>
+              Conte a situação em que você mais trava. A equipe responde em até 1h e explica como o plano
+              fica para o seu caso.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href={getWhatsAppUrlForContext(data.whatsappContext)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-10 py-5 rounded-full text-base font-bold text-white transition-all duration-200 hover:scale-105"
+                style={{ backgroundColor: "#161616" }}
+              >
+                Esse sou eu — quero saber mais
+              </a>
+              <Link
+                href="/planos"
+                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold text-white transition-all duration-200 hover:scale-105"
+                style={{ background: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.4)" }}
+              >
+                Ver planos e valores
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <BlogPreview slugs={data.blogSlugs} title={data.blogTitle} />
+        <LeadMagnetCompact />
+      </main>
+      <Footer />
+    </>
+  );
+}

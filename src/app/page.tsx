@@ -5,6 +5,7 @@ import StatsBar from "@/components/sections/StatsBar";
 import ForWhom from "@/components/sections/ForWhom";
 import Journey from "@/components/sections/Journey";
 import MetodoTeaser from "@/components/sections/MetodoTeaser";
+import Benefits from "@/components/sections/Benefits";
 import ProofStats from "@/components/sections/ProofStats";
 import Testimonials from "@/components/sections/Testimonials";
 import YouTubeVideos from "@/components/sections/YouTubeVideos";
@@ -52,7 +53,9 @@ export default function HomePage() {
         <StatsBar />
         {/* 4. Como funciona — 5 etapas + link para o método completo */}
         <Journey />
-        {/* 5. Por que o inglês não avançou — diferenciação */}
+        {/* 4b. Benefícios consolidados: carreira · dia a dia · bolso (Copywriting §5) */}
+        <Benefits />
+        {/* 5. Por que o inglês não avançou — gancho da comparação (atos 1+2; o 3 fica em /metodo) */}
         <MetodoTeaser />
         {/* 6. Prova quantitativa antes dos depoimentos */}
         <ProofStats />
@@ -62,8 +65,8 @@ export default function HomePage() {
         <YouTubeVideos />
         {/* 9. Autoridade + links internos */}
         <BlogPreview />
-        {/* 10. FAQ resumido: as 3 objeções principais */}
-        <FAQ items={DEFAULT_FAQS.slice(0, 3)} moreLink={{ href: "/metodo", label: "Mais dúvidas sobre o ciclo" }} />
+        {/* 10. FAQ: as 6 objeções na ordem da jornada (Copywriting §8); /metodo complementa */}
+        <FAQ items={DEFAULT_FAQS} moreLink={{ href: "/metodo", label: "Como o ciclo funciona no dia a dia" }} />
         {/* 11. CTA final */}
         <MidCTA />
         {/* 12. Alternativa para quem ainda não está pronto */}

@@ -301,7 +301,7 @@ export default async function ArticlePage({
                   className="block text-center px-5 py-3 rounded-full font-body font-bold text-sm text-white"
                   style={{ backgroundColor: "#FF6820" }}
                 >
-                  Quero receber o PDF
+                  Receber o roteiro gratuito
                 </a>
               </div>
 

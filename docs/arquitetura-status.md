@@ -51,6 +51,17 @@ das seções 11 (gaps) e 12 (princípios).
 - **Home híbrida:** "Para quem" logo após a Hero (planilha, ponto 38); mantidos dados, YouTube e roteiro gratuito.
 - **Logos de empresas com legenda** ("Profissionais de empresas como") para não sugerir parceria.
 - **Lead magnet só por WhatsApp**, sem captura de e-mail.
-- **Sem garantia** em /planos (a escola não oferece); destacados só fatos (consulta gratuita, exame, revisão do plano).
+- **Sem garantia** em /planos (a escola não oferece); destacados só fatos (resposta em até 1h, cancelamento, reembolso de 7 dias, exame). A escola **não** oferece consulta gratuita.
 - **Sem CNPJ** no site.
 - **Estrelas do Google Reviews** não implementadas: dependem de perfil no Google Meu Negócio.
+
+## Copywriting (análise de novembro de 2026) — implementado
+
+- Hero com 3 variantes no teste A/B (C = proposta de valor: "De B1 para B2 em 11 semanas…"; chave `falandou_ab_hero_v2`, QA com `?ab=C`).
+- H2s com prova ou dor: Para quem é, CTA final (79%), /intensivo ("Você tem uma data…").
+- Benefícios (carreira · dia a dia · bolso) na home; MetodoTeaser em benefícios; narrativa em 3 atos em /metodo.
+- FAQ da home com 6 perguntas na ordem da jornada, incluindo o risco; FAQ de /metodo complementar.
+- CTAs por estágio; /sobre em 5 blocos; posicionamento por plano; páginas /para/engenheiros e /para/gestores.
+- Todas as menções a consulta/conversa inicial gratuita removidas (site, roteiro PDF).
+- Guia de voz: `docs/brand-voice.md`. Depoimentos de seletiva e de retorno financeiro: pedir (ver `docs/coleta-depoimentos.md`).
+- Quiz de nível CEFR (lead magnet): fica para depois; exigiria coleta de e-mail, hoje fora da política do site.

@@ -270,7 +270,7 @@ export default function InglesExpatriacaoPage() {
               O embarque está marcado. A preparação começa agora.
             </h2>
             <p className="font-body text-base mb-8" style={{ color: "rgba(255,255,255,0.5)" }}>
-              Consulta gratuita · Plano montado para o seu destino · Sessões 100% online
+              Resposta em até 1h · Plano montado para o seu destino · Sessões 100% online
             </p>
             <a
               href={getWhatsAppUrlForContext("ingles-expatriacao-urgente")}

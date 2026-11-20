@@ -101,27 +101,48 @@ const steps = [
   },
 ];
 
-// ── Perguntas que bloqueiam a decisão ─────────────────────────────────────────
+// ── Narrativa de comparação em 3 atos (Copywriting §9) ────────────────────────
+// Na home fica só o gancho (atos 1 + 2, MetodoTeaser); aqui o ato 3 é desenvolvido.
+const acts = [
+  {
+    tag: "Você tentou",
+    title: "O inglês melhorou um pouco. O tranco continuou.",
+    body: "Você já tentou aplicativo. Teve aula em grupo. Assistiu vídeo no YouTube. O inglês melhorou um pouco — mas na hora do meeting, do e-mail ou da entrevista, o tranco voltou.",
+  },
+  {
+    tag: "Por que não funcionou",
+    title: "Nenhum desses formatos foi feito para o seu trabalho.",
+    body: "Foram feitos para atender o maior número possível de pessoas: vocabulário sem contexto, ritmo da turma, conteúdo que você só assiste. É o oposto do que você precisa para falar numa reunião.",
+  },
+  {
+    tag: "O que é diferente aqui",
+    title: "A Falandou parte do seu contexto.",
+    body: "O seu cargo, o seu setor e as situações em que você trava. O exame CEFR mostra onde você está; o professor monta o plano a partir disso; cada sessão é desenhada para o que você vai usar na semana seguinte. E no fim, o mesmo exame mostra quanto você avançou.",
+  },
+];
+
+// ── FAQ do método: responde "como funciona" — complementar ao FAQ da home,
+//    que responde "o que é" (Copywriting §8). Sem perguntas repetidas.
 const faqs = [
   {
     q: "Preciso ter algum nível mínimo para começar?",
     a: "Não. O exame diagnóstico define o ponto de partida com precisão — trabalhamos com profissionais de A2 a C1. Se você consegue se comunicar minimamente em inglês, já dá para estruturar o plano.",
   },
   {
-    q: "Quanto tempo por semana preciso dedicar?",
-    a: "As sessões individuais levam de 50 minutos a 1 hora. As atividades práticas entre sessões foram calibradas para 20–30 minutos por dia. No total: 2 a 4 horas semanais dependendo do plano.",
+    q: "Como o professor é escolhido?",
+    a: "Pelo resultado do diagnóstico CEFR, pelo seu setor e pelo objetivo do ciclo. O professor é fixo: ele acompanha o seu plano do começo ao fim, e você não recomeça do zero a cada sessão.",
   },
   {
     q: "E se eu faltar a uma sessão?",
-    a: "As sessões são reagendadas. Você avisa pelo WhatsApp e combinamos um novo horário — sem burocracia, sem custo extra, sem perder a sessão.",
+    a: "Você avisa pelo WhatsApp e reagenda com o professor, sem burocracia. Os créditos de sessão valem dentro do ciclo mensal do plano — por isso vale reagendar no mesmo mês.",
   },
   {
-    q: "O resultado é garantido?",
-    a: "Garantimos o processo — diagnóstico rigoroso, plano individual, acompanhamento semanal e exame de evolução. O resultado depende da dedicação, mas 79% dos profissionais que completam o ciclo sobe pelo menos 1 nível CEFR.",
+    q: "O plano muda durante o ciclo?",
+    a: "Pode mudar. A cada 30 dias o professor revisa o que avançou e ajusta o foco das semanas seguintes — por exemplo, se uma entrevista foi marcada ou se a escrita evoluiu mais rápido que a fala.",
   },
   {
     q: "Posso começar a qualquer momento?",
-    a: "Sim. Não há turma nem data de início — cada ciclo começa quando você começa. A primeira etapa é a conversa inicial gratuita para entender seu objetivo.",
+    a: "Sim. Não há turma nem data de início — cada ciclo começa quando você começa, com o exame diagnóstico.",
   },
   {
     q: "Por que 90 dias e não 6 meses?",
@@ -192,6 +213,49 @@ export default function MetodoPage() {
                 ))}
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* ── NARRATIVA EM 3 ATOS — tentou → por que não funcionou → o que muda ── */}
+        <section className="py-24 md:py-28 bg-white">
+          <div className="max-w-5xl mx-auto px-6">
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+              Por que outros formatos não resolveram
+            </p>
+            <h2
+              className="reveal font-display font-extrabold leading-tight mb-14 delay-100"
+              style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616", maxWidth: "720px" }}
+            >
+              Você não travou por falta de esforço.
+            </h2>
+            <ol className="grid md:grid-cols-3 gap-5">
+              {acts.map((act, i) => (
+                <li
+                  key={act.tag}
+                  className="reveal rounded-2xl p-8"
+                  style={{
+                    backgroundColor: i === 2 ? "#161616" : "#F5F6F1",
+                    transitionDelay: `${i * 80}ms`,
+                  }}
+                >
+                  <span className="font-body text-xs font-bold uppercase tracking-widest" style={{ color: "#FF6820" }}>
+                    {i + 1} · {act.tag}
+                  </span>
+                  <h3
+                    className="font-display font-extrabold text-lg mt-3 mb-3 leading-snug"
+                    style={{ color: i === 2 ? "white" : "#161616" }}
+                  >
+                    {act.title}
+                  </h3>
+                  <p
+                    className="font-body text-sm leading-relaxed"
+                    style={{ color: i === 2 ? "rgba(255,255,255,0.7)" : "rgba(22,22,22,0.65)" }}
+                  >
+                    {act.body}
+                  </p>
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
 
@@ -358,13 +422,13 @@ export default function MetodoPage() {
                 className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4"
                 style={{ color: "#FF6820" }}
               >
-                Dúvidas comuns antes de começar
+                Dúvidas sobre o funcionamento
               </p>
               <h2
                 className="reveal font-display font-extrabold leading-tight delay-100"
                 style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}
               >
-                As perguntas que todo mundo tem antes de decidir.
+                Como o ciclo funciona no dia a dia.
               </h2>
             </div>
 
@@ -396,46 +460,10 @@ export default function MetodoPage() {
           </div>
         </section>
 
-        {/* ── O QUE NÃO FUNCIONA — compacto ───────────────────────────────── */}
-        <section className="py-20 md:py-24 bg-white border-t" style={{ borderColor: "rgba(0,0,0,0.06)" }}>
-          <div className="max-w-4xl mx-auto px-6">
-            <p
-              className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4 text-center"
-              style={{ color: "rgba(22,22,22,0.35)" }}
-            >
-              Por que outros formatos não resolvem
-            </p>
-            <div className="reveal grid sm:grid-cols-2 md:grid-cols-4 gap-4 delay-100">
-              {[
-                { icon: "📱", label: "Apps", flaw: "Vocabulário sem contexto profissional" },
-                { icon: "👥", label: "Cursos em grupo", flaw: "Ritmo do grupo, não o seu" },
-                { icon: "🎧", label: "Vídeos gravados", flaw: "Passivo não desenvolve fala" },
-                { icon: "📚", label: "Gramática", flaw: "Regras não ativam fluência" },
-              ].map((f) => (
-                <div
-                  key={f.label}
-                  className="rounded-xl p-5"
-                  style={{ background: "#F5F6F1", border: "1px solid rgba(0,0,0,0.05)" }}
-                >
-                  <span className="text-2xl block mb-3">{f.icon}</span>
-                  <p className="font-body text-sm font-bold mb-1" style={{ color: "#161616" }}>{f.label}</p>
-                  <p className="font-body text-xs leading-snug" style={{ color: "rgba(22,22,22,0.5)" }}>{f.flaw}</p>
-                </div>
-              ))}
-            </div>
-            <p
-              className="reveal font-display font-extrabold text-xl md:text-2xl text-center mt-10 max-w-2xl mx-auto delay-200"
-              style={{ color: "#161616" }}
-            >
-              A Falandou resolve exatamente o que falta em cada um desses formatos.
-            </p>
-          </div>
-        </section>
-
         {/* ── CTA (componente reutilizável — Arquitetura §4) ── */}
         <CTASection
-          heading="Pronto para ver o processo na prática?"
-          text="A conversa inicial é gratuita. Você entende o plano, faz perguntas e decide sem pressão — sem compromisso."
+          heading="Pronto para começar pelo diagnóstico?"
+          text="Conte o seu objetivo e o seu prazo. A equipe responde em até 1h e explica como o ciclo fica no seu caso."
           whatsappContext="metodo"
           secondary={{ href: "/planos", label: "Ver planos e valores" }}
         />

@@ -62,7 +62,7 @@ export default function Footer() {
               Cada processo seletivo sem inglês é uma porta a menos.
             </h3>
             <p className="font-body text-white/50 text-sm">
-              Em 90 dias você tem o resultado medido no exame CEFR. A consulta é gratuita e sem compromisso.
+              Em 90 dias você tem o resultado medido no exame CEFR. A equipe responde em até 1h.
             </p>
           </div>
           <a
