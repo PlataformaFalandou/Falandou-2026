@@ -25,5 +25,5 @@ Base: inspeção da home e de /planos. Esta revisão substitui parte das decisõ
 
 ## Pendente
 
-- **Endereço da Plataforma do Aluno.** Hoje aponta para `falandou-hub-learn.lovable.app`, como já estava antes. Quando houver o endereço definitivo, basta trocar `platformUrl` em `src/data/company.ts`.
+- **Endereço da Plataforma do Aluno:** a escola decidiu manter `falandou-hub-learn.lovable.app` (20/11/2026). Se mudar, basta trocar `platformUrl` em `src/data/company.ts`.
 - **Conferir com o manual de identidade.** O texto grafite sobre o laranja e os novos cinzas foram aplicados como a recomendação pede. Antes de considerar a regra definitiva, vale validar com o manual da marca.
