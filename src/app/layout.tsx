@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { SITE_INDEXABLE, SITE_URL } from "@/lib/site";
+import { AB_HEAD_SCRIPT } from "@/lib/abtest";
 import "./globals.css";
 import AnalyticsProvider from "@/components/ui/AnalyticsProvider";
 import EntrySegment from "@/components/ui/EntrySegment";
@@ -40,6 +41,8 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
+        {/* Teste A/B do hero: a variante é decidida antes da primeira pintura (sem troca visível) */}
+        <script dangerouslySetInnerHTML={{ __html: AB_HEAD_SCRIPT }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

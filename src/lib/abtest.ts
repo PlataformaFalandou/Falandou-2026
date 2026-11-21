@@ -53,3 +53,18 @@ export function forceVariantFromURL(): void {
     }
   }
 }
+
+/**
+ * Script do <head> que decide a variante ANTES da primeira pintura (sem troca visível de
+ * headline). Mesma lógica de getHeroVariant/forceVariantFromURL: ?ab= força, senão lê o
+ * bucket salvo, senão sorteia 1/3 e salva. Marca <html data-hero-variant="A|B|C">; o CSS
+ * mostra só a variante marcada. Sem JavaScript, aparece a A.
+ */
+export const AB_HEAD_SCRIPT = `(function(){try{var k="${STORAGE_KEY}",v=["A","B","C"],p=new URLSearchParams(location.search).get("ab"),s=null;if(v.indexOf(p)>-1){localStorage.setItem(k,p);s=p}else{s=localStorage.getItem(k);if(v.indexOf(s)<0){s=v[Math.floor(Math.random()*3)];localStorage.setItem(k,s)}}document.documentElement.setAttribute("data-hero-variant",s)}catch(e){}})();`;
+
+/** Variante já decidida pelo script do <head> (cliente). */
+export function currentHeroVariant(): ABVariant {
+  if (typeof document === "undefined") return "A";
+  const v = document.documentElement.getAttribute("data-hero-variant");
+  return isVariant(v) ? v : "A";
+}

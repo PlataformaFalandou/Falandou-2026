@@ -831,3 +831,11 @@ p, li, dd, td, figcaption, blockquote {
   .word-settle { animation: none; }
   .word-block[data-lifted="true"] { transform: none; }
 }
+
+/* Teste A/B do hero: o HTML traz as 3 variantes e só a decidida no <head> aparece
+   (sem troca de texto depois do carregamento). Sem JavaScript, aparece a A. */
+[data-hv] { display: none; }
+html:not([data-hero-variant]) [data-hv="A"],
+html[data-hero-variant="A"] [data-hv="A"],
+html[data-hero-variant="B"] [data-hv="B"],
+html[data-hero-variant="C"] [data-hv="C"] { display: inline; }

@@ -46,9 +46,9 @@ export function HeadlineWords({ text, accent = false, start = 0 }: { text: strin
 }
 
 interface HeroProps {
-  eyebrow?: string;
+  eyebrow?: React.ReactNode;
   headline?: React.ReactNode;
-  subheadline?: string;
+  subheadline?: React.ReactNode;
   /** Versão curta do subtítulo para o celular (revisão editorial §21). */
   subheadlineShort?: string;
   /** Chip de dado imediatamente abaixo do subheadline — ancora qualquer claim de resultado. */

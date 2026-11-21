@@ -16,15 +16,16 @@
  *   headline  → "De B1 para B2 em 11 semanas. Com um plano feito só para você."
  *   A headline responde "o que é e por que é diferente" — mecanismo + resultado medido.
  *
- * O bucket é atribuído no cliente (localStorage) para evitar
- * hydration mismatch com SSG. Todas renderizam o mesmo HTML no servidor
- * (variante A como fallback) e atualizam após mount.
+ * Sem troca visível: o HTML traz as 3 variantes e um script no <head> (AB_HEAD_SCRIPT, em
+ * src/lib/abtest.ts) decide a do visitante antes da primeira pintura, marcando
+ * <html data-hero-variant>. O CSS mostra só a marcada; sem JavaScript, aparece a A.
+ * O bucket continua no localStorage (falandou_ab_hero_v2), então o visitante vê sempre a mesma.
  * QA: ?ab=A, ?ab=B ou ?ab=C força a variante.
  */
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import Hero, { HeadlineWords } from "./Hero";
-import { getHeroVariant, forceVariantFromURL, type ABVariant } from "@/lib/abtest";
+import { currentHeroVariant, type ABVariant } from "@/lib/abtest";
 import { trackABImpression } from "@/lib/analytics";
 import { STATS } from "@/data/stats";
 import HeroDemo from "@/components/interactive/HeroDemo";
@@ -59,30 +60,40 @@ const VARIANTS: Record<ABVariant, { eyebrow: string; headline?: ReactNode; subhe
   },
 };
 
+// Headline padrão (variantes A e B), igual ao padrão do Hero.
+const DEFAULT_HEADLINE = (
+  <>
+    <HeadlineWords text="Fale inglês com" />
+    <HeadlineWords text="confiança no trabalho." accent start={3} />
+  </>
+);
+
 export default function HeroAB() {
   // Situação escolhida na demonstração: muda o contexto do contato (direção §1.3)
   const situation = useSituation();
-  const [variant, setVariant] = useState<ABVariant>("A");
 
+  // A variante é decidida no <head> antes da primeira pintura (AB_HEAD_SCRIPT, layout.tsx).
+  // Aqui só registramos a impressão — nada troca na tela depois do carregamento.
   useEffect(() => {
-    // A variante vem do localStorage, só disponível no cliente: aplicada logo após a
-    // montagem (o HTML estático renderiza a A) — fora do corpo síncrono do efeito.
-    const t = setTimeout(() => {
-      forceVariantFromURL();
-      const v = getHeroVariant();
-      setVariant(v);
-      trackABImpression("hero_framing", v);
-    }, 0);
-    return () => clearTimeout(t);
+    trackABImpression("hero_framing", currentHeroVariant());
   }, []);
 
-  const v = VARIANTS[variant];
+  // As 3 variantes vão no HTML; o CSS mostra só a do visitante ([data-hv]).
+  const pick = (render: (v: (typeof VARIANTS)[ABVariant]) => ReactNode) => (
+    <>
+      {(["A", "B", "C"] as ABVariant[]).map((k) => (
+        <span key={k} data-hv={k}>
+          {render(VARIANTS[k])}
+        </span>
+      ))}
+    </>
+  );
+
   return (
     <Hero
-      eyebrow={v.eyebrow}
-      {...(v.headline ? { headline: v.headline } : {})}
-      subheadline={v.subheadline}
-      subheadlineShort={v.subheadlineShort}
+      eyebrow={pick((v) => v.eyebrow)}
+      headline={pick((v) => v.headline ?? DEFAULT_HEADLINE)}
+      subheadline={pick((v) => v.subheadlineShort)}
       aside={<HeroDemo />}
       whatsappMessage={getSituation(situation).whatsapp}
     />
