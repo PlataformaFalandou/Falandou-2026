@@ -58,4 +58,16 @@ São 18 recomendações em 6 assuntos. O que foi verificado no navegador está m
 
 ## Medição (PageSpeed Insights, celular)
 
-Ver o resultado registrado após o deploy, abaixo. Metas: LCP ≤ 2,5s, INP ≤ 200ms, CLS ≤ 0,1. O INP só aparece com dados reais de visitantes (CrUX), que o domínio provisório ainda não tem. Por isso o laboratório mostra o TBT como substituto.
+Metas: LCP ≤ 2,5s, INP ≤ 200ms, CLS ≤ 0,1.
+
+**21/11/2026, site publicado, viewport de celular (375px, tela 2x):**
+
+| Página | LCP | CLS | FCP |
+|---|---|---|---|
+| Home | 0,88s | 0,000 | 0,40s |
+| /planos | 0,44s | 0,000 | 0,34s |
+
+- **Imagens:** o navegador baixou as versões de 800px, o esperado para tela 2x (375 × 2 = 750px), em vez do original de 1.200px.
+- **Limites desta medição:** foi feita pela API de desempenho do próprio navegador, **sem a limitação de rede e CPU** que o PageSpeed simula. É um indicativo, não substitui o PageSpeed. A API pública do PageSpeed estava sem cota no dia, e o Lighthouse local não foi executado.
+- **INP:** só existe com dados reais de visitantes (CrUX), que o domínio provisório ainda não tem.
+- **Rotina:** rodar o PageSpeed Insights (celular) nas páginas principais todo mês, a partir da migração para falandou.com.
