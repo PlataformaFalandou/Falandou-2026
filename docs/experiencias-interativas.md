@@ -31,10 +31,12 @@ O visitante escolhe uma situação profissional, experimenta uma atividade e vê
 | 6.2 | Jornada controlável | `Journey` (home): o avanço automático saiu. Cada etapa tem "Ver um exemplo" (clique/toque) com um caso ilustrativo. No celular, a rolagem só indica a etapa em leitura. O destaque é uma etapa da explicação, não progresso real. |
 | 6.3 | Coordenação | Áudio com estados explícitos (idle, loading, playing, paused, error); a microaula por etapas (escolha, montagem, concluído). Fala e animações param fora da tela e ao trocar de página. **Testado** em 320–1.440px sem rolagem lateral, mais teclado, toque (botões) e clique. Movimento reduzido verificado pelas regras de CSS, não testado com o sistema configurado. |
 
-## Áudio: hoje e o recomendado
+## Áudio
 
-- **Hoje:** a frase é lida pela voz em inglês do navegador (Web Speech API). A voz muda de aparelho para aparelho e, em alguns, pode não existir. Nesse caso aparece "Tentar de novo" e a frase continua escrita na tela.
-- **Recomendado:** gravar as frases (um professor da escola ou uma voz sintética escolhida) e salvar em `/public/audio/`. Depois, preencher `audio: "/audio/nome.mp3"` em `src/data/situations.ts`. O componente passa a usar a gravação automaticamente, sem outra mudança. Versionar o nome do arquivo quando o texto mudar (ex.: `reuniao-v2.mp3`).
+- **Gravações da escola (desde 21/11/2026):** `/public/audio/reunioes-v1.mp3`, `entrevistas-v1.mp3` e `apresentacoes-v1.mp3`, ligadas pelo campo `audio` em `src/data/situations.ts`. Cada uma toca a versão revisada da sua situação, tanto na abertura quanto na microaula.
+- **Formato no site:** MP3 mono a 96 kbps, de 48 a 70 KB cada. Os originais enviados tinham ~330 kbps.
+- **Se o texto mudar:** gravar de novo, salvar com a versão seguinte no nome (`reunioes-v2.mp3`) e atualizar o campo `audio`. O texto na tela precisa bater com o áudio.
+- **Sem o campo `audio`:** o site volta a usar a voz em inglês do navegador.
 
 ## Como adicionar uma situação
 

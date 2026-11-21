@@ -4,8 +4,9 @@
 // O resultado da atividade NUNCA atribui nível CEFR: diz só "Você explorou esta situação".
 // Inglês revisado por um segundo professor antes de publicar (docs/brand-voice.md §10).
 //
-// Áudio: hoje a frase é lida pela voz em inglês do navegador. Para usar uma gravação da escola,
-// preencha `audio` com o caminho do arquivo em /public/audio (ex.: "/audio/reuniao-v1.mp3").
+// Áudio: gravações da escola em /public/audio (frase `revised`, que é também a resposta `best`).
+// Se o texto da frase mudar, grave de novo e suba a versão no nome (reunioes-v2.mp3).
+// Sem `audio`, a frase é lida pela voz em inglês do navegador.
 
 export type SituationId = "reunioes" | "entrevistas" | "apresentacoes";
 
@@ -68,6 +69,7 @@ export const SITUATIONS: Situation[] = [
     accepted: [["Could we", "review", "the deadline", "together?"]],
     builderNote: "“Could we…?” transforma a discordância em convite. Pedir para revisar juntos mantém a parceria e abre espaço para negociar.",
     whatsapp: "Olá! Quero treinar inglês para reuniões — principalmente para discordar e negociar prazos. Como funciona?",
+    audio: "/audio/reunioes-v1.mp3",
   },
   {
     id: "entrevistas",
@@ -101,6 +103,7 @@ export const SITUATIONS: Situation[] = [
     end: ".",
     builderNote: "“I can bring … to your team” mostra contribuição, não necessidade. A ordem “to your team five years of project experience” também é aceita em inglês, mas soa menos natural na fala.",
     whatsapp: "Olá! Tenho uma entrevista em inglês e quero me preparar. Como funciona?",
+    audio: "/audio/entrevistas-v1.mp3",
   },
   {
     id: "apresentacoes",
@@ -130,6 +133,7 @@ export const SITUATIONS: Situation[] = [
     accepted: [["Now", "let's look at", "the plan", "for next quarter."]],
     builderNote: "“Now let's look at…” anuncia o próximo tópico e convida o público a acompanhar. É uma das transições mais úteis em qualquer apresentação.",
     whatsapp: "Olá! Quero treinar inglês para apresentações. Como funciona?",
+    audio: "/audio/apresentacoes-v1.mp3",
   },
 ];
 
