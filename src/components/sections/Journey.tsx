@@ -5,6 +5,7 @@ import Link from "next/link";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 import CEFRTooltip from "@/components/ui/CEFRTooltip";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 /**
  * Journey — ponto 40: mostrar o processo o suficiente para responder
@@ -12,85 +13,63 @@ import CEFRTooltip from "@/components/ui/CEFRTooltip";
  * Uma frase por etapa; os detalhes ficam em /metodo e na conversa.
  * Sem dados de resultado aqui — a prova fica em ProofStats.
  */
-const steps: { number: string; title: React.ReactNode; description: string }[] = [
+const steps: { number: string; title: React.ReactNode; description: string; example: string }[] = [
   {
     number: "01",
     title: <>Exame <CEFRTooltip /></>,
     description: "Diagnóstico das quatro habilidades: onde você está e o que falta.",
+    example: "Um profissional que lê bem, mas trava na fala, descobre reading em B2 e speaking em B1 — então o plano começa pela fala.",
   },
   {
     number: "02",
     title: "Plano de 90 dias",
     description: "Montado pelos professores em torno do seu objetivo profissional.",
+    example: "O objetivo “conduzir a reunião semanal com o time dos EUA” vira metas por semana: abrir a reunião, pedir a palavra, fechar com próximos passos.",
   },
   {
     number: "03",
     title: "Prática semanal",
     description: "Atividades com o vocabulário e as situações do seu trabalho.",
+    example: "De 20 a 30 minutos por dia com as expressões da próxima reunião e um e-mail real do trabalho para reescrever.",
   },
   {
     number: "04",
     title: "Sessões 1 a 1",
     description: "Professor dedicado e acompanhamento pelo WhatsApp a semana toda.",
+    example: "Na sessão, você ensaia a abertura da reunião de segunda. O professor corrige na hora e você repete até sair natural.",
   },
   {
     number: "05",
     title: "Exame final",
     description: "Você refaz o exame e vê a sua evolução em número.",
+    example: "O mesmo formato do exame inicial mostra quanto cada habilidade subiu — e orienta o foco do próximo ciclo.",
   },
 ];
 
 export default function Journey() {
-  // Etapa em leitura (direção de movimento §2.3): a que cruza a faixa central da tela.
-  // Só destaca — não bloqueia a rolagem nem esconde as descrições.
-  const [active, setActive] = useState(0);
+  // Narrativa controlável (direção "o inglês ganhando forma" §6.2): a rolagem só indica a etapa
+  // em leitura (celular); clique/toque abre o exemplo concreto. Sem avanço automático, sem prender
+  // a página. O destaque é uma etapa da explicação — não progresso real nem garantia de resultado.
+  const [reading, setReading] = useState(0);
+  const [open, setOpen] = useState<number | null>(null);
+  const isDesktop = useMediaQuery("(min-width: 768px)");
   const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
+  const active = open ?? (isDesktop ? 0 : reading);
 
   useEffect(() => {
+    if (isDesktop) return;
     const items = itemRefs.current.filter((el): el is HTMLLIElement => !!el);
-    const last = items.length - 1;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const desktop = window.matchMedia("(min-width: 768px)").matches;
-    let timer: ReturnType<typeof setInterval> | undefined;
-
-    // Desktop (etapas lado a lado): ao aparecer, a linha avança etapa por etapa, uma vez.
-    if (desktop) {
-      const io = new IntersectionObserver(
-        ([e]) => {
-          if (!e.isIntersecting) return;
-          io.disconnect();
-          if (reduced) {
-            setActive(last);
-            return;
-          }
-          let i = 0;
-          timer = setInterval(() => {
-            i += 1;
-            setActive(i);
-            if (i >= last && timer) clearInterval(timer);
-          }, 300);
-        },
-        { rootMargin: "0px 0px -30% 0px" }
-      );
-      if (items[0]?.parentElement) io.observe(items[0].parentElement);
-      return () => {
-        io.disconnect();
-        if (timer) clearInterval(timer);
-      };
-    }
-
-    // Celular (etapas empilhadas): a etapa que cruza a faixa central da tela fica em destaque.
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
-          if (e.isIntersecting) setActive(Number((e.target as HTMLElement).dataset.step));
+          if (e.isIntersecting) setReading(Number((e.target as HTMLElement).dataset.step));
         }
       },
       { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
     );
     items.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, []);
+  }, [isDesktop]);
 
   return (
     <section id="como-funciona" className="py-12 md:py-20 bg-bg">
@@ -154,6 +133,30 @@ export default function Journey() {
                 <p className="font-body text-base leading-6" style={{ color: "rgba(245,246,241,0.7)" }}>
                   {step.description}
                 </p>
+                <button
+                  type="button"
+                  onClick={() => setOpen(open === i ? null : i)}
+                  aria-expanded={open === i}
+                  aria-controls={`etapa-${i}-exemplo`}
+                  className="cta-tertiary mt-3 min-h-[44px] text-sm font-semibold text-white"
+                >
+                  {open === i ? "Fechar exemplo" : "Ver um exemplo"}
+                </button>
+                <div
+                  id={`etapa-${i}-exemplo`}
+                  className="grid text-left"
+                  style={{
+                    gridTemplateRows: open === i ? "1fr" : "0fr",
+                    transition: "grid-template-rows var(--dur-base) var(--ease-enter)",
+                  }}
+                  inert={open !== i}
+                >
+                  <p className="overflow-hidden text-sm leading-6" style={{ color: "var(--color-text-body)" }}>
+                    <span className="block pt-2">
+                      <strong className="text-white">Exemplo ilustrativo:</strong> {step.example}
+                    </span>
+                  </p>
+                </div>
               </div>
             </li>
           ))}

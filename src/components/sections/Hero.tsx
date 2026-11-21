@@ -4,7 +4,7 @@ import { trackCTAClick } from "@/lib/analytics";
 
 import Link from "next/link";
 import { ArrowRight, MessageCircle } from "lucide-react";
-import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
+import { getWhatsAppUrl, getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { STATS } from "@/data/stats";
 import PracticeCaseCard from "@/components/ui/PracticeCaseCard";
 import type { PracticeCase } from "@/data/practiceCases";
@@ -58,6 +58,10 @@ interface HeroProps {
   ctaLabel?: string;
   /** "Situação em prática" ao lado do título, no desktop (direção criativa §5.1). */
   practice?: PracticeCase;
+  /** Bloco ao lado do título no desktop (ex.: demonstração interativa). Tem prioridade sobre `practice`. */
+  aside?: React.ReactNode;
+  /** Mensagem do WhatsApp do CTA principal (ex.: contexto da situação escolhida). */
+  whatsappMessage?: string;
 }
 
 
@@ -79,7 +83,10 @@ export default function Hero({
   whatsappContext = "hero",
   ctaLabel = "Quero começar",
   practice,
+  aside,
+  whatsappMessage,
 }: HeroProps) {
+  const side = aside ?? (practice ? <PracticeCaseCard c={practice} compact /> : null);
   // Entrada do hero (direção de movimento §1.1) em CSS puro: título (320ms) →
   // explicação (+60ms) → botões e prova (+100ms). Sem esperar a hidratação.
   return (
@@ -103,7 +110,7 @@ export default function Hero({
       <div className="relative z-10 max-w-[1200px] mx-auto px-5 md:px-8 pt-28 pb-12 md:pt-40 md:pb-20 min-h-hero flex flex-col justify-center">
         {/* Revisão visual §5.1: título → explicação → CTA → prova curta. Os indicadores
             detalhados ficam na faixa seguinte (StatsBar). */}
-        <div className={practice ? "grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-12 xl:gap-16 items-center" : ""}>
+        <div className={side ? "grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-12 xl:gap-16 items-center" : ""}>
         <div className="max-w-3xl">
           {/* Selo: menos contraste que o CTA */}
           <p
@@ -127,7 +134,7 @@ export default function Hero({
           <div className="enter-actions">
             <div className="flex flex-col sm:flex-row gap-3">
               <a
-                href={getWhatsAppUrlForContext(whatsappContext)}
+                href={whatsappMessage ? getWhatsAppUrl(whatsappMessage) : getWhatsAppUrlForContext(whatsappContext)}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackCTAClick("hero")}
@@ -174,9 +181,9 @@ export default function Hero({
           </div>
         </div>
         {/* Composição do hero: o trabalho da escola ao lado da promessa (direção criativa §4.2) */}
-        {practice && (
+        {side && (
           <div className="enter-aside hidden lg:block">
-            <PracticeCaseCard c={practice} compact />
+            {side}
           </div>
         )}
         </div>

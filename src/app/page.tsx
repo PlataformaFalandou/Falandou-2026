@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/ui/Navbar";
 import HeroAB from "@/components/sections/HeroAB";
 import StatsBar from "@/components/sections/StatsBar";
+import MicroLesson from "@/components/interactive/MicroLesson";
 import ForWhom from "@/components/sections/ForWhom";
 import Journey from "@/components/sections/Journey";
 import MetodoTeaser from "@/components/sections/MetodoTeaser";
@@ -54,6 +55,8 @@ export default function HomePage() {
         <HeroAB />
         {/* 2. Faixa de números do último ciclo, logo abaixo da Hero (UX/UI §7) */}
         <StatsBar />
+        {/* 2b. Microaula interativa — o visitante experimenta uma situação (direção "o inglês ganhando forma") */}
+        <MicroLesson />
         {/* 3. Identificação (planilha, ponto 38) */}
         <ForWhom />
         {/* 4. Como funciona — 5 etapas + link para o método completo */}

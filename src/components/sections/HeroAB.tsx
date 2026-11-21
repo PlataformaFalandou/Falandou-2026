@@ -27,7 +27,9 @@ import Hero, { HeadlineWords } from "./Hero";
 import { getHeroVariant, forceVariantFromURL, type ABVariant } from "@/lib/abtest";
 import { trackABImpression } from "@/lib/analytics";
 import { STATS } from "@/data/stats";
-import { PRACTICE_CASES } from "@/data/practiceCases";
+import HeroDemo from "@/components/interactive/HeroDemo";
+import { getSituation } from "@/data/situations";
+import { useSituation } from "@/lib/situationStore";
 
 const VARIANTS: Record<ABVariant, { eyebrow: string; headline?: ReactNode; subheadline: string; subheadlineShort: string }> = {
   A: {
@@ -58,6 +60,8 @@ const VARIANTS: Record<ABVariant, { eyebrow: string; headline?: ReactNode; subhe
 };
 
 export default function HeroAB() {
+  // Situação escolhida na demonstração: muda o contexto do contato (direção §1.3)
+  const situation = useSituation();
   const [variant, setVariant] = useState<ABVariant>("A");
 
   useEffect(() => {
@@ -79,7 +83,8 @@ export default function HeroAB() {
       {...(v.headline ? { headline: v.headline } : {})}
       subheadline={v.subheadline}
       subheadlineShort={v.subheadlineShort}
-      practice={PRACTICE_CASES.atraso}
+      aside={<HeroDemo />}
+      whatsappMessage={getSituation(situation).whatsapp}
     />
   );
 }

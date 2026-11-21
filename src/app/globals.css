@@ -744,3 +744,90 @@ img, video {
 p, li, dd, td, figcaption, blockquote {
   overflow-wrap: break-word;
 }
+
+/* ── Experiências interativas ("o inglês ganhando forma") ─────────────────── */
+/* Conclusão (§4.3): três pontos convergem para o ponto da marca, 500ms, uma vez. */
+.completion-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 9999px;
+  background: var(--color-brand);
+}
+.completion-dot-main {
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  animation: cmMain 500ms var(--ease-enter) both;
+}
+.completion-dot-1 { animation: cmIn1 420ms var(--ease-enter) both; }
+.completion-dot-2 { animation: cmIn2 420ms var(--ease-enter) both; }
+.completion-dot-3 { animation: cmIn3 420ms var(--ease-enter) both; }
+@keyframes cmIn1 { from { transform: translate(-14px, -10px); opacity: 1; } to { transform: none; opacity: 0; } }
+@keyframes cmIn2 { from { transform: translate(14px, -10px); opacity: 1; } to { transform: none; opacity: 0; } }
+@keyframes cmIn3 { from { transform: translate(0, 14px); opacity: 1; } to { transform: none; opacity: 0; } }
+@keyframes cmMain { 0%, 60% { transform: scale(0); } 100% { transform: scale(1); } }
+.completion-text { animation: enterFade var(--dur-base) ease-out 380ms both; }
+
+/* Revisão visual da frase (§6.1): o trecho original é riscado e a substituição entra. */
+.diff-old {
+  text-decoration: line-through;
+  text-decoration-color: var(--color-brand);
+  text-decoration-thickness: 2px;
+  color: var(--color-text-muted);
+  transition: color 300ms ease-out;
+}
+.diff-new {
+  animation: enterUp8 360ms var(--ease-enter) 240ms both;
+}
+/* Frase sendo ouvida (§5.2): fundo discreto, sem mover o texto */
+.speaking-hl {
+  background-color: rgba(255, 104, 32, 0.16);
+  border-radius: 4px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition: background-color var(--dur-base) ease-out;
+}
+
+/* Blocos da frase (§4.1, §4.2): encaixe com mola discreta; o estado muda na hora,
+   a animação só acompanha. */
+.word-block {
+  transition: transform 240ms cubic-bezier(0.34, 1.4, 0.64, 1), box-shadow var(--dur-base) ease-out,
+    border-color var(--dur-base) ease-out, background-color var(--dur-base) ease-out;
+}
+.word-block[data-lifted="true"] {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+}
+.word-slot {
+  width: 3px;
+  align-self: stretch;
+  border-radius: 9999px;
+  background: var(--color-brand);
+}
+
+/* Profundidade (§3.2): até ~3° e 6px, só com mouse; no toque, seleção direta. */
+.depth-card {
+  transition: transform var(--dur-base) ease-out, border-color var(--dur-base) ease-out;
+  transform: perspective(800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translate3d(var(--tx, 0px), var(--ty, 0px), 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .completion-dot-1, .completion-dot-2, .completion-dot-3 { display: none; }
+  .completion-dot-main, .completion-text, .diff-new { animation: none; }
+  .depth-card { transform: none !important; }
+}
+/* Encaixe com mola discreta (§4.1): o bloco que acabou de mudar se acomoda em ~240ms */
+@keyframes wordSettle {
+  0% { transform: translateY(-4px); }
+  60% { transform: translateY(1px); }
+  100% { transform: none; }
+}
+.word-settle { animation: wordSettle 240ms cubic-bezier(0.34, 1.4, 0.64, 1); }
+@media (prefers-reduced-motion: reduce) {
+  .word-settle { animation: none; }
+  .word-block[data-lifted="true"] { transform: none; }
+}
