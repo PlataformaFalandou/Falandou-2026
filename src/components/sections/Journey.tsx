@@ -142,7 +142,7 @@ export default function Journey() {
                 style={{
                   backgroundColor: i <= active ? "#FF6820" : "var(--color-interactive)",
                   color: i <= active ? "var(--color-on-brand)" : "var(--color-text)",
-                  transition: "background-color 180ms ease-out, color 180ms ease-out",
+                  transition: "background-color var(--dur-base) ease-out, color var(--dur-base) ease-out",
                 }}
               >
                 {step.number}

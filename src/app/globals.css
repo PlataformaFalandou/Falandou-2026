@@ -162,7 +162,7 @@ img, video {
   font-weight: 700;
   line-height: 1.2;
   text-align: center;
-  transition: background-color 160ms ease-out, border-color 160ms ease-out, color 160ms ease-out, transform 140ms ease-out;
+  transition: background-color var(--dur-fast) ease-out, border-color var(--dur-fast) ease-out, color var(--dur-fast) ease-out, transform var(--dur-fast) ease-out;
 }
 .cta-primary svg,
 .cta-secondary svg {
@@ -191,27 +191,31 @@ img, video {
   color: var(--color-on-brand) !important;
   border: 0;
 }
-.cta-primary:hover {
-  background-color: var(--color-brand-hover);
+@media (hover: hover) {
+  .cta-primary:hover {
+    background-color: var(--color-brand-hover);
+  }
 }
 .cta-primary:active {
   background-color: var(--color-brand-dark);
   transform: scale(0.98);
-  transition-duration: 80ms;
+  transition-duration: 80ms; /* pressionar: mais rápido que a resposta padrão */
 }
 .cta-secondary {
   background-color: transparent;
   border: 1.5px solid var(--color-border-strong);
   color: var(--color-text) !important;
 }
-.cta-secondary:hover {
-  background-color: var(--color-interactive);
-  border-color: #8A8A8A;
+@media (hover: hover) {
+  .cta-secondary:hover {
+    background-color: var(--color-interactive);
+    border-color: #8A8A8A;
+  }
 }
 .cta-secondary:active {
   background-color: #333333;
   transform: scale(0.98);
-  transition-duration: 80ms;
+  transition-duration: 80ms; /* pressionar: mais rápido que a resposta padrão */
 }
 /* Desabilitado: cor e comportamento próprios, não só opacidade (§3.3) */
 .cta-primary:disabled,
@@ -248,7 +252,7 @@ img, video {
 /* Card clicável: borda clara no hover (laranja fica para seleção/recomendação). Cards sem
    ação não usam esta classe (§6.1). */
 .card-hover {
-  transition: border-color 180ms ease-out, background-color 180ms ease-out, transform 180ms ease-out;
+  transition: border-color var(--dur-base) ease-out, background-color var(--dur-base) ease-out, transform var(--dur-base) ease-out;
 }
 @media (hover: hover) {
   .card-hover:hover {
@@ -263,46 +267,61 @@ img, video {
   background-color: var(--color-interactive) !important;
 }
 .card-arrow {
-  transition: transform 180ms ease-out;
+  transition: transform var(--dur-base) ease-out;
 }
 
 /* Link com hover laranja (rodapé, listas) */
 .link-hover {
-  transition: color 150ms ease-out;
+  transition: color var(--dur-fast) ease-out;
 }
-.link-hover:hover {
-  color: var(--color-brand) !important;
+@media (hover: hover) {
+  .link-hover:hover {
+    color: var(--color-brand) !important;
+  }
 }
 
 /* ── Movimento (direção de movimento) ──────────────────────────────────────
    Ágil, preciso e acolhedor: um elemento apresenta, outro responde, a interface confirma.
    Curva padrão de entrada: cubic-bezier(0.22, 1, 0.36, 1).
-   Conteúdo SEMPRE disponível sem JavaScript: o estado oculto só vale com a classe
-   `js` no <html> (posta por um script no <head>, e retirada se o observador não iniciar). */
+   Conteúdo SEMPRE disponível: o estado oculto só vale com a classe `reveal-on` no <html>,
+   posta pelo observador depois de iniciar com sucesso (src/hooks/useScrollReveal.ts). */
 :root {
+  /* Durações e curvas centrais (revisão técnica §5.2): ajuste aqui, vale para o site todo.
+     Animar de preferência transform e opacity; altura só onde é necessário (FAQ). */
+  --dur-fast: 120ms;   /* resposta imediata: hover, pressionar, troca de valor */
+  --dur-base: 180ms;   /* transição de estado: menus, cabeçalho, setas, cards */
+  --dur-enter: 320ms;  /* entrada de conteúdo */
   --ease-enter: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-standard: ease-out;
+
+  /* Camadas compartilhadas (revisão técnica §4.2): de baixo para cima */
+  --z-header: 50;      /* cabeçalho e barra inferior do celular */
+  --z-cookie: 54;      /* aviso de cookies: acima da barra inferior, abaixo do menu */
+  --z-overlay: 55;     /* fundo de proteção do menu */
+  --z-drawer: 56;      /* menu móvel (diálogo modal) */
+  --z-progress: 70;    /* barra de atividade de navegação */
 }
 
 /* Revelação ao rolar (§2.1): opacidade + 12px, 320ms, uma vez por visita */
-.js .reveal,
-.js .reveal-left,
-.js .reveal-right {
+.reveal-on .reveal,
+.reveal-on .reveal-left,
+.reveal-on .reveal-right {
   opacity: 0;
   transform: translateY(12px);
-  transition: opacity 320ms var(--ease-enter), transform 320ms var(--ease-enter);
+  transition: opacity var(--dur-enter) var(--ease-enter), transform var(--dur-enter) var(--ease-enter);
 }
-.js .reveal.visible,
-.js .reveal-left.visible,
-.js .reveal-right.visible {
+.reveal-on .reveal.visible,
+.reveal-on .reveal-left.visible,
+.reveal-on .reveal-right.visible {
   opacity: 1;
   transform: none;
 }
 /* Só opacidade (números, §1.3): 220ms, sem deslocamento */
-.js .reveal-fade {
+.reveal-on .reveal-fade {
   opacity: 0;
   transition: opacity 220ms ease-out;
 }
-.js .reveal-fade.visible {
+.reveal-on .reveal-fade.visible {
   opacity: 1;
 }
 
@@ -318,7 +337,7 @@ img, video {
 .delay-answer { transition-delay: 360ms; }
 /* No celular, cada card anima quando entra na tela, sem esperar os anteriores */
 @media (max-width: 767px) {
-  .js .reveal:not(.delay-note):not(.delay-answer) {
+  .reveal-on .reveal:not(.delay-note):not(.delay-answer) {
     transition-delay: 0ms !important;
   }
 }
@@ -352,12 +371,12 @@ img, video {
 
 /* Troca de página (§5.3): o conteúdo entra em 180ms, sem tela intermediária */
 #conteudo {
-  animation: enterFade 180ms ease-out both;
+  animation: enterFade var(--dur-base) ease-out both;
 }
 
 /* Atualização de valor (§4.2): preço troca na hora, com uma única transição de opacidade */
 .value-swap {
-  animation: enterFade 120ms ease-out both;
+  animation: enterFade var(--dur-fast) ease-out both;
 }
 
 /* Painel que aparece depois de uma ação (confirmação, §3.3) */
@@ -604,11 +623,13 @@ img, video {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-  transition: color 150ms ease-out;
+  transition: color var(--dur-fast) ease-out;
 }
-.prose-custom a:hover {
-  color: #fff;
-  text-decoration-color: var(--color-brand);
+@media (hover: hover) {
+  .prose-custom a:hover {
+    color: #fff;
+    text-decoration-color: var(--color-brand);
+  }
 }
 /* Tabelas largas rolam na horizontal no celular, sem estourar a página */
 @media (max-width: 767px) {
@@ -653,16 +674,20 @@ img, video {
   background-color: #141414;
   color: #F5F6F1 !important;
 }
-.cta-dark:hover {
-  background-color: #2A2A2A;
+@media (hover: hover) {
+  .cta-dark:hover {
+    background-color: #2A2A2A;
+  }
 }
 .cta-outline-dark {
   background-color: transparent;
   border: 1.5px solid #141414;
   color: #141414 !important;
 }
-.cta-outline-dark:hover {
-  background-color: rgba(20, 20, 20, 0.08);
+@media (hover: hover) {
+  .cta-outline-dark:hover {
+    background-color: rgba(20, 20, 20, 0.08);
+  }
 }
 
 /* ── Sistema do ponto (direção criativa §1.3) ─────────────────────────────
@@ -699,4 +724,23 @@ img, video {
 .on-brand .eyebrow::before,
 .on-brand .dot {
   background-color: var(--color-on-brand);
+}
+
+/* ── Celular: teclado virtual, barras fixas e altura de tela (revisão técnica §4.2) ── */
+/* Campo focado rola até ficar visível acima do cabeçalho e da barra inferior. */
+.field input,
+.field select,
+.field textarea {
+  scroll-margin-top: 96px;
+  scroll-margin-bottom: 120px;
+}
+/* Alturas de tela inteira com unidade dinâmica (barra do navegador do celular), com fallback. */
+.min-h-hero {
+  min-height: 88vh;
+  min-height: 88dvh;
+}
+
+/* Palavras e endereços longos quebram em vez de alargar a página (revisão técnica §4.1) */
+p, li, dd, td, figcaption, blockquote {
+  overflow-wrap: break-word;
 }

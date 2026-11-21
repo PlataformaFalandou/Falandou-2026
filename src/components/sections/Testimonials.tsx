@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronLeft, ChevronRight, PlayCircle } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { testimonials, personasWithEnough, type Persona, type Testimonial } from "@/data/testimonials";
 
 // Seção de humanização: só depoimentos. Os dados de resultado ficam em ProofStats,
@@ -157,48 +158,64 @@ function TestimonialCard({ t }: { t: Testimonial }) {
 }
 
 /**
- * Carrossel do celular (direção de movimento §4.3): acionado só pelo visitante — sem troca
- * automática. Deslocamento de 280ms com desaceleração suave; gesto de arrastar (rolagem
- * nativa com snap); setas anterior/próximo de 44px e teclado (← →). A altura acompanha o
- * maior relato, sem cortar texto. No desktop, grade de 3 colunas.
+ * Carrossel do celular (revisão técnica §2): acionado só pelo visitante, sem troca automática.
+ * - Movimento: rolagem nativa suave (`scrollTo`), sem animação manual concorrente. Arrastar
+ *   interrompe naturalmente qualquer rolagem em andamento.
+ * - Card ativo: o mais próximo do centro visível, pela posição real; recalculado ao rolar e ao
+ *   redimensionar (ResizeObserver). O estado só muda quando o índice muda.
+ * - Acessibilidade: setas de 44px e teclado (← →); após navegar por botão ou teclado, uma região
+ *   `aria-live="polite"` anuncia "Depoimento 2 de 3". No desktop vira grade, sem parada de foco.
  */
 function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
   const rowRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
+  const [announce, setAnnounce] = useState("");
+  const isCarousel = useMediaQuery("(max-width: 767px)");
+  const reduced = useMediaQuery("(prefers-reduced-motion: reduce)");
 
-  const goTo = useCallback((i: number) => {
-    const row = rowRef.current;
-    const card = row?.children[i] as HTMLElement | undefined;
-    if (!row || !card) return;
-    const target = card.offsetLeft - row.offsetLeft - 20;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      row.scrollLeft = target;
-      return;
-    }
-    const from = row.scrollLeft;
-    const start = performance.now();
-    const ease = (x: number) => 1 - Math.pow(1 - x, 3);
-    // Durante a animação, o snap fica desligado para não brigar com o deslocamento.
-    row.style.scrollSnapType = "none";
-    const step = (now: number) => {
-      const p = Math.min((now - start) / 280, 1);
-      row.scrollLeft = from + (target - from) * ease(p);
-      if (p < 1) requestAnimationFrame(step);
-      else row.style.scrollSnapType = "";
-    };
-    requestAnimationFrame(step);
-  }, []);
+  const goTo = useCallback(
+    (i: number, fromUser = true) => {
+      const row = rowRef.current;
+      const card = row?.children[i] as HTMLElement | undefined;
+      if (!row || !card) return;
+      const left = card.offsetLeft - row.offsetLeft - (row.clientWidth - card.offsetWidth) / 2;
+      row.scrollTo({ left, behavior: reduced ? "auto" : "smooth" });
+      if (fromUser) setAnnounce(`Depoimento ${i + 1} de ${items.length}`);
+    },
+    [items.length, reduced]
+  );
 
   useEffect(() => {
     const row = rowRef.current;
     if (!row) return;
-    const onScroll = () => {
-      const w = (row.children[0] as HTMLElement | undefined)?.offsetWidth ?? 1;
-      setIndex(Math.min(items.length - 1, Math.max(0, Math.round(row.scrollLeft / (w + 16)))));
+    let raf = 0;
+    const measure = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const center = row.scrollLeft + row.clientWidth / 2;
+        let best = 0;
+        let bestDist = Infinity;
+        Array.from(row.children).forEach((c, i) => {
+          const el = c as HTMLElement;
+          const dist = Math.abs(el.offsetLeft - row.offsetLeft + el.offsetWidth / 2 - center);
+          if (dist < bestDist) {
+            bestDist = dist;
+            best = i;
+          }
+        });
+        setIndex((prev) => (prev === best ? prev : best));
+      });
     };
-    row.addEventListener("scroll", onScroll, { passive: true });
-    return () => row.removeEventListener("scroll", onScroll);
-  }, [items.length]);
+    measure();
+    row.addEventListener("scroll", measure, { passive: true });
+    const ro = new ResizeObserver(measure);
+    ro.observe(row);
+    return () => {
+      cancelAnimationFrame(raf);
+      row.removeEventListener("scroll", measure);
+      ro.disconnect();
+    };
+  }, []);
 
   const prev = () => goTo(Math.max(0, index - 1));
   const next = () => goTo(Math.min(items.length - 1, index + 1));
@@ -207,28 +224,35 @@ function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
     <div>
       <div
         ref={rowRef}
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "ArrowRight") { e.preventDefault(); next(); }
-          if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
-        }}
+        tabIndex={isCarousel ? 0 : undefined}
+        onKeyDown={
+          isCarousel
+            ? (e) => {
+                if (e.key === "ArrowRight") { e.preventDefault(); next(); }
+                if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
+              }
+            : undefined
+        }
         className="snap-row -mx-5 px-5 md:mx-0 md:px-0 flex md:grid md:grid-cols-3 gap-4 md:gap-6 overflow-x-auto md:overflow-visible items-stretch"
-        role="region"
-        aria-roledescription="carrossel"
-        aria-label="Depoimentos"
+        role={isCarousel ? "region" : undefined}
+        aria-roledescription={isCarousel ? "carrossel" : undefined}
+        aria-label={isCarousel ? "Depoimentos" : undefined}
       >
         {items.map((t, i) => (
           <div
             key={t.name}
             className="shrink-0 w-[85%] sm:w-[60%] md:w-auto"
-            role="group"
-            aria-roledescription="slide"
-            aria-label={`${i + 1} de ${items.length}`}
+            role={isCarousel ? "group" : undefined}
+            aria-roledescription={isCarousel ? "slide" : undefined}
+            aria-label={isCarousel ? `${i + 1} de ${items.length}` : undefined}
           >
             <TestimonialCard t={t} />
           </div>
         ))}
       </div>
+      <p className="sr-only" aria-live="polite">
+        {announce}
+      </p>
       {items.length > 1 && (
         <div className="md:hidden flex items-center justify-center gap-1 mt-5">
           <button
@@ -255,7 +279,7 @@ function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
                 style={{
                   width: i === index ? 24 : 8,
                   backgroundColor: i === index ? "#FF6820" : "rgba(255,255,255,0.25)",
-                  transition: "width 180ms ease-out, background-color 180ms ease-out",
+                  transition: "width var(--dur-base) ease-out, background-color var(--dur-base) ease-out",
                 }}
               />
             </button>
@@ -346,7 +370,7 @@ export default function Testimonials({ persona }: { persona?: Persona } = {}) {
           </div>
           <Link
             href="/depoimentos"
-            className="inline-flex items-center gap-1.5 font-body text-sm font-semibold transition-colors duration-200 hover:text-white"
+            className="inline-flex items-center gap-1.5 font-body text-sm font-semibold transition-colors duration-[var(--dur-base)] hover:text-white"
             style={{ color: "rgba(255,255,255,0.55)" }}
           >
             Ver todos os {testimonials.length} depoimentos

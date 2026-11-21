@@ -112,7 +112,7 @@ export default function Footer({ cta = true }: { cta?: boolean } = {}) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-11 h-11 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-laranja hover:border-laranja transition-colors duration-200"
+                className="w-11 h-11 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-laranja hover:border-laranja transition-colors duration-[var(--dur-base)]"
               >
                 <Icon />
               </a>
@@ -132,7 +132,7 @@ export default function Footer({ cta = true }: { cta?: boolean } = {}) {
                       href={link.href}
                       target={external ? "_blank" : undefined}
                       rel={external ? "noopener noreferrer" : undefined}
-                      className="link-hover inline-flex items-center min-h-[36px] text-sm"
+                      className="link-hover inline-flex items-center min-h-[44px] md:min-h-[36px] text-sm"
                       style={{ color: "rgba(245,246,241,0.65)" }}
                     >
                       {link.label}
@@ -142,7 +142,7 @@ export default function Footer({ cta = true }: { cta?: boolean } = {}) {
               })}
               {title === "Legal" && (
                 <li>
-                  <CookiePreferencesButton className="link-hover inline-flex items-center min-h-[36px] text-sm text-left text-[rgba(245,246,241,0.65)]" />
+                  <CookiePreferencesButton className="link-hover inline-flex items-center min-h-[44px] md:min-h-[36px] text-sm text-left text-[rgba(245,246,241,0.65)]" />
                 </li>
               )}
             </ul>

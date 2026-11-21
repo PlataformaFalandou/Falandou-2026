@@ -30,7 +30,7 @@ function FAQItem({ faq, isOpen, onToggle, id }: { faq: FAQEntry; isOpen: boolean
         >
           <span
             className={`font-display font-semibold text-base ${isOpen ? "" : "text-ink group-hover:text-laranja"}`}
-            style={{ color: isOpen ? "#FF6820" : undefined, transition: "color 160ms ease-out" }}
+            style={{ color: isOpen ? "#FF6820" : undefined, transition: "color var(--dur-fast) ease-out" }}
           >
             {faq.q}
           </span>
@@ -40,12 +40,12 @@ function FAQItem({ faq, isOpen, onToggle, id }: { faq: FAQEntry; isOpen: boolean
             style={{
               backgroundColor: isOpen ? "#FF6820" : "var(--color-interactive)",
               color: isOpen ? "var(--color-on-brand)" : "var(--color-text)",
-              transition: "background-color 180ms ease-out, color 180ms ease-out",
+              transition: "background-color var(--dur-base) ease-out, color var(--dur-base) ease-out",
             }}
           >
             <ChevronDown
               size={20}
-              style={{ transform: isOpen ? "rotate(180deg)" : "none", transition: "transform 180ms ease-out" }}
+              style={{ transform: isOpen ? "rotate(180deg)" : "none", transition: "transform var(--dur-base) ease-out" }}
             />
           </span>
         </button>
@@ -61,7 +61,7 @@ function FAQItem({ faq, isOpen, onToggle, id }: { faq: FAQEntry; isOpen: boolean
           opacity: isOpen ? 1 : 0,
           transition: isOpen
             ? "grid-template-rows 220ms var(--ease-enter), opacity 220ms ease-out"
-            : "grid-template-rows 180ms ease-in, opacity 180ms ease-in",
+            : "grid-template-rows var(--dur-base) ease-in, opacity var(--dur-base) ease-in",
         }}
         inert={!isOpen}
       >
@@ -114,7 +114,7 @@ export default function FAQ({
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackCTAClick("faq")}
-              className="reveal inline-flex items-center gap-2 mt-8 px-6 py-3.5 rounded-full text-sm font-bold text-white transition-all duration-200 delay-300"
+              className="reveal inline-flex items-center gap-2 mt-8 px-6 py-3.5 rounded-full text-sm font-bold text-white transition-all duration-[var(--dur-base)] delay-300"
               style={{ backgroundColor: "var(--color-bg)" }}
             >
               Falar com a equipe

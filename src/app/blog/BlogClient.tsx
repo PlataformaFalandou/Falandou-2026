@@ -55,7 +55,7 @@ export default function BlogClient({
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className="min-h-[44px] px-4 rounded-full text-sm font-semibold transition-all duration-200"
+            className="min-h-[44px] px-4 rounded-full text-sm font-semibold transition-all duration-[var(--dur-base)]"
             style={{
               backgroundColor:
                 activeCategory === cat ? "#FF6820" : "transparent",

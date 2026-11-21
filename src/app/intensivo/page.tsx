@@ -101,7 +101,7 @@ export default function IntensivoPage() {
               </a>
               <Link
                 href="/planos"
-                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold text-white transition-all duration-200"
+                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold text-white transition-all duration-[var(--dur-base)]"
                 style={{ background: "rgba(255,255,255,0.08)", border: "1px solid var(--color-border)" }}
               >
                 Comparar os planos
@@ -206,7 +206,7 @@ export default function IntensivoPage() {
               </a>
               <Link
                 href="/planos"
-                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold text-white transition-all duration-200"
+                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold text-white transition-all duration-[var(--dur-base)]"
                 style={{ background: "rgba(255,255,255,0.08)", border: "1px solid var(--color-border)" }}
               >
                 Ver todos os planos

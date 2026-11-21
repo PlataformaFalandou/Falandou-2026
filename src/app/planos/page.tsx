@@ -392,7 +392,7 @@ export default function PlanosPage() {
                 href={getWhatsAppUrlForContext("empresas")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-7 py-4 rounded-full font-body font-bold text-base text-white transition-all duration-200"
+                className="inline-flex items-center justify-center px-7 py-4 rounded-full font-body font-bold text-base text-white transition-all duration-[var(--dur-base)]"
                 style={{ backgroundColor: "var(--color-bg)" }}
               >
                 Falar sobre a minha equipe

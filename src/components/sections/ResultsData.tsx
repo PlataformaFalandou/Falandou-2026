@@ -117,7 +117,7 @@ export default function ResultsData() {
           </a>
           <a
             href="#faq"
-            className="font-body text-sm font-semibold underline underline-offset-4 transition-colors duration-200"
+            className="font-body text-sm font-semibold underline underline-offset-4 transition-colors duration-[var(--dur-base)]"
             style={{ color: "rgba(245,246,241,0.6)" }}
           >
             Ainda tenho dúvidas →

@@ -57,7 +57,7 @@ function VideoCard({ videoId, title, description, tag, isShort = false }: VideoC
   const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
   return (
-    <div className="group flex flex-col rounded-2xl overflow-hidden border border-border bg-white/5 backdrop-blur-sm hover:border-border transition-all duration-300">
+    <div className="group flex flex-col rounded-2xl overflow-hidden border border-border bg-white/5 backdrop-blur-sm hover:border-border transition-all duration-[var(--dur-base)]">
       {/* Thumbnail / Embed */}
       <div
         className={`relative overflow-hidden cursor-pointer ${isShort ? "aspect-[9/16] max-h-64" : "aspect-video"}`}
@@ -82,7 +82,7 @@ function VideoCard({ videoId, title, description, tag, isShort = false }: VideoC
               loading="lazy"
             />
             {/* Overlay escuro */}
-            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-all duration-300" />
+            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-all duration-[var(--dur-base)]" />
             {/* Botão play */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div
@@ -117,7 +117,7 @@ function VideoCard({ videoId, title, description, tag, isShort = false }: VideoC
           href={`https://www.youtube.com/watch?v=${videoId}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-sm font-medium mt-1 transition-colors duration-200"
+          className="inline-flex items-center gap-1.5 text-sm font-medium mt-1 transition-colors duration-[var(--dur-base)]"
           style={{ color: "#FF6820" }}
           onClick={(e) => e.stopPropagation()}
         >
@@ -151,7 +151,7 @@ export default function YouTubeVideos() {
               href="https://www.youtube.com/@falandou"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-white/60 hover:text-white transition-colors duration-200 whitespace-nowrap"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-white/60 hover:text-white transition-colors duration-[var(--dur-base)] whitespace-nowrap"
             >
               Ver todos os vídeos
               <ExternalLink size={14} />

@@ -100,7 +100,7 @@ export default function Hero({
         }}
       />
 
-      <div className="relative z-10 max-w-[1200px] mx-auto px-5 md:px-8 pt-28 pb-12 md:pt-40 md:pb-20 min-h-[88vh] flex flex-col justify-center">
+      <div className="relative z-10 max-w-[1200px] mx-auto px-5 md:px-8 pt-28 pb-12 md:pt-40 md:pb-20 min-h-hero flex flex-col justify-center">
         {/* Revisão visual §5.1: título → explicação → CTA → prova curta. Os indicadores
             detalhados ficam na faixa seguinte (StatsBar). */}
         <div className={practice ? "grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-12 xl:gap-16 items-center" : ""}>

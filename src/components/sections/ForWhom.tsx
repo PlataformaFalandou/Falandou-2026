@@ -130,7 +130,7 @@ export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) 
               <Link
                 key={m.href}
                 href={m.href}
-                className="group flex items-center justify-between gap-3 px-5 py-4 rounded-2xl bg-surface border border-border hover:border-[rgba(255,104,32,0.4)] card-hover transition-all duration-300"
+                className="group flex items-center justify-between gap-3 px-5 py-4 rounded-2xl bg-surface border border-border hover:border-[rgba(255,104,32,0.4)] card-hover transition-all duration-[var(--dur-base)]"
               >
                 <span className="font-body text-sm font-semibold" style={{ color: "var(--color-text)" }}>
                   {m.label}

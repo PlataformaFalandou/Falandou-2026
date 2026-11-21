@@ -128,7 +128,7 @@ export default function LeadMagnet() {
                       {j + 1}
                     </span>
                     <p
-                      className="font-body text-base leading-6"
+                      className="font-body text-base leading-6 min-w-0 [overflow-wrap:anywhere]"
                       style={{ color: "rgba(255,255,255,0.65)" }}
                     >
                       {task}

@@ -51,7 +51,7 @@ export default function CompanyLogos() {
           {logos.map((logo) => (
             <div
               key={logo.name}
-              className="opacity-30 hover:opacity-60 transition-opacity duration-300 flex items-center justify-center"
+              className="opacity-30 hover:opacity-60 transition-opacity duration-[var(--dur-base)] flex items-center justify-center"
               title={logo.name}
               style={{ height: "44px" }}
             >
@@ -73,7 +73,7 @@ export default function CompanyLogos() {
           Esses profissionais estudaram na Falandou.{" "}
           <a
             href="#como-funciona"
-            className="underline underline-offset-4 hover:text-white transition-colors duration-200"
+            className="underline underline-offset-4 hover:text-white transition-colors duration-[var(--dur-base)]"
             style={{ color: "rgba(255,255,255,0.5)" }}
           >
             Veja como funciona →

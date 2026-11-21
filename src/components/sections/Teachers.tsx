@@ -14,7 +14,7 @@ export function YouTubeLink({ className = "" }: { className?: string }) {
       href={YOUTUBE_CHANNEL_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center gap-2 font-body text-sm font-semibold transition-colors duration-200 hover:text-white ${className}`}
+      className={`inline-flex items-center gap-2 font-body text-sm font-semibold transition-colors duration-[var(--dur-base)] hover:text-white ${className}`}
       style={{ color: "rgba(255,255,255,0.6)" }}
     >
       <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
@@ -125,7 +125,7 @@ export default function Teachers() {
             </a>
             <Link
               href="/professores"
-              className="inline-flex items-center gap-1.5 font-body text-sm font-semibold underline underline-offset-4 transition-colors duration-200"
+              className="inline-flex items-center gap-1.5 font-body text-sm font-semibold underline underline-offset-4 transition-colors duration-[var(--dur-base)]"
               style={{ color: "rgba(255,255,255,0.45)" }}
             >
               Conhecer os professores

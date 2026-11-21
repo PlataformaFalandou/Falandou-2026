@@ -35,7 +35,7 @@ export default function BlogPreview({
           </div>
           <Link
             href="/blog"
-            className="hidden md:inline-flex items-center gap-1.5 text-sm font-semibold transition-colors duration-200 group"
+            className="hidden md:inline-flex items-center gap-1.5 text-sm font-semibold transition-colors duration-[var(--dur-base)] group"
             style={{ color: "#FF6820" }}
           >
             Ver todos os artigos
@@ -49,7 +49,7 @@ export default function BlogPreview({
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="reveal group flex flex-col bg-bg-alt rounded-2xl overflow-hidden border border-border hover:border-laranja/30 card-hover transition-all duration-300"
+              className="reveal group flex flex-col bg-bg-alt rounded-2xl overflow-hidden border border-border hover:border-laranja/30 card-hover transition-all duration-[var(--dur-base)]"
               style={{ transitionDelay: `${Math.min(i * 40, 120)}ms` }}
             >
               {/* Color header bar */}
@@ -83,7 +83,7 @@ export default function BlogPreview({
                 </p>
 
                 <div
-                  className="inline-flex items-center gap-1 mt-5 text-sm font-semibold transition-colors duration-200 group-hover:gap-2"
+                  className="inline-flex items-center gap-1 mt-5 text-sm font-semibold transition-colors duration-[var(--dur-base)] group-hover:gap-2"
                   style={{ color: "#FF6820" }}
                 >
                   Ler artigo
@@ -97,7 +97,7 @@ export default function BlogPreview({
         <div className="md:hidden mt-8 text-center">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-laranja transition-colors duration-200 hover:bg-laranja hover:text-white"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-laranja transition-colors duration-[var(--dur-base)] hover:bg-laranja hover:text-white"
             style={{ color: "#FF6820", borderColor: "#FF6820" }}
           >
             Ver todos os artigos

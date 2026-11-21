@@ -50,7 +50,7 @@ export default function NotFound() {
               </a>
               <Link
                 href="/"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full text-base font-semibold text-white transition-all duration-200"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full text-base font-semibold text-white transition-all duration-[var(--dur-base)]"
                 style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.25)" }}
               >
                 Ir para a página inicial
@@ -62,7 +62,7 @@ export default function NotFound() {
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="rounded-2xl p-6 md:p-8 transition-all duration-200 "
+                  className="rounded-2xl p-6 md:p-8 transition-all duration-[var(--dur-base)] "
                   style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}
                 >
                   <p className="font-display font-bold text-white mb-1">{l.label} →</p>

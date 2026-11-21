@@ -99,7 +99,11 @@ function BottomNav({ pathname }: { pathname: string }) {
 export default function Navbar({ solid = false }: { solid?: boolean }) {
   const pathname = usePathname() || "/";
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  // Menu aberto = aberto NESTA rota (revisão técnica §1.2): trocar de página fecha sozinho,
+  // sem efeito que reajusta estado.
+  const [openPath, setOpenPath] = useState<string | null>(null);
+  const menuOpen = openPath === pathname;
+  const setMenuOpen = (open: boolean) => setOpenPath(open ? pathname : null);
 
   useEffect(() => {
     // Direção de movimento §5.1: depois de 24px, fundo e borda inferior aparecem (180ms)
@@ -123,13 +127,59 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
     }
   }, [menuOpen]);
 
-  // Gaveta aberta: trava a rolagem do fundo e fecha com Esc.
+  // Passou para o layout desktop com o menu aberto: fecha (a gaveta só existe no celular).
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
-    if (menuOpen) window.addEventListener("keydown", onKey);
+    const mq = window.matchMedia("(min-width: 768px)");
+    const onChange = (e: MediaQueryListEvent) => e.matches && setOpenPath(null);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  // Gaveta aberta = diálogo modal (revisão técnica §1.1):
+  // - o resto da página fica inerte (Tab não alcança o conteúdo de trás);
+  // - Tab e Shift+Tab circulam dentro do painel; Esc fecha;
+  // - a rolagem do fundo trava e o valor anterior de overflow é restaurado.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const panel = document.getElementById("menu-gaveta");
+    const overlay = document.getElementById("menu-overlay");
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const inerted: HTMLElement[] = [];
+    Array.from(document.body.children).forEach((el) => {
+      const node = el as HTMLElement;
+      if (node === panel || node === overlay || node.tagName === "SCRIPT" || (panel && node.contains(panel))) return;
+      if (!node.inert) {
+        node.inert = true;
+        inerted.push(node);
+      }
+    });
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpenPath(null);
+        return;
+      }
+      if (e.key !== "Tab" || !panel) return;
+      const focusables = Array.from(
+        panel.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
+      );
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = prevOverflow;
+      inerted.forEach((n) => (n.inert = false));
       window.removeEventListener("keydown", onKey);
     };
   }, [menuOpen]);
@@ -146,7 +196,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
         style={{
           backgroundColor: filled ? "rgba(20,20,20,0.96)" : "rgba(20,20,20,0)",
           borderColor: filled ? "var(--color-border)" : "transparent",
-          transition: "background-color 180ms ease-out, border-color 180ms ease-out",
+          transition: "background-color var(--dur-base) ease-out, border-color var(--dur-base) ease-out",
         }}
       >
         <nav className="max-w-[1200px] mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between gap-3">
@@ -201,7 +251,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
             >
               <span
                 className="inline-flex"
-                style={{ transform: menuOpen ? "rotate(90deg)" : "rotate(0deg)", transition: "transform 180ms ease-out" }}
+                style={{ transform: menuOpen ? "rotate(90deg)" : "rotate(0deg)", transition: "transform var(--dur-base) ease-out" }}
               >
                 {menuOpen ? <X size={24} /> : <Menu size={24} />}
               </span>
@@ -212,13 +262,16 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
 
       {/* Gaveta do celular: entra da direita, overlay 50% (§8) */}
       <div
+        id="menu-overlay"
         className={`md:hidden fixed inset-0 z-[55] ${menuOpen ? "" : "pointer-events-none"}`}
-        style={{ backgroundColor: "rgba(0,0,0,0.5)", opacity: menuOpen ? 1 : 0, transition: "opacity 160ms ease-out" }}
+        style={{ backgroundColor: "rgba(0,0,0,0.5)", opacity: menuOpen ? 1 : 0, transition: "opacity var(--dur-fast) ease-out" }}
         onClick={() => setMenuOpen(false)}
         aria-hidden="true"
       />
       <aside
         id="menu-gaveta"
+        role="dialog"
+        aria-modal="true"
         aria-label="Menu"
         aria-hidden={!menuOpen}
         inert={!menuOpen}
@@ -232,7 +285,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
           visibility: menuOpen ? "visible" : "hidden",
           transition: menuOpen
             ? "opacity 220ms var(--ease-enter), transform 220ms var(--ease-enter), visibility 0s"
-            : "opacity 160ms ease-in, transform 160ms ease-in, visibility 0s 160ms",
+            : "opacity var(--dur-fast) ease-in, transform var(--dur-fast) ease-in, visibility 0s var(--dur-fast)",
         }}
       >
         <div className="h-16 px-4 flex items-center justify-between border-b" style={{ borderColor: "var(--color-border)" }}>

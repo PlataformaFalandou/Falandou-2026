@@ -63,7 +63,7 @@ export default function MetodoTeaser() {
 
             <Link
               href="/metodo"
-              className="reveal inline-flex items-center gap-2 font-body font-bold text-base transition-all duration-200 hover:gap-3 delay-200"
+              className="reveal inline-flex items-center gap-2 font-body font-bold text-base transition-all duration-[var(--dur-base)] hover:gap-3 delay-200"
               style={{ color: "#FF6820" }}
             >
               Ver como a Falandou faz diferente

@@ -32,7 +32,7 @@ export default function PlansGrid() {
               width: "calc(50% - 4px)",
               backgroundColor: "#FF6820",
               transform: `translateX(${sorted.indexOf(duration) * 100}%)`,
-              transition: "transform 180ms var(--ease-enter)",
+              transition: "transform var(--dur-base) var(--ease-enter)",
             }}
           />
           {sorted.map((d) => (
@@ -44,7 +44,7 @@ export default function PlansGrid() {
               className="relative z-[1] h-12 min-w-[120px] px-5 rounded-full font-body text-base font-bold"
               style={{
                 color: duration === d ? "var(--color-on-brand)" : "var(--color-text)",
-                transition: "color 180ms ease-out",
+                transition: "color var(--dur-base) ease-out",
               }}
             >
               {d} minutos
@@ -53,16 +53,16 @@ export default function PlansGrid() {
         </div>
       </div>
 
-      {/* Celular: rolagem horizontal com snap — cada cartão ocupa 85% da tela e o
+      {/* Celular e tablet: rolagem horizontal com snap — cada cartão ocupa 85% (celular) ou 45% (tablet) e o
           próximo aparece na borda, sinalizando que há mais (UX/UI §9). Desktop: 3 colunas. */}
-      <div className="snap-row -mx-5 px-5 md:mx-0 md:px-0 flex md:grid md:grid-cols-3 gap-4 md:gap-6 items-stretch overflow-x-auto md:overflow-visible pt-2 pb-4">
+      <div className="snap-row -mx-5 px-5 md:-mx-8 md:px-8 lg:mx-0 lg:px-0 flex lg:grid lg:grid-cols-3 gap-4 md:gap-6 items-stretch overflow-x-auto lg:overflow-visible pt-2 pb-4">
         {PLANS.map((plan) => (
-          <div key={plan.id} className="shrink-0 w-[85%] sm:w-[60%] md:w-auto">
+          <div key={plan.id} className="shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-auto">
             <PriceCard plan={plan} duration={duration} />
           </div>
         ))}
       </div>
-      <p className="md:hidden text-center text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>
+      <p className="lg:hidden text-center text-sm mt-1" style={{ color: "var(--color-text-muted)" }}>
         Deslize para ver os {PLANS.length} planos →
       </p>
     </>

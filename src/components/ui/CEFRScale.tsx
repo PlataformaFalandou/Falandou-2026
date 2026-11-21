@@ -42,7 +42,7 @@ export default function CEFRScale({
         {idx >= 0 && targetIdx > idx && (
           <span
             aria-hidden="true"
-            className="absolute top-5 h-0.5 transition-all duration-300"
+            className="absolute top-5 h-0.5 transition-all duration-[var(--dur-base)]"
             style={{
               left: `${8.33 + (idx * 100) / 6}%`,
               width: `${((targetIdx - idx) * 100) / 6}%`,
@@ -58,7 +58,7 @@ export default function CEFRScale({
           const node = (
             <>
               <span
-                className="relative z-[1] w-10 h-10 rounded-full flex items-center justify-center font-display font-extrabold text-xs transition-all duration-200"
+                className="relative z-[1] w-10 h-10 rounded-full flex items-center justify-center font-display font-extrabold text-xs transition-all duration-[var(--dur-base)]"
                 style={{
                   backgroundColor: isCurrent || isTarget || reached ? color : "var(--color-bg)",
                   border: `2px solid ${color}`,

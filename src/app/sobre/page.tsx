@@ -214,7 +214,7 @@ export default function SobrePage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
                 href="/metodo"
-                className="inline-flex items-center justify-center px-10 py-5 rounded-full text-base font-bold text-white transition-all duration-200"
+                className="inline-flex items-center justify-center px-10 py-5 rounded-full text-base font-bold text-white transition-all duration-[var(--dur-base)]"
                 style={{ backgroundColor: "var(--color-bg)" }}
               >
                 Ver como funciona o método
