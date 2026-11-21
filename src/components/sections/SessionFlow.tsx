@@ -37,9 +37,9 @@ const STEPS = [
 
 export default function SessionFlow() {
   return (
-    <section className="py-20 md:py-28" style={{ backgroundColor: "var(--color-bg-alt)" }} aria-labelledby="como-e-uma-sessao">
-      <div className="max-w-6xl mx-auto px-6">
-        <p className="reveal text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+    <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }} aria-labelledby="como-e-uma-sessao">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
+        <p className="reveal text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
           Na prática
         </p>
         <h2
@@ -53,7 +53,7 @@ export default function SessionFlow() {
           {STEPS.map(({ Icon, when, title, body }, i) => (
             <li
               key={title}
-              className="reveal rounded-2xl p-6 flex flex-col"
+              className="reveal rounded-2xl p-6 md:p-8 flex flex-col"
               style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)", transitionDelay: `${i * 100}ms` }}
             >
               <span className="flex items-center gap-3 mb-4">
@@ -68,7 +68,7 @@ export default function SessionFlow() {
                 </span>
               </span>
               <h3 className="font-display font-bold text-lg text-white mb-2">{title}</h3>
-              <p className="text-sm leading-relaxed" style={{ color: "var(--color-text-body)" }}>
+              <p className="text-base leading-6" style={{ color: "var(--color-text-body)" }}>
                 {body}
               </p>
             </li>

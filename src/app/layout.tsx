@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 
 // Site escuro por padrão (UX/UI §20): barra do navegador no celular na cor do fundo.
 export const viewport: Viewport = {
-  themeColor: "#0F0F0F",
+  themeColor: "#141414",
   colorScheme: "dark",
 };
 

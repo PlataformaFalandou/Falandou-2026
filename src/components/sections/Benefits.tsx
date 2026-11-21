@@ -38,10 +38,10 @@ const COLUMNS = [
 
 export default function Benefits() {
   return (
-    <section className="py-24 md:py-28" style={{ backgroundColor: "var(--color-bg-alt)" }}>
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+      <div className="max-w-[1200px] mx-auto px-5 md:px-8">
         <div className="max-w-2xl mb-14">
-          <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+          <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
             O que muda depois do ciclo
           </p>
           <h2
@@ -52,11 +52,11 @@ export default function Benefits() {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-3 gap-4 md:gap-6">
           {COLUMNS.map((c, i) => (
             <div
               key={c.tag}
-              className="reveal rounded-2xl bg-surface border border-white/10 p-8 flex flex-col"
+              className="reveal rounded-2xl bg-surface border border-border p-6 md:p-8 flex flex-col"
               style={{ transitionDelay: `${i * 80}ms` }}
             >
               <p className="font-body text-xs font-bold uppercase tracking-widest mb-5" style={{ color: "rgba(245,246,241,0.55)" }}>

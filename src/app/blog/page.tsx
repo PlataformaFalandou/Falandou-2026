@@ -66,7 +66,7 @@ export default function BlogPage() {
       <Navbar solid />
       <main id="conteudo" className="pt-28 md:pt-36 pb-20 min-h-screen bg-bg-alt">
         <JsonLd data={schema} />
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-[1200px] mx-auto px-5 md:px-8">
           <nav aria-label="Você está em" className="mb-6">
             <ol className="flex items-center gap-1.5 text-sm" style={{ color: "rgba(245,246,241,0.6)" }}>
               <li>
@@ -100,7 +100,7 @@ export default function BlogPage() {
               }}
             >
               <div className="flex flex-wrap items-center gap-3 mb-4">
-                <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full" style={{ backgroundColor: "#FF6820", color: "#fff" }}>
+                <span className="on-brand text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full" style={{ backgroundColor: "#FF6820" }}>
                   {featured.pilar ? "Guia completo" : "Em destaque"}
                 </span>
                 <span className="text-xs font-semibold" style={{ color: categoryColor(featured.categoria) }}>

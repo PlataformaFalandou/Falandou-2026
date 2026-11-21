@@ -157,7 +157,7 @@ export default async function ArticlePage({
         }}
       />
       <main id="conteudo" className="pt-32 md:pt-36 pb-20 min-h-screen bg-bg-alt">
-        <div className="max-w-6xl mx-auto px-6 lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14">
+        <div className="max-w-6xl mx-auto px-5 md:px-8 lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14">
           <div className="max-w-3xl">
             {/* Breadcrumb — Arquitetura §2: só no artigo do blog */}
             <nav aria-label="Você está em" className="mb-8">
@@ -231,7 +231,7 @@ export default async function ArticlePage({
             {article.pilar && article.toc.length > 2 && (
               <nav
                 aria-label="Neste guia"
-                className="mb-10 rounded-2xl p-6"
+                className="mb-10 rounded-2xl p-6 md:p-8"
                 style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
               >
                 <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
@@ -258,7 +258,7 @@ export default async function ArticlePage({
             {contentB && (
               <>
                 <aside
-                  className="my-10 rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center gap-4"
+                  className="my-10 rounded-2xl p-6 md:p-8 flex flex-col sm:flex-row sm:items-center gap-4"
                   style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)", borderLeft: "4px solid #FF6820" }}
                 >
                   <p className="flex-1 text-base text-white">
@@ -293,7 +293,7 @@ export default async function ArticlePage({
                         <span className="text-xl transition-transform group-open:rotate-45" style={{ color: "#FF6820" }} aria-hidden="true">+</span>
                       </summary>
                       <p
-                        className="text-sm leading-relaxed mt-3"
+                        className="text-base leading-6 mt-3"
                         style={{ color: "var(--color-text-body)" }}
                         dangerouslySetInnerHTML={{ __html: f.aHtml }}
                       />
@@ -310,7 +310,7 @@ export default async function ArticlePage({
                 href={`https://www.youtube.com/watch?v=${article.video}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group mt-12 flex flex-col sm:flex-row items-stretch gap-0 rounded-2xl overflow-hidden border border-white/15 bg-surface hover:shadow-lg transition-shadow"
+                className="group mt-12 flex flex-col sm:flex-row items-stretch gap-0 rounded-2xl overflow-hidden border border-border bg-surface hover:shadow-lg transition-shadow"
               >
                 <span className="relative block sm:w-64 aspect-video sm:aspect-auto flex-shrink-0 bg-black">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -339,7 +339,7 @@ export default async function ArticlePage({
 
             {/* CTA contextual — Arquitetura §3/§6: ligado ao tema do artigo + página relacionada */}
             <div
-              className="mt-16 rounded-2xl p-8 text-center"
+              className="mt-16 rounded-2xl p-6 md:p-8 text-center"
               style={{ backgroundColor: "var(--color-bg)" }}
             >
               <p className="font-body text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
@@ -373,7 +373,7 @@ export default async function ArticlePage({
             </div>
             {/* Bio curta do professor que assina (revisão editorial §48) */}
             <div
-              className="mt-12 rounded-2xl p-6 flex gap-4 items-start"
+              className="mt-12 rounded-2xl p-6 md:p-8 flex gap-4 items-start"
               style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
             >
               <Image
@@ -417,8 +417,8 @@ export default async function ArticlePage({
           {/* ── Barra lateral (desktop) — Arquitetura §6 ── */}
           <aside className="hidden lg:block">
             <div className="sticky top-32 flex flex-col gap-6">
-              <div className="rounded-2xl bg-surface border border-white/10 p-6">
-                <p className="font-body text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "rgba(245,246,241,0.55)" }}>
+              <div className="rounded-2xl bg-surface border border-border p-6 md:p-8">
+                <p className="font-body text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "rgba(245,246,241,0.55)" }}>
                   Leia também
                 </p>
                 <ul className="flex flex-col gap-4">
@@ -438,7 +438,7 @@ export default async function ArticlePage({
               </div>
 
               {/* Captura de contato: roteiro gratuito pelo WhatsApp (decisão da escola: sem lista de e-mail) */}
-              <div className="rounded-2xl p-6" style={{ backgroundColor: "var(--color-bg)" }}>
+              <div className="rounded-2xl p-6 md:p-8" style={{ backgroundColor: "var(--color-bg)" }}>
                 <p className="font-body text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
                   Material gratuito
                 </p>
@@ -457,8 +457,8 @@ export default async function ArticlePage({
                 </a>
               </div>
 
-              <div className="rounded-2xl bg-surface border border-white/10 p-6">
-                <p className="font-body text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "rgba(245,246,241,0.55)" }}>
+              <div className="rounded-2xl bg-surface border border-border p-6 md:p-8">
+                <p className="font-body text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "rgba(245,246,241,0.55)" }}>
                   Categorias
                 </p>
                 <ul className="flex flex-wrap gap-2">

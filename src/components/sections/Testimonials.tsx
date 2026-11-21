@@ -68,7 +68,7 @@ function initials(name: string) {
 function TestimonialCard({ t }: { t: Testimonial }) {
   return (
     <figure
-      className="card-hover h-full rounded-2xl border flex flex-col p-7"
+      className="h-full rounded-2xl border flex flex-col p-6 md:p-8"
       style={{ backgroundColor: "var(--color-surface)", borderColor: "var(--color-border)" }}
     >
       <div className="flex items-start justify-between gap-4">
@@ -200,7 +200,7 @@ function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
     >
       <div
         ref={rowRef}
-        className="snap-row -mx-6 px-6 flex md:grid md:grid-cols-3 gap-4 md:gap-5 overflow-x-auto md:overflow-visible"
+        className="snap-row -mx-5 px-5 md:mx-0 md:px-0 flex md:grid md:grid-cols-3 gap-4 md:gap-5 overflow-x-auto md:overflow-visible"
         aria-roledescription="carrossel"
       >
         {items.map((t) => (
@@ -238,7 +238,7 @@ function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
 /** Só a grade de cartões — usada pela página /depoimentos. */
 export function TestimonialsGrid({ items = testimonials }: { items?: Testimonial[] }) {
   return (
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
       {items.map((t) => (
         <TestimonialCard key={t.name} t={t} />
       ))}
@@ -292,11 +292,11 @@ export default function Testimonials({ persona }: { persona?: Persona } = {}) {
   const items = [...fromPersona, ...featured, ...rest].slice(0, 3);
 
   return (
-    <section id="depoimentos" className="py-24 md:py-32" style={{ backgroundColor: "var(--color-bg)" }}>
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="depoimentos" className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
+      <div className="max-w-[1200px] mx-auto px-5 md:px-8">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
           <div>
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
               O que dizem os profissionais
             </p>
             <h2 className="reveal font-display font-extrabold text-white leading-tight delay-100" style={{ fontSize: "var(--text-h2)" }}>

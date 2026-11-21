@@ -32,7 +32,7 @@ export default function ResultsData() {
       className="py-20"
       style={{ background: "var(--color-bg-alt)" }}
     >
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-5 md:px-8">
 
         {/* cabeçalho */}
         <div className="mb-12">
@@ -86,12 +86,12 @@ export default function ResultsData() {
           </div>
 
           {/* destaques numéricos */}
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-2 gap-4 md:gap-6">
             {DESTAQUES.map((d) => (
               <div
                 key={d.desc}
                 className="rounded-2xl p-5"
-                style={{ background: "var(--color-surface)", border: "1px solid rgba(255,255,255,0.1)" }}
+                style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}
               >
                 <p
                   className="font-display font-black text-2xl mb-1"

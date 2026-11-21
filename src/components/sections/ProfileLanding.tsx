@@ -49,7 +49,7 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
 
         {/* ── HERO ── */}
         <section className="pt-40 pb-24 md:pt-52 md:pb-28" style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-4xl mx-auto px-5 md:px-8">
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
               {data.eyebrow}
             </p>
@@ -73,7 +73,7 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
               <Link
                 href="/metodo"
                 className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold text-white transition-all duration-200 hover:scale-105"
-                style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.2)" }}
+                style={{ background: "rgba(255,255,255,0.08)", border: "1px solid var(--color-border)" }}
               >
                 Como funciona o ciclo
               </Link>
@@ -82,22 +82,22 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
         </section>
 
         {/* ── CENÁRIOS ── */}
-        <section className="py-24 md:py-28" style={{ backgroundColor: "var(--color-bg-alt)" }}>
-          <div className="max-w-5xl mx-auto px-6">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
               As situações que o plano treina
             </p>
             <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100" style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}>
               Você provavelmente já passou por pelo menos uma.
             </h2>
-            <div className="grid md:grid-cols-2 gap-5">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6">
               {data.scenarios.map((s) => (
-                <div key={s.situation} className="reveal rounded-2xl bg-surface border border-white/10 p-7">
+                <div key={s.situation} className="reveal rounded-2xl bg-surface border border-border p-7">
                   <h3 className="font-display font-extrabold text-[length:var(--text-h3)] mb-4" style={{ color: "var(--color-text)" }}>{s.situation}</h3>
-                  <p className="font-body text-sm leading-relaxed mb-3" style={{ color: "rgba(245,246,241,0.7)" }}>
+                  <p className="font-body text-base leading-6 mb-3" style={{ color: "rgba(245,246,241,0.7)" }}>
                     <strong style={{ color: "var(--color-text)" }}>Hoje:</strong> {s.today}
                   </p>
-                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(245,246,241,0.85)" }}>
+                  <p className="font-body text-base leading-6" style={{ color: "rgba(245,246,241,0.85)" }}>
                     <strong style={{ color: "#FF6820" }}>No ciclo:</strong> {s.after}
                   </p>
                 </div>
@@ -108,7 +108,7 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
 
         {/* ── NÚMEROS ── */}
         <section style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-5xl mx-auto px-6 py-14 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+          <div className="max-w-5xl mx-auto px-5 md:px-8 py-14 grid grid-cols-1 sm:grid-cols-3 text-center gap-4 md:gap-6">
             {[
               { v: STATS.cefrUpPct, l: `sobem 1 nível CEFR ou mais em ${STATS.cycleDays} dias` },
               { v: `${STATS.b1b2Weeks} sem.`, l: "em média de B1 para B2" },
@@ -124,14 +124,14 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
 
         {/* ── DEPOIMENTOS DO SETOR ── */}
         {quotes.length > 0 && (
-          <section className="py-24 md:py-28 bg-surface">
-            <div className="max-w-5xl mx-auto px-6">
+          <section className="py-12 md:py-20 bg-bg">
+            <div className="max-w-5xl mx-auto px-5 md:px-8">
               <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-10" style={{ color: "#FF6820" }}>
                 Quem já fez o ciclo
               </p>
-              <div className="grid md:grid-cols-2 gap-5">
+              <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                 {quotes.map((q) => (
-                  <figure key={q.name} className="reveal rounded-2xl p-8" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+                  <figure key={q.name} className="reveal rounded-2xl p-6 md:p-8" style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
                     <blockquote className="font-body text-base leading-relaxed mb-6" style={{ color: "var(--color-text)" }}>
                       &ldquo;{q.text}&rdquo;
                     </blockquote>
@@ -152,8 +152,8 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
         )}
 
         {/* ── CTA ── */}
-        <section className="py-24 md:py-28" style={{ backgroundColor: "#FF6820" }}>
-          <div className="max-w-3xl mx-auto px-6 text-center">
+        <section className="on-brand py-12 md:py-20" style={{ backgroundColor: "#FF6820" }}>
+          <div className="max-w-3xl mx-auto px-5 md:px-8 text-center">
             <h2 className="font-display font-extrabold text-white leading-tight mb-4" style={{ fontSize: "var(--text-h2)" }}>
               Esse é o seu dia a dia?
             </h2>
@@ -166,15 +166,13 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
                 href={getWhatsAppUrlForContext(data.whatsappContext)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-10 py-5 rounded-full text-base font-bold text-white transition-all duration-200 hover:scale-105"
-                style={{ backgroundColor: "var(--color-bg)" }}
+                className="cta-dark"
               >
                 Esse sou eu — quero saber mais
               </a>
               <Link
                 href="/planos"
-                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold text-white transition-all duration-200 hover:scale-105"
-                style={{ background: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.4)" }}
+                className="cta-outline-dark"
               >
                 Ver planos e valores
               </Link>

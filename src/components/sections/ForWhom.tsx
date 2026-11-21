@@ -57,12 +57,12 @@ export type ForWhomPersona = {
 
 export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) {
   return (
-    <section id="para-quem" className="py-24 md:py-32" style={{ backgroundColor: "var(--color-bg-alt)" }}>
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="para-quem" className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+      <div className="max-w-[1200px] mx-auto px-5 md:px-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
           <div className="max-w-2xl">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
               Para quem é
             </p>
             <h2 className="reveal font-display font-extrabold leading-tight delay-100" style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}>
@@ -82,55 +82,36 @@ export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) 
         </div>
 
         {/* Profile cards — large format like reference */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* Revisão visual §6.1: foto em cima, texto embaixo (sem texto longo sobre a foto).
+            4 → 2 → 1 colunas conforme a largura, para o texto continuar legível (§4.2). */}
+        <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6">
           {profiles.map((p, i) => (
             <div
               key={p.role}
-              className="reveal group relative rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 cursor-default"
-              style={{ transitionDelay: `${i * 80}ms`, aspectRatio: "3/4" }}
+              className="reveal rounded-2xl overflow-hidden flex flex-col"
+              style={{ transitionDelay: `${i * 80}ms`, backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
             >
-              {/* Full-bleed image */}
-              <Image
-                src={p.img}
-                alt={p.role}
-                fill
-                className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                sizes="(max-width: 640px) 100vw, 25vw"
-              />
-
-              {/* Gradient overlay */}
-              <div
-                className="absolute inset-0 transition-opacity duration-500"
-                style={{ background: "linear-gradient(to top, rgba(22,22,22,0.92) 0%, rgba(22,22,22,0.4) 50%, transparent 100%)" }}
-              />
-
-              {/* Role tag top-left */}
-              <div className="absolute top-4 left-4">
-                <span
-                  className="text-xs font-bold px-3 py-1.5 rounded-full"
-                  style={{ background: "rgba(255,104,32,0.9)", color: "white" }}
-                >
-                  {p.role}
-                </span>
+              <div className="relative aspect-[16/9] img-skeleton">
+                <Image src={p.img} alt={p.role} fill className="object-cover object-top" sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw" />
               </div>
-
-              {/* Content bottom */}
-              <div className="absolute bottom-0 left-0 right-0 p-5">
+              <div className="p-6 flex flex-col flex-1">
+                <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF8A4C" }}>
+                  {p.role}
+                </p>
                 <div className="flex items-start gap-2 mb-3">
-                  <span className="text-sm mt-0.5 flex-shrink-0">❌</span>
-                  <p className="text-sm text-white/60 leading-snug">{p.pain}</p>
+                  <span className="text-sm mt-1 flex-shrink-0" aria-hidden="true">❌</span>
+                  <p className="text-base leading-6" style={{ color: "var(--color-text-body)" }}>{p.pain}</p>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-sm mt-0.5 flex-shrink-0">✅</span>
-                  <p className="text-sm font-semibold text-white leading-snug">{p.gain}</p>
+                  <span className="text-sm mt-1 flex-shrink-0" aria-hidden="true">✅</span>
+                  <p className="text-base leading-6 font-semibold text-white">{p.gain}</p>
                 </div>
                 {p.href && !persona && (
                   <Link
                     href={p.href}
-                    className="mt-3 inline-flex items-center gap-1 text-xs font-bold underline underline-offset-4"
-                    style={{ color: "#FF9A6C" }}
+                    className="cta-tertiary mt-auto pt-6 inline-flex items-center gap-1 text-base font-semibold text-white"
                   >
-                    Ver situações deste perfil <ArrowRight size={12} />
+                    Ver situações deste perfil <ArrowRight size={16} aria-hidden="true" />
                   </Link>
                 )}
               </div>
@@ -149,7 +130,7 @@ export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) 
               <Link
                 key={m.href}
                 href={m.href}
-                className="group flex items-center justify-between gap-3 px-5 py-4 rounded-2xl bg-surface border border-white/10 hover:border-[rgba(255,104,32,0.4)] hover:shadow-md transition-all duration-300"
+                className="group flex items-center justify-between gap-3 px-5 py-4 rounded-2xl bg-surface border border-border hover:border-[rgba(255,104,32,0.4)] hover:shadow-md transition-all duration-300"
               >
                 <span className="font-body text-sm font-semibold" style={{ color: "var(--color-text)" }}>
                   {m.label}

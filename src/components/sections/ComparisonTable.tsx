@@ -47,13 +47,13 @@ const rows: { dimension: string; generic: string; falandou: React.ReactNode }[] 
 
 export default function ComparisonTable() {
   return (
-    <section className="py-20 md:py-28" style={{ background: "var(--color-bg-alt)" }}>
-      <div className="max-w-5xl mx-auto px-6">
+    <section className="py-12 md:py-20" style={{ background: "var(--color-bg-alt)" }}>
+      <div className="max-w-5xl mx-auto px-5 md:px-8">
 
         {/* Header */}
         <div className="text-center mb-14">
           <p
-            className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4"
+            className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3"
             style={{ color: "#FF6820" }}
           >
             Por que a diferença importa
@@ -75,16 +75,16 @@ export default function ComparisonTable() {
         </div>
 
         {/* Table — desktop */}
-        <div className="reveal delay-200 hidden md:block rounded-2xl overflow-hidden border" style={{ borderColor: "rgba(255,255,255,0.13)" }}>
+        <div className="reveal delay-200 hidden md:block rounded-2xl overflow-hidden border" style={{ borderColor: "var(--color-border)" }}>
           {/* Header row */}
           <div className="grid grid-cols-[2fr_3fr_3fr]" style={{ background: "var(--color-bg)" }}>
             <div className="px-6 py-4 text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>
               Critério
             </div>
-            <div className="px-6 py-4 text-xs font-bold uppercase tracking-widest border-l" style={{ color: "rgba(255,255,255,0.4)", borderColor: "rgba(255,255,255,0.08)" }}>
+            <div className="px-6 py-4 text-xs font-bold uppercase tracking-widest border-l" style={{ color: "rgba(255,255,255,0.4)", borderColor: "var(--color-border)" }}>
               Apps e cursos genéricos
             </div>
-            <div className="px-6 py-4 text-xs font-bold uppercase tracking-widest border-l" style={{ color: "#FF6820", borderColor: "rgba(255,255,255,0.08)" }}>
+            <div className="px-6 py-4 text-xs font-bold uppercase tracking-widest border-l" style={{ color: "#FF6820", borderColor: "var(--color-border)" }}>
               Falandou
             </div>
           </div>
@@ -95,7 +95,7 @@ export default function ComparisonTable() {
               key={row.dimension}
               className="grid grid-cols-[2fr_3fr_3fr] border-t"
               style={{
-                borderColor: "rgba(255,255,255,0.1)",
+                borderColor: "var(--color-border)",
                 background: i % 2 === 0 ? "#ffffff" : "#fafaf8",
               }}
             >
@@ -104,13 +104,13 @@ export default function ComparisonTable() {
                   {row.dimension}
                 </span>
               </div>
-              <div className="px-6 py-5 flex items-start gap-3 border-l" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
+              <div className="px-6 py-5 flex items-start gap-3 border-l" style={{ borderColor: "var(--color-border)" }}>
                 <span className="text-base flex-shrink-0 mt-0.5" aria-hidden>✗</span>
                 <span className="font-body text-sm leading-snug" style={{ color: "rgba(245,246,241,0.65)" }}>
                   {row.generic}
                 </span>
               </div>
-              <div className="px-6 py-5 flex items-start gap-3 border-l" style={{ borderColor: "rgba(255,255,255,0.1)", background: "rgba(255,104,32,0.04)" }}>
+              <div className="px-6 py-5 flex items-start gap-3 border-l" style={{ borderColor: "var(--color-border)", background: "rgba(255,104,32,0.04)" }}>
                 <span className="text-base flex-shrink-0 mt-0.5" style={{ color: "#FF6820" }} aria-hidden>✓</span>
                 <span className="font-body text-sm font-medium leading-snug" style={{ color: "var(--color-text)" }}>
                   {row.falandou}
@@ -126,14 +126,14 @@ export default function ComparisonTable() {
             <div
               key={row.dimension}
               className={`reveal rounded-2xl overflow-hidden border`}
-              style={{ borderColor: "rgba(255,255,255,0.13)", transitionDelay: `${i * 60}ms` }}
+              style={{ borderColor: "var(--color-border)", transitionDelay: `${i * 60}ms` }}
             >
               <div className="px-4 py-3" style={{ background: "var(--color-bg)" }}>
                 <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.5)" }}>
                   {row.dimension}
                 </span>
               </div>
-              <div className="px-4 py-4 flex items-start gap-3 border-b" style={{ borderColor: "rgba(255,255,255,0.1)", background: "var(--color-surface)" }}>
+              <div className="px-4 py-4 flex items-start gap-3 border-b" style={{ borderColor: "var(--color-border)", background: "var(--color-surface)" }}>
                 <span className="text-sm flex-shrink-0 mt-0.5" aria-hidden>✗</span>
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wide mb-1" style={{ color: "rgba(245,246,241,0.5)" }}>Genérico</p>

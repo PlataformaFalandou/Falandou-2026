@@ -56,15 +56,15 @@ export default function LeadMagnet() {
   return (
     <section
       id="roteiro-30-dias"
-      className="py-24 md:py-32"
+      className="py-12 md:py-20"
       style={{ backgroundColor: "var(--color-bg)" }}
     >
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-5 md:px-8">
 
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <p
-            className="font-body text-sm font-bold uppercase tracking-widest mb-4"
+            className="font-body text-sm font-bold uppercase tracking-widest mb-3"
             style={{ color: "#FF6820" }}
           >
             Conteúdo gratuito
@@ -83,14 +83,14 @@ export default function LeadMagnet() {
         </div>
 
         {/* Semanas */}
-        <div className="grid sm:grid-cols-2 gap-5 mb-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 mb-14 gap-4 md:gap-6">
           {WEEKS.map((week, i) => (
             <div
               key={week.num}
-              className="rounded-2xl p-7 flex flex-col gap-4"
+              className="min-w-0 break-words rounded-2xl p-6 md:p-8 flex flex-col gap-4"
               style={{
-                backgroundColor: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
+                backgroundColor: "var(--color-surface)",
+                border: "1px solid var(--color-border)",
               }}
             >
               {/* Semana badge + título */}
@@ -129,7 +129,7 @@ export default function LeadMagnet() {
                       {j + 1}
                     </span>
                     <p
-                      className="font-body text-sm leading-relaxed"
+                      className="font-body text-base leading-6"
                       style={{ color: "rgba(255,255,255,0.65)" }}
                     >
                       {task}

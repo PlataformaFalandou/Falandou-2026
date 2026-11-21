@@ -89,7 +89,7 @@ export default function InglesExpatriacaoPage() {
           className="pt-40 pb-28 md:pt-52 md:pb-36"
           style={{ backgroundColor: "var(--color-bg)" }}
         >
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-4xl mx-auto px-5 md:px-8">
             {/* Urgency badge */}
             <div
               className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold"
@@ -133,7 +133,7 @@ export default function InglesExpatriacaoPage() {
               <a
                 href="#situacoes"
                 className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold transition-all duration-200 hover:scale-105"
-                style={{ background: "rgba(255,255,255,0.08)", color: "white", border: "1px solid rgba(255,255,255,0.2)" }}
+                style={{ background: "rgba(255,255,255,0.08)", color: "white", border: "1px solid var(--color-border)" }}
               >
                 Ver o que preparamos
               </a>
@@ -142,9 +142,9 @@ export default function InglesExpatriacaoPage() {
         </section>
 
         {/* ── PROOF ── */}
-        <section className="py-14" style={{ backgroundColor: "#FF6820" }}>
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid md:grid-cols-3 gap-8">
+        <section className="on-brand py-14" style={{ backgroundColor: "#FF6820" }}>
+          <div className="max-w-[1200px] mx-auto px-5 md:px-8">
+            <div className="grid md:grid-cols-3 gap-4 md:gap-6">
               {proof.map((p) => (
                 <div key={p.value} className="text-center">
                   <p className="font-display font-extrabold text-4xl text-white mb-2">{p.value}</p>
@@ -156,10 +156,10 @@ export default function InglesExpatriacaoPage() {
         </section>
 
         {/* ── SITUATIONS: cada desafio real da expatriação ── */}
-        <section id="situacoes" className="py-24 md:py-32" style={{ backgroundColor: "var(--color-bg-alt)" }}>
-          <div className="max-w-7xl mx-auto px-6">
+        <section id="situacoes" className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+          <div className="max-w-[1200px] mx-auto px-5 md:px-8">
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <p className="font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+              <p className="font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
                 O que realmente te espera
               </p>
               <h2
@@ -173,12 +173,12 @@ export default function InglesExpatriacaoPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6">
               {situations.map((s) => (
                 <div
                   key={s.num}
-                  className="rounded-2xl p-8 bg-surface"
-                  style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+                  className="rounded-2xl p-6 md:p-8 bg-surface"
+                  style={{ border: "1px solid var(--color-border)" }}
                 >
                   <div className="flex items-start gap-5">
                     <span
@@ -199,7 +199,7 @@ export default function InglesExpatriacaoPage() {
                         className="rounded-xl p-4"
                         style={{ background: "rgba(255,104,32,0.07)" }}
                       >
-                        <p className="font-body text-sm leading-relaxed" style={{ color: "var(--color-text)" }}>
+                        <p className="font-body text-base leading-6" style={{ color: "var(--color-text)" }}>
                           <span className="font-semibold" style={{ color: "#FF6820" }}>Como preparamos: </span>
                           {s.prep}
                         </p>
@@ -213,9 +213,9 @@ export default function InglesExpatriacaoPage() {
         </section>
 
         {/* ── INTEREST FORM ── */}
-        <section className="py-24 md:py-32 bg-surface">
-          <div className="max-w-2xl mx-auto px-6 text-center">
-            <p className="font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+        <section className="py-12 md:py-20 bg-bg">
+          <div className="max-w-2xl mx-auto px-5 md:px-8 text-center">
+            <p className="font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
               Próximo passo
             </p>
             <h2
@@ -236,8 +236,8 @@ export default function InglesExpatriacaoPage() {
         </section>
 
         {/* ── FAQ ── */}
-        <section className="py-24 md:py-32" style={{ backgroundColor: "var(--color-bg-alt)" }}>
-          <div className="max-w-3xl mx-auto px-6">
+        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+          <div className="max-w-3xl mx-auto px-5 md:px-8">
             <h2
               className="font-display font-extrabold text-center mb-12"
               style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}
@@ -249,10 +249,10 @@ export default function InglesExpatriacaoPage() {
                 <div
                   key={faq.q}
                   className="rounded-2xl p-7 bg-surface"
-                  style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+                  style={{ border: "1px solid var(--color-border)" }}
                 >
                   <p className="font-display font-bold text-base mb-3" style={{ color: "var(--color-text)" }}>{faq.q}</p>
-                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(245,246,241,0.7)" }}>{faq.a}</p>
+                  <p className="font-body text-base leading-6" style={{ color: "rgba(245,246,241,0.7)" }}>{faq.a}</p>
                 </div>
               ))}
             </div>
@@ -260,8 +260,8 @@ export default function InglesExpatriacaoPage() {
         </section>
 
         {/* ── FINAL CTA ── */}
-        <section className="py-20 md:py-28" style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-3xl mx-auto px-6 text-center">
+        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
+          <div className="max-w-3xl mx-auto px-5 md:px-8 text-center">
             <h2
               className="font-display font-extrabold text-white mb-4"
               style={{ fontSize: "var(--text-h2)" }}

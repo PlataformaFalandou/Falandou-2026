@@ -40,9 +40,9 @@ export default function CookieBanner() {
       aria-live="polite"
       aria-label="Aviso de cookies"
       className="fixed bottom-[calc(76px+env(safe-area-inset-bottom))] left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:max-w-md z-[60] rounded-2xl p-5 shadow-2xl"
-      style={{ backgroundColor: "var(--color-bg)", border: "1px solid rgba(255,255,255,0.12)" }}
+      style={{ backgroundColor: "var(--color-bg)", border: "1px solid var(--color-border)" }}
     >
-      <p className="font-body text-sm leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.75)" }}>
+      <p className="font-body text-base leading-6 mb-4" style={{ color: "rgba(255,255,255,0.75)" }}>
         Usamos cookies de medição e publicidade (Google Analytics e Meta) para entender como o site é
         usado e mostrar anúncios relevantes. Você pode aceitar ou recusar — o site funciona igual.{" "}
         <Link href="/politica-de-privacidade" className="underline underline-offset-2 text-white">

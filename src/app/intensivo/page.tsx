@@ -68,7 +68,7 @@ export default function IntensivoPage() {
 
         {/* ── HERO ─────────────────────────────────────────────────────────── */}
         <section className="pt-40 pb-24 md:pt-52 md:pb-28" style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-4xl mx-auto px-5 md:px-8">
             <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
               Plano Urgente
             </p>
@@ -101,7 +101,7 @@ export default function IntensivoPage() {
               <Link
                 href="/planos"
                 className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold text-white transition-all duration-200 hover:scale-105"
-                style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.2)" }}
+                style={{ background: "rgba(255,255,255,0.08)", border: "1px solid var(--color-border)" }}
               >
                 Comparar os planos
               </Link>
@@ -110,8 +110,8 @@ export default function IntensivoPage() {
         </section>
 
         {/* ── RITMO ────────────────────────────────────────────────────────── */}
-        <section style={{ backgroundColor: "#FF6820" }} className="py-14">
-          <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-8 text-center">
+        <section style={{ backgroundColor: "#FF6820" }} className="on-brand py-14">
+          <div className="max-w-5xl mx-auto px-5 md:px-8 grid md:grid-cols-3 text-center gap-4 md:gap-6">
             {rhythm.map((r) => (
               <div key={r.label}>
                 <p className="font-display font-extrabold text-4xl text-white">{r.n}</p>
@@ -123,19 +123,19 @@ export default function IntensivoPage() {
         </section>
 
         {/* ── PARA QUEM É ──────────────────────────────────────────────────── */}
-        <section className="py-24 md:py-28" style={{ backgroundColor: "var(--color-bg-alt)" }}>
-          <div className="max-w-5xl mx-auto px-6">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
               Para quem é
             </p>
             <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100" style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}>
               Quando o ritmo do prazo é mais rápido que o seu.
             </h2>
-            <div className="grid md:grid-cols-2 gap-5">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6">
               {forWhom.map((item) => (
-                <div key={item.title} className="reveal rounded-2xl bg-surface border border-white/10 p-7">
+                <div key={item.title} className="reveal rounded-2xl bg-surface border border-border p-7">
                   <h3 className="font-display font-extrabold text-[length:var(--text-h3)] mb-2" style={{ color: "var(--color-text)" }}>{item.title}</h3>
-                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(245,246,241,0.7)" }}>{item.desc}</p>
+                  <p className="font-body text-base leading-6" style={{ color: "rgba(245,246,241,0.7)" }}>{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -143,17 +143,17 @@ export default function IntensivoPage() {
         </section>
 
         {/* ── O QUE INCLUI ─────────────────────────────────────────────────── */}
-        <section className="py-24 md:py-28 bg-surface">
-          <div className="max-w-5xl mx-auto px-6">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+        <section className="py-12 md:py-20 bg-bg">
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
               O que inclui
             </p>
             <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100" style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}>
               Tudo dos outros planos, no ritmo mais alto.
             </h2>
-            <div className="grid md:grid-cols-2 gap-10">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6">
               <div>
-                <p className="font-body text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "rgba(245,246,241,0.55)" }}>
+                <p className="font-body text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "rgba(245,246,241,0.55)" }}>
                   Exclusivo do plano Urgente
                 </p>
                 <ul className="flex flex-col gap-3">
@@ -166,7 +166,7 @@ export default function IntensivoPage() {
                 </ul>
               </div>
               <div>
-                <p className="font-body text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "rgba(245,246,241,0.55)" }}>
+                <p className="font-body text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "rgba(245,246,241,0.55)" }}>
                   Incluso em todos os planos
                 </p>
                 <ul className="flex flex-col gap-3">
@@ -186,8 +186,8 @@ export default function IntensivoPage() {
         </section>
 
         {/* ── CTA FINAL ────────────────────────────────────────────────────── */}
-        <section className="py-24 md:py-28" style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-3xl mx-auto px-6 text-center">
+        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
+          <div className="max-w-3xl mx-auto px-5 md:px-8 text-center">
             <h2 className="font-display font-extrabold text-white leading-tight mb-4" style={{ fontSize: "var(--text-h2)" }}>
               Qual é o seu prazo?
             </h2>
@@ -206,7 +206,7 @@ export default function IntensivoPage() {
               <Link
                 href="/planos"
                 className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold text-white transition-all duration-200 hover:scale-105"
-                style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.2)" }}
+                style={{ background: "rgba(255,255,255,0.08)", border: "1px solid var(--color-border)" }}
               >
                 Ver todos os planos
               </Link>

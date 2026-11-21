@@ -23,8 +23,8 @@ export default function NotFound() {
     <>
       <Navbar />
       <main id="conteudo">
-        <section className="pt-40 pb-24 md:pt-52 md:pb-32 min-h-[80vh]" style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-5xl mx-auto px-6">
+        <section className="pt-32 pb-12 md:pt-40 md:pb-20 min-h-[80vh]" style={{ backgroundColor: "var(--color-bg)" }}>
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
             <p className="font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
               Erro 404
             </p>
@@ -62,8 +62,8 @@ export default function NotFound() {
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="rounded-2xl p-6 transition-all duration-200 hover:border-white/30"
-                  style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)" }}
+                  className="rounded-2xl p-6 md:p-8 transition-all duration-200 "
+                  style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}
                 >
                   <p className="font-display font-bold text-white mb-1">{l.label} →</p>
                   <p className="font-body text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>{l.desc}</p>

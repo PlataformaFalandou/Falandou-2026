@@ -78,7 +78,6 @@ export default function HeroAB() {
       {...(v.headline ? { headline: v.headline } : {})}
       subheadline={v.subheadline}
       subheadlineShort={v.subheadlineShort}
-      statChip="79% sobe pelo menos 1 nível CEFR em 90 dias · 70% aprovado em seletivas com etapa em inglês"
     />
   );
 }

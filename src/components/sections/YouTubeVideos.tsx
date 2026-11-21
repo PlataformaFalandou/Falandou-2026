@@ -57,7 +57,7 @@ function VideoCard({ videoId, title, description, tag, isShort = false }: VideoC
   const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
   return (
-    <div className="group flex flex-col rounded-2xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm hover:border-white/20 transition-all duration-300">
+    <div className="group flex flex-col rounded-2xl overflow-hidden border border-border bg-white/5 backdrop-blur-sm hover:border-border transition-all duration-300">
       {/* Thumbnail / Embed */}
       <div
         className={`relative overflow-hidden cursor-pointer ${isShort ? "aspect-[9/16] max-h-64" : "aspect-video"}`}
@@ -89,7 +89,7 @@ function VideoCard({ videoId, title, description, tag, isShort = false }: VideoC
                 className="w-14 h-14 rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-110 shadow-2xl"
                 style={{ backgroundColor: "#FF6820" }}
               >
-                <Play size={22} fill="white" className="text-white ml-0.5" />
+                <Play size={22} fill="#141414" className="ml-0.5" style={{ color: "#141414" }} />
               </div>
             </div>
             {/* Tag */}
@@ -110,14 +110,14 @@ function VideoCard({ videoId, title, description, tag, isShort = false }: VideoC
         <h3 className="text-white font-semibold text-base leading-snug line-clamp-2">
           {title}
         </h3>
-        <p className="text-white/55 text-sm leading-relaxed line-clamp-3 flex-1">
+        <p className="text-white/55 text-base leading-6 line-clamp-3 flex-1">
           {description}
         </p>
         <a
           href={`https://www.youtube.com/watch?v=${videoId}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs font-medium mt-1 transition-colors duration-200"
+          className="inline-flex items-center gap-1.5 text-sm font-medium mt-1 transition-colors duration-200"
           style={{ color: "#FF6820" }}
           onClick={(e) => e.stopPropagation()}
         >
@@ -131,8 +131,8 @@ function VideoCard({ videoId, title, description, tag, isShort = false }: VideoC
 
 export default function YouTubeVideos() {
   return (
-    <section className="py-24" style={{ backgroundColor: "var(--color-bg)" }}>
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         {/* Header */}
         <div className="mb-12">
           <p
@@ -164,7 +164,7 @@ export default function YouTubeVideos() {
         </div>
 
         {/* Grid de vídeos */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {FEATURED_VIDEOS.map((video) => (
             <VideoCard key={video.videoId} {...video} />
           ))}

@@ -44,8 +44,8 @@ export default function IndiquePage() {
       <Navbar />
       <main id="conteudo">
         {/* ── HERO — para o aluno atual ─────────────────────────────────────── */}
-        <section className="pt-40 pb-24 md:pt-52 md:pb-32" style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-5xl mx-auto px-6">
+        <section className="pt-32 pb-12 md:pt-40 md:pb-20" style={{ backgroundColor: "var(--color-bg)" }}>
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
             <div className="max-w-3xl">
               <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
                 Programa de indicação
@@ -72,9 +72,9 @@ export default function IndiquePage() {
         </section>
 
         {/* ── COMO FUNCIONA ─────────────────────────────────────────────────── */}
-        <section className="py-24 md:py-32 bg-surface">
-          <div className="max-w-5xl mx-auto px-6">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+        <section className="py-12 md:py-20 bg-bg">
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
               Como funciona
             </p>
             <h2
@@ -83,12 +83,12 @@ export default function IndiquePage() {
             >
               Três passos, sem cadastro.
             </h2>
-            <ol className="grid md:grid-cols-3 gap-5">
+            <ol className="grid md:grid-cols-3 gap-4 md:gap-6">
               {steps.map((s) => (
-                <li key={s.num} className="reveal rounded-2xl p-8" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+                <li key={s.num} className="reveal rounded-2xl p-6 md:p-8" style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
                   <span className="font-display font-black text-sm" style={{ color: "#FF6820" }}>{s.num}</span>
                   <h3 className="font-display font-extrabold text-[length:var(--text-h3)] mt-3 mb-2" style={{ color: "var(--color-text)" }}>{s.title}</h3>
-                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(245,246,241,0.7)" }}>{s.body}</p>
+                  <p className="font-body text-base leading-6" style={{ color: "rgba(245,246,241,0.7)" }}>{s.body}</p>
                 </li>
               ))}
             </ol>
@@ -109,9 +109,9 @@ export default function IndiquePage() {
         </section>
 
         {/* ── PARA QUEM FOI INDICADO ────────────────────────────────────────── */}
-        <section id="fui-indicado" className="py-24 md:py-32" style={{ backgroundColor: "var(--color-bg-alt)" }}>
-          <div className="max-w-5xl mx-auto px-6">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+        <section id="fui-indicado" className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
               Foi indicado por alguém?
             </p>
             <h2

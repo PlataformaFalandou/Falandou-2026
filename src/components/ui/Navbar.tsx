@@ -54,7 +54,7 @@ function BottomNav({ pathname }: { pathname: string }) {
       aria-label="Atalhos"
       className="md:hidden fixed bottom-0 inset-x-0 z-50 border-t"
       style={{
-        backgroundColor: "rgba(15,15,15,0.96)",
+        backgroundColor: "rgba(20,20,20,0.96)",
         borderColor: "var(--color-border)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
@@ -130,9 +130,9 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
         className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow] duration-300 ${
           filled ? "shadow-lg border-b border-white/5" : ""
         }`}
-        style={{ backgroundColor: filled ? "rgba(15,15,15,0.96)" : "transparent" }}
+        style={{ backgroundColor: filled ? "rgba(20,20,20,0.96)" : "transparent" }}
       >
-        <nav className="max-w-7xl mx-auto px-4 md:px-6 h-14 md:h-24 flex items-center justify-between gap-3">
+        <nav className="max-w-[1200px] mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between gap-3">
           <Link href="/" className="flex items-center" onClick={() => setMenuOpen(false)}>
             <span className="font-display font-extrabold text-2xl md:text-4xl tracking-tight text-white">
               Falandou
@@ -166,7 +166,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackCTAClick("navbar")}
-              className="cta-primary inline-flex items-center gap-2 px-4 md:px-6 h-10 md:h-12 rounded-full text-sm md:text-base font-semibold"
+              className="cta-primary cta-sm-mobile rounded-full"
             >
               <span className="md:hidden">Começar</span>
               <span className="hidden md:inline">Quero começar</span>
@@ -211,7 +211,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
         }`}
         style={{ backgroundColor: "var(--color-surface)", borderLeft: "1px solid var(--color-border)" }}
       >
-        <div className="h-14 px-4 flex items-center justify-between border-b" style={{ borderColor: "var(--color-border)" }}>
+        <div className="h-16 px-4 flex items-center justify-between border-b" style={{ borderColor: "var(--color-border)" }}>
           <span className="font-display font-extrabold text-xl text-white">
             Menu<span style={{ color: LARANJA }}>.</span>
           </span>

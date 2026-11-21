@@ -12,25 +12,25 @@ export const metadata: Metadata = {
 
 const COLORS = [
   ["--color-brand", "#FF6820", "CTAs, destaques, links ativos"],
-  ["--color-brand-dark", "#E05010", "Hover de botões primários"],
-  ["--color-bg", "#0F0F0F", "Fundo de página"],
-  ["--color-bg-alt", "#141414", "Seções alternadas"],
-  ["--color-surface", "#1A1A1A", "Cards, modais, inputs"],
+  ["--color-brand-hover", "#FF7A3D", "Hover do botão primário (texto #141414)"],
+  ["--color-bg", "#141414", "Fundo de página"],
+  ["--color-interactive", "#282828", "Superfície interativa, hover"],
+  ["--color-surface", "#1E1E1E", "Cards, modais, inputs"],
   ["--color-text", "#F5F6F1", "Headlines, texto principal"],
   ["--color-text-body", "#C9CAC4", "Texto corrido"],
-  ["--color-text-muted", "#9A9B96", "Legendas, texto de apoio"],
-  ["--color-border", "#2A2A2A", "Divisores, bordas de card"],
+  ["--color-text-muted", "#A3A49E", "Datas, metadados, legendas"],
+  ["--color-border", "#3A3A3A", "Borda neutra de card"],
   ["--color-success", "#2D7A4F", "Confirmação"],
   ["--color-warning", "#B45309", "Alertas"],
   ["--color-gold", "#D9A944", "CEFR C1–C2"],
 ];
 
 const TYPE = [
-  ["H1", "var(--text-h1)", 800, "Hero headline · 40→72px"],
-  ["H2", "var(--text-h2)", 700, "Seção principal · 32→44px"],
-  ["H3", "var(--text-h3)", 600, "Subseção / card · 22→26px"],
-  ["Body", "1rem", 400, "Texto corrido · 16px / 1,6"],
-  ["Caption", "var(--text-caption)", 400, "Notas, rodapés · 13px"],
+  ["H1", "var(--text-h1)", 800, "Hero · 38→64px · 1,08"],
+  ["H2", "var(--text-h2)", 700, "Seção · 30→40px · 1,18"],
+  ["H3", "var(--text-h3)", 700, "Card · 22→24px · 1,25"],
+  ["Body", "1.125rem", 400, "Corpo · 18px (16px celular) / 1,6"],
+  ["Caption", "var(--text-caption)", 400, "Auxiliar · 14px / 1,5"],
 ] as const;
 
 const SPACE = [8, 16, 24, 32, 48, 64, 96, 128];

@@ -33,14 +33,14 @@ export default function PriceCard({ plan, duration }: { plan: Plan; duration: Du
 
   return (
     <div
-      className={`card-hover relative rounded-2xl flex flex-col h-full ${plan.highlight ? "md:scale-[1.02] z-[1]" : ""}`}
+      className="relative rounded-2xl flex flex-col h-full"
       style={{
-        backgroundColor: plan.highlight ? "#1A1A1A" : "var(--color-bg-alt)",
+        backgroundColor: "var(--color-surface)",
         border: plan.highlight ? "2px solid #FF6820" : "1px solid var(--color-border)",
         boxShadow: plan.highlight ? "0 24px 60px rgba(255,104,32,0.12)" : undefined,
       }}
     >
-      <div className="p-7 md:p-8 flex flex-col flex-1">
+      <div className="p-6 md:p-8 flex flex-col flex-1">
         {/* 1 — selo de posicionamento (espaço reservado para alinhar os cartões) */}
         <div className="h-7 mb-5">
           {badge && (
@@ -48,8 +48,8 @@ export default function PriceCard({ plan, duration }: { plan: Plan; duration: Du
               className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
               style={
                 plan.highlight
-                  ? { backgroundColor: "#FF6820", color: "#fff" }
-                  : { border: "1px solid rgba(255,104,32,0.5)", color: "#FF8A4C" }
+                  ? { backgroundColor: "#FF6820", color: "var(--color-on-brand)" }
+                  : { border: "1px solid var(--color-border-strong)", color: "var(--color-text-body)" }
               }
             >
               {badge}
@@ -64,7 +64,7 @@ export default function PriceCard({ plan, duration }: { plan: Plan; duration: Du
         <p className="text-sm mb-1" style={{ color: "var(--color-text-muted)" }}>
           {plan.tagline}
         </p>
-        <p className="text-sm font-semibold text-white leading-snug mb-6">{plan.forWho}</p>
+        <p className="text-sm font-semibold text-white leading-snug mb-6 md:min-h-[3.9rem]">{plan.forWho}</p>
 
         <div className="mb-6">
           <div className="flex items-end gap-1">
@@ -78,16 +78,16 @@ export default function PriceCard({ plan, duration }: { plan: Plan; duration: Du
               /mês
             </span>
           </div>
-          <p className="text-xs mt-2 tnum" style={{ color: "var(--color-text-muted)" }}>
-            Sessões de {duration} minutos · {perSession(plan, duration)} por sessão
-          </p>
           {/* Posicionamento e Oferta §2: compromisso anual com valor explícito */}
           <p
-            className="text-xs mt-3 px-3 py-2 rounded-lg tnum"
-            style={{ background: "rgba(255,104,32,0.1)", color: "rgba(245,246,241,0.85)" }}
+            className="text-sm mt-3 px-3 py-2 rounded-lg tnum"
+            style={{ background: "var(--color-interactive)", color: "rgba(245,246,241,0.85)" }}
           >
             No compromisso de 12 meses: <strong className="text-white">{yearly.monthly}/mês</strong> — economia de{" "}
             {yearly.saving} no ano
+          </p>
+          <p className="text-sm mt-3 tnum" style={{ color: "var(--color-text-muted)" }}>
+            Sessões de {duration} minutos · {perSession(plan, duration)} por sessão
           </p>
         </div>
 

@@ -93,7 +93,7 @@ export default function PromocaoCargoPage() {
         <BlogPreview slugs={["vocabulario-reunioes-negocios", "ingles-para-apresentacoes", "como-aprender-ingles-profissional"]} title="Para quem quer o próximo cargo." />
         <LeadMagnetCompact />
       </main>
-      <Footer />
+      <Footer cta={false} />
     </>
   );
 }

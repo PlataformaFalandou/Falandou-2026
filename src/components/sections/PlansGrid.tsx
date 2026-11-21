@@ -21,7 +21,7 @@ export default function PlansGrid() {
           className="inline-flex p-1 rounded-full"
           role="group"
           aria-label="Duração de cada sessão"
-          style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)" }}
+          style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}
         >
           {[...DURATIONS].sort((a, b) => a - b).map((d) => (
             <button
@@ -29,10 +29,10 @@ export default function PlansGrid() {
               type="button"
               onClick={() => setDuration(d)}
               aria-pressed={duration === d}
-              className="px-5 py-2 rounded-full font-body text-sm font-semibold transition-colors"
+              className="h-12 min-w-[120px] px-5 rounded-full font-body text-base font-bold transition-colors"
               style={{
                 backgroundColor: duration === d ? "#FF6820" : "transparent",
-                color: "white",
+                color: duration === d ? "var(--color-on-brand)" : "var(--color-text)",
               }}
             >
               {d} minutos
@@ -43,7 +43,7 @@ export default function PlansGrid() {
 
       {/* Celular: rolagem horizontal com snap — cada cartão ocupa 85% da tela e o
           próximo aparece na borda, sinalizando que há mais (UX/UI §9). Desktop: 3 colunas. */}
-      <div className="snap-row -mx-6 px-6 flex md:grid md:grid-cols-3 gap-4 md:gap-6 items-stretch overflow-x-auto md:overflow-visible pt-2 pb-4">
+      <div className="snap-row -mx-5 px-5 md:mx-0 md:px-0 flex md:grid md:grid-cols-3 gap-4 md:gap-6 items-stretch overflow-x-auto md:overflow-visible pt-2 pb-4">
         {PLANS.map((plan) => (
           <div key={plan.id} className="shrink-0 w-[85%] sm:w-[60%] md:w-auto">
             <PriceCard plan={plan} duration={duration} />

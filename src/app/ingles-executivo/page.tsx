@@ -92,7 +92,7 @@ export default function InglesExecutivoPage() {
         <BlogPreview slugs={["vocabulario-reunioes-negocios", "ingles-para-apresentacoes", "emails-profissionais-ingles"]} title="Para conduzir reuniões em inglês." />
         <LeadMagnetCompact />
       </main>
-      <Footer />
+      <Footer cta={false} />
     </>
   );
 }

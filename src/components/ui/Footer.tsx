@@ -40,7 +40,7 @@ const footerLinks: Record<string, { label: string; href: string }[]> = {
     { label: "Vocabulário profissional", href: "/vocabulario" },
     { label: "Indique um colega", href: "/indique" },
     { label: "Para empresas", href: "/planos#empresas" },
-    { label: "Plataforma do aluno", href: "https://falandou-hub-learn.lovable.app" },
+    { label: "Plataforma do Aluno", href: COMPANY.platformUrl },
   ],
   Legal: [
     { label: "Termos de uso", href: "/termos" },
@@ -53,15 +53,20 @@ const footerLinks: Record<string, { label: string; href: string }[]> = {
   ],
 };
 
-export default function Footer() {
+/**
+ * `cta={false}` nas páginas que já terminam com um fechamento laranja (CTASection/MidCTA):
+ * uma única conclusão por página (revisão visual §5.3).
+ */
+export default function Footer({ cta = true }: { cta?: boolean } = {}) {
   return (
-    <footer style={{ backgroundColor: "#161616" }} className="text-white border-t border-white/5">
+    <footer style={{ backgroundColor: "var(--color-bg)" }} className="text-white border-t border-white/5">
       {/* Faixa de CTA acima do rodapé: última chance antes de sair (§14) */}
+      {cta && (
       <div
         className="border-b border-white/5 py-12"
         style={{ background: "linear-gradient(135deg, rgba(255,104,32,0.14) 0%, transparent 55%)" }}
       >
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="max-w-[1200px] mx-auto px-5 md:px-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
             <p className="font-display font-extrabold text-2xl md:text-3xl text-white mb-1">
               Comece a sua jornada CEFR.
@@ -81,9 +86,10 @@ export default function Footer() {
           </a>
         </div>
       </div>
+      )}
 
       {/* Colunas */}
-      <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-2 md:grid-cols-4 gap-10">
+      <div className="max-w-[1200px] mx-auto px-5 md:px-8 py-14 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
         {/* Falandou: logo + tagline + redes */}
         <div className="col-span-2 md:col-span-1">
           <Link href="/" className="inline-block mb-4">
@@ -91,7 +97,7 @@ export default function Footer() {
               Falandou<span style={{ color: "#FF6820" }}>.</span>
             </span>
           </Link>
-          <p className="text-sm leading-relaxed max-w-xs" style={{ color: "rgba(245,246,241,0.6)" }}>
+          <p className="text-base leading-6 max-w-xs" style={{ color: "rgba(245,246,241,0.6)" }}>
             Inglês profissional, 1 a 1, com resultado medido no exame CEFR.
           </p>
           <div className="flex gap-2 mt-6">
@@ -151,7 +157,7 @@ export default function Footer() {
 
       {/* Rodapé */}
       <div className="border-t border-white/5 py-5">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-2 text-xs" style={{ color: "rgba(245,246,241,0.45)" }}>
+        <div className="max-w-[1200px] mx-auto px-5 md:px-8 flex flex-col md:flex-row items-center justify-between gap-2 text-xs" style={{ color: "rgba(245,246,241,0.45)" }}>
           <p className="text-center md:text-left">
             © {new Date().getFullYear()} {COMPANY.legalName}. Todos os direitos reservados.
           </p>

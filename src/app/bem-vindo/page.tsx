@@ -3,6 +3,7 @@ import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { COMPANY } from "@/data/company";
 
 // UX/UI §22 — página de confirmação depois da matrícula. A equipe envia este link na
 // mensagem de boas-vindas (modelo em docs/onboarding-aluno.md). Fora do Google e do sitemap.
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/bem-vindo/" },
 };
 
-const PLATFORM_URL = "https://falandou-hub-learn.lovable.app";
+const PLATFORM_URL = COMPANY.platformUrl;
 
 const STEPS = [
   {
@@ -35,7 +36,7 @@ export default function BemVindoPage() {
       <Navbar />
       <main id="conteudo">
         <section className="pt-36 pb-20 md:pt-48 md:pb-28 min-h-[80vh]" style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-3xl mx-auto px-6 text-center">
+          <div className="max-w-3xl mx-auto px-5 md:px-8 text-center">
             <svg width="88" height="88" viewBox="0 0 64 64" className="mx-auto mb-8" aria-hidden="true">
               <circle cx="32" cy="32" r="30" fill="rgba(45,122,79,0.18)" stroke="#5CC28A" strokeWidth="2" />
               <path d="M20 33 l8 8 l16 -18" fill="none" stroke="#5CC28A" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" className="check-draw" />
@@ -52,11 +53,11 @@ export default function BemVindoPage() {
               {STEPS.map((s, i) => (
                 <li
                   key={s.title}
-                  className="rounded-2xl p-6 flex gap-5"
+                  className="rounded-2xl p-6 md:p-8 flex gap-5"
                   style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
                 >
                   <span
-                    className="w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center font-display font-extrabold text-white"
+                    className="on-brand w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center font-display font-extrabold"
                     style={{ backgroundColor: "#FF6820" }}
                   >
                     {i + 1}
@@ -76,7 +77,7 @@ export default function BemVindoPage() {
                 rel="noopener noreferrer"
                 className="cta-primary inline-flex items-center justify-center min-w-[220px] px-8 py-4 rounded-full text-base font-bold"
               >
-                Acessar a plataforma do aluno
+                Acessar a Plataforma do Aluno
               </a>
               <a
                 href={getWhatsAppUrl("Olá! Acabei de me matricular na Falandou e tenho uma dúvida sobre os próximos passos.")}

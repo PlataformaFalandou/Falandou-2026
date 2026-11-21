@@ -49,7 +49,7 @@ export default function VocabularioPage() {
         <JsonLd data={schema} />
 
         <section className="pt-36 pb-14 md:pt-48 md:pb-16" style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
             <p className="reveal text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
               Vocabulário profissional
             </p>
@@ -82,10 +82,10 @@ export default function VocabularioPage() {
           <section
             key={area.slug}
             id={area.slug}
-            className="py-16 md:py-20"
+            className="py-12 md:py-20"
             style={{ backgroundColor: ai % 2 === 0 ? "var(--color-bg-alt)" : "var(--color-bg)" }}
           >
-            <div className="max-w-5xl mx-auto px-6">
+            <div className="max-w-5xl mx-auto px-5 md:px-8">
               <h2 className="reveal font-display font-extrabold text-white leading-tight mb-2" style={{ fontSize: "var(--text-h2)" }}>
                 {area.name}
               </h2>
@@ -105,7 +105,7 @@ export default function VocabularioPage() {
                 {area.entries.map((e) => (
                   <div
                     key={e.term}
-                    className="reveal rounded-2xl p-6"
+                    className="reveal rounded-2xl p-6 md:p-8"
                     style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
                   >
                     <dt className="flex items-start justify-between gap-3">
@@ -139,7 +139,7 @@ export default function VocabularioPage() {
         ))}
 
         <section className="py-12" style={{ backgroundColor: "var(--color-bg)" }}>
-          <p className="max-w-3xl mx-auto px-6 text-center text-sm" style={{ color: "var(--color-text-muted)" }}>
+          <p className="max-w-3xl mx-auto px-5 md:px-8 text-center text-sm" style={{ color: "var(--color-text-muted)" }}>
             Pronúncia em inglês americano (IPA). O nível CEFR indica quando o termo costuma entrar no vocabulário ativo.
             Quer entender os níveis?{" "}
             <Link href="/blog/diferenca-cefr-niveis-ingles" className="cta-tertiary text-white font-semibold">
@@ -156,7 +156,7 @@ export default function VocabularioPage() {
           secondary={{ href: "/metodo", label: "Ver como funciona o método" }}
         />
       </main>
-      <Footer />
+      <Footer cta={false} />
     </>
   );
 }

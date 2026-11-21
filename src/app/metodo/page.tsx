@@ -167,7 +167,7 @@ export default function MetodoPage() {
           className="pt-40 pb-28 md:pt-52 md:pb-36"
           style={{ backgroundColor: "var(--color-bg)" }}
         >
-          <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
             <div className="max-w-3xl">
               <p
                 className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6"
@@ -220,9 +220,9 @@ export default function MetodoPage() {
         </section>
 
         {/* ── NARRATIVA EM 3 ATOS — tentou → por que não funcionou → o que muda ── */}
-        <section className="py-24 md:py-28 bg-surface">
-          <div className="max-w-5xl mx-auto px-6">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+        <section className="py-12 md:py-20 bg-bg">
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
               Por que outros formatos não resolveram
             </p>
             <h2
@@ -231,11 +231,11 @@ export default function MetodoPage() {
             >
               Você não travou por falta de esforço.
             </h2>
-            <ol className="grid md:grid-cols-3 gap-5">
+            <ol className="grid md:grid-cols-3 gap-4 md:gap-6">
               {acts.map((act, i) => (
                 <li
                   key={act.tag}
-                  className="reveal rounded-2xl p-8"
+                  className="reveal rounded-2xl p-6 md:p-8"
                   style={{
                     backgroundColor: i === 2 ? "var(--color-surface)" : "var(--color-bg-alt)",
                     border: i === 2 ? "2px solid #FF6820" : "1px solid var(--color-border)",
@@ -252,7 +252,7 @@ export default function MetodoPage() {
                     {act.title}
                   </h3>
                   <p
-                    className="font-body text-sm leading-relaxed"
+                    className="font-body text-base leading-6"
                     style={{ color: i === 2 ? "rgba(255,255,255,0.7)" : "rgba(245,246,241,0.75)" }}
                   >
                     {act.body}
@@ -264,9 +264,9 @@ export default function MetodoPage() {
         </section>
 
         {/* ── CICLO: visão geral em diagrama (UX/UI §17, §25) ────────────── */}
-        <section className="py-20 md:py-24" style={{ backgroundColor: "var(--color-bg-alt)" }}>
-          <div className="max-w-5xl mx-auto px-6">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
               O ciclo em uma imagem
             </p>
             <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100 text-white" style={{ fontSize: "var(--text-h2)" }}>
@@ -277,7 +277,7 @@ export default function MetodoPage() {
             </div>
 
             {/* Escala CEFR interativa: "você está aqui" */}
-            <div className="reveal mt-16 rounded-2xl p-6 md:p-8" style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
+            <div className="reveal mt-16 rounded-2xl p-6 md:p-6 md:p-8" style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
               <h3 className="font-display font-extrabold text-white mb-6" style={{ fontSize: "var(--text-h3)" }}>
                 A escala CEFR: de onde você sai e aonde chega.
               </h3>
@@ -287,14 +287,14 @@ export default function MetodoPage() {
         </section>
 
         {/* ── ETAPAS DETALHADAS ────────────────────────────────────────────── */}
-        <section className="py-20 md:py-28 bg-surface">
-          <div className="max-w-5xl mx-auto px-6 space-y-8">
+        <section className="py-12 md:py-20 bg-bg">
+          <div className="max-w-5xl mx-auto px-5 md:px-8 space-y-8">
             {steps.map((step, i) => (
               <div
                 key={step.num}
                 className="reveal rounded-2xl overflow-hidden"
                 style={{
-                  border: "1px solid rgba(255,255,255,0.1)",
+                  border: "1px solid var(--color-border)",
                   transitionDelay: `${i * 60}ms`,
                 }}
               >
@@ -307,7 +307,7 @@ export default function MetodoPage() {
                     className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-display font-black text-sm"
                     style={{
                       backgroundColor: "#FF6820",
-                      color: "white",
+                      color: "var(--color-on-brand)",
                     }}
                   >
                     {step.num}
@@ -338,7 +338,7 @@ export default function MetodoPage() {
                 </div>
 
                 {/* Body */}
-                <div className="px-8 py-7 grid md:grid-cols-[1fr_auto] gap-8 items-start bg-surface">
+                <div className="px-8 py-7 grid md:grid-cols-[1fr_auto] items-start bg-surface gap-4 md:gap-6">
                   <div>
                     <p
                       className="font-body text-sm font-semibold mb-3"
@@ -409,11 +409,11 @@ export default function MetodoPage() {
         </section>
 
         {/* ── PERGUNTAS QUE BLOQUEIAM ───────────────────────────────────────── */}
-        <section className="py-24 md:py-32" style={{ backgroundColor: "var(--color-bg-alt)" }}>
-          <div className="max-w-4xl mx-auto px-6">
+        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+          <div className="max-w-4xl mx-auto px-5 md:px-8">
             <div className="text-center mb-14">
               <p
-                className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4"
+                className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3"
                 style={{ color: "#FF6820" }}
               >
                 Dúvidas sobre o funcionamento
@@ -426,13 +426,13 @@ export default function MetodoPage() {
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-5">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6">
               {faqs.map((faq, i) => (
                 <div
                   key={i}
                   className="reveal rounded-2xl p-7 bg-surface"
                   style={{
-                    border: "1px solid rgba(255,255,255,0.1)",
+                    border: "1px solid var(--color-border)",
                     transitionDelay: `${i * 50}ms`,
                   }}
                 >
@@ -443,7 +443,7 @@ export default function MetodoPage() {
                     {faq.q}
                   </p>
                   <p
-                    className="font-body text-sm leading-relaxed"
+                    className="font-body text-base leading-6"
                     style={{ color: "rgba(245,246,241,0.7)" }}
                   >
                     {faq.a}
@@ -465,7 +465,7 @@ export default function MetodoPage() {
         <LeadMagnetCompact />
 
       </main>
-      <Footer />
+      <Footer cta={false} />
     </>
   );
 }

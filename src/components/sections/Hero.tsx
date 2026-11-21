@@ -4,7 +4,7 @@ import { trackCTAClick } from "@/lib/analytics";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, MessageCircle } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { STATS } from "@/data/stats";
 
@@ -46,8 +46,9 @@ export function HeadlineWords({ text, accent = false, start = 0 }: { text: strin
       {i < words.length - 1 ? " " : ""}
     </span>
   ));
+  // Destaque só pela cor, sem sublinhado decorativo (revisão visual §2.3)
   return accent ? (
-    <span className="accent-underline" style={{ color: "#FF6820" }}>{content}</span>
+    <span style={{ color: "#FF6820" }}>{content}</span>
   ) : (
     <>{content} </>
   );
@@ -66,8 +67,6 @@ interface HeroProps {
   ctaLabel?: string;
 }
 
-// Selos de confiança do hero (UX/UI §7, §23): só fatos da escola.
-const TRUST_BADGES = ["Exame CEFR incluso", "Sessões 1 a 1", "Sem turmas"];
 
 /**
  * Hero em 3 camadas (UX/UI §2): resultado (headline) → mecanismo (subheadline) →
@@ -100,7 +99,7 @@ export default function Hero({
   return (
     <section
       className="relative overflow-hidden"
-      style={{ background: "linear-gradient(160deg, #161616 0%, #0F0F0F 55%, #1F1F1F 100%)" }}
+      style={{ background: "linear-gradient(160deg, #1A1A1A 0%, #141414 55%, #1E1E1E 100%)" }}
     >
       {/* Textura sutil: grade de linhas finas + brilho laranja (sem imagem, sem loop) */}
       <div
@@ -120,102 +119,63 @@ export default function Hero({
         style={{ background: "radial-gradient(circle, rgba(255,104,32,0.18) 0%, transparent 65%)" }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-16 sm:pt-36 md:pt-44 md:pb-24 min-h-[92vh] flex flex-col justify-center">
-        {/*
-          Acima da dobra no celular: promessa + prova + ação sem rolar.
-          Abaixo de sm a coluna vira flex e a ordem muda (H1 → prova → CTA → subtítulo).
-          A partir de sm volta ao fluxo normal (block ignora `order`).
-        */}
-        <div className="max-w-4xl flex flex-col sm:block">
-          {/* Eyebrow */}
+      <div className="relative z-10 max-w-[1200px] mx-auto px-5 md:px-8 pt-28 pb-12 md:pt-40 md:pb-20 min-h-[88vh] flex flex-col justify-center">
+        {/* Revisão visual §5.1: título → explicação → CTA → prova curta. Os indicadores
+            detalhados ficam na faixa seguinte (StatsBar). */}
+        <div className="max-w-3xl">
+          {/* Selo: menos contraste que o CTA */}
           <p
-            className={fade("order-1 self-start inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-5 sm:mb-8 border")}
-            style={{ background: "rgba(255,104,32,0.12)", borderColor: "rgba(255,104,32,0.35)", color: "#FF9A6C" }}
+            className={fade("inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium mb-6 border")}
+            style={{ background: "transparent", borderColor: "var(--color-border)", color: "var(--color-text-body)" }}
           >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#FF6820" }} />
             {eyebrow}
           </p>
 
-          {/* Camada 1 — resultado */}
-          <h1
-            className="order-2 font-display font-extrabold text-white leading-[1.05] tracking-tight mb-5 sm:mb-6"
-            style={{ fontSize: "var(--text-h1)" }}
-          >
+          {/* 1 — título: uma expressão destacada, só pela cor (§2.3) */}
+          <h1 className="font-display text-white mb-4" style={{ fontSize: "var(--text-h1)" }}>
             {headline}
           </h1>
 
-          {/* Prova social em pill, logo abaixo da headline (§2, §23) */}
-          <div className={fade("order-3 delay-150 flex flex-wrap items-center gap-2 mb-6 sm:mb-8")}>
-            <span
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-sm font-semibold text-white tnum"
-              style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)" }}
-            >
-              <strong className="font-extrabold" style={{ color: "#FF6820" }}>{STATS.evaluated}</strong>
-              profissionais avaliados no exame CEFR no último ciclo
-            </span>
-            {TRUST_BADGES.map((b) => (
-              <span
-                key={b}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold"
-                style={{ background: "transparent", border: "1px solid var(--color-border)", color: "rgba(245,246,241,0.8)" }}
-              >
-                <Check size={13} strokeWidth={3} style={{ color: "#FF6820" }} aria-hidden="true" />
-                {b}
-              </span>
-            ))}
-          </div>
-
-          {/* Camada 2 — mecanismo */}
-          <p className={fade("order-5 delay-200 text-lg sm:text-xl leading-relaxed mb-8 max-w-2xl")} style={{ color: "var(--color-text-body)" }}>
-            {subheadlineShort ? (
-              <>
-                <span className="sm:hidden">{subheadlineShort}</span>
-                <span className="hidden sm:inline">{subheadline}</span>
-              </>
-            ) : (
-              subheadline
-            )}
+          {/* 2 — explicação em duas ou três linhas */}
+          <p className={fade("delay-150 text-lg md:text-xl leading-relaxed mb-8 max-w-2xl")} style={{ color: "var(--color-text-body)" }}>
+            {subheadlineShort ?? subheadline}
           </p>
 
-          {statChip && (
-            <p className={fade("order-6 delay-200 text-sm font-medium mb-8 -mt-4 tnum")} style={{ color: "rgba(255,138,76,0.95)" }}>
-              {statChip}
-            </p>
-          )}
-
-          {/* Camada 3 — ação: primário + secundário, hierarquia clara de cor */}
-          <div className={fade("order-4 delay-300 mb-8 sm:mb-14")}>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          {/* 3 — ação: primário preenchido + secundário de contorno neutro (§3.1) */}
+          <div className={fade("delay-200")}>
+            <div className="flex flex-col sm:flex-row gap-3">
               <a
                 href={getWhatsAppUrlForContext(whatsappContext)}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackCTAClick("hero")}
-                className="cta-primary inline-flex items-center justify-center gap-3 min-w-[220px] px-8 py-4 rounded-full text-base font-bold"
+                className="cta-primary cta-lg rounded-full sm:min-w-[220px]"
               >
-                <MessageCircle size={20} aria-hidden="true" />
+                <MessageCircle aria-hidden="true" />
                 {ctaLabel}
               </a>
-              <Link
-                href="/planos"
-                className="cta-secondary inline-flex items-center justify-center gap-2 min-w-[180px] px-8 py-4 rounded-full text-base font-semibold group"
-              >
+              <Link href="/planos" className="cta-secondary cta-lg rounded-full sm:min-w-[180px]">
                 Ver planos
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                <ArrowRight aria-hidden="true" />
               </Link>
             </div>
-            {/* Redução de fricção (§10) */}
-            <p className="mt-3 text-sm" style={{ color: "var(--color-text-muted)" }}>
+            {/* Botão → texto auxiliar: 8px (§4.3) */}
+            <p className="mt-2 text-sm" style={{ color: "var(--color-text-muted)" }}>
               Pelo WhatsApp · a equipe responde em até 1h
             </p>
           </div>
 
-          {/* Logos — empresas dos alunos, em faixa cinza (§23) */}
-          <div className={fade("order-7 delay-500")}>
-            <p className="text-xs uppercase tracking-widest font-semibold mb-4" style={{ color: "var(--color-text-muted)" }}>
-              Profissionais de empresas como
+          {/* 4 — prova curta */}
+          <div className={fade("delay-300 mt-10")}>
+            <p className="text-sm tnum mb-4" style={{ color: "var(--color-text-body)" }}>
+              {statChip ?? (
+                <>
+                  <strong className="text-white">{STATS.evaluated} profissionais</strong> avaliados no exame CEFR no último
+                  ciclo · sessões 1 a 1, sem turma
+                </>
+              )}
             </p>
-            <div className="flex flex-wrap gap-6 items-center">
+            <div className="flex flex-wrap gap-6 items-center" aria-label="Empresas onde trabalham profissionais que estudaram na Falandou">
               {HERO_LOGOS.map((logo) => (
                 <svg
                   key={logo.name}

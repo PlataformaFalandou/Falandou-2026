@@ -49,8 +49,8 @@ export default function ProfessoresPage() {
       <Navbar />
       <main id="conteudo">
         {/* ── HERO ─────────────────────────────────────────────────────────── */}
-        <section className="pt-40 pb-20 md:pt-52 md:pb-24" style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-6xl mx-auto px-6">
+        <section className="pt-32 pb-12 md:pt-40 md:pb-20" style={{ backgroundColor: "var(--color-bg)" }}>
+          <div className="max-w-6xl mx-auto px-5 md:px-8">
             <div className="max-w-3xl">
               <p
                 className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6"
@@ -80,12 +80,12 @@ export default function ProfessoresPage() {
 
         {/* ── PROFESSORES ──────────────────────────────────────────────────── */}
         <section className="pb-24 md:pb-32" style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-5 md:px-8">
             {/* UX/UI §13: a página reforça o método, não a pessoa */}
             <h2 className="reveal font-display font-extrabold text-white leading-tight mb-10" style={{ fontSize: "var(--text-h2)" }}>
               Nossos professores
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               {teachers.map((t) => (
                 <TeacherCard key={t.name} t={t} />
               ))}
@@ -93,7 +93,7 @@ export default function ProfessoresPage() {
 
             {/* Método em destaque, logo abaixo dos cartões */}
             <div
-              className="reveal mt-10 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-6 md:gap-10"
+              className="reveal mt-10 rounded-2xl p-6 md:p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-6 md:gap-10"
               style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)", borderLeft: "4px solid #FF6820" }}
             >
               <p className="flex-1 text-base md:text-lg leading-relaxed text-white">
@@ -110,10 +110,10 @@ export default function ProfessoresPage() {
         </section>
 
         {/* ── COMO O PROFESSOR É ESCOLHIDO ─────────────────────────────────── */}
-        <section className="py-24 md:py-32" style={{ backgroundColor: "var(--color-bg-alt)" }}>
-          <div className="max-w-6xl mx-auto px-6">
+        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+          <div className="max-w-6xl mx-auto px-5 md:px-8">
             <p
-              className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4"
+              className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3"
               style={{ color: "#FF6820" }}
             >
               Como o professor é escolhido
@@ -124,16 +124,16 @@ export default function ProfessoresPage() {
             >
               Pelo diagnóstico, não por sorteio de agenda.
             </h2>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-4 md:gap-6">
               {assignment.map((s) => (
-                <div key={s.num} className="reveal rounded-2xl p-8 bg-surface border border-white/10">
+                <div key={s.num} className="reveal rounded-2xl p-6 md:p-8 bg-surface border border-border">
                   <span className="font-display font-black text-sm" style={{ color: "#FF6820" }}>
                     {s.num}
                   </span>
                   <h3 className="font-display font-extrabold text-[length:var(--text-h3)] mt-3 mb-2" style={{ color: "var(--color-text)" }}>
                     {s.title}
                   </h3>
-                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(245,246,241,0.7)" }}>
+                  <p className="font-body text-base leading-6" style={{ color: "rgba(245,246,241,0.7)" }}>
                     {s.body}
                   </p>
                 </div>
@@ -151,7 +151,7 @@ export default function ProfessoresPage() {
         />
         <LeadMagnetCompact />
       </main>
-      <Footer />
+      <Footer cta={false} />
     </>
   );
 }

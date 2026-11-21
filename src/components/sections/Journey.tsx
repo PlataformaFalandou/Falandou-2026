@@ -42,11 +42,11 @@ const steps: { number: string; title: React.ReactNode; description: string }[] =
 
 export default function Journey() {
   return (
-    <section id="como-funciona" className="py-24 md:py-32 bg-surface">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="como-funciona" className="py-12 md:py-20 bg-bg">
+      <div className="max-w-[1200px] mx-auto px-5 md:px-8">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-14 md:mb-16">
-          <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+          <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
             Como funciona
           </p>
           <h2
@@ -63,7 +63,7 @@ export default function Journey() {
         </div>
 
         {/* Timeline */}
-        <ol className="relative grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-5">
+        <ol className="relative grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-6">
           {/* Linha de conexão (desktop) */}
           <div
             aria-hidden
@@ -74,10 +74,10 @@ export default function Journey() {
             <li
               key={step.number}
               className="reveal relative flex md:flex-col items-start md:items-center gap-4 md:gap-0 md:text-center rounded-2xl p-5 md:p-6"
-              style={{ backgroundColor: "var(--color-bg-alt)", transitionDelay: `${i * 60}ms` }}
+              style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)", transitionDelay: `${i * 60}ms` }}
             >
               <span
-                className="relative z-10 flex-shrink-0 w-11 h-11 md:w-12 md:h-12 md:-mt-1 md:mb-5 rounded-full flex items-center justify-center font-display font-black text-sm text-white shadow-md"
+                className="relative z-10 flex-shrink-0 w-11 h-11 md:w-12 md:h-12 md:-mt-1 md:mb-5 rounded-full flex items-center justify-center font-display font-black text-sm shadow-md on-brand"
                 style={{ backgroundColor: "#FF6820" }}
               >
                 {step.number}
@@ -86,7 +86,7 @@ export default function Journey() {
                 <h3 className="font-display font-extrabold text-lg lg:text-xl mb-1.5" style={{ color: "var(--color-text)" }}>
                   {step.title}
                 </h3>
-                <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(245,246,241,0.7)" }}>
+                <p className="font-body text-base leading-6" style={{ color: "rgba(245,246,241,0.7)" }}>
                   {step.description}
                 </p>
               </div>

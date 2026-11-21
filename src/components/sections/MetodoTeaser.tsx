@@ -36,14 +36,14 @@ const BENEFITS: { title: string; body: React.ReactNode }[] = [
  */
 export default function MetodoTeaser() {
   return (
-    <section className="py-20 md:py-28 bg-surface border-t" style={{ borderColor: "rgba(255,255,255,0.09)" }}>
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-12 md:py-20 bg-bg border-t" style={{ borderColor: "var(--color-border)" }}>
+      <div className="max-w-[1200px] mx-auto px-5 md:px-8">
         <div className="grid lg:grid-cols-2 gap-14 items-center">
 
           {/* Left: gancho — você tentou + por que não funcionou */}
           <div>
             <p
-              className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4"
+              className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3"
               style={{ color: "#FF6820" }}
             >
               Por que o inglês não avançou
@@ -88,11 +88,11 @@ export default function MetodoTeaser() {
                 <div
                   key={item.title}
                   className="flex items-start gap-3 py-4 border-b last:border-0"
-                  style={{ borderColor: "rgba(255,255,255,0.08)" }}
+                  style={{ borderColor: "var(--color-border)" }}
                 >
                   <span
-                    className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs font-black mt-0.5"
-                    style={{ background: "#FF6820", color: "white" }}
+                    className="on-brand flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs font-black mt-0.5"
+                    style={{ background: "#FF6820" }}
                   >
                     ✓
                   </span>

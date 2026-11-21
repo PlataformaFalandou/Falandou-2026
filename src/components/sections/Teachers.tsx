@@ -33,7 +33,7 @@ export function TeacherCard({ t }: { t: Teacher }) {
   return (
     <div
       id={teacherSlug(t.name)}
-      className="card-hover rounded-2xl overflow-hidden border flex flex-col scroll-mt-28"
+      className="rounded-2xl overflow-hidden border flex flex-col scroll-mt-28"
       style={{ backgroundColor: "var(--color-surface)", borderColor: "var(--color-border)" }}
     >
       {/* Photo */}
@@ -47,7 +47,7 @@ export function TeacherCard({ t }: { t: Teacher }) {
         />
         {/* Focus badge */}
         <div
-          className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full text-xs font-bold text-white"
+          className="on-brand absolute bottom-3 right-3 px-3 py-1.5 rounded-full text-xs font-bold"
           style={{ backgroundColor: "#FF6820" }}
         >
           Foco {t.focus}
@@ -74,7 +74,7 @@ export function TeacherCard({ t }: { t: Teacher }) {
         </div>
 
         {/* Bio */}
-        <p className="font-body text-white/60 text-sm leading-relaxed flex-1">{t.bio}</p>
+        <p className="font-body text-white/60 text-base leading-6 flex-1">{t.bio}</p>
       </div>
     </div>
   );
@@ -82,11 +82,11 @@ export function TeacherCard({ t }: { t: Teacher }) {
 
 export default function Teachers() {
   return (
-    <section className="py-24 md:py-32" style={{ backgroundColor: "var(--color-bg)" }}>
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <p className="font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+          <p className="font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
             Quem vai te ensinar
           </p>
           <h2
@@ -102,7 +102,7 @@ export default function Teachers() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {teachers.map((t) => (
             <TeacherCard key={t.name} t={t} />
           ))}

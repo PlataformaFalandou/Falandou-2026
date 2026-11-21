@@ -19,8 +19,8 @@ export default function CTASection({
   secondary?: { href: string; label: string };
 }) {
   return (
-    <section className="py-24 md:py-32" style={{ backgroundColor: "#FF6820" }}>
-      <div className="max-w-3xl mx-auto px-6 text-center">
+    <section className="on-brand py-12 md:py-20" style={{ backgroundColor: "#FF6820" }}>
+      <div className="max-w-3xl mx-auto px-5 md:px-8 text-center">
         <h2 className="font-display font-extrabold text-white leading-tight mb-4" style={{ fontSize: "var(--text-h2)" }}>
           {heading}
         </h2>
@@ -32,16 +32,14 @@ export default function CTASection({
             href={getWhatsAppUrlForContext(whatsappContext)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-10 py-5 rounded-full text-base font-bold transition-all duration-200 hover:scale-105 active:scale-95"
-            style={{ backgroundColor: "var(--color-bg)", color: "white" }}
+            className="cta-dark"
           >
             Quero começar
           </a>
           {secondary && (
             <Link
               href={secondary.href}
-              className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold transition-all duration-200 hover:scale-105"
-              style={{ background: "rgba(255,255,255,0.2)", color: "white", border: "1px solid rgba(255,255,255,0.4)" }}
+              className="cta-outline-dark"
             >
               {secondary.label}
             </Link>

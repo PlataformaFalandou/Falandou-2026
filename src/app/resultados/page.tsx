@@ -85,8 +85,8 @@ export default function ResultadosPage() {
         {/* Dados estruturados — Arquitetura §10 */}
         <JsonLd data={faqSchema(FAQS)} />
         {/* ── HERO ─────────────────────────────────────────────────────────── */}
-        <section className="pt-40 pb-20 md:pt-52 md:pb-24" style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-5xl mx-auto px-6">
+        <section className="pt-32 pb-12 md:pt-40 md:pb-20" style={{ backgroundColor: "var(--color-bg)" }}>
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
             <div className="max-w-3xl">
               <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
                 Resultados
@@ -113,9 +113,9 @@ export default function ResultadosPage() {
         <ResultsData />
 
         {/* ── COMO MEDIMOS ─────────────────────────────────────────────────── */}
-        <section className="py-24 md:py-32 bg-surface">
-          <div className="max-w-5xl mx-auto px-6">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+        <section className="py-12 md:py-20 bg-bg">
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
               Como medimos
             </p>
             <h2
@@ -124,11 +124,11 @@ export default function ResultadosPage() {
             >
               Os números saem de exame, não de opinião.
             </h2>
-            <div className="grid md:grid-cols-2 gap-5">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6">
               {METHOD.map((m) => (
-                <div key={m.title} className="reveal rounded-2xl p-8" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+                <div key={m.title} className="reveal rounded-2xl p-6 md:p-8" style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
                   <h3 className="font-display font-extrabold text-[length:var(--text-h3)] mb-2" style={{ color: "var(--color-text)" }}>{m.title}</h3>
-                  <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(245,246,241,0.7)" }}>{m.body}</p>
+                  <p className="font-body text-base leading-6" style={{ color: "rgba(245,246,241,0.7)" }}>{m.body}</p>
                 </div>
               ))}
             </div>
@@ -143,9 +143,9 @@ export default function ResultadosPage() {
         </section>
 
         {/* ── O QUE CADA NÍVEL SIGNIFICA ───────────────────────────────────── */}
-        <section className="py-24 md:py-32" style={{ backgroundColor: "var(--color-bg-alt)" }}>
-          <div className="max-w-5xl mx-auto px-6">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
               A escala CEFR no trabalho
             </p>
             <h2
@@ -155,17 +155,17 @@ export default function ResultadosPage() {
               O que significa subir um nível.
             </h2>
             {/* UX/UI §25 — escala CEFR interativa ("você está aqui") */}
-            <div className="reveal mb-10 rounded-2xl p-6 md:p-8" style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
+            <div className="reveal mb-10 rounded-2xl p-6 md:p-6 md:p-8" style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
               <CEFRScale interactive />
             </div>
             <div className="flex flex-col gap-3">
               {LEVELS.map((l) => (
-                <div key={l.level} className="reveal grid sm:grid-cols-[140px_1fr] gap-2 sm:gap-6 rounded-2xl bg-surface p-6 border border-white/10">
+                <div key={l.level} className="reveal grid sm:grid-cols-[140px_1fr] sm: rounded-2xl bg-surface p-6 md:p-8 border border-border gap-4 md:gap-6">
                   <div>
                     <p className="font-display font-black text-2xl" style={{ color: "#FF6820" }}>{l.level}</p>
                     <p className="font-body text-xs font-semibold uppercase tracking-wide" style={{ color: "rgba(245,246,241,0.55)" }}>{l.name}</p>
                   </div>
-                  <p className="font-body text-sm leading-relaxed self-center" style={{ color: "rgba(245,246,241,0.8)" }}>{l.work}</p>
+                  <p className="font-body text-base leading-6 self-center" style={{ color: "rgba(245,246,241,0.8)" }}>{l.work}</p>
                 </div>
               ))}
             </div>
@@ -176,9 +176,9 @@ export default function ResultadosPage() {
         <Testimonials />
 
         {/* ── FAQ SOBRE CEFR ───────────────────────────────────────────────── */}
-        <section id="faq" className="py-24 md:py-32 bg-surface">
-          <div className="max-w-3xl mx-auto px-6">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+        <section id="faq" className="py-12 md:py-20 bg-bg">
+          <div className="max-w-3xl mx-auto px-5 md:px-8">
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
               Dúvidas sobre os resultados
             </p>
             <h2
@@ -189,12 +189,12 @@ export default function ResultadosPage() {
             </h2>
             <div className="flex flex-col gap-4">
               {FAQS.map((f) => (
-                <details key={f.q} className="group rounded-2xl p-6" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+                <details key={f.q} className="group rounded-2xl p-6 md:p-8" style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
                   <summary className="cursor-pointer list-none flex justify-between items-center gap-4 font-display font-bold text-base" style={{ color: "var(--color-text)" }}>
                     {f.q}
                     <span className="text-xl transition-transform group-open:rotate-45" style={{ color: "#FF6820" }}>+</span>
                   </summary>
-                  <p className="font-body text-sm leading-relaxed mt-4" style={{ color: "rgba(245,246,241,0.75)" }}>{f.a}</p>
+                  <p className="font-body text-base leading-6 mt-4" style={{ color: "rgba(245,246,241,0.75)" }}>{f.a}</p>
                 </details>
               ))}
             </div>
@@ -211,7 +211,7 @@ export default function ResultadosPage() {
 
         <LeadMagnetCompact />
       </main>
-      <Footer />
+      <Footer cta={false} />
     </>
   );
 }

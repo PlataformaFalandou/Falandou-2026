@@ -64,8 +64,8 @@ export default function SobrePage() {
       <Navbar />
       <main id="conteudo">
         {/* ── 1. ABERTURA ──────────────────────────────────────────────────── */}
-        <section className="pt-40 pb-24 md:pt-52 md:pb-32" style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-5xl mx-auto px-6">
+        <section className="pt-32 pb-12 md:pt-40 md:pb-20" style={{ backgroundColor: "var(--color-bg)" }}>
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
             <div className="max-w-3xl">
               <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
                 Sobre a Falandou
@@ -91,9 +91,9 @@ export default function SobrePage() {
         </section>
 
         {/* ── 2. O QUE NOS TORNA DIFERENTES ────────────────────────────────── */}
-        <section className="py-24 md:py-32 bg-surface">
-          <div className="max-w-5xl mx-auto px-6">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+        <section className="py-12 md:py-20 bg-bg">
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
+            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
               O que nos torna diferentes
             </p>
             <h2
@@ -108,12 +108,12 @@ export default function SobrePage() {
               sua semana, um ciclo de 90 dias com exame CEFR antes e depois. O resultado aparece em
               números — não em sensação.
             </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               {DIFFERENTIATORS.map((p, i) => (
-                <div key={p.title} className="reveal rounded-2xl p-7 flex flex-col" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+                <div key={p.title} className="reveal rounded-2xl p-7 flex flex-col" style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
                   <span className="font-display font-black text-sm" style={{ color: "#FF6820" }}>0{i + 1}</span>
                   <h3 className="font-display font-extrabold text-[length:var(--text-h3)] mt-3 mb-2" style={{ color: "var(--color-text)" }}>{p.title}</h3>
-                  <p className="font-body text-sm leading-relaxed mb-4" style={{ color: "rgba(245,246,241,0.65)" }}>{p.what}</p>
+                  <p className="font-body text-base leading-6 mb-4" style={{ color: "rgba(245,246,241,0.65)" }}>{p.what}</p>
                   <p className="font-body text-sm font-semibold leading-relaxed mt-auto" style={{ color: "var(--color-text)" }}>{p.why}</p>
                 </div>
               ))}
@@ -123,11 +123,11 @@ export default function SobrePage() {
 
         {/* ── 3. OS NÚMEROS DA ESCOLA ──────────────────────────────────────── */}
         <section style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-5xl mx-auto px-6 py-16">
+          <div className="max-w-5xl mx-auto px-5 md:px-8 py-16">
             <p className="font-body text-xs font-bold uppercase tracking-widest mb-8 text-center" style={{ color: "rgba(255,255,255,0.45)" }}>
               Os números da escola · ciclo {STATS.cycleLabel}, {STATS.evaluated} profissionais avaliados
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {NUMBERS.map((n) => (
                 <div key={n.label} className="text-center">
                   <p className="font-display font-extrabold text-4xl text-white">{n.value}</p>
@@ -147,10 +147,10 @@ export default function SobrePage() {
         <CompanyLogos />
 
         {/* ── 4. OS PROFESSORES ────────────────────────────────────────────── */}
-        <section className="py-24 md:py-32" style={{ backgroundColor: "var(--color-bg-alt)" }}>
-          <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+          <div className="max-w-5xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+              <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
                 Os professores
               </p>
               <h2
@@ -173,8 +173,8 @@ export default function SobrePage() {
                 Conhecer os professores →
               </Link>
             </div>
-            <div className="reveal rounded-2xl p-8 bg-surface border border-white/10">
-              <p className="font-body text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "rgba(245,246,241,0.55)" }}>
+            <div className="reveal rounded-2xl p-6 md:p-8 bg-surface border border-border">
+              <p className="font-body text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "rgba(245,246,241,0.55)" }}>
                 Veja como ensinamos
               </p>
               <p className="font-body text-base leading-relaxed mb-6" style={{ color: "rgba(245,246,241,0.8)" }}>
@@ -203,8 +203,8 @@ export default function SobrePage() {
         </section>
 
         {/* ── 5. CTA INSTITUCIONAL — leva ao método, não à venda ───────────── */}
-        <section className="py-24 md:py-28 bg-surface">
-          <div className="max-w-3xl mx-auto px-6 text-center">
+        <section className="py-12 md:py-20 bg-bg">
+          <div className="max-w-3xl mx-auto px-5 md:px-8 text-center">
             <h2 className="font-display font-extrabold leading-tight mb-4" style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}>
               Conheça o método antes de decidir.
             </h2>

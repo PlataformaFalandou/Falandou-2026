@@ -69,10 +69,10 @@ export function Badge({ tone = "neutral", children }: { tone?: "neutral" | "bran
 export function Card({ variant = "default", className = "", children }: { variant?: "default" | "highlight" | "testimonial"; className?: string; children: ReactNode }) {
   const style =
     variant === "highlight"
-      ? { backgroundColor: "#1A1A1A", border: "2px solid #FF6820" }
+      ? { backgroundColor: "var(--color-surface)", border: "2px solid #FF6820" }
       : { backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" };
   return (
-    <div className={`card-hover rounded-2xl p-6 md:p-8 ${className}`} style={style}>
+    <div className={`rounded-2xl p-6 md:p-8 ${className}`} style={style}>
       {children}
     </div>
   );
@@ -83,7 +83,7 @@ export function Section({ tone = "bg", id, className = "", children }: { tone?: 
   const bg = { bg: "var(--color-bg)", alt: "var(--color-bg-alt)", surface: "var(--color-surface)", brand: "#FF6820" }[tone];
   return (
     <section id={id} className={`py-16 md:py-24 ${className}`} style={{ backgroundColor: bg }}>
-      <div className="max-w-6xl mx-auto px-6">{children}</div>
+      <div className="max-w-6xl mx-auto px-5 md:px-8">{children}</div>
     </section>
   );
 }

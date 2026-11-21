@@ -15,7 +15,7 @@ function StatItem({ item, delay }: { item: StatsBarItem; delay: number }) {
   const { count, ref } = useCounter(numeric ?? 0, 1200);
   return (
     <div ref={ref} className="reveal text-center px-4 py-6" style={{ transitionDelay: `${delay}ms` }}>
-      <div className="font-display font-extrabold tnum leading-none" style={{ fontSize: "3rem", color: "#FF6820" }}>
+      <div className="font-display font-extrabold tnum leading-none" style={{ fontSize: "clamp(2rem, 6vw, 3rem)", color: "#FF6820" }}>
         {numeric !== null ? count : item.value}
         {item.suffix}
       </div>
@@ -26,19 +26,19 @@ function StatItem({ item, delay }: { item: StatsBarItem; delay: number }) {
   );
 }
 
-// Faixa de resultado do último ciclo fechado (UX/UI §7).
+// Faixa de resultado do último ciclo fechado (UX/UI §7). Até 3 indicadores (revisão visual §5.3);
+// a metodologia completa fica em ProofStats e /resultados.
 export const DEFAULT_STATS_BAR: StatsBarItem[] = [
   { value: parseInt(STATS.cefrUpPct, 10), suffix: "%", label: `subiram 1 nível CEFR em ${STATS.cycleDays} dias` },
   { value: STATS.b1b2Weeks, suffix: " sem", label: "de B1 a B2, em média" },
   { value: parseInt(STATS.completionPct, 10), suffix: "%", label: "concluíram o ciclo" },
-  { value: STATS.evaluated, label: `avaliados com exame CEFR antes e depois (${STATS.cycleLabel})` },
 ];
 
 export default function StatsBar({ items = DEFAULT_STATS_BAR }: { items?: StatsBarItem[] } = {}) {
   return (
-    <section style={{ backgroundColor: "#161616" }} className="border-y border-white/10 py-6">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10 [&>*:nth-child(3)]:border-l-0 md:[&>*:nth-child(3)]:border-l">
+    <section style={{ backgroundColor: "var(--color-bg)" }} className="border-y border-border py-6">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
+        <div className="grid grid-cols-3 divide-x divide-white/10">
           {items.map((s, i) => (
             <StatItem key={s.label} item={s} delay={i * 100} />
           ))}
@@ -46,6 +46,9 @@ export default function StatsBar({ items = DEFAULT_STATS_BAR }: { items?: StatsB
         {/* Revisão editorial §23: o modelo 1 a 1 explícito nos dois primeiros blocos da home */}
         <p className="text-center text-sm md:text-base pt-4 pb-2 border-t border-white/10 mt-2" style={{ color: "rgba(245,246,241,0.8)" }}>
           <strong className="text-white">Todas as sessões são individuais:</strong> você e o professor, sem turma e sem dividir a atenção.
+          <span className="block text-sm mt-1" style={{ color: "var(--color-text-muted)" }}>
+            Último ciclo fechado ({STATS.cycleLabel}): {STATS.evaluated} profissionais avaliados com exame CEFR antes e depois.
+          </span>
         </p>
       </div>
     </section>

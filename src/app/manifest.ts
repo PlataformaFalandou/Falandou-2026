@@ -10,7 +10,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Inglês profissional 1 a 1, com resultado medido no exame CEFR.",
     start_url: "/",
     display: "standalone",
-    background_color: "#0F0F0F",
+    background_color: "#141414",
     theme_color: "#FF6820",
     lang: "pt-BR",
     icons: [

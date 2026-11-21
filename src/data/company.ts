@@ -8,6 +8,9 @@ export const COMPANY = {
   legalName: "Falandou Escola de Inglês",
   privacyEmail: "contato@falandou.com",
   site: SITE_URL,
+  /** Plataforma do Aluno — endereço único usado no rodapé e em /bem-vindo (revisão visual §6.3).
+   *  Hoje aponta para o domínio provisório do Lovable: trocar aqui quando houver o endereço definitivo. */
+  platformUrl: "https://falandou-hub-learn.lovable.app",
   /** Data da última atualização das páginas legais (exibida nelas). */
   legalUpdatedAt: "19 de novembro de 2026",
 } as const;

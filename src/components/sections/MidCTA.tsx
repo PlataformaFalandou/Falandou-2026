@@ -9,7 +9,7 @@ import { MIN_REPORTED_RAISE, PRICE_FROM, PRICE_TO_VALUE } from "@/data/plans";
 
 export default function MidCTA() {
   return (
-    <section className="relative py-28 md:py-36 overflow-hidden" style={{ backgroundColor: "#FF6820" }}>
+    <section className="on-brand relative py-12 md:py-20 overflow-hidden" style={{ backgroundColor: "#FF6820" }}>
       {/* Background image with strong overlay */}
       <div className="absolute inset-0 opacity-15">
         <Image
@@ -30,7 +30,7 @@ export default function MidCTA() {
         }}
       />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-4xl mx-auto px-5 md:px-8 text-center">
         <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6 text-white/70">
           Ciclo {STATS.cycleLabel} · {STATS.evaluated} profissionais avaliados
         </p>
@@ -52,8 +52,7 @@ export default function MidCTA() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackCTAClick("midcta")}
-            className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full text-base font-bold transition-all duration-200 hover:scale-105 active:scale-95 shadow-2xl"
-            style={{ backgroundColor: "var(--color-bg)", color: "white", boxShadow: "0 8px 32px rgba(22,22,22,0.4)" }}
+            className="cta-dark"
           >
             <MessageCircle size={20} />
             Falar com a equipe agora
@@ -74,7 +73,7 @@ export default function MidCTA() {
           {["Resposta em até 1h", "Cancele quando quiser", "Exame CEFR no início e no fim"].map((item) => (
             <div
               key={item}
-              className="px-5 py-2.5 rounded-full text-sm font-semibold text-white border border-white/30 backdrop-blur-sm"
+              className="px-5 py-2.5 rounded-full text-sm font-semibold border border-[rgba(20,20,20,0.35)]"
               style={{ background: "rgba(255,255,255,0.15)" }}
             >
               {item}

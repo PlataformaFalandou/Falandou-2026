@@ -74,12 +74,13 @@ export default function HomePage() {
         <BlogPreview />
         {/* 10. FAQ: as 6 objeções na ordem da jornada (Copywriting §8); /metodo complementa */}
         <FAQ items={DEFAULT_FAQS} moreLink={{ href: "/metodo", label: "Como o ciclo funciona no dia a dia" }} />
-        {/* 11. CTA final */}
-        <MidCTA />
-        {/* 12. Alternativa para quem ainda não está pronto */}
+        {/* 11. Alternativa para quem ainda não está pronto — antes do fechamento comercial,
+            para não haver duas conclusões concorrentes (revisão visual §5.3) */}
         <LeadMagnet />
+        {/* 12. Fechamento: uma ação principal */}
+        <MidCTA />
       </main>
-      <Footer />
+      <Footer cta={false} />
     </>
   );
 }

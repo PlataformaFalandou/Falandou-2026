@@ -55,11 +55,11 @@ export default function BlogClient({
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className="px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200"
+            className="min-h-[44px] px-4 rounded-full text-sm font-semibold transition-all duration-200"
             style={{
               backgroundColor:
                 activeCategory === cat ? "#FF6820" : "transparent",
-              color: activeCategory === cat ? "white" : "var(--color-text)",
+              color: activeCategory === cat ? "var(--color-on-brand)" : "var(--color-text)",
               border:
                 activeCategory === cat
                   ? "1px solid #FF6820"
@@ -77,12 +77,12 @@ export default function BlogClient({
           <p className="font-body text-ink/50">Nenhum artigo nessa categoria ainda.</p>
         </div>
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {filtered.map((article, i) => (
             <Link
               key={article.id}
               href={`/blog/${article.slug}`}
-              className="card-hover group flex flex-col bg-surface rounded-2xl overflow-hidden border border-white/10"
+              className="card-hover group flex flex-col bg-surface rounded-2xl overflow-hidden border border-border"
             >
               {/* Color header */}
               <div

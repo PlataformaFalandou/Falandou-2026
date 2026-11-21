@@ -12,8 +12,8 @@ import { trackCTAClick } from "@/lib/analytics";
 
 export default function LeadMagnetCompact() {
   return (
-    <section className="py-16 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
-      <div className="max-w-5xl mx-auto px-6">
+    <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
+      <div className="max-w-5xl mx-auto px-5 md:px-8">
         <div
           className="rounded-2xl p-8 md:p-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-10"
           style={{

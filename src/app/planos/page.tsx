@@ -86,7 +86,7 @@ export default function PlanosPage() {
           className="pt-28 pb-20 md:pt-36 md:pb-24"
           style={{ backgroundColor: "var(--color-bg)" }}
         >
-          <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="max-w-4xl mx-auto px-5 md:px-8 text-center">
             <p
               className="font-body text-sm font-bold uppercase tracking-widest mb-5"
               style={{ color: "#FF6820" }}
@@ -122,8 +122,8 @@ export default function PlanosPage() {
             <div
               className="inline-flex flex-wrap justify-center items-center gap-x-6 gap-y-2 px-6 py-3 rounded-2xl mb-2"
               style={{
-                background: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(255,255,255,0.1)",
+                background: "var(--color-surface)",
+                border: "1px solid var(--color-border)",
               }}
             >
               <span className="font-body text-sm font-semibold text-white">Exame CEFR incluso</span>
@@ -138,12 +138,12 @@ export default function PlanosPage() {
         </section>
 
         {/* ── Pricing cards ── */}
-        <section className="py-16 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-6xl mx-auto px-6">
+        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
+          <div className="max-w-6xl mx-auto px-5 md:px-8">
             {/* Incluso em todos os planos */}
             <div
               className="mb-8 rounded-2xl px-6 py-5 flex flex-col md:flex-row md:items-center gap-4 md:gap-8"
-              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
+              style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}
             >
               <p
                 className="font-body text-xs font-bold uppercase tracking-widest flex-shrink-0"
@@ -207,7 +207,7 @@ export default function PlanosPage() {
             {/* Dúvida entre planos → formulário curto que abre o WhatsApp (UX/UI §11) */}
             <div
               id="qual-plano"
-              className="mt-12 rounded-2xl p-6 md:p-10 grid md:grid-cols-[1fr_1.3fr] gap-8 md:gap-12 items-start"
+              className="mt-12 rounded-2xl p-6 md:p-10 grid md:grid-cols-[1fr_1.3fr] items-start gap-4 md:gap-6"
               style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
             >
               <div>
@@ -242,10 +242,10 @@ export default function PlanosPage() {
         <ComparisonTable />
 
         {/* ── ROI anchor ── */}
-        <section className="py-16 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-4xl mx-auto px-6">
+        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
+          <div className="max-w-4xl mx-auto px-5 md:px-8">
             <p
-              className="font-body text-sm font-bold uppercase tracking-widest mb-4 text-center"
+              className="font-body text-sm font-bold uppercase tracking-widest mb-3 text-center"
               style={{ color: "#FF6820" }}
             >
               Custo de oportunidade
@@ -262,7 +262,7 @@ export default function PlanosPage() {
             >
               De um lado, a partir de {PRICE_FROM_ROUNDED}/mês. Do outro, o que fica na mesa enquanto o inglês segura a sua carreira:
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               {[
                 {
                   scenario: "Promoção de cargo",
@@ -285,10 +285,10 @@ export default function PlanosPage() {
               ].map((item) => (
                 <div
                   key={item.scenario}
-                  className="rounded-2xl p-6"
+                  className="rounded-2xl p-6 md:p-8"
                   style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.08)",
+                    background: "var(--color-surface)",
+                    border: "1px solid var(--color-border)",
                   }}
                 >
                   <p
@@ -331,8 +331,8 @@ export default function PlanosPage() {
         </section>
 
         {/* ── FAQ ── */}
-        <section className="py-16 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-2xl mx-auto px-6">
+        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
+          <div className="max-w-2xl mx-auto px-5 md:px-8">
             <h2
               className="font-display font-extrabold text-white mb-10 text-center"
               style={{ fontSize: "var(--text-h2)" }}
@@ -345,13 +345,13 @@ export default function PlanosPage() {
                   key={faq.q}
                   className="rounded-xl px-6 py-5"
                   style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.08)",
+                    background: "var(--color-surface)",
+                    border: "1px solid var(--color-border)",
                   }}
                 >
                   <p className="font-body font-semibold text-white mb-2">{faq.q}</p>
                   <p
-                    className="font-body text-sm leading-relaxed"
+                    className="font-body text-base leading-6"
                     style={{ color: "rgba(255,255,255,0.55)" }}
                   >
                     {faq.a}
@@ -374,8 +374,8 @@ export default function PlanosPage() {
 
         {/* ── Para empresas — Arquitetura §3/§9: jornada corporativa com CTA próprio.
              Sem preço publicado: a proposta é montada com a equipe. */}
-        <section id="empresas" className="py-16 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
-          <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-[1fr_auto] gap-8 items-center">
+        <section id="empresas" className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+          <div className="max-w-5xl mx-auto px-5 md:px-8 grid md:grid-cols-[1fr_auto] items-center gap-4 md:gap-6">
             <div>
               <p className="font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
                 Para empresas

@@ -30,7 +30,7 @@ export default function DepoimentosPage() {
       <main id="conteudo">
         {/* ── HERO ─────────────────────────────────────────────────────────── */}
         <section className="pt-40 pb-16 md:pt-52 md:pb-20" style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-[1200px] mx-auto px-5 md:px-8">
             <div className="max-w-3xl">
               <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
                 Depoimentos
@@ -59,7 +59,7 @@ export default function DepoimentosPage() {
 
         {/* ── GRADE ────────────────────────────────────────────────────────── */}
         <section className="pb-24 md:pb-32" style={{ backgroundColor: "var(--color-bg)" }}>
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-[1200px] mx-auto px-5 md:px-8">
             <TestimonialsBrowser />
           </div>
         </section>
@@ -74,7 +74,7 @@ export default function DepoimentosPage() {
 
         <LeadMagnetCompact />
       </main>
-      <Footer />
+      <Footer cta={false} />
     </>
   );
 }

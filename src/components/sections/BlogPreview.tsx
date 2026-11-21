@@ -18,8 +18,8 @@ export default function BlogPreview({
   const posts = (picked.length ? picked : all).slice(0, 3);
 
   return (
-    <section className="py-20 md:py-28 bg-surface">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-12 md:py-20 bg-bg">
+      <div className="max-w-[1200px] mx-auto px-5 md:px-8">
         {/* Header */}
         <div className="flex items-end justify-between mb-10">
           <div>
@@ -44,12 +44,12 @@ export default function BlogPreview({
         </div>
 
         {/* Posts grid */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-4 md:gap-6">
           {posts.map((post, i) => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="reveal group flex flex-col bg-bg-alt rounded-2xl overflow-hidden border border-white/10 hover:border-laranja/30 hover:shadow-md transition-all duration-300"
+              className="reveal group flex flex-col bg-bg-alt rounded-2xl overflow-hidden border border-border hover:border-laranja/30 hover:shadow-md transition-all duration-300"
               style={{ transitionDelay: `${i * 80}ms` }}
             >
               {/* Color header bar */}

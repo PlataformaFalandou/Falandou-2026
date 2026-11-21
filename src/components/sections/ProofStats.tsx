@@ -45,8 +45,8 @@ const METHODOLOGY_NOTES: React.ReactNode[] = [
 export default function ProofStats() {
   return (
     <section id="resultados" className="pt-24 md:pt-32 pb-4" style={{ backgroundColor: "var(--color-bg)" }}>
-      <div className="max-w-7xl mx-auto px-6">
-        <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+      <div className="max-w-[1200px] mx-auto px-5 md:px-8">
+        <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
           Resultado verificável
         </p>
         <h2
@@ -61,12 +61,12 @@ export default function ProofStats() {
         </p>
 
         {/* Stat grid */}
-        <div className="reveal grid grid-cols-2 md:grid-cols-4 gap-5 mt-10 delay-200">
+        <div className="reveal grid grid-cols-2 md:grid-cols-4 mt-10 delay-200 gap-4 md:gap-6">
           {PROOF.map((s) => (
             <div
               key={s.value}
-              className="rounded-2xl p-6"
-              style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}
+              className="rounded-2xl p-6 md:p-8"
+              style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}
             >
               <p className="font-display font-extrabold text-3xl mb-1" style={{ color: "#FF6820" }}>
                 {s.value}
@@ -80,7 +80,7 @@ export default function ProofStats() {
         {/* Methodology disclosure */}
         <div
           className="reveal mt-6 rounded-xl px-6 py-4 delay-300"
-          style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
+          style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}
         >
           <p className="font-body text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>
             Como medimos
@@ -94,7 +94,7 @@ export default function ProofStats() {
           </ul>
           <Link
             href="/resultados"
-            className="inline-block mt-3 font-body text-xs font-semibold underline underline-offset-4 hover:text-white transition-colors"
+            className="inline-block mt-3 font-body text-sm font-semibold underline underline-offset-4 hover:text-white transition-colors"
             style={{ color: "rgba(255,255,255,0.55)" }}
           >
             Ver a distribuição completa e a metodologia →
