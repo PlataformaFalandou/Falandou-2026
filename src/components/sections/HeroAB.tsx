@@ -27,6 +27,7 @@ import Hero, { HeadlineWords } from "./Hero";
 import { getHeroVariant, forceVariantFromURL, type ABVariant } from "@/lib/abtest";
 import { trackABImpression } from "@/lib/analytics";
 import { STATS } from "@/data/stats";
+import { PRACTICE_CASES } from "@/data/practiceCases";
 
 const VARIANTS: Record<ABVariant, { eyebrow: string; headline?: ReactNode; subheadline: string; subheadlineShort: string }> = {
   A: {
@@ -78,6 +79,7 @@ export default function HeroAB() {
       {...(v.headline ? { headline: v.headline } : {})}
       subheadline={v.subheadline}
       subheadlineShort={v.subheadlineShort}
+      practice={PRACTICE_CASES.atraso}
     />
   );
 }

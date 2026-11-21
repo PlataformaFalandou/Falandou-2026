@@ -64,7 +64,7 @@ export default function Footer({ cta = true }: { cta?: boolean } = {}) {
       {cta && (
       <div
         className="border-b border-white/5 py-12"
-        style={{ background: "linear-gradient(135deg, rgba(255,104,32,0.14) 0%, transparent 55%)" }}
+        style={{ background: "var(--color-surface)" }}
       >
         <div className="max-w-[1200px] mx-auto px-5 md:px-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>

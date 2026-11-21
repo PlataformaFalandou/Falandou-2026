@@ -9,6 +9,8 @@ import { courseSchema } from "@/lib/schema";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { testimonials } from "@/data/testimonials";
 import { STATS } from "@/data/stats";
+import PracticeCaseCard from "@/components/ui/PracticeCaseCard";
+import { PRACTICE_CASES } from "@/data/practiceCases";
 
 /**
  * ProfileLanding — páginas de perfil /para/... (Copywriting §10, SEO long-tail).
@@ -27,6 +29,8 @@ export type ProfileData = {
   ctaLabel: string;
   blogSlugs: string[];
   blogTitle: string;
+  /** Exemplo de atividade da situação típica do perfil (src/data/practiceCases.ts). */
+  practice?: { key: string; intro: string };
 };
 
 export default function ProfileLanding({ data }: { data: ProfileData }) {
@@ -50,7 +54,7 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
         {/* ── HERO ── */}
         <section className="pt-40 pb-24 md:pt-52 md:pb-28" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-4xl mx-auto px-5 md:px-8">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-6">
               {data.eyebrow}
             </p>
             <h1
@@ -84,7 +88,7 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
         {/* ── CENÁRIOS ── */}
         <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-5xl mx-auto px-5 md:px-8">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
               As situações que o plano treina
             </p>
             <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100" style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}>
@@ -92,7 +96,7 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
             </h2>
             <div className="grid md:grid-cols-2 gap-4 md:gap-6">
               {data.scenarios.map((s) => (
-                <div key={s.situation} className="reveal rounded-2xl bg-surface border border-border p-7">
+                <div key={s.situation} className="reveal rounded-2xl bg-surface border border-border p-6 md:p-8">
                   <h3 className="font-display font-extrabold text-[length:var(--text-h3)] mb-4" style={{ color: "var(--color-text)" }}>{s.situation}</h3>
                   <p className="font-body text-base leading-6 mb-3" style={{ color: "rgba(245,246,241,0.7)" }}>
                     <strong style={{ color: "var(--color-text)" }}>Hoje:</strong> {s.today}
@@ -105,6 +109,26 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
             </div>
           </div>
         </section>
+
+        {/* ── SITUAÇÃO EM PRÁTICA — o trabalho pedagógico, não só o benefício (direção criativa §4.1, §4.2) ── */}
+        {data.practice && PRACTICE_CASES[data.practice.key] && (
+          <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
+            <div className="max-w-5xl mx-auto px-5 md:px-8 grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-8 lg:gap-12 items-start">
+              <div>
+                <p className="eyebrow reveal text-sm font-bold uppercase tracking-widest mb-3">O inglês da sua próxima situação</p>
+                <h2 className="reveal font-display text-white mb-4" style={{ fontSize: "var(--text-h2)" }}>
+                  Como uma sessão trabalha isso.
+                </h2>
+                <p className="reveal text-lg" style={{ color: "var(--color-text-body)" }}>
+                  {data.practice.intro}
+                </p>
+              </div>
+              <div className="reveal">
+                <PracticeCaseCard c={PRACTICE_CASES[data.practice.key]} />
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* ── NÚMEROS ── */}
         <section style={{ backgroundColor: "var(--color-bg)" }}>
@@ -126,7 +150,7 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
         {quotes.length > 0 && (
           <section className="py-12 md:py-20 bg-bg">
             <div className="max-w-5xl mx-auto px-5 md:px-8">
-              <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-10" style={{ color: "#FF6820" }}>
+              <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-10">
                 Quem já fez o ciclo
               </p>
               <div className="grid md:grid-cols-2 gap-4 md:gap-6">

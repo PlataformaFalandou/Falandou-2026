@@ -88,7 +88,7 @@ export default function ResultadosPage() {
         <section className="pt-32 pb-12 md:pt-40 md:pb-20" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-5xl mx-auto px-5 md:px-8">
             <div className="max-w-3xl">
-              <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
+              <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-6">
                 Resultados
               </p>
               <h1
@@ -115,7 +115,7 @@ export default function ResultadosPage() {
         {/* ── COMO MEDIMOS ─────────────────────────────────────────────────── */}
         <section className="py-12 md:py-20 bg-bg">
           <div className="max-w-5xl mx-auto px-5 md:px-8">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
               Como medimos
             </p>
             <h2
@@ -145,7 +145,7 @@ export default function ResultadosPage() {
         {/* ── O QUE CADA NÍVEL SIGNIFICA ───────────────────────────────────── */}
         <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-5xl mx-auto px-5 md:px-8">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
               A escala CEFR no trabalho
             </p>
             <h2
@@ -178,7 +178,7 @@ export default function ResultadosPage() {
         {/* ── FAQ SOBRE CEFR ───────────────────────────────────────────────── */}
         <section id="faq" className="py-12 md:py-20 bg-bg">
           <div className="max-w-3xl mx-auto px-5 md:px-8">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
               Dúvidas sobre os resultados
             </p>
             <h2

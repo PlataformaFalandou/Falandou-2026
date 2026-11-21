@@ -86,7 +86,7 @@ export default function Teachers() {
       <div className="max-w-6xl mx-auto px-5 md:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <p className="font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+          <p className="eyebrow font-body text-sm font-bold uppercase tracking-widest mb-3">
             Quem vai te ensinar
           </p>
           <h2

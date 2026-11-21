@@ -234,7 +234,7 @@ export default async function ArticlePage({
                 className="mb-10 rounded-2xl p-6 md:p-8"
                 style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
               >
-                <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+                <p className="eyebrow text-xs font-bold uppercase tracking-widest mb-3">
                   Neste guia
                 </p>
                 <ol className="grid gap-2 list-decimal pl-5 text-sm" style={{ color: "var(--color-text-body)" }}>
@@ -327,7 +327,7 @@ export default async function ArticlePage({
                   </span>
                 </span>
                 <span className="p-6 flex flex-col justify-center">
-                  <span className="font-body text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#FF6820" }}>
+                  <span className="eyebrow font-body text-xs font-bold uppercase tracking-widest mb-2">
                     Veja também em vídeo
                   </span>
                   <span className="font-display font-bold text-base" style={{ color: "var(--color-text)" }}>
@@ -342,7 +342,7 @@ export default async function ArticlePage({
               className="mt-16 rounded-2xl p-6 md:p-8 text-center"
               style={{ backgroundColor: "var(--color-bg)" }}
             >
-              <p className="font-body text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+              <p className="eyebrow font-body text-xs font-semibold uppercase tracking-widest mb-3">
                 Quer acelerar esse processo?
               </p>
               <h3 className="font-display font-extrabold text-white text-[length:var(--text-h3)] md:text-2xl mb-3">
@@ -384,7 +384,7 @@ export default async function ArticlePage({
                 className="w-16 h-16 rounded-full object-cover object-top flex-shrink-0 img-skeleton"
               />
               <div>
-                <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#FF6820" }}>
+                <p className="eyebrow text-xs font-bold uppercase tracking-widest mb-1">
                   Sobre quem assina
                 </p>
                 <p className="font-display font-bold text-white">
@@ -439,7 +439,7 @@ export default async function ArticlePage({
 
               {/* Captura de contato: roteiro gratuito pelo WhatsApp (decisão da escola: sem lista de e-mail) */}
               <div className="rounded-2xl p-6 md:p-8" style={{ backgroundColor: "var(--color-bg)" }}>
-                <p className="font-body text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+                <p className="eyebrow font-body text-xs font-bold uppercase tracking-widest mb-3">
                   Material gratuito
                 </p>
                 <p className="font-display font-extrabold text-white text-lg leading-snug mb-3">

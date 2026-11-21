@@ -47,6 +47,7 @@ const DATA: ProfileData = {
   ctaLabel: "Quero falar com a equipe",
   blogSlugs: ["vocabulario-reunioes-negocios", "ingles-para-apresentacoes", "como-aprender-ingles-profissional"],
   blogTitle: "Para conduzir reuniões e apresentações em inglês.",
+  practice: { key: "reuniao", intro: "Liderar em inglês começa nos primeiros 30 segundos da reunião. Na sessão, você traz a pauta real e sai com a abertura pronta — e com o padrão para as próximas." },
 };
 
 export default function GestoresPage() {

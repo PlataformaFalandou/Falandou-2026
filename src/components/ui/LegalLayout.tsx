@@ -18,7 +18,7 @@ export default function LegalLayout({
       <main id="conteudo">
         <section className="pt-36 pb-12 md:pt-44 md:pb-16" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-3xl mx-auto px-5 md:px-8">
-            <p className="font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="eyebrow font-body text-sm font-bold uppercase tracking-widest mb-3">
               {eyebrow}
             </p>
             <h1 className="font-display font-extrabold text-white leading-tight mb-4" style={{ fontSize: "var(--text-h1)" }}>

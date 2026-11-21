@@ -47,6 +47,7 @@ const DATA: ProfileData = {
   ctaLabel: "Quero falar com a equipe",
   blogSlugs: ["ingles-para-apresentacoes", "emails-profissionais-ingles", "vocabulario-reunioes-negocios"],
   blogTitle: "Para apresentar e escrever em inglês técnico.",
+  practice: { key: "decisao", intro: "Explicar uma escolha técnica para um time global pede mais do que vocabulário: pede critério e estrutura. Na sessão, a decisão real do seu projeto vira o exercício." },
 };
 
 export default function EngenheirosPage() {

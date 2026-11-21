@@ -46,7 +46,7 @@ export default function ProofStats() {
   return (
     <section id="resultados" className="pt-24 md:pt-32 pb-4" style={{ backgroundColor: "var(--color-bg)" }}>
       <div className="max-w-[1200px] mx-auto px-5 md:px-8">
-        <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+        <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
           Resultado verificável
         </p>
         <h2

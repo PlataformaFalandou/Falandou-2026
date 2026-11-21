@@ -23,7 +23,7 @@ export default function BlogPreview({
         {/* Header */}
         <div className="flex items-end justify-between mb-10">
           <div>
-            <p className="reveal font-body text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="eyebrow reveal font-body text-sm font-semibold uppercase tracking-widest mb-3">
               Blog
             </p>
             <h2

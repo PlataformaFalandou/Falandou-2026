@@ -47,7 +47,7 @@ export default function IndiquePage() {
         <section className="pt-32 pb-12 md:pt-40 md:pb-20" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-5xl mx-auto px-5 md:px-8">
             <div className="max-w-3xl">
-              <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
+              <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-6">
                 Programa de indicação
               </p>
               <h1
@@ -74,7 +74,7 @@ export default function IndiquePage() {
         {/* ── COMO FUNCIONA ─────────────────────────────────────────────────── */}
         <section className="py-12 md:py-20 bg-bg">
           <div className="max-w-5xl mx-auto px-5 md:px-8">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
               Como funciona
             </p>
             <h2
@@ -111,7 +111,7 @@ export default function IndiquePage() {
         {/* ── PARA QUEM FOI INDICADO ────────────────────────────────────────── */}
         <section id="fui-indicado" className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-5xl mx-auto px-5 md:px-8">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
               Foi indicado por alguém?
             </p>
             <h2

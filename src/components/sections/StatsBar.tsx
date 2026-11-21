@@ -1,22 +1,19 @@
-"use client";
-
-import { useCounter } from "@/hooks/useCounter";
 import { STATS } from "@/data/stats";
 
 /**
- * StatsBar — faixa de números entre seções (UX/UI §7 + §15).
- * Números em 48px laranja, legenda em 14px, fundo grafite; contam de 0 ao valor
- * real (1,2s) ao entrar na tela. Valores vêm de src/data/stats.ts.
+ * StatsBar — faixa de números entre seções (UX/UI §7).
+ * Números grandes em texto claro (o laranja fica para o CTA, uma expressão do título e o
+ * ponto — direção criativa §2.1), legenda em 14px. Valores vêm de src/data/stats.ts.
  */
 export type StatsBarItem = { value: number | string; suffix?: string; label: string };
 
+// Números estáveis (direção criativa §4.3): sem contagem animada — o movimento fica
+// para revelar sequências e explicar mudanças, não para fazer o número "correr".
 function StatItem({ item, delay }: { item: StatsBarItem; delay: number }) {
-  const numeric = typeof item.value === "number" ? item.value : null;
-  const { count, ref } = useCounter(numeric ?? 0, 1200);
   return (
-    <div ref={ref} className="reveal text-center px-4 py-6" style={{ transitionDelay: `${delay}ms` }}>
-      <div className="font-display font-extrabold tnum leading-none" style={{ fontSize: "clamp(2rem, 6vw, 3rem)", color: "#FF6820" }}>
-        {numeric !== null ? count : item.value}
+    <div className="reveal text-center px-4 py-6" style={{ transitionDelay: `${delay}ms` }}>
+      <div className="font-display font-extrabold tnum leading-none" style={{ fontSize: "clamp(2rem, 6vw, 3rem)", color: "#F5F6F1" }}>
+        {item.value}
         {item.suffix}
       </div>
       <div className="text-sm mt-3 max-w-[160px] mx-auto leading-snug" style={{ color: "rgba(245,246,241,0.7)" }}>

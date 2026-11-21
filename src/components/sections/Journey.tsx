@@ -46,7 +46,7 @@ export default function Journey() {
       <div className="max-w-[1200px] mx-auto px-5 md:px-8">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-14 md:mb-16">
-          <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+          <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
             Como funciona
           </p>
           <h2

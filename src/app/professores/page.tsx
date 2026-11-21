@@ -53,8 +53,7 @@ export default function ProfessoresPage() {
           <div className="max-w-6xl mx-auto px-5 md:px-8">
             <div className="max-w-3xl">
               <p
-                className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6"
-                style={{ color: "#FF6820" }}
+                className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-6"
               >
                 Professores
               </p>
@@ -113,8 +112,7 @@ export default function ProfessoresPage() {
         <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-6xl mx-auto px-5 md:px-8">
             <p
-              className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3"
-              style={{ color: "#FF6820" }}
+              className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3"
             >
               Como o professor é escolhido
             </p>

@@ -296,7 +296,7 @@ export default function Testimonials({ persona }: { persona?: Persona } = {}) {
       <div className="max-w-[1200px] mx-auto px-5 md:px-8">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
           <div>
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
               O que dizem os profissionais
             </p>
             <h2 className="reveal font-display font-extrabold text-white leading-tight delay-100" style={{ fontSize: "var(--text-h2)" }}>

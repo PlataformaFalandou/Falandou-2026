@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { MessageCircle } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
@@ -10,26 +9,6 @@ import { MIN_REPORTED_RAISE, PRICE_FROM, PRICE_TO_VALUE } from "@/data/plans";
 export default function MidCTA() {
   return (
     <section className="on-brand relative py-12 md:py-20 overflow-hidden" style={{ backgroundColor: "#FF6820" }}>
-      {/* Background image with strong overlay */}
-      <div className="absolute inset-0 opacity-15">
-        <Image
-          src="/images/conexao-internacional.webp"
-          alt=""
-          fill
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-      </div>
-
-      {/* Decorative pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.07]"
-        style={{
-          backgroundImage: `radial-gradient(circle, white 1px, transparent 1px)`,
-          backgroundSize: "40px 40px",
-        }}
-      />
-
       <div className="relative z-10 max-w-4xl mx-auto px-5 md:px-8 text-center">
         <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6 text-white/70">
           Ciclo {STATS.cycleLabel} · {STATS.evaluated} profissionais avaliados

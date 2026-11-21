@@ -64,8 +64,7 @@ export default function LeadMagnet() {
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <p
-            className="font-body text-sm font-bold uppercase tracking-widest mb-3"
-            style={{ color: "#FF6820" }}
+            className="eyebrow font-body text-sm font-bold uppercase tracking-widest mb-3"
           >
             Conteúdo gratuito
           </p>
@@ -145,13 +144,12 @@ export default function LeadMagnet() {
         <div
           className="rounded-2xl p-8 md:p-10 text-center"
           style={{
-            background: "linear-gradient(135deg, rgba(255,104,32,0.12) 0%, rgba(255,104,32,0.04) 100%)",
-            border: "1px solid rgba(255,104,32,0.25)",
+            background: "var(--color-surface)",
+            border: "1px solid var(--color-border)",
           }}
         >
           <p
-            className="font-body text-xs font-bold uppercase tracking-widest mb-3"
-            style={{ color: "#FF6820" }}
+            className="eyebrow font-body text-xs font-bold uppercase tracking-widest mb-3"
           >
             PDF gratuito
           </p>

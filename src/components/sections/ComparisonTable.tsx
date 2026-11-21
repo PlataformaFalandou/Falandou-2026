@@ -9,6 +9,7 @@
  * descrição concreta, não só um ✓ vs ✗.
  */
 
+import { Check, X } from "lucide-react";
 import React from "react";
 import CEFRTooltip from "@/components/ui/CEFRTooltip";
 
@@ -53,8 +54,7 @@ export default function ComparisonTable() {
         {/* Header */}
         <div className="text-center mb-14">
           <p
-            className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3"
-            style={{ color: "#FF6820" }}
+            className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3"
           >
             Por que a diferença importa
           </p>
@@ -105,13 +105,13 @@ export default function ComparisonTable() {
                 </span>
               </div>
               <div className="px-6 py-5 flex items-start gap-3 border-l" style={{ borderColor: "var(--color-border)" }}>
-                <span className="text-base flex-shrink-0 mt-0.5" aria-hidden>✗</span>
+                <span className="text-base flex-shrink-0 mt-0.5" aria-hidden><X size={16} strokeWidth={2.5} aria-hidden="true" /></span>
                 <span className="font-body text-sm leading-snug" style={{ color: "rgba(245,246,241,0.65)" }}>
                   {row.generic}
                 </span>
               </div>
               <div className="px-6 py-5 flex items-start gap-3 border-l" style={{ borderColor: "var(--color-border)", background: "rgba(255,104,32,0.04)" }}>
-                <span className="text-base flex-shrink-0 mt-0.5" style={{ color: "#FF6820" }} aria-hidden>✓</span>
+                <span className="text-base flex-shrink-0 mt-0.5" style={{ color: "#FF6820" }} aria-hidden><Check size={16} strokeWidth={2.5} aria-hidden="true" /></span>
                 <span className="font-body text-sm font-medium leading-snug" style={{ color: "var(--color-text)" }}>
                   {row.falandou}
                 </span>
@@ -134,14 +134,14 @@ export default function ComparisonTable() {
                 </span>
               </div>
               <div className="px-4 py-4 flex items-start gap-3 border-b" style={{ borderColor: "var(--color-border)", background: "var(--color-surface)" }}>
-                <span className="text-sm flex-shrink-0 mt-0.5" aria-hidden>✗</span>
+                <span className="text-sm flex-shrink-0 mt-0.5" aria-hidden><X size={16} strokeWidth={2.5} aria-hidden="true" /></span>
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wide mb-1" style={{ color: "rgba(245,246,241,0.5)" }}>Genérico</p>
                   <p className="text-sm leading-snug" style={{ color: "rgba(245,246,241,0.65)" }}>{row.generic}</p>
                 </div>
               </div>
               <div className="px-4 py-4 flex items-start gap-3" style={{ background: "rgba(255,104,32,0.04)" }}>
-                <span className="text-sm flex-shrink-0 mt-0.5" style={{ color: "#FF6820" }} aria-hidden>✓</span>
+                <span className="text-sm flex-shrink-0 mt-0.5" style={{ color: "#FF6820" }} aria-hidden><Check size={16} strokeWidth={2.5} aria-hidden="true" /></span>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wide mb-1" style={{ color: "#FF6820" }}>Falandou</p>
                   <p className="text-sm font-medium leading-snug" style={{ color: "var(--color-text)" }}>{row.falandou}</p>

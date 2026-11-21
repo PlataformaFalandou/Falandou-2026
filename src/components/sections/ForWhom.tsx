@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check, X } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 
@@ -62,7 +62,7 @@ export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
           <div className="max-w-2xl">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
               Para quem é
             </p>
             <h2 className="reveal font-display font-extrabold leading-tight delay-100" style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}>
@@ -99,11 +99,11 @@ export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) 
                   {p.role}
                 </p>
                 <div className="flex items-start gap-2 mb-3">
-                  <span className="text-sm mt-1 flex-shrink-0" aria-hidden="true">❌</span>
+                  <span className="text-sm mt-1 flex-shrink-0" aria-hidden="true"><X size={16} strokeWidth={2.5} aria-hidden="true" /></span>
                   <p className="text-base leading-6" style={{ color: "var(--color-text-body)" }}>{p.pain}</p>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-sm mt-1 flex-shrink-0" aria-hidden="true">✅</span>
+                  <span className="text-sm mt-1 flex-shrink-0" aria-hidden="true"><Check size={16} strokeWidth={2.5} aria-hidden="true" /></span>
                   <p className="text-base leading-6 font-semibold text-white">{p.gain}</p>
                 </div>
                 {p.href && !persona && (

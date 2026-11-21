@@ -50,7 +50,7 @@ export default function VocabularioPage() {
 
         <section className="pt-36 pb-14 md:pt-48 md:pb-16" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-5xl mx-auto px-5 md:px-8">
-            <p className="reveal text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
+            <p className="eyebrow reveal text-sm font-bold uppercase tracking-widest mb-6">
               Vocabulário profissional
             </p>
             <h1 className="reveal font-display font-extrabold text-white leading-tight mb-6 delay-100" style={{ fontSize: "var(--text-h1)" }}>

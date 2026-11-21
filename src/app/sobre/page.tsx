@@ -67,7 +67,7 @@ export default function SobrePage() {
         <section className="pt-32 pb-12 md:pt-40 md:pb-20" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-5xl mx-auto px-5 md:px-8">
             <div className="max-w-3xl">
-              <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
+              <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-6">
                 Sobre a Falandou
               </p>
               <h1
@@ -93,7 +93,7 @@ export default function SobrePage() {
         {/* ── 2. O QUE NOS TORNA DIFERENTES ────────────────────────────────── */}
         <section className="py-12 md:py-20 bg-bg">
           <div className="max-w-5xl mx-auto px-5 md:px-8">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
               O que nos torna diferentes
             </p>
             <h2
@@ -150,7 +150,7 @@ export default function SobrePage() {
         <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-5xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+              <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
                 Os professores
               </p>
               <h2

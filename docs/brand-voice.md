@@ -3,6 +3,8 @@
 Para qualquer texto novo do site, dos anúncios, do WhatsApp e dos materiais.
 Base: análise de copywriting (ponto 12), novembro de 2026.
 
+**Personalidade:** a mentora direta que prepara você para ocupar o seu espaço profissional — clareza, proximidade e exigência construtiva. Detalhes e direção visual em `docs/direcao-criativa.md`.
+
 ## 1. A voz em três pares
 
 | É | Não é |

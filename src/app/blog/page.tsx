@@ -95,7 +95,7 @@ export default function BlogPage() {
               href={`/blog/${featured.slug}`}
               className="card-hover group block rounded-2xl p-7 md:p-10 mb-12 border"
               style={{
-                background: "linear-gradient(135deg, rgba(255,104,32,0.14) 0%, var(--color-surface) 60%)",
+                background: "var(--color-surface)",
                 borderColor: "var(--color-border)",
               }}
             >

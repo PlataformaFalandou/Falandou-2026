@@ -76,7 +76,7 @@ export default function FAQ({
         <div className="grid lg:grid-cols-5 gap-14 items-start">
           {/* Left: header */}
           <div className="lg:col-span-2">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
               Dúvidas frequentes
             </p>
             <h2

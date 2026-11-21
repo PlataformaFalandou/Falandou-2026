@@ -159,7 +159,7 @@ export default function InglesExpatriacaoPage() {
         <section id="situacoes" className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-[1200px] mx-auto px-5 md:px-8">
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <p className="font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+              <p className="eyebrow font-body text-sm font-bold uppercase tracking-widest mb-3">
                 O que realmente te espera
               </p>
               <h2
@@ -215,7 +215,7 @@ export default function InglesExpatriacaoPage() {
         {/* ── INTEREST FORM ── */}
         <section className="py-12 md:py-20 bg-bg">
           <div className="max-w-2xl mx-auto px-5 md:px-8 text-center">
-            <p className="font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="eyebrow font-body text-sm font-bold uppercase tracking-widest mb-3">
               Próximo passo
             </p>
             <h2

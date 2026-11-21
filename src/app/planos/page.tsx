@@ -1,3 +1,4 @@
+import { Check } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
@@ -88,8 +89,7 @@ export default function PlanosPage() {
         >
           <div className="max-w-4xl mx-auto px-5 md:px-8 text-center">
             <p
-              className="font-body text-sm font-bold uppercase tracking-widest mb-5"
-              style={{ color: "#FF6820" }}
+              className="eyebrow font-body text-sm font-bold uppercase tracking-widest mb-5"
             >
               Planos e investimento
             </p>
@@ -146,15 +146,14 @@ export default function PlanosPage() {
               style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}
             >
               <p
-                className="font-body text-xs font-bold uppercase tracking-widest flex-shrink-0"
-                style={{ color: "#FF6820" }}
+                className="eyebrow font-body text-xs font-bold uppercase tracking-widest flex-shrink-0"
               >
                 Incluso em todos os planos
               </p>
               <ul className="flex flex-wrap gap-x-6 gap-y-2">
                 {INCLUDED_IN_ALL.map((item) => (
                   <li key={item} className="flex items-center gap-2 font-body text-sm" style={{ color: "rgba(255,255,255,0.75)" }}>
-                    <span className="font-bold" style={{ color: "#FF6820" }}>✓</span>
+                    <span className="font-bold" style={{ color: "#FF6820" }}><Check size={16} strokeWidth={2.5} aria-hidden="true" /></span>
                     {item}
                   </li>
                 ))}
@@ -195,7 +194,7 @@ export default function PlanosPage() {
                 "Exame CEFR no início e no fim do ciclo",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2 font-body text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>
-                  <span className="font-bold" style={{ color: "#FF6820" }}>✓</span>
+                  <span className="font-bold" style={{ color: "#FF6820" }}><Check size={16} strokeWidth={2.5} aria-hidden="true" /></span>
                   {item}
                 </li>
               ))}
@@ -211,7 +210,7 @@ export default function PlanosPage() {
               style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
             >
               <div>
-                <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+                <p className="eyebrow text-xs font-bold uppercase tracking-widest mb-3">
                   Qual plano é para mim?
                 </p>
                 <h2 className="font-display font-extrabold text-white leading-tight mb-4" style={{ fontSize: "var(--text-h3)" }}>
@@ -245,8 +244,7 @@ export default function PlanosPage() {
         <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-4xl mx-auto px-5 md:px-8">
             <p
-              className="font-body text-sm font-bold uppercase tracking-widest mb-3 text-center"
-              style={{ color: "#FF6820" }}
+              className="eyebrow font-body text-sm font-bold uppercase tracking-widest mb-3 text-center"
             >
               Custo de oportunidade
             </p>
@@ -377,7 +375,7 @@ export default function PlanosPage() {
         <section id="empresas" className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-5xl mx-auto px-5 md:px-8 grid md:grid-cols-[1fr_auto] items-center gap-4 md:gap-6">
             <div>
-              <p className="font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+              <p className="eyebrow font-body text-sm font-bold uppercase tracking-widest mb-3">
                 Para empresas
               </p>
               <h2 className="font-display font-extrabold leading-tight mb-3" style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}>

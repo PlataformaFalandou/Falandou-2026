@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import CEFRTooltip from "@/components/ui/CEFRTooltip";
 
 // Copywriting §5 — benefícios, não features: cada item diz o que muda para o aluno.
@@ -43,8 +43,7 @@ export default function MetodoTeaser() {
           {/* Left: gancho — você tentou + por que não funcionou */}
           <div>
             <p
-              className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3"
-              style={{ color: "#FF6820" }}
+              className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3"
             >
               Por que o inglês não avançou
             </p>
@@ -93,9 +92,7 @@ export default function MetodoTeaser() {
                   <span
                     className="on-brand flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs font-black mt-0.5"
                     style={{ background: "#FF6820" }}
-                  >
-                    ✓
-                  </span>
+                  ><Check size={16} strokeWidth={2.5} aria-hidden="true" /></span>
                   <p className="font-body text-sm leading-snug" style={{ color: "rgba(255,255,255,0.75)" }}>
                     <strong className="text-white">{item.title}.</strong> {item.body}
                   </p>

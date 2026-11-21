@@ -25,7 +25,7 @@ export default function NotFound() {
       <main id="conteudo">
         <section className="pt-32 pb-12 md:pt-40 md:pb-20 min-h-[80vh]" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-5xl mx-auto px-5 md:px-8">
-            <p className="font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
+            <p className="eyebrow font-body text-sm font-bold uppercase tracking-widest mb-6">
               Erro 404
             </p>
             <h1

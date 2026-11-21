@@ -606,3 +606,39 @@ img, video {
 .cta-outline-dark:hover {
   background-color: rgba(20, 20, 20, 0.08);
 }
+
+/* ── Sistema do ponto (direção criativa §1.3) ─────────────────────────────
+   O ponto final de "Falandou." vira o marcador da marca: início de um rótulo de
+   seção, de uma etapa ou de uma observação do professor. Uma ocorrência funcional
+   por composição — nunca bolinhas decorativas espalhadas. Diâmetro = 0,5em. */
+.dot {
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 9999px;
+  background-color: var(--color-brand);
+  flex-shrink: 0;
+}
+/* Rótulo de seção: texto neutro + ponto laranja (o laranja deixa de ocupar o rótulo inteiro, §2.1) */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-muted) !important;
+}
+.eyebrow::before {
+  content: "";
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 9999px;
+  background-color: var(--color-brand);
+  flex-shrink: 0;
+}
+.on-brand .eyebrow,
+.on-brand.eyebrow {
+  color: var(--color-on-brand) !important;
+}
+.on-brand .eyebrow::before,
+.on-brand .dot {
+  background-color: var(--color-on-brand);
+}

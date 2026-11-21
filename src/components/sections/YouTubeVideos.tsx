@@ -136,8 +136,7 @@ export default function YouTubeVideos() {
         {/* Header */}
         <div className="mb-12">
           <p
-            className="text-xs font-semibold uppercase tracking-widest mb-3"
-            style={{ color: "#FF6820" }}
+            className="eyebrow text-xs font-semibold uppercase tracking-widest mb-3"
           >
             Canal Falandou
           </p>

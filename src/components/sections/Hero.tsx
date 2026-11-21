@@ -7,6 +7,8 @@ import Link from "next/link";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { STATS } from "@/data/stats";
+import PracticeCaseCard from "@/components/ui/PracticeCaseCard";
+import type { PracticeCase } from "@/data/practiceCases";
 
 // Inline SVG paths — Simple Icons (CC0). Logos são marcas dos respectivos proprietários.
 // Contexto: empregadores dos alunos matriculados — não implica endosso.
@@ -65,6 +67,8 @@ interface HeroProps {
   whatsappContext?: string;
   /** Texto do botão principal. LPs de mídia usam algo mais urgente (Arquitetura §8). */
   ctaLabel?: string;
+  /** "Situação em prática" ao lado do título, no desktop (direção criativa §5.1). */
+  practice?: PracticeCase;
 }
 
 
@@ -85,6 +89,7 @@ export default function Hero({
   statChip,
   whatsappContext = "hero",
   ctaLabel = "Quero começar",
+  practice,
 }: HeroProps) {
   const [loaded, setLoaded] = useState(false);
 
@@ -113,15 +118,11 @@ export default function Hero({
           WebkitMaskImage: "radial-gradient(ellipse at 30% 40%, black 0%, transparent 75%)",
         }}
       />
-      <div
-        aria-hidden="true"
-        className="absolute -top-40 -right-40 w-[640px] h-[640px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(255,104,32,0.18) 0%, transparent 65%)" }}
-      />
 
       <div className="relative z-10 max-w-[1200px] mx-auto px-5 md:px-8 pt-28 pb-12 md:pt-40 md:pb-20 min-h-[88vh] flex flex-col justify-center">
         {/* Revisão visual §5.1: título → explicação → CTA → prova curta. Os indicadores
             detalhados ficam na faixa seguinte (StatsBar). */}
+        <div className={practice ? "grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-12 xl:gap-16 items-center" : ""}>
         <div className="max-w-3xl">
           {/* Selo: menos contraste que o CTA */}
           <p
@@ -190,6 +191,13 @@ export default function Hero({
               ))}
             </div>
           </div>
+        </div>
+        {/* Composição do hero: o trabalho da escola ao lado da promessa (direção criativa §4.2) */}
+        {practice && (
+          <div className={fade("delay-300 hidden lg:block")}>
+            <PracticeCaseCard c={practice} compact />
+          </div>
+        )}
         </div>
       </div>
     </section>

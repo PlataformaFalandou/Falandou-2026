@@ -32,7 +32,7 @@ export default function DepoimentosPage() {
         <section className="pt-40 pb-16 md:pt-52 md:pb-20" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-[1200px] mx-auto px-5 md:px-8">
             <div className="max-w-3xl">
-              <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
+              <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-6">
                 Depoimentos
               </p>
               <h1

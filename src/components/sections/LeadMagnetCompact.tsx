@@ -17,12 +17,12 @@ export default function LeadMagnetCompact() {
         <div
           className="rounded-2xl p-8 md:p-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-10"
           style={{
-            background: "linear-gradient(135deg, rgba(255,104,32,0.12) 0%, rgba(255,104,32,0.04) 100%)",
-            border: "1px solid rgba(255,104,32,0.25)",
+            background: "var(--color-surface)",
+            border: "1px solid var(--color-border)",
           }}
         >
           <div className="flex-1">
-            <p className="font-body text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="eyebrow font-body text-xs font-bold uppercase tracking-widest mb-3">
               Ainda não é a hora? Comece por aqui
             </p>
             <h2

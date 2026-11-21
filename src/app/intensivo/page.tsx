@@ -1,3 +1,4 @@
+import { Check } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
@@ -69,7 +70,7 @@ export default function IntensivoPage() {
         {/* ── HERO ─────────────────────────────────────────────────────────── */}
         <section className="pt-40 pb-24 md:pt-52 md:pb-28" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-4xl mx-auto px-5 md:px-8">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6" style={{ color: "#FF6820" }}>
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-6">
               Plano Urgente
             </p>
             <h1
@@ -125,7 +126,7 @@ export default function IntensivoPage() {
         {/* ── PARA QUEM É ──────────────────────────────────────────────────── */}
         <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-5xl mx-auto px-5 md:px-8">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
               Para quem é
             </p>
             <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100" style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}>
@@ -145,7 +146,7 @@ export default function IntensivoPage() {
         {/* ── O QUE INCLUI ─────────────────────────────────────────────────── */}
         <section className="py-12 md:py-20 bg-bg">
           <div className="max-w-5xl mx-auto px-5 md:px-8">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
               O que inclui
             </p>
             <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100" style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}>
@@ -159,7 +160,7 @@ export default function IntensivoPage() {
                 <ul className="flex flex-col gap-3">
                   {INT.features.map((f) => (
                     <li key={f} className="flex items-start gap-3 font-body text-base" style={{ color: "var(--color-text)" }}>
-                      <span className="font-bold" style={{ color: "#FF6820" }}>✓</span>
+                      <span className="font-bold" style={{ color: "#FF6820" }}><Check size={16} strokeWidth={2.5} aria-hidden="true" /></span>
                       {f}
                     </li>
                   ))}
@@ -172,7 +173,7 @@ export default function IntensivoPage() {
                 <ul className="flex flex-col gap-3">
                   {INCLUDED_IN_ALL.map((f) => (
                     <li key={f} className="flex items-start gap-3 font-body text-base" style={{ color: "rgba(245,246,241,0.8)" }}>
-                      <span className="font-bold" style={{ color: "#FF6820" }}>✓</span>
+                      <span className="font-bold" style={{ color: "#FF6820" }}><Check size={16} strokeWidth={2.5} aria-hidden="true" /></span>
                       {f}
                     </li>
                   ))}

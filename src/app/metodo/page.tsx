@@ -1,3 +1,4 @@
+import { BarChart3, Check, Dumbbell, Map, Search, Target } from "lucide-react";
 import type { Metadata } from "next";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
@@ -6,6 +7,9 @@ import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
 import MethodCycle from "@/components/ui/MethodCycle";
 import CEFRScale from "@/components/ui/CEFRScale";
+import SpeakingLoop from "@/components/ui/SpeakingLoop";
+import PracticeCaseCard from "@/components/ui/PracticeCaseCard";
+import { PRACTICE_CASES } from "@/data/practiceCases";
 
 import JsonLd from "@/components/ui/JsonLd";
 import { PAUSE_RULE, RESCHEDULE_RULE, STUDENTS_PER_TEACHER } from "@/data/plans";
@@ -30,7 +34,7 @@ const steps = [
   {
     num: "01",
     tag: "Diagnóstico",
-    icon: "🔍",
+    icon: Search,
     title: "Exame CEFR diagnóstico",
     sub: "Ponto de partida técnico, sem achismo",
     body: "Antes de qualquer sessão, você faz um exame completo nas quatro habilidades — reading, listening, speaking e writing. O resultado posiciona você no padrão europeu CEFR (A1 a C2). Sem isso, qualquer plano é chute.",
@@ -45,7 +49,7 @@ const steps = [
   {
     num: "02",
     tag: "Estratégia",
-    icon: "🗺️",
+    icon: Map,
     title: "Plano individual de 90 dias",
     sub: "Montado para o seu objetivo, não para um público genérico",
     body: "Com o diagnóstico em mãos, os professores montam seu plano semana a semana. O vocabulário é do seu setor. As situações são do seu trabalho. Engenheiro treina engenharia; gestor treina reuniões e apresentações executivas.",
@@ -60,7 +64,7 @@ const steps = [
   {
     num: "03",
     tag: "Prática",
-    icon: "⚡",
+    icon: Dumbbell,
     title: "Prática guiada entre sessões",
     sub: "Atividades que imitam o uso real — não banco de questões genéricas",
     body: "Cada semana tem atividades direcionadas ao seu plano. Situações reais, vocabulário ativo, estruturas que você vai usar no trabalho. A prática é projetada para ativar o inglês, não apenas reconhecê-lo.",
@@ -75,7 +79,7 @@ const steps = [
   {
     num: "04",
     tag: "Sessões",
-    icon: "🎯",
+    icon: Target,
     title: "Sessões 1 a 1 com o professor",
     sub: "100% do tempo de cada sessão dedicado a você",
     body: "Sem dividir atenção com outros. O professor conhece seu plano, seu nível, seu objetivo. Cada sessão é uma conversa sobre o que você precisa usar — não sobre o que está no livro.",
@@ -90,7 +94,7 @@ const steps = [
   {
     num: "05",
     tag: "Resultado",
-    icon: "📊",
+    icon: BarChart3,
     title: "Exame de evolução CEFR",
     sub: "Resultado em número, não em sensação",
     body: "Ao final dos 90 dias você refaz o exame CEFR. Comparamos com o ponto de partida — você vê exatamente quanto subiu. 79% dos profissionais sobem pelo menos 1 nível. Se quiser continuar, o próximo plano começa do novo patamar.",
@@ -170,8 +174,7 @@ export default function MetodoPage() {
           <div className="max-w-5xl mx-auto px-5 md:px-8">
             <div className="max-w-3xl">
               <p
-                className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6"
-                style={{ color: "#FF6820" }}
+                className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-6"
               >
                 Como funciona
               </p>
@@ -222,7 +225,7 @@ export default function MetodoPage() {
         {/* ── NARRATIVA EM 3 ATOS — tentou → por que não funcionou → o que muda ── */}
         <section className="py-12 md:py-20 bg-bg">
           <div className="max-w-5xl mx-auto px-5 md:px-8">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
               Por que outros formatos não resolveram
             </p>
             <h2
@@ -242,7 +245,7 @@ export default function MetodoPage() {
                     transitionDelay: `${i * 80}ms`,
                   }}
                 >
-                  <span className="font-body text-xs font-bold uppercase tracking-widest" style={{ color: "#FF6820" }}>
+                  <span className="eyebrow font-body text-xs font-bold uppercase tracking-widest">
                     {i + 1} · {act.tag}
                   </span>
                   <h3
@@ -266,7 +269,7 @@ export default function MetodoPage() {
         {/* ── CICLO: visão geral em diagrama (UX/UI §17, §25) ────────────── */}
         <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-5xl mx-auto px-5 md:px-8">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
               O ciclo em uma imagem
             </p>
             <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100 text-white" style={{ fontSize: "var(--text-h2)" }}>
@@ -282,6 +285,37 @@ export default function MetodoPage() {
                 A escala CEFR: de onde você sai e aonde chega.
               </h3>
               <CEFRScale interactive />
+            </div>
+          </div>
+        </section>
+
+        {/* ── UMA SESSÃO, POR DENTRO — demonstração do método (direção criativa §2.2, §4.2) ── */}
+        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }} aria-labelledby="sessao-por-dentro">
+          <div className="max-w-[1200px] mx-auto px-5 md:px-8">
+            <p className="eyebrow reveal text-sm font-bold uppercase tracking-widest mb-3">Uma sessão, por dentro</p>
+            <h2 id="sessao-por-dentro" className="reveal font-display text-white mb-4 max-w-3xl" style={{ fontSize: "var(--text-h2)" }}>
+              Sua próxima situação vira o <span style={{ color: "#FF6820" }}>tema da próxima sessão.</span>
+            </h2>
+            <p className="reveal text-lg max-w-2xl mb-12" style={{ color: "var(--color-text-body)" }}>
+              Você traz o e-mail, a reunião ou a apresentação que tem pela frente. A sessão transforma isso em
+              prática: ideia, frase, fala e feedback.
+            </p>
+            <div className="reveal mb-12">
+              <SpeakingLoop />
+            </div>
+            <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-8 lg:gap-12 items-start">
+              <div className="reveal">
+                <h3 className="font-display text-white mb-4" style={{ fontSize: "var(--text-h3)" }}>
+                  Como o professor trabalha um e-mail
+                </h3>
+                <ul className="flex flex-col gap-3 text-base leading-6" style={{ color: "var(--color-text-body)" }}>
+                  <li><strong className="text-white">Identifica o padrão.</strong> Tradução literal do português, tom, estrutura.</li>
+                  <li><strong className="text-white">Explica o porquê.</strong> Você entende a regra, não decora a correção.</li>
+                  <li><strong className="text-white">Reescreve com você.</strong> A versão final sai da sua frase, no seu contexto.</li>
+                  <li><strong className="text-white">Volta na próxima sessão.</strong> O mesmo padrão aparece em outra situação, até ficar automático.</li>
+                </ul>
+              </div>
+              <PracticeCaseCard c={PRACTICE_CASES.followup} />
             </div>
           </div>
         </section>
@@ -334,7 +368,7 @@ export default function MetodoPage() {
                       {step.title}
                     </h3>
                   </div>
-                  <span className="text-3xl flex-shrink-0 hidden sm:block">{step.icon}</span>
+                  <step.icon size={28} strokeWidth={1.75} className="flex-shrink-0 hidden sm:block" style={{ color: "var(--color-text-muted)" }} aria-hidden="true" />
                 </div>
 
                 {/* Body */}
@@ -358,9 +392,7 @@ export default function MetodoPage() {
                           <span
                             className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold mt-0.5"
                             style={{ background: "rgba(255,104,32,0.12)", color: "#FF6820" }}
-                          >
-                            ✓
-                          </span>
+                          ><Check size={16} strokeWidth={2.5} aria-hidden="true" /></span>
                           <span
                             className="font-body text-sm leading-snug"
                             style={{ color: "rgba(245,246,241,0.75)" }}
@@ -413,8 +445,7 @@ export default function MetodoPage() {
           <div className="max-w-4xl mx-auto px-5 md:px-8">
             <div className="text-center mb-14">
               <p
-                className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3"
-                style={{ color: "#FF6820" }}
+                className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3"
               >
                 Dúvidas sobre o funcionamento
               </p>

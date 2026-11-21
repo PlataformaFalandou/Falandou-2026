@@ -1,3 +1,4 @@
+import { Check } from "lucide-react";
 import { STATS } from "@/data/stats";
 import { PRICE_FROM } from "@/data/plans";
 
@@ -41,7 +42,7 @@ export default function Benefits() {
     <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
       <div className="max-w-[1200px] mx-auto px-5 md:px-8">
         <div className="max-w-2xl mb-14">
-          <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+          <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
             O que muda depois do ciclo
           </p>
           <h2
@@ -65,7 +66,7 @@ export default function Benefits() {
               <ul className="flex flex-col gap-4 mb-8">
                 {c.points.map((pt) => (
                   <li key={pt} className="flex items-start gap-3 font-body text-sm leading-relaxed" style={{ color: "rgba(245,246,241,0.85)" }}>
-                    <span className="font-bold flex-shrink-0" style={{ color: "#FF6820" }}>✓</span>
+                    <span className="font-bold flex-shrink-0" style={{ color: "#FF6820" }}><Check size={16} strokeWidth={2.5} aria-hidden="true" /></span>
                     {pt}
                   </li>
                 ))}

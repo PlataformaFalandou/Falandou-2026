@@ -36,8 +36,7 @@ export default function ResultsData() {
 
         {/* cabeçalho */}
         <div className="mb-12">
-          <p className="font-body text-xs font-semibold uppercase tracking-widest mb-3"
-             style={{ color: "#FF6820" }}>
+          <p className="eyebrow font-body text-xs font-semibold uppercase tracking-widest mb-3">
             Resultado verificável
           </p>
           <h2 className="font-display font-extrabold leading-tight mb-3"

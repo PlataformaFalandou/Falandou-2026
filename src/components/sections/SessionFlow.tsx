@@ -39,7 +39,7 @@ export default function SessionFlow() {
   return (
     <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }} aria-labelledby="como-e-uma-sessao">
       <div className="max-w-6xl mx-auto px-5 md:px-8">
-        <p className="reveal text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF6820" }}>
+        <p className="eyebrow reveal text-sm font-bold uppercase tracking-widest mb-3">
           Na prática
         </p>
         <h2
@@ -49,6 +49,9 @@ export default function SessionFlow() {
         >
           Como funciona uma sessão.
         </h2>
+        <p className="reveal text-lg -mt-8 mb-12 max-w-2xl" style={{ color: "var(--color-text-body)" }}>
+          Sua próxima reunião pode virar o tema da próxima sessão.
+        </p>
         <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {STEPS.map(({ Icon, when, title, body }, i) => (
             <li

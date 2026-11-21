@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Badge, Button, Card, Input, Section } from "@/components/ui/ds";
 import CEFRScale from "@/components/ui/CEFRScale";
 import StatsBar from "@/components/sections/StatsBar";
+import PracticeCaseCard from "@/components/ui/PracticeCaseCard";
+import { PRACTICE_CASES } from "@/data/practiceCases";
 
 // UX/UI §27 — página de referência interna: tokens e componentes renderizados.
 // Fora do Google e do sitemap. Facilita revisões e a entrada de novos devs.
@@ -132,6 +134,18 @@ export default function DesignSystemPage() {
         <CEFRScale from="B1" to="B2" />
         <div className="mt-10">
           <CEFRScale interactive />
+        </div>
+      </Section>
+
+      <Section tone="alt">
+        <h2 className="font-display text-white mb-4" style={{ fontSize: "var(--text-h2)" }}>Ponto da marca e situação em prática</h2>
+        <p className="mb-8 max-w-2xl" style={{ color: "var(--color-text-body)" }}>
+          O ponto de “Falandou.” marca o início de um rótulo, de uma etapa ou da observação do professor — uma vez por
+          composição. Regras em <code>docs/direcao-criativa.md</code>.
+        </p>
+        <p className="eyebrow text-sm font-bold uppercase tracking-widest mb-8">Rótulo de seção</p>
+        <div className="max-w-xl">
+          <PracticeCaseCard c={PRACTICE_CASES.atraso} />
         </div>
       </Section>
 
