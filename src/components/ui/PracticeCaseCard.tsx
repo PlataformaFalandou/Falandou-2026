@@ -42,7 +42,7 @@ export default function PracticeCaseCard({ c, compact = false }: { c: PracticeCa
         </div>
 
         {/* 3 — observação do professor: o ponto marca a fala */}
-        <div className="reveal delay-200 mt-5 rounded-xl p-4" style={{ backgroundColor: "var(--color-interactive)" }}>
+        <div className="reveal delay-note mt-5 rounded-xl p-4" style={{ backgroundColor: "var(--color-interactive)" }}>
           <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-2 text-white">
             <span className="dot" aria-hidden="true" />
             Observação do professor
@@ -53,7 +53,7 @@ export default function PracticeCaseCard({ c, compact = false }: { c: PracticeCa
         </div>
 
         {/* 4 — versão revisada */}
-        <div className="reveal delay-300 mt-5">
+        <div className="reveal delay-answer mt-5">
           <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "var(--color-text-muted)" }}>
             Versão revisada
           </p>

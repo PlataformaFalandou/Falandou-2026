@@ -117,8 +117,8 @@ export default function BlogPage() {
               <p className="text-base md:text-lg max-w-2xl mb-6" style={{ color: "var(--color-text-body)" }}>
                 {featured.resumo}
               </p>
-              <span className="inline-flex items-center gap-2 font-semibold group-hover:gap-3 transition-all" style={{ color: "#FF6820" }}>
-                Ler o guia <ArrowRight size={16} aria-hidden="true" />
+              <span className="inline-flex items-center gap-2 font-semibold" style={{ color: "#FF6820" }}>
+                Ler o guia <ArrowRight size={16} className="card-arrow" aria-hidden="true" />
               </span>
             </Link>
           )}

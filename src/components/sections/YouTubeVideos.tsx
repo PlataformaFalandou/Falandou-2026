@@ -78,7 +78,7 @@ function VideoCard({ videoId, title, description, tag, isShort = false }: VideoC
             <img
               src={thumbnailUrl}
               alt={title}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              className="absolute inset-0 w-full h-full object-cover"
               loading="lazy"
             />
             {/* Overlay escuro */}
@@ -86,7 +86,7 @@ function VideoCard({ videoId, title, description, tag, isShort = false }: VideoC
             {/* Botão play */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div
-                className="w-14 h-14 rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-110 shadow-2xl"
+                className="w-14 h-14 rounded-full flex items-center justify-center shadow-2xl"
                 style={{ backgroundColor: "#FF6820" }}
               >
                 <Play size={22} fill="#141414" className="ml-0.5" style={{ color: "#141414" }} />

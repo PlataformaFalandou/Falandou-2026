@@ -130,7 +130,7 @@ export default function InglesEntrevistaPage() {
               </a>
               <a
                 href="#como-preparamos"
-                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold transition-all duration-200 hover:scale-105"
+                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold transition-all duration-200"
                 style={{ background: "rgba(255,255,255,0.08)", color: "white", border: "1px solid var(--color-border)" }}
               >
                 Ver como funciona

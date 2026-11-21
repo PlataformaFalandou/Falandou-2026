@@ -7,12 +7,14 @@
  */
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export default function SiteChrome() {
   const pathname = usePathname();
   // Caminho de onde a navegação saiu; null = sem navegação em andamento.
   const [from, setFrom] = useState<string | null>(null);
   const done = from !== null && pathname !== from;
+  useScrollReveal();
 
   // Começa ao clicar num link interno que muda de página.
   useEffect(() => {

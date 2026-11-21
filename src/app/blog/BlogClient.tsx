@@ -123,11 +123,11 @@ export default function BlogClient({
                     {formatDate(article.created_at)}
                   </span>
                   <span
-                    className="inline-flex items-center gap-1 text-sm font-semibold transition-all duration-200 group-hover:gap-2"
+                    className="inline-flex items-center gap-1 text-sm font-semibold"
                     style={{ color: "#FF6820" }}
                   >
                     Ler
-                    <ArrowRight size={14} />
+                    <ArrowRight size={16} className="card-arrow" aria-hidden="true" />
                   </span>
                 </div>
               </div>

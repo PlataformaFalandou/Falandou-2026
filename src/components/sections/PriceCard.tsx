@@ -66,7 +66,8 @@ export default function PriceCard({ plan, duration }: { plan: Plan; duration: Du
         </p>
         <p className="text-sm font-semibold text-white leading-snug mb-6 md:min-h-[3.9rem]">{plan.forWho}</p>
 
-        <div className="mb-6">
+        {/* Preço troca na hora, com uma única transição de opacidade (direção de movimento §4.2) */}
+        <div className="mb-6 value-swap" key={duration}>
           <div className="flex items-end gap-1">
             <span
               className="font-display font-extrabold tnum leading-none whitespace-nowrap"

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import FadeImage from "@/components/ui/FadeImage";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
@@ -38,7 +38,7 @@ export function TeacherCard({ t }: { t: Teacher }) {
     >
       {/* Photo */}
       <div className="relative w-full aspect-square overflow-hidden img-skeleton">
-        <Image
+        <FadeImage
           src={t.photo}
           alt={t.name}
           fill

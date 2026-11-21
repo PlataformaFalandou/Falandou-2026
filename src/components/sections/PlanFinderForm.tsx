@@ -8,7 +8,7 @@
  */
 
 import { useState } from "react";
-import { Loader2, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 
@@ -35,7 +35,9 @@ function validate(v: { name: string; area: string; level: string }): Errors {
 export default function PlanFinderForm({ context = "plan-finder" }: { context?: string }) {
   const [values, setValues] = useState({ name: "", area: "", level: "", goal: "" });
   const [touched, setTouched] = useState<Partial<Record<Field, boolean>>>({});
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  // Sem espera artificial (direção de movimento §3.3): abrir o WhatsApp é imediato,
+  // então a confirmação aparece direto, com transição de 150ms.
+  const [status, setStatus] = useState<"idle" | "sent">("idle");
   const [url, setUrl] = useState("");
 
   const errors = validate(values);
@@ -55,16 +57,15 @@ export default function PlanFinderForm({ context = "plan-finder" }: { context?: 
       (values.goal.trim() ? ` O que eu quero conquistar com o inglês: ${values.goal.trim()}` : "");
     const link = getWhatsAppUrl(msg);
     setUrl(link);
-    setStatus("sending");
     trackCTAClick(`${context}-form`);
     // Abre no mesmo gesto do clique (navegadores bloqueiam pop-up aberto depois).
     window.open(link, "_blank", "noopener,noreferrer");
-    setTimeout(() => setStatus("sent"), 500);
+    setStatus("sent");
   }
 
   if (status === "sent") {
     return (
-      <div className="text-center py-6" role="status" aria-live="polite">
+      <div className="confirm-in text-center py-6" role="status" aria-live="polite">
         <svg width="64" height="64" viewBox="0 0 64 64" className="mx-auto mb-5" aria-hidden="true">
           <circle cx="32" cy="32" r="30" fill="rgba(45,122,79,0.18)" stroke="#5CC28A" strokeWidth="2" />
           <path d="M20 33 l8 8 l16 -18" fill="none" stroke="#5CC28A" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" className="check-draw" />
@@ -134,22 +135,9 @@ export default function PlanFinderForm({ context = "plan-finder" }: { context?: 
         <label htmlFor="pf-goal">O que você quer conquistar com o inglês? (opcional)</label>
       </div>
 
-      <button
-        type="submit"
-        disabled={status === "sending"}
-        className="cta-primary inline-flex items-center justify-center gap-2 w-full sm:w-auto sm:justify-self-start min-w-[220px] px-8 py-4 rounded-full text-base font-bold disabled:opacity-70 disabled:cursor-wait"
-      >
-        {status === "sending" ? (
-          <>
-            <Loader2 size={18} className="animate-spin" aria-hidden="true" />
-            Abrindo o WhatsApp…
-          </>
-        ) : (
-          <>
-            <MessageCircle size={18} aria-hidden="true" />
-            Quero a indicação do meu plano
-          </>
-        )}
+      <button type="submit" className="cta-primary w-full sm:w-auto sm:justify-self-start sm:min-w-[260px] rounded-full">
+        <MessageCircle aria-hidden="true" />
+        Quero a indicação do meu plano
       </button>
       <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
         Pelo WhatsApp · a equipe responde em até 1h. Nada fica gravado no site.

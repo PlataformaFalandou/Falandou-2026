@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import FadeImage from "@/components/ui/FadeImage";
 import Link from "next/link";
 import { ArrowRight, Check, X } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
@@ -89,10 +89,10 @@ export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) 
             <div
               key={p.role}
               className="reveal rounded-2xl overflow-hidden flex flex-col"
-              style={{ transitionDelay: `${i * 80}ms`, backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
+              style={{ transitionDelay: `${Math.min(i * 40, 120)}ms`, backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
             >
               <div className="relative aspect-[16/9] img-skeleton">
-                <Image src={p.img} alt={p.role} fill className="object-cover object-top" sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw" />
+                <FadeImage src={p.img} alt={p.role} fill className="object-cover object-top" sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw" />
               </div>
               <div className="p-6 flex flex-col flex-1">
                 <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "#FF8A4C" }}>
@@ -130,12 +130,12 @@ export default function ForWhom({ persona }: { persona?: ForWhomPersona } = {}) 
               <Link
                 key={m.href}
                 href={m.href}
-                className="group flex items-center justify-between gap-3 px-5 py-4 rounded-2xl bg-surface border border-border hover:border-[rgba(255,104,32,0.4)] hover:shadow-md transition-all duration-300"
+                className="group flex items-center justify-between gap-3 px-5 py-4 rounded-2xl bg-surface border border-border hover:border-[rgba(255,104,32,0.4)] card-hover transition-all duration-300"
               >
                 <span className="font-body text-sm font-semibold" style={{ color: "var(--color-text)" }}>
                   {m.label}
                 </span>
-                <ArrowRight size={16} className="flex-shrink-0 group-hover:translate-x-1 transition-transform" style={{ color: "#FF6820" }} />
+                <ArrowRight size={16} className="flex-shrink-0 card-arrow transition-transform" style={{ color: "#FF6820" }} />
               </Link>
             ))}
           </div>

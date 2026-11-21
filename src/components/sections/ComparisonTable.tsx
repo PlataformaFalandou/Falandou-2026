@@ -126,7 +126,7 @@ export default function ComparisonTable() {
             <div
               key={row.dimension}
               className={`reveal rounded-2xl overflow-hidden border`}
-              style={{ borderColor: "var(--color-border)", transitionDelay: `${i * 60}ms` }}
+              style={{ borderColor: "var(--color-border)", transitionDelay: `${Math.min(i * 40, 120)}ms` }}
             >
               <div className="px-4 py-3" style={{ background: "var(--color-bg)" }}>
                 <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.5)" }}>

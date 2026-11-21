@@ -49,8 +49,8 @@ export default function BlogPreview({
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="reveal group flex flex-col bg-bg-alt rounded-2xl overflow-hidden border border-border hover:border-laranja/30 hover:shadow-md transition-all duration-300"
-              style={{ transitionDelay: `${i * 80}ms` }}
+              className="reveal group flex flex-col bg-bg-alt rounded-2xl overflow-hidden border border-border hover:border-laranja/30 card-hover transition-all duration-300"
+              style={{ transitionDelay: `${Math.min(i * 40, 120)}ms` }}
             >
               {/* Color header bar */}
               <div

@@ -242,7 +242,7 @@ export default function MetodoPage() {
                   style={{
                     backgroundColor: i === 2 ? "var(--color-surface)" : "var(--color-bg-alt)",
                     border: i === 2 ? "2px solid #FF6820" : "1px solid var(--color-border)",
-                    transitionDelay: `${i * 80}ms`,
+                    transitionDelay: `${Math.min(i * 40, 120)}ms`,
                   }}
                 >
                   <span className="eyebrow font-body text-xs font-bold uppercase tracking-widest">
@@ -329,7 +329,7 @@ export default function MetodoPage() {
                 className="reveal rounded-2xl overflow-hidden"
                 style={{
                   border: "1px solid var(--color-border)",
-                  transitionDelay: `${i * 60}ms`,
+                  transitionDelay: `${Math.min(i * 40, 120)}ms`,
                 }}
               >
                 {/* Header strip */}
@@ -464,7 +464,7 @@ export default function MetodoPage() {
                   className="reveal rounded-2xl p-7 bg-surface"
                   style={{
                     border: "1px solid var(--color-border)",
-                    transitionDelay: `${i * 50}ms`,
+                    transitionDelay: `${Math.min(i * 40, 120)}ms`,
                   }}
                 >
                   <p

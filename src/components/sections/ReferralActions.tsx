@@ -48,7 +48,7 @@ export function ShareReferral() {
       <button
         type="button"
         onClick={copy}
-        className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full font-body font-semibold text-base transition-all duration-200 hover:scale-105"
+        className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full font-body font-semibold text-base transition-all duration-200"
         style={{ background: "rgba(255,255,255,0.1)", color: "white", border: "1px solid rgba(255,255,255,0.25)" }}
       >
         {copied ? "Mensagem copiada ✓" : "Copiar mensagem com o link"}

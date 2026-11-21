@@ -162,7 +162,7 @@ img, video {
   font-weight: 700;
   line-height: 1.2;
   text-align: center;
-  transition: background-color 150ms ease-out, border-color 150ms ease-out, color 150ms ease-out;
+  transition: background-color 160ms ease-out, border-color 160ms ease-out, color 160ms ease-out, transform 140ms ease-out;
 }
 .cta-primary svg,
 .cta-secondary svg {
@@ -196,6 +196,8 @@ img, video {
 }
 .cta-primary:active {
   background-color: var(--color-brand-dark);
+  transform: scale(0.98);
+  transition-duration: 80ms;
 }
 .cta-secondary {
   background-color: transparent;
@@ -208,6 +210,8 @@ img, video {
 }
 .cta-secondary:active {
   background-color: #333333;
+  transform: scale(0.98);
+  transition-duration: 80ms;
 }
 /* Desabilitado: cor e comportamento próprios, não só opacidade (§3.3) */
 .cta-primary:disabled,
@@ -244,11 +248,22 @@ img, video {
 /* Card clicável: borda clara no hover (laranja fica para seleção/recomendação). Cards sem
    ação não usam esta classe (§6.1). */
 .card-hover {
-  transition: border-color 200ms ease-out, background-color 200ms ease-out;
+  transition: border-color 180ms ease-out, background-color 180ms ease-out, transform 180ms ease-out;
 }
-.card-hover:hover {
-  border-color: var(--color-border-strong) !important;
+@media (hover: hover) {
+  .card-hover:hover {
+    border-color: var(--color-border-strong) !important;
+    transform: translateY(-2px);
+  }
+  .card-hover:hover .card-arrow {
+    transform: translateX(3px);
+  }
+}
+.card-hover:active {
   background-color: var(--color-interactive) !important;
+}
+.card-arrow {
+  transition: transform 180ms ease-out;
 }
 
 /* Link com hover laranja (rodapé, listas) */
@@ -259,52 +274,95 @@ img, video {
   color: var(--color-brand) !important;
 }
 
-/* Scroll reveal (§15): opacity 0→1 + translateY(24px→0), 450ms */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.45s var(--ease-out-soft), transform 0.45s var(--ease-out-soft);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-24px);
-  transition: opacity 0.45s var(--ease-out-soft), transform 0.45s var(--ease-out-soft);
-}
-.reveal-left.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-.reveal-right {
-  opacity: 0;
-  transform: translateX(24px);
-  transition: opacity 0.45s var(--ease-out-soft), transform 0.45s var(--ease-out-soft);
-}
-.reveal-right.visible {
-  opacity: 1;
-  transform: translateX(0);
+/* ── Movimento (direção de movimento) ──────────────────────────────────────
+   Ágil, preciso e acolhedor: um elemento apresenta, outro responde, a interface confirma.
+   Curva padrão de entrada: cubic-bezier(0.22, 1, 0.36, 1).
+   Conteúdo SEMPRE disponível sem JavaScript: o estado oculto só vale com a classe
+   `js` no <html> (posta por um script no <head>, e retirada se o observador não iniciar). */
+:root {
+  --ease-enter: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Atrasos escalonados: cards 0 / 100 / 200ms */
-.delay-100 { transition-delay: 0.1s; }
-.delay-150 { transition-delay: 0.15s; }
-.delay-200 { transition-delay: 0.2s; }
-.delay-300 { transition-delay: 0.3s; }
-.delay-400 { transition-delay: 0.4s; }
-.delay-500 { transition-delay: 0.5s; }
-
-/* Headline do hero: palavras entram em sequência (stagger de 80ms) */
-@keyframes wordIn {
-  from { opacity: 0; transform: translateY(0.4em); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.word-in {
-  display: inline-block;
+/* Revelação ao rolar (§2.1): opacidade + 12px, 320ms, uma vez por visita */
+.js .reveal,
+.js .reveal-left,
+.js .reveal-right {
   opacity: 0;
-  animation: wordIn 0.45s var(--ease-out-soft) forwards;
+  transform: translateY(12px);
+  transition: opacity 320ms var(--ease-enter), transform 320ms var(--ease-enter);
+}
+.js .reveal.visible,
+.js .reveal-left.visible,
+.js .reveal-right.visible {
+  opacity: 1;
+  transform: none;
+}
+/* Só opacidade (números, §1.3): 220ms, sem deslocamento */
+.js .reveal-fade {
+  opacity: 0;
+  transition: opacity 220ms ease-out;
+}
+.js .reveal-fade.visible {
+  opacity: 1;
+}
+
+/* Atrasos curtos, limitados a 120ms acumulados (§2.2) */
+.delay-100 { transition-delay: 40ms; }
+.delay-150 { transition-delay: 60ms; }
+.delay-200 { transition-delay: 80ms; }
+.delay-300 { transition-delay: 100ms; }
+.delay-400,
+.delay-500 { transition-delay: 120ms; }
+/* Sequência que comunica (observação depois do exemplo, resposta depois da observação) */
+.delay-note { transition-delay: 200ms; }
+.delay-answer { transition-delay: 360ms; }
+/* No celular, cada card anima quando entra na tela, sem esperar os anteriores */
+@media (max-width: 767px) {
+  .js .reveal:not(.delay-note):not(.delay-answer) {
+    transition-delay: 0ms !important;
+  }
+}
+
+/* Entrada do hero (§1.1): título → explicação → botões, tudo disponível em ~400ms.
+   CSS puro: roda na primeira pintura, sem esperar a hidratação. */
+@keyframes enterUp12 {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes enterUp8 {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes enterFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.enter-title { animation: enterUp12 320ms var(--ease-enter) both; }
+.enter-text { animation: enterUp8 280ms var(--ease-enter) 60ms both; }
+.enter-actions { animation: enterFade 240ms ease-out 100ms both; }
+.enter-aside { animation: enterFade 280ms ease-out 140ms both; }
+
+/* Fotografias (§1.2): opacidade em 300ms, sem zoom, desfoque ou deslocamento */
+.img-fade {
+  transition: opacity 300ms ease-out;
+}
+.img-fade[data-loading="true"] {
+  opacity: 0;
+}
+
+/* Troca de página (§5.3): o conteúdo entra em 180ms, sem tela intermediária */
+#conteudo {
+  animation: enterFade 180ms ease-out both;
+}
+
+/* Atualização de valor (§4.2): preço troca na hora, com uma única transição de opacidade */
+.value-swap {
+  animation: enterFade 120ms ease-out both;
+}
+
+/* Painel que aparece depois de uma ação (confirmação, §3.3) */
+.confirm-in {
+  animation: enterFade 150ms ease-out both;
 }
 
 /* Detalhe laranja: sublinhado na palavra-chave */
@@ -434,7 +492,7 @@ img, video {
     transition-duration: 0.01ms !important;
     transition-delay: 0ms !important;
   }
-  .reveal, .reveal-left, .reveal-right, .word-in {
+  .reveal, .reveal-left, .reveal-right, .reveal-fade, .img-fade {
     opacity: 1 !important;
     transform: none !important;
   }

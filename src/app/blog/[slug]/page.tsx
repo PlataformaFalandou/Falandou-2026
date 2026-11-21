@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { absoluteUrl } from "@/lib/site";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
+import FadeImage from "@/components/ui/FadeImage";
 import { ArrowLeft, ChevronRight, Clock, MessageCircle, PlayCircle } from "lucide-react";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
@@ -310,7 +310,7 @@ export default async function ArticlePage({
                 href={`https://www.youtube.com/watch?v=${article.video}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group mt-12 flex flex-col sm:flex-row items-stretch gap-0 rounded-2xl overflow-hidden border border-border bg-surface hover:shadow-lg transition-shadow"
+                className="group mt-12 flex flex-col sm:flex-row items-stretch gap-0 rounded-2xl overflow-hidden border border-border bg-surface card-hover transition-shadow"
               >
                 <span className="relative block sm:w-64 aspect-video sm:aspect-auto flex-shrink-0 bg-black">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -376,7 +376,7 @@ export default async function ArticlePage({
               className="mt-12 rounded-2xl p-6 md:p-8 flex gap-4 items-start"
               style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
             >
-              <Image
+              <FadeImage
                 src={author.photo}
                 alt={`Foto de ${author.name}`}
                 width={64}

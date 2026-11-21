@@ -78,12 +78,33 @@ Para criar um novo: adicione um item em `practiceCases.ts`. Em uma página de pe
 - Gestores: conduzir uma reunião. Engenheiros: explicar uma decisão técnica.
 - ✗ Errado: duas páginas iguais em que só muda o nome da profissão.
 
-## 6. Movimento
+## 6. Movimento — ágil, preciso e acolhedor
 
-- Animação **revela uma sequência ou explica uma mudança**: a observação do professor e a versão revisada aparecem depois do exemplo.
-- **Números estáveis:** a contagem animada dos indicadores saiu.
-- Controles: transições de 150–250ms. `prefers-reduced-motion` desliga as animações.
-- ✗ Errado: animações contínuas ao lado de texto longo, elementos pulsando, números "correndo".
+Inspirado em uma conversa: um elemento apresenta a ideia, outro responde e a interface confirma a ação. O movimento conduz a atenção sem atrasar a leitura. **A assinatura vem da consistência, não da quantidade de efeitos.** Curva de entrada padrão: `cubic-bezier(0.22, 1, 0.36, 1)`.
+
+| Onde | Movimento | Tempo |
+|---|---|---|
+| Hero | Título inteiro (opacidade + 12px) → explicação (+8px, +60ms) → botões e prova (opacidade, +100ms). Tudo disponível em ~400ms. CSS puro, sem esperar o JavaScript. Sem animar palavra por palavra. | 320 / 280 / 240ms |
+| Fotografias | Só opacidade, sem zoom, desfoque ou deslocamento; espaço reservado; foto já carregada não espera (`FadeImage`) | 300ms |
+| Números | Valor final desde o início; entrada só por opacidade. Nunca contagem crescente em preços, percentuais ou tamanho de amostra | 220ms |
+| Seções ao rolar | Começam quando o bloco entra 80px na tela; opacidade + 12px; uma vez por visita | 320ms |
+| Cards em sequência | 40ms entre cards, no máximo 120ms acumulados; no celular, cada card anima ao entrar, sem esperar os anteriores. Planos sem destaque animado | 320ms |
+| Jornada (home) | Número da etapa em leitura muda de cor; linha de progresso avança (no desktop, uma vez, etapa por etapa) | 180 / 250ms |
+| Botões | Hover: fundo e borda. Pressionado: `scale(0.98)`. Soltar sem efeito elástico. Link do WhatsApp abre na hora | 160 / 80 / 140ms |
+| Cards clicáveis | Desktop: sobem 2px, borda muda, seta avança 3px. Toque: resposta breve ao pressionar. Cards informativos ficam estáticos | 180ms |
+| Confirmação | Aparece quando a ação acontece de verdade (sem espera artificial). Indicador de 16px só se a operação passar de ~200ms | 150ms |
+| FAQ | Abre e fecha na altura real da resposta; seta gira 180°; foco fica na pergunta | 220 / 180ms |
+| Seletor 25/50 min | Indicador desliza; preços trocam na hora com uma única transição de opacidade, sem valores intermediários | 180 / 120ms |
+| Carrossel | Só acionado pelo visitante (sem troca automática); arrastar, setas de 44px e teclado ← → | 280ms |
+| Cabeçalho | Depois de 24px de rolagem, fundo e borda inferior aparecem; altura constante | 180ms |
+| Menu móvel | Painel: 16px + opacidade; fundo de proteção em 160ms; rolagem travada; foco vai ao painel e volta ao botão; fecha com Esc | 220ms |
+| Troca de página | Conteúdo entra por opacidade, sem tela intermediária; voltar recupera a posição | 180ms |
+
+**Regras fixas:**
+
+- **Conteúdo sempre disponível.** O estado oculto só vale com a classe `js` no `<html>`. Se o observador não iniciar em 3s, tudo aparece.
+- **Movimento reduzido no sistema:** sem deslocamentos, escalas nem rolagem animada; aparece direto o estado final.
+- ✗ **Evitar:** animações contínuas, brilho pulsante, números "correndo", tremor como única indicação de erro, sucesso antes da resposta do sistema.
 
 ## 7. Fotografia (direção para a produção própria)
 

@@ -50,7 +50,7 @@ export default function NotFound() {
               </a>
               <Link
                 href="/"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full text-base font-semibold text-white transition-all duration-200 hover:scale-105"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full text-base font-semibold text-white transition-all duration-200"
                 style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.25)" }}
               >
                 Ir para a página inicial

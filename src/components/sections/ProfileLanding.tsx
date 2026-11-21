@@ -76,7 +76,7 @@ export default function ProfileLanding({ data }: { data: ProfileData }) {
               </a>
               <Link
                 href="/metodo"
-                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold text-white transition-all duration-200 hover:scale-105"
+                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold text-white transition-all duration-200"
                 style={{ background: "rgba(255,255,255,0.08)", border: "1px solid var(--color-border)" }}
               >
                 Como funciona o ciclo

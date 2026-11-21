@@ -2,7 +2,6 @@
 
 import { trackCTAClick } from "@/lib/analytics";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
@@ -36,24 +35,14 @@ const HERO_LOGOS = [
 ];
 
 /**
- * Palavras que entram em sequência (UX/UI §15: stagger de 80ms por palavra).
- * `accent` pinta de laranja e sublinha (detalhe em laranja na palavra-chave, §2).
- * `start` continua a contagem quando a headline tem mais de um trecho.
+ * Trecho do título. O título entra inteiro, sem separar palavras ou letras
+ * (direção de movimento §1.1). `accent` pinta de laranja — uma expressão por título.
+ * `start` é mantido por compatibilidade.
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function HeadlineWords({ text, accent = false, start = 0 }: { text: string; accent?: boolean; start?: number }) {
-  const words = text.trim().split(/\s+/);
-  const content = words.map((w, i) => (
-    <span key={i} className="word-in" style={{ animationDelay: `${(start + i) * 80}ms` }}>
-      {w}
-      {i < words.length - 1 ? " " : ""}
-    </span>
-  ));
-  // Destaque só pela cor, sem sublinhado decorativo (revisão visual §2.3)
-  return accent ? (
-    <span style={{ color: "#FF6820" }}>{content}</span>
-  ) : (
-    <>{content} </>
-  );
+  const clean = text.trim();
+  return accent ? <span style={{ color: "#FF6820" }}>{clean}</span> : <>{clean} </>;
 }
 
 interface HeroProps {
@@ -91,16 +80,8 @@ export default function Hero({
   ctaLabel = "Quero começar",
   practice,
 }: HeroProps) {
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    const t = setTimeout(() => setLoaded(true), 50);
-    return () => clearTimeout(t);
-  }, []);
-
-  const fade = (extra = "") =>
-    `transition-all duration-500 ${extra} ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`;
-
+  // Entrada do hero (direção de movimento §1.1) em CSS puro: título (320ms) →
+  // explicação (+60ms) → botões e prova (+100ms). Sem esperar a hidratação.
   return (
     <section
       className="relative overflow-hidden"
@@ -126,24 +107,24 @@ export default function Hero({
         <div className="max-w-3xl">
           {/* Selo: menos contraste que o CTA */}
           <p
-            className={fade("inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium mb-6 border")}
+            className="enter-title inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium mb-6 border"
             style={{ background: "transparent", borderColor: "var(--color-border)", color: "var(--color-text-body)" }}
           >
             {eyebrow}
           </p>
 
           {/* 1 — título: uma expressão destacada, só pela cor (§2.3) */}
-          <h1 className="font-display text-white mb-4" style={{ fontSize: "var(--text-h1)" }}>
+          <h1 className="enter-title font-display text-white mb-4" style={{ fontSize: "var(--text-h1)" }}>
             {headline}
           </h1>
 
           {/* 2 — explicação em duas ou três linhas */}
-          <p className={fade("delay-150 text-lg md:text-xl leading-relaxed mb-8 max-w-2xl")} style={{ color: "var(--color-text-body)" }}>
+          <p className="enter-text text-lg md:text-xl leading-relaxed mb-8 max-w-2xl" style={{ color: "var(--color-text-body)" }}>
             {subheadlineShort ?? subheadline}
           </p>
 
           {/* 3 — ação: primário preenchido + secundário de contorno neutro (§3.1) */}
-          <div className={fade("delay-200")}>
+          <div className="enter-actions">
             <div className="flex flex-col sm:flex-row gap-3">
               <a
                 href={getWhatsAppUrlForContext(whatsappContext)}
@@ -167,7 +148,7 @@ export default function Hero({
           </div>
 
           {/* 4 — prova curta */}
-          <div className={fade("delay-300 mt-10")}>
+          <div className="enter-actions mt-10">
             <p className="text-sm tnum mb-4" style={{ color: "var(--color-text-body)" }}>
               {statChip ?? (
                 <>
@@ -194,7 +175,7 @@ export default function Hero({
         </div>
         {/* Composição do hero: o trabalho da escola ao lado da promessa (direção criativa §4.2) */}
         {practice && (
-          <div className={fade("delay-300 hidden lg:block")}>
+          <div className="enter-aside hidden lg:block">
             <PracticeCaseCard c={practice} compact />
           </div>
         )}

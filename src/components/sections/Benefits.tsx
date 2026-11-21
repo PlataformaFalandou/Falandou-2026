@@ -58,7 +58,7 @@ export default function Benefits() {
             <div
               key={c.tag}
               className="reveal rounded-2xl bg-surface border border-border p-6 md:p-8 flex flex-col"
-              style={{ transitionDelay: `${i * 80}ms` }}
+              style={{ transitionDelay: `${Math.min(i * 40, 120)}ms` }}
             >
               <p className="font-body text-xs font-bold uppercase tracking-widest mb-5" style={{ color: "rgba(245,246,241,0.55)" }}>
                 {c.tag}

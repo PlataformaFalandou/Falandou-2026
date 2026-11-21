@@ -10,6 +10,7 @@ import { DEFAULT_DURATION, DURATIONS, PLANS, type Duration } from "@/data/plans"
 
 export default function PlansGrid() {
   const [duration, setDuration] = useState<Duration>(DEFAULT_DURATION);
+  const sorted = [...DURATIONS].sort((a, b) => a - b);
 
   return (
     <>
@@ -17,22 +18,33 @@ export default function PlansGrid() {
         <p className="font-body text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.5)" }}>
           Duração de cada sessão
         </p>
+        {/* Direção de movimento §4.2: o indicador da opção escolhida desliza em 180ms */}
         <div
-          className="inline-flex p-1 rounded-full"
+          className="relative inline-grid grid-cols-2 p-1 rounded-full"
           role="group"
           aria-label="Duração de cada sessão"
           style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}
         >
-          {[...DURATIONS].sort((a, b) => a - b).map((d) => (
+          <span
+            aria-hidden="true"
+            className="absolute top-1 bottom-1 left-1 rounded-full"
+            style={{
+              width: "calc(50% - 4px)",
+              backgroundColor: "#FF6820",
+              transform: `translateX(${sorted.indexOf(duration) * 100}%)`,
+              transition: "transform 180ms var(--ease-enter)",
+            }}
+          />
+          {sorted.map((d) => (
             <button
               key={d}
               type="button"
               onClick={() => setDuration(d)}
               aria-pressed={duration === d}
-              className="h-12 min-w-[120px] px-5 rounded-full font-body text-base font-bold transition-colors"
+              className="relative z-[1] h-12 min-w-[120px] px-5 rounded-full font-body text-base font-bold"
               style={{
-                backgroundColor: duration === d ? "#FF6820" : "transparent",
                 color: duration === d ? "var(--color-on-brand)" : "var(--color-text)",
+                transition: "color 180ms ease-out",
               }}
             >
               {d} minutos

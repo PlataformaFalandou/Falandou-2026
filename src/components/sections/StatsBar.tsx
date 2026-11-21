@@ -9,9 +9,9 @@ export type StatsBarItem = { value: number | string; suffix?: string; label: str
 
 // Números estáveis (direção criativa §4.3): sem contagem animada — o movimento fica
 // para revelar sequências e explicar mudanças, não para fazer o número "correr".
-function StatItem({ item, delay }: { item: StatsBarItem; delay: number }) {
+function StatItem({ item }: { item: StatsBarItem }) {
   return (
-    <div className="reveal text-center px-4 py-6" style={{ transitionDelay: `${delay}ms` }}>
+    <div className="reveal-fade text-center px-4 py-6">
       <div className="font-display font-extrabold tnum leading-none" style={{ fontSize: "clamp(2rem, 6vw, 3rem)", color: "#F5F6F1" }}>
         {item.value}
         {item.suffix}
@@ -36,8 +36,8 @@ export default function StatsBar({ items = DEFAULT_STATS_BAR }: { items?: StatsB
     <section style={{ backgroundColor: "var(--color-bg)" }} className="border-y border-border py-6">
       <div className="max-w-6xl mx-auto px-5 md:px-8">
         <div className="grid grid-cols-3 divide-x divide-white/10">
-          {items.map((s, i) => (
-            <StatItem key={s.label} item={s} delay={i * 100} />
+          {items.map((s) => (
+            <StatItem key={s.label} item={s} />
           ))}
         </div>
         {/* Revisão editorial §23: o modelo 1 a 1 explícito nos dois primeiros blocos da home */}

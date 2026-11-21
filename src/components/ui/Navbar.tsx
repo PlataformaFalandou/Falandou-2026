@@ -10,7 +10,7 @@
  * `solid`: grafite desde o topo, para páginas que começam com fundo claro.
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CreditCard, GraduationCap, Home, Menu, MessageCircle, X } from "lucide-react";
@@ -102,11 +102,26 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 80);
+    // Direção de movimento §5.1: depois de 24px, fundo e borda inferior aparecem (180ms)
+    const handleScroll = () => setScrolled(window.scrollY > 24);
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Foco (direção de movimento §5.2): ao abrir, vai para o painel; ao fechar, volta ao botão.
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const panelCloseRef = useRef<HTMLButtonElement>(null);
+  const wasOpen = useRef(false);
+  useEffect(() => {
+    if (menuOpen) {
+      panelCloseRef.current?.focus();
+      wasOpen.current = true;
+    } else if (wasOpen.current) {
+      triggerRef.current?.focus();
+      wasOpen.current = false;
+    }
+  }, [menuOpen]);
 
   // Gaveta aberta: trava a rolagem do fundo e fecha com Esc.
   useEffect(() => {
@@ -127,10 +142,12 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
         Pular para o conteúdo
       </a>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow] duration-300 ${
-          filled ? "shadow-lg border-b border-white/5" : ""
-        }`}
-        style={{ backgroundColor: filled ? "rgba(20,20,20,0.96)" : "transparent" }}
+        className="fixed top-0 left-0 right-0 z-50 border-b"
+        style={{
+          backgroundColor: filled ? "rgba(20,20,20,0.96)" : "rgba(20,20,20,0)",
+          borderColor: filled ? "var(--color-border)" : "transparent",
+          transition: "background-color 180ms ease-out, border-color 180ms ease-out",
+        }}
       >
         <nav className="max-w-[1200px] mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between gap-3">
           <Link href="/" className="flex items-center" onClick={() => setMenuOpen(false)}>
@@ -176,14 +193,15 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
             <button
               type="button"
               className="md:hidden w-11 h-11 -mr-1 rounded-lg text-white flex items-center justify-center"
+              ref={triggerRef}
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
               aria-expanded={menuOpen}
               aria-controls="menu-gaveta"
             >
               <span
-                className="inline-flex transition-transform duration-200 ease-in-out"
-                style={{ transform: menuOpen ? "rotate(90deg)" : "rotate(0deg)" }}
+                className="inline-flex"
+                style={{ transform: menuOpen ? "rotate(90deg)" : "rotate(0deg)", transition: "transform 180ms ease-out" }}
               >
                 {menuOpen ? <X size={24} /> : <Menu size={24} />}
               </span>
@@ -194,10 +212,8 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
 
       {/* Gaveta do celular: entra da direita, overlay 50% (§8) */}
       <div
-        className={`md:hidden fixed inset-0 z-[55] transition-opacity duration-200 ${
-          menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
-        style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+        className={`md:hidden fixed inset-0 z-[55] ${menuOpen ? "" : "pointer-events-none"}`}
+        style={{ backgroundColor: "rgba(0,0,0,0.5)", opacity: menuOpen ? 1 : 0, transition: "opacity 160ms ease-out" }}
         onClick={() => setMenuOpen(false)}
         aria-hidden="true"
       />
@@ -206,16 +222,25 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
         aria-label="Menu"
         aria-hidden={!menuOpen}
         inert={!menuOpen}
-        className={`md:hidden fixed top-0 right-0 bottom-0 z-[56] w-[84%] max-w-sm flex flex-col transition-transform duration-200 ease-in-out ${
-          menuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-        style={{ backgroundColor: "var(--color-surface)", borderLeft: "1px solid var(--color-border)" }}
+        className="md:hidden fixed top-0 right-0 bottom-0 z-[56] w-[84%] max-w-sm flex flex-col"
+        style={{
+          backgroundColor: "var(--color-surface)",
+          borderLeft: "1px solid var(--color-border)",
+          // Painel entra com 16px de deslocamento + opacidade em 220ms (§5.2)
+          opacity: menuOpen ? 1 : 0,
+          transform: menuOpen ? "none" : "translateX(16px)",
+          visibility: menuOpen ? "visible" : "hidden",
+          transition: menuOpen
+            ? "opacity 220ms var(--ease-enter), transform 220ms var(--ease-enter), visibility 0s"
+            : "opacity 160ms ease-in, transform 160ms ease-in, visibility 0s 160ms",
+        }}
       >
         <div className="h-16 px-4 flex items-center justify-between border-b" style={{ borderColor: "var(--color-border)" }}>
           <span className="font-display font-extrabold text-xl text-white">
             Menu<span style={{ color: LARANJA }}>.</span>
           </span>
           <button
+            ref={panelCloseRef}
             type="button"
             onClick={() => setMenuOpen(false)}
             aria-label="Fechar menu"

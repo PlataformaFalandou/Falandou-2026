@@ -39,7 +39,7 @@ export default function CookieBanner() {
       role="dialog"
       aria-live="polite"
       aria-label="Aviso de cookies"
-      className="fixed bottom-[calc(76px+env(safe-area-inset-bottom))] left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:max-w-md z-[60] rounded-2xl p-5 shadow-2xl"
+      className="fixed bottom-[calc(76px+env(safe-area-inset-bottom))] left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:max-w-md z-[54] rounded-2xl p-5 shadow-2xl"
       style={{ backgroundColor: "var(--color-bg)", border: "1px solid var(--color-border)" }}
     >
       <p className="font-body text-base leading-6 mb-4" style={{ color: "rgba(255,255,255,0.75)" }}>

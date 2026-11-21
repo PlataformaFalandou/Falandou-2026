@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
@@ -41,6 +41,57 @@ const steps: { number: string; title: React.ReactNode; description: string }[] =
 ];
 
 export default function Journey() {
+  // Etapa em leitura (direção de movimento §2.3): a que cruza a faixa central da tela.
+  // Só destaca — não bloqueia a rolagem nem esconde as descrições.
+  const [active, setActive] = useState(0);
+  const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
+
+  useEffect(() => {
+    const items = itemRefs.current.filter((el): el is HTMLLIElement => !!el);
+    const last = items.length - 1;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const desktop = window.matchMedia("(min-width: 768px)").matches;
+    let timer: ReturnType<typeof setInterval> | undefined;
+
+    // Desktop (etapas lado a lado): ao aparecer, a linha avança etapa por etapa, uma vez.
+    if (desktop) {
+      const io = new IntersectionObserver(
+        ([e]) => {
+          if (!e.isIntersecting) return;
+          io.disconnect();
+          if (reduced) {
+            setActive(last);
+            return;
+          }
+          let i = 0;
+          timer = setInterval(() => {
+            i += 1;
+            setActive(i);
+            if (i >= last && timer) clearInterval(timer);
+          }, 300);
+        },
+        { rootMargin: "0px 0px -30% 0px" }
+      );
+      if (items[0]?.parentElement) io.observe(items[0].parentElement);
+      return () => {
+        io.disconnect();
+        if (timer) clearInterval(timer);
+      };
+    }
+
+    // Celular (etapas empilhadas): a etapa que cruza a faixa central da tela fica em destaque.
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) setActive(Number((e.target as HTMLElement).dataset.step));
+        }
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    );
+    items.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
   return (
     <section id="como-funciona" className="py-12 md:py-20 bg-bg">
       <div className="max-w-[1200px] mx-auto px-5 md:px-8">
@@ -64,21 +115,35 @@ export default function Journey() {
 
         {/* Timeline */}
         <ol className="relative grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-6">
-          {/* Linha de conexão (desktop) */}
-          <div
-            aria-hidden
-            className="hidden md:block absolute left-[10%] right-[10%] top-7 h-px"
-            style={{ backgroundColor: "rgba(255,104,32,0.3)" }}
-          />
+          {/* Linha de conexão (desktop): trilho neutro + progresso até a etapa em leitura (250ms) */}
+          <div aria-hidden className="hidden md:block absolute left-[10%] right-[10%] top-7 h-px" style={{ backgroundColor: "var(--color-border)" }}>
+            <div
+              className="h-full origin-left"
+              style={{
+                backgroundColor: "#FF6820",
+                transform: `scaleX(${active / (steps.length - 1)})`,
+                transition: "transform 250ms var(--ease-enter)",
+              }}
+            />
+          </div>
           {steps.map((step, i) => (
             <li
               key={step.number}
+              ref={(el) => {
+                itemRefs.current[i] = el;
+              }}
+              data-step={i}
+              aria-current={i === active ? "step" : undefined}
               className="reveal relative flex md:flex-col items-start md:items-center gap-4 md:gap-0 md:text-center rounded-2xl p-5 md:p-6"
-              style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)", transitionDelay: `${i * 60}ms` }}
+              style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)", transitionDelay: `${Math.min(i * 40, 120)}ms` }}
             >
               <span
-                className="relative z-10 flex-shrink-0 w-11 h-11 md:w-12 md:h-12 md:-mt-1 md:mb-5 rounded-full flex items-center justify-center font-display font-black text-sm shadow-md on-brand"
-                style={{ backgroundColor: "#FF6820" }}
+                className="relative z-10 flex-shrink-0 w-11 h-11 md:w-12 md:h-12 md:-mt-1 md:mb-5 rounded-full flex items-center justify-center font-display font-black text-sm"
+                style={{
+                  backgroundColor: i <= active ? "#FF6820" : "var(--color-interactive)",
+                  color: i <= active ? "var(--color-on-brand)" : "var(--color-text)",
+                  transition: "background-color 180ms ease-out, color 180ms ease-out",
+                }}
               >
                 {step.number}
               </span>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowRight, PlayCircle } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, PlayCircle } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 import { testimonials, personasWithEnough, type Persona, type Testimonial } from "@/data/testimonials";
@@ -157,19 +157,36 @@ function TestimonialCard({ t }: { t: Testimonial }) {
 }
 
 /**
- * Carrossel do celular (UX/UI §12): rolagem com snap, troca lenta a cada 5s,
- * indicadores de página e pausa ao tocar, passar o mouse ou focar. Quem pediu menos
- * movimento no sistema não tem troca automática. No desktop, grade de 3 colunas.
+ * Carrossel do celular (direção de movimento §4.3): acionado só pelo visitante — sem troca
+ * automática. Deslocamento de 280ms com desaceleração suave; gesto de arrastar (rolagem
+ * nativa com snap); setas anterior/próximo de 44px e teclado (← →). A altura acompanha o
+ * maior relato, sem cortar texto. No desktop, grade de 3 colunas.
  */
 function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
   const rowRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
 
   const goTo = useCallback((i: number) => {
     const row = rowRef.current;
     const card = row?.children[i] as HTMLElement | undefined;
-    if (row && card) row.scrollTo({ left: card.offsetLeft - row.offsetLeft - 24, behavior: "smooth" });
+    if (!row || !card) return;
+    const target = card.offsetLeft - row.offsetLeft - 20;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      row.scrollLeft = target;
+      return;
+    }
+    const from = row.scrollLeft;
+    const start = performance.now();
+    const ease = (x: number) => 1 - Math.pow(1 - x, 3);
+    // Durante a animação, o snap fica desligado para não brigar com o deslocamento.
+    row.style.scrollSnapType = "none";
+    const step = (now: number) => {
+      const p = Math.min((now - start) / 280, 1);
+      row.scrollLeft = from + (target - from) * ease(p);
+      if (p < 1) requestAnimationFrame(step);
+      else row.style.scrollSnapType = "";
+    };
+    requestAnimationFrame(step);
   }, []);
 
   useEffect(() => {
@@ -177,58 +194,82 @@ function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
     if (!row) return;
     const onScroll = () => {
       const w = (row.children[0] as HTMLElement | undefined)?.offsetWidth ?? 1;
-      setIndex(Math.round(row.scrollLeft / (w + 16)));
+      setIndex(Math.min(items.length - 1, Math.max(0, Math.round(row.scrollLeft / (w + 16)))));
     };
     row.addEventListener("scroll", onScroll, { passive: true });
     return () => row.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [items.length]);
 
-  useEffect(() => {
-    if (paused || items.length < 2) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (!window.matchMedia("(max-width: 767px)").matches) return;
-    const id = setInterval(() => goTo((index + 1) % items.length), 5000);
-    return () => clearInterval(id);
-  }, [paused, index, items.length, goTo]);
+  const prev = () => goTo(Math.max(0, index - 1));
+  const next = () => goTo(Math.min(items.length - 1, index + 1));
 
   return (
-    <div
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onTouchStart={() => setPaused(true)}
-      onFocusCapture={() => setPaused(true)}
-    >
+    <div>
       <div
         ref={rowRef}
-        className="snap-row -mx-5 px-5 md:mx-0 md:px-0 flex md:grid md:grid-cols-3 gap-4 md:gap-5 overflow-x-auto md:overflow-visible"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowRight") { e.preventDefault(); next(); }
+          if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
+        }}
+        className="snap-row -mx-5 px-5 md:mx-0 md:px-0 flex md:grid md:grid-cols-3 gap-4 md:gap-6 overflow-x-auto md:overflow-visible items-stretch"
+        role="region"
         aria-roledescription="carrossel"
+        aria-label="Depoimentos"
       >
-        {items.map((t) => (
-          <div key={t.name} className="shrink-0 w-[85%] sm:w-[60%] md:w-auto">
+        {items.map((t, i) => (
+          <div
+            key={t.name}
+            className="shrink-0 w-[85%] sm:w-[60%] md:w-auto"
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`${i + 1} de ${items.length}`}
+          >
             <TestimonialCard t={t} />
           </div>
         ))}
       </div>
       {items.length > 1 && (
-        <div className="md:hidden flex justify-center gap-2 mt-5">
+        <div className="md:hidden flex items-center justify-center gap-1 mt-5">
+          <button
+            type="button"
+            onClick={prev}
+            disabled={index === 0}
+            aria-label="Depoimento anterior"
+            className="w-11 h-11 rounded-full flex items-center justify-center disabled:opacity-40"
+            style={{ border: "1px solid var(--color-border-strong)", color: "var(--color-text)" }}
+          >
+            <ChevronLeft size={20} aria-hidden="true" />
+          </button>
           {items.map((t, i) => (
             <button
               key={t.name}
               type="button"
-              onClick={() => {
-                setPaused(true);
-                goTo(i);
-              }}
-              aria-label={`Depoimento ${i + 1} de ${items.length}`}
+              onClick={() => goTo(i)}
+              aria-label={`Ir para o depoimento ${i + 1} de ${items.length}`}
               aria-current={i === index}
               className="w-11 h-11 flex items-center justify-center"
             >
               <span
-                className="block h-2 rounded-full transition-all duration-200"
-                style={{ width: i === index ? 24 : 8, backgroundColor: i === index ? "#FF6820" : "rgba(255,255,255,0.25)" }}
+                className="block h-2 rounded-full"
+                style={{
+                  width: i === index ? 24 : 8,
+                  backgroundColor: i === index ? "#FF6820" : "rgba(255,255,255,0.25)",
+                  transition: "width 180ms ease-out, background-color 180ms ease-out",
+                }}
               />
             </button>
           ))}
+          <button
+            type="button"
+            onClick={next}
+            disabled={index === items.length - 1}
+            aria-label="Próximo depoimento"
+            className="w-11 h-11 rounded-full flex items-center justify-center disabled:opacity-40"
+            style={{ border: "1px solid var(--color-border-strong)", color: "var(--color-text)" }}
+          >
+            <ChevronRight size={20} aria-hidden="true" />
+          </button>
         </div>
       )}
     </div>

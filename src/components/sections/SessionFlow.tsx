@@ -57,7 +57,7 @@ export default function SessionFlow() {
             <li
               key={title}
               className="reveal rounded-2xl p-6 md:p-8 flex flex-col"
-              style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)", transitionDelay: `${i * 100}ms` }}
+              style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)", transitionDelay: `${Math.min(i * 40, 120)}ms` }}
             >
               <span className="flex items-center gap-3 mb-4">
                 <span
