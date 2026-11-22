@@ -206,7 +206,7 @@ export default function ResultadosPage() {
           heading="Comece pelo seu ponto de partida."
           text="O primeiro passo é o diagnóstico CEFR: você começa o ciclo sabendo exatamente onde está."
           whatsappContext="resultados"
-          secondary={{ href: "/planos", label: "Ver planos e valores" }}
+          secondary={{ href: "/metodo", label: "Entender o método" }}
         />
 
         <LeadMagnetCompact />

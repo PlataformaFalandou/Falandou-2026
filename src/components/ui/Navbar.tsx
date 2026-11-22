@@ -2,7 +2,9 @@
 
 /**
  * Navbar — Arquitetura da Informação §2 + UX/UI §8.
- * Desktop: até 4 links + botão "Quero começar"; transparente no topo e grafite depois de 80px.
+ * Desktop: links por intenção (revisão de jornada §4) — Começar (Método e Planos, links diretos),
+ * Conhecer a escola e Aprender (listas que abrem com clique ou teclado) — + botão "Quero começar".
+ * Página atual: cor + traço sob o link (forma, não só cor) + aria-current (§7).
  * Celular:
  *  - header fixo mínimo (56px) com logo, botão "Começar" sempre visível e menu;
  *  - menu em gaveta da direita, com overlay escuro 50% (fecha ao tocar fora ou com Esc);
@@ -13,26 +15,42 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CreditCard, GraduationCap, Home, Menu, MessageCircle, X } from "lucide-react";
+import { ChevronDown, CreditCard, GraduationCap, Home, Menu, MessageCircle, X } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 
-const navLinks = [
-  { label: "Método", href: "/metodo" },
-  { label: "Planos", href: "/planos" },
-  { label: "Blog", href: "/blog" },
-  { label: "Depoimentos", href: "/depoimentos" },
-];
+type NavLink = { label: string; href: string; desc?: string };
+type NavGroup = { id: string; title: string; links: NavLink[] };
 
-// Gaveta do celular: grupos separados por divisores.
-const drawerGroups = [
-  navLinks,
-  [
-    { label: "Professores", href: "/professores" },
-    { label: "Resultados", href: "/resultados" },
-    { label: "Sobre a Falandou", href: "/sobre" },
-    { label: "Vocabulário profissional", href: "/vocabulario" },
-  ],
+// Arquitetura por intenção (revisão de jornada §4). A mesma estrutura serve ao menu do
+// computador e à gaveta do celular.
+const NAV_GROUPS: NavGroup[] = [
+  {
+    id: "comecar",
+    title: "Começar",
+    links: [
+      { label: "Método", href: "/metodo", desc: "Como funciona o ciclo de 90 dias" },
+      { label: "Planos", href: "/planos", desc: "Preços, ritmo e o que cada plano inclui" },
+    ],
+  },
+  {
+    id: "escola",
+    title: "Conhecer a escola",
+    links: [
+      { label: "Professores", href: "/professores", desc: "Quem conduz as sessões" },
+      { label: "Resultados", href: "/resultados", desc: "Evolução medida no exame CEFR" },
+      { label: "Depoimentos", href: "/depoimentos", desc: "O que dizem os profissionais" },
+      { label: "Sobre a Falandou", href: "/sobre", desc: "A escola e como ela trabalha" },
+    ],
+  },
+  {
+    id: "aprender",
+    title: "Aprender",
+    links: [
+      { label: "Blog", href: "/blog", desc: "Artigos sobre inglês no trabalho" },
+      { label: "Vocabulário profissional", href: "/vocabulario", desc: "Expressões por situação" },
+    ],
+  },
 ];
 
 const LARANJA = "#FF6820";
@@ -69,9 +87,11 @@ function BottomNav({ pathname }: { pathname: string }) {
               <Link
                 href={href}
                 aria-current={active ? "page" : undefined}
-                className="h-full flex flex-col items-center justify-center gap-1 text-[11px] font-semibold"
-                style={{ color: active ? LARANJA : "rgba(245,246,241,0.65)" }}
+                className="relative h-full flex flex-col items-center justify-center gap-1 text-[11px]"
+                style={{ color: active ? LARANJA : "rgba(245,246,241,0.65)", fontWeight: active ? 800 : 600 }}
               >
+                {/* Página atual também pela forma: traço no topo do atalho (§7) */}
+                {active && <span aria-hidden="true" className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-b-full" style={{ backgroundColor: LARANJA }} />}
                 <Icon size={20} aria-hidden="true" />
                 {label}
               </Link>
@@ -184,6 +204,28 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
     };
   }, [menuOpen]);
 
+  // Listas do menu do computador: abertas nesta rota (trocar de página fecha).
+  const [openGroup, setOpenGroup] = useState<{ id: string; path: string } | null>(null);
+  const groupOpen = (id: string) => openGroup?.id === id && openGroup.path === pathname;
+  const groupBtnRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  useEffect(() => {
+    if (!openGroup) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      groupBtnRefs.current[openGroup.id]?.focus();
+      setOpenGroup(null);
+    };
+    const onDown = (e: PointerEvent) => {
+      if (!(e.target as HTMLElement).closest("[data-nav-group]")) setOpenGroup(null);
+    };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("pointerdown", onDown);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("pointerdown", onDown);
+    };
+  }, [openGroup]);
+
   const filled = solid || scrolled;
 
   return (
@@ -201,26 +243,96 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
       >
         <nav className="max-w-[1200px] mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between gap-3">
           <Link href="/" className="flex items-center" onClick={() => setMenuOpen(false)}>
-            <span className="font-display font-extrabold text-2xl md:text-4xl tracking-tight text-white">
+            <span className="font-display font-extrabold text-2xl md:text-3xl lg:text-4xl tracking-tight text-white">
               Falandou
               <span style={{ color: LARANJA }}>.</span>
             </span>
           </Link>
 
-          {/* Desktop nav */}
-          <ul className="hidden md:flex items-center gap-10">
-            {navLinks.map((link) => {
+          {/* Desktop nav — por intenção (§4) */}
+          <ul className="hidden md:flex items-center gap-5 lg:gap-8">
+            {NAV_GROUPS[0].links.map((link) => {
               const active = isActive(pathname, link.href);
               return (
-                <li key={link.label}>
+                <li key={link.href}>
                   <Link
                     href={link.href}
                     aria-current={active ? "page" : undefined}
-                    className="link-hover text-base font-medium"
-                    style={{ color: active ? LARANJA : "rgba(255,255,255,0.8)" }}
+                    className="nav-link text-base font-medium"
+                    data-active={active || undefined}
                   >
                     {link.label}
                   </Link>
+                </li>
+              );
+            })}
+            {NAV_GROUPS.slice(1).map((g) => {
+              const open = groupOpen(g.id);
+              const hasActive = g.links.some((l) => isActive(pathname, l.href));
+              const panelId = `menu-${g.id}`;
+              return (
+                <li
+                  key={g.id}
+                  className="relative"
+                  data-nav-group
+                  onBlur={(e) => {
+                    if (open && !e.currentTarget.contains(e.relatedTarget as Node)) setOpenGroup(null);
+                  }}
+                >
+                  <button
+                    type="button"
+                    ref={(el) => {
+                      groupBtnRefs.current[g.id] = el;
+                    }}
+                    aria-expanded={open}
+                    aria-controls={panelId}
+                    onClick={() => setOpenGroup(open ? null : { id: g.id, path: pathname })}
+                    className="nav-link inline-flex items-center gap-1 text-base font-medium"
+                    data-active={hasActive || undefined}
+                  >
+                    {g.title}
+                    {hasActive && <span className="sr-only"> (a página atual está aqui)</span>}
+                    <ChevronDown
+                      size={16}
+                      aria-hidden="true"
+                      style={{ transform: open ? "rotate(180deg)" : "none", transition: "transform var(--dur-base) ease-out" }}
+                    />
+                  </button>
+                  <div
+                    id={panelId}
+                    hidden={!open}
+                    className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-72 rounded-2xl p-2 shadow-2xl confirm-in"
+                    style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
+                  >
+                    <ul>
+                      {g.links.map((l) => {
+                        const active = isActive(pathname, l.href);
+                        return (
+                          <li key={l.href}>
+                            <Link
+                              href={l.href}
+                              aria-current={active ? "page" : undefined}
+                              onClick={() => setOpenGroup(null)}
+                              className="menu-item flex items-start gap-3 rounded-xl px-3 py-2.5"
+                            >
+                              <span className="dot mt-2 flex-shrink-0" aria-hidden="true" style={{ visibility: active ? "visible" : "hidden" }} />
+                              <span>
+                                <span className="block font-semibold" style={{ color: active ? LARANJA : "#F5F6F1" }}>
+                                  {l.label}
+                                  {active && <span className="ml-2 text-xs font-medium" style={{ color: "var(--color-text-muted)" }}>você está aqui</span>}
+                                </span>
+                                {l.desc && (
+                                  <span className="block text-sm" style={{ color: "var(--color-text-muted)" }}>
+                                    {l.desc}
+                                  </span>
+                                )}
+                              </span>
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
                 </li>
               );
             })}
@@ -235,8 +347,8 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
               onClick={() => trackCTAClick("navbar")}
               className="cta-primary cta-sm-mobile rounded-full"
             >
-              <span className="md:hidden">Começar</span>
-              <span className="hidden md:inline">Quero começar</span>
+              <span className="lg:hidden">Começar</span>
+              <span className="hidden lg:inline">Quero começar</span>
             </a>
 
             {/* Botão do menu: hambúrguer ↔ X com rotação de 45° (§5) */}
@@ -303,25 +415,37 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
           </button>
         </div>
         <nav className="flex-1 overflow-y-auto px-5 py-4">
-          {drawerGroups.map((group, gi) => (
-            <ul key={gi} className={gi > 0 ? "mt-3 pt-3 border-t" : ""} style={{ borderColor: "var(--color-border)" }}>
-              {group.map((link) => {
-                const active = isActive(pathname, link.href);
-                return (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      aria-current={active ? "page" : undefined}
-                      className="flex items-center min-h-[48px] text-xl font-semibold"
-                      style={{ color: active ? LARANJA : "#F5F6F1" }}
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
+          {NAV_GROUPS.map((group, gi) => (
+            <div key={group.id} className={gi > 0 ? "mt-3 pt-3 border-t" : ""} style={{ borderColor: "var(--color-border)" }}>
+              <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "var(--color-text-muted)" }}>
+                {group.title}
+              </p>
+              <ul>
+                {group.links.map((link) => {
+                  const active = isActive(pathname, link.href);
+                  return (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        aria-current={active ? "page" : undefined}
+                        className="flex items-center gap-3 min-h-[48px] text-xl font-semibold"
+                        style={{ color: active ? LARANJA : "#F5F6F1" }}
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {link.label}
+                        {/* Página atual também em texto (§7) */}
+                        {active && (
+                          <span className="inline-flex items-center gap-1.5 text-xs font-medium" style={{ color: "var(--color-text-muted)" }}>
+                            <span className="dot" aria-hidden="true" />
+                            você está aqui
+                          </span>
+                        )}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           ))}
         </nav>
         <div className="p-5 border-t" style={{ borderColor: "var(--color-border)", paddingBottom: "calc(1.25rem + env(safe-area-inset-bottom))" }}>

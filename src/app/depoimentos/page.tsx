@@ -69,7 +69,7 @@ export default function DepoimentosPage() {
           heading="A próxima história pode ser a sua."
           text="Conte o seu objetivo e o seu prazo. A equipe responde em até 1h e explica o ciclo de 90 dias para o seu caso."
           whatsappContext="depoimentos"
-          secondary={{ href: "/planos", label: "Ver planos e valores" }}
+          secondary={{ href: "/metodo", label: "Entender o método" }}
         />
 
         <LeadMagnetCompact />

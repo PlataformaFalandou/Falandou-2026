@@ -95,6 +95,7 @@ export default function SentenceBuilder({ blocks, accepted, end = "", onSolved }
     <div onKeyDown={(e) => e.key === "Escape" && drag && setDrag(null)}>
       <div
         ref={rowRef}
+        role="group"
         className="flex flex-wrap items-stretch gap-2 min-h-[56px] p-3 rounded-xl border"
         style={{ borderColor: "var(--color-border)", backgroundColor: "var(--color-bg)" }}
         aria-label="Blocos da frase, na ordem atual"
@@ -168,10 +169,11 @@ export default function SentenceBuilder({ blocks, accepted, end = "", onSolved }
           <Check aria-hidden="true" /> Conferir a frase
         </button>
       </div>
-      <p className="text-sm mt-2" style={{ color: "var(--color-text-muted)" }}>
+      {/* Leitores de tela: a seleção e cada movimento são anunciados, com a frase na ordem atual. */}
+      <p className="text-sm mt-2" style={{ color: "var(--color-text-muted)" }} aria-live="polite">
         {selected === null
           ? "Arraste os blocos com o mouse, ou toque em um bloco e use “Mover antes” / “Mover depois”."
-          : `Bloco selecionado: “${blocks[order[selected]]}”.`}
+          : `Bloco selecionado: “${blocks[order[selected]]}”, posição ${selected + 1} de ${order.length}. Ordem atual: ${sentence}`}
       </p>
 
       <p aria-live="polite" className="mt-3 text-base">

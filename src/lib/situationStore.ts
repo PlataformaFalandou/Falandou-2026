@@ -41,3 +41,28 @@ export function useSituation(): SituationId {
     () => DEFAULT
   );
 }
+
+function readChosen(): SituationId | null {
+  try {
+    const v = sessionStorage.getItem(KEY);
+    if (v === "reunioes" || v === "entrevistas" || v === "apresentacoes") return v;
+  } catch {
+    /* ignora */
+  }
+  return null;
+}
+
+/**
+ * Situação que o visitante ESCOLHEU nesta visita (ou `null` se ele ainda não escolheu).
+ * Usada em /metodo e /planos para manter exemplos e chamadas coerentes, sem refazer a escolha.
+ */
+export function useChosenSituation(): SituationId | null {
+  return useSyncExternalStore(
+    (cb) => {
+      window.addEventListener(EVENT, cb);
+      return () => window.removeEventListener(EVENT, cb);
+    },
+    readChosen,
+    () => null
+  );
+}

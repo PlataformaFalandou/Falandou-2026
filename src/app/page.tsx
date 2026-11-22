@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/ui/Navbar";
 import HeroAB from "@/components/sections/HeroAB";
 import StatsBar from "@/components/sections/StatsBar";
+import HomeShortcuts from "@/components/sections/HomeShortcuts";
 import MicroLesson from "@/components/interactive/MicroLesson";
 import ForWhom from "@/components/sections/ForWhom";
 import Journey from "@/components/sections/Journey";
@@ -53,6 +54,8 @@ export default function HomePage() {
         <JsonLd data={organizationSchema()} />
         {/* 1. Promessa + prova (600+, logos) + ação */}
         <HeroAB />
+        {/* 1b. Atalhos para quem já sabe o que procura (revisão de jornada §1) */}
+        <HomeShortcuts />
         {/* 2. Faixa de números do último ciclo, logo abaixo da Hero (UX/UI §7) */}
         <StatsBar />
         {/* 2b. Microaula interativa — o visitante experimenta uma situação (direção "o inglês ganhando forma") */}

@@ -1,5 +1,7 @@
 import { SITE_URL } from "@/lib/site";
 export const WHATSAPP_NUMBER = "5511971419047";
+/** Número para exibir (ex.: quando o WhatsApp não abre e a pessoa copia a mensagem). */
+export const WHATSAPP_DISPLAY = `+${WHATSAPP_NUMBER.slice(0, 2)} ${WHATSAPP_NUMBER.slice(2, 4)} ${WHATSAPP_NUMBER.slice(4, 9)}-${WHATSAPP_NUMBER.slice(9)}`;
 
 export function getWhatsAppUrl(message?: string): string {
   const defaultMessage = "Olá! Quero saber como a Falandou pode me ajudar com inglês profissional.";

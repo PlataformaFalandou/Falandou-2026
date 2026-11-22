@@ -839,3 +839,69 @@ html:not([data-hero-variant]) [data-hv="A"],
 html[data-hero-variant="A"] [data-hv="A"],
 html[data-hero-variant="B"] [data-hv="B"],
 html[data-hero-variant="C"] [data-hv="C"] { display: inline; }
+
+/* ── Navegação por intenção (revisão de jornada §4, §7) ──────────────────
+   Página atual: cor + traço de 2px sob o link (forma, não só cor). */
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: rgba(255, 255, 255, 0.8);
+  transition: color var(--dur-fast) ease-out;
+}
+.nav-link[data-active] {
+  color: var(--color-brand);
+}
+.nav-link[data-active]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--color-brand);
+}
+@media (hover: hover) {
+  .nav-link:hover {
+    color: var(--color-brand);
+  }
+  .menu-item:hover {
+    background-color: var(--color-interactive);
+  }
+}
+.menu-item:focus-visible {
+  background-color: var(--color-interactive);
+}
+
+/* Índice da página (§9): o item da seção em leitura ganha traço lateral, além da cor. */
+.toc-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding-left: 0.875rem;
+  border-left: 2px solid var(--color-border);
+  color: var(--color-text-body);
+  transition: color var(--dur-fast) ease-out, border-color var(--dur-fast) ease-out;
+}
+.toc-link[aria-current] {
+  color: #fff;
+  font-weight: 700;
+  border-left-color: var(--color-brand);
+}
+@media (hover: hover) {
+  .toc-link:hover {
+    color: var(--color-brand);
+  }
+}
+.toc-details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+.toc-details > summary::-webkit-details-marker {
+  display: none;
+}
+.toc-details[open] .toc-chevron {
+  transform: rotate(180deg);
+}

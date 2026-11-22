@@ -11,9 +11,10 @@
  * Áudio e animações param ao sair da seção (fora da tela) e ao trocar de página.
  */
 import { useCallback, useEffect, useRef, useState } from "react";
-import { MessageCircle, Volume2, VolumeX } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, MessageCircle, Volume2, VolumeX } from "lucide-react";
 import { getSituation, type Choice } from "@/data/situations";
-import { useSituation } from "@/lib/situationStore";
+import { setSituation, useSituation } from "@/lib/situationStore";
 import { stopAllSpeech } from "@/lib/speech";
 import { playDone, setSoundsEnabled, useSoundsEnabled } from "@/lib/sfx";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
@@ -22,6 +23,7 @@ import SituationTabs from "@/components/interactive/SituationTabs";
 import ListenButton from "@/components/interactive/ListenButton";
 import SentenceBuilder from "@/components/interactive/SentenceBuilder";
 import CompletionMark from "@/components/interactive/CompletionMark";
+import { WhatsAppNote } from "@/components/interactive/SituationContext";
 
 type Step = "choose" | "build" | "done";
 
@@ -34,6 +36,12 @@ export default function MicroLesson() {
   const [speaking, setSpeaking] = useState(false);
   const onSpeak = useCallback((p: boolean) => setSpeaking(p), []);
   const sectionRef = useRef<HTMLElement>(null);
+  // Foco acompanha a atividade (revisão de jornada §11): etapa 2 e conclusão recebem o foco,
+  // e "Escolher outra situação" volta para as opções.
+  const buildRef = useRef<HTMLParagraphElement>(null);
+  const doneRef = useRef<HTMLDivElement>(null);
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const focusSoon = (el: () => HTMLElement | null | undefined) => requestAnimationFrame(() => el()?.focus());
 
   // Saiu da tela: encerra o áudio (a página nunca fica tocando em segundo plano).
   useEffect(() => {
@@ -62,7 +70,7 @@ export default function MicroLesson() {
           Escolha uma situação e passe 30 segundos dentro de uma sessão: escolha a resposta, entenda o porquê e monte a frase.
         </p>
 
-        <div className="reveal max-w-xl mb-8">
+        <div ref={tabsRef} className="reveal max-w-xl mb-8">
           <SituationTabs depth />
         </div>
 
@@ -135,7 +143,7 @@ export default function MicroLesson() {
               <div className="flex flex-wrap items-center gap-3 mt-3">
                 <ListenButton text={best.text} audioSrc={s.audio} onStateChange={onSpeak} />
                 {cur.step === "choose" && (
-                  <button type="button" onClick={() => setProgress({ ...cur, step: "build" })} className="cta-primary cta-sm rounded-full" style={{ minHeight: 44 }}>
+                  <button type="button" onClick={() => { setProgress({ ...cur, step: "build" }); focusSoon(() => buildRef.current); }} className="cta-primary cta-sm rounded-full" style={{ minHeight: 44 }}>
                     Próximo: montar uma frase
                   </button>
                 )}
@@ -146,7 +154,7 @@ export default function MicroLesson() {
           {/* 2 — montar a frase */}
           {cur.step !== "choose" && (
             <div className="confirm-in mt-8">
-              <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "var(--color-text-muted)" }}>
+              <p ref={buildRef} tabIndex={-1} className="text-xs font-bold uppercase tracking-widest mb-3 outline-none" style={{ color: "var(--color-text-muted)" }}>
                 2 · Monte a frase
               </p>
               <SentenceBuilder
@@ -157,35 +165,58 @@ export default function MicroLesson() {
                 onSolved={() => {
                   setProgress({ ...cur, step: "done" });
                   playDone();
+                  focusSoon(() => doneRef.current);
                 }}
               />
             </div>
           )}
 
-          {/* 3 — conclusão */}
+          {/* 3 — conclusão + próximo passo específico (revisão de jornada §3) */}
           {cur.step === "done" && (
-            <div className="mt-6 rounded-xl p-5 border" style={{ borderColor: "rgba(92,194,138,0.5)" }}>
+            <div ref={doneRef} tabIndex={-1} className="mt-6 rounded-xl p-5 border outline-none" style={{ borderColor: "rgba(92,194,138,0.5)" }}>
               <CompletionMark />
               <p className="text-base leading-6 mt-3" style={{ color: "var(--color-text-body)" }}>
                 Você explorou esta situação. {s.builderNote}
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 mt-5">
+              <p className="font-display font-bold text-white mt-5">Próximo passo</p>
+              <div className="flex flex-col sm:flex-row gap-3 mt-3">
+                <Link
+                  href="/planos#sua-situacao"
+                  onClick={() => setSituation(s.id)}
+                  className="cta-primary rounded-full"
+                >
+                  Ver como essa situação entra no plano
+                  <ArrowRight aria-hidden="true" />
+                </Link>
                 <a
                   href={getWhatsAppUrl(s.whatsapp)}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackCTAClick(`microaula-${s.id}`)}
-                  className="cta-primary rounded-full"
+                  className="cta-secondary rounded-full"
                 >
                   <MessageCircle aria-hidden="true" />
                   Treinar {s.label.toLowerCase()} nas sessões
                 </a>
-                <a href="#microaula" className="cta-secondary rounded-full">
-                  Trocar situação
-                </a>
               </div>
+              <WhatsAppNote message={s.whatsapp} />
+              <button
+                type="button"
+                onClick={() => {
+                  tabsRef.current?.scrollIntoView({ block: "center" });
+                  tabsRef.current?.querySelector<HTMLElement>('[aria-checked="true"]')?.focus();
+                }}
+                className="cta-tertiary min-h-[44px] mt-2 text-sm font-semibold"
+                style={{ color: "var(--color-text-body)" }}
+              >
+                Escolher outra situação
+              </button>
             </div>
           )}
+          {/* Anúncio para leitores de tela: etapa 2 (a conclusão já é anunciada pelo CompletionMark) */}
+          <p className="sr-only" role="status">
+            {cur.step === "build" ? `Etapa 2: monte a frase de ${s.label}.` : ""}
+          </p>
         </div>
         <p className="text-xs mt-3" style={{ color: "var(--color-text-muted)" }}>
           Exemplo didático criado pela escola. A atividade não mede o seu nível — o nível vem do exame CEFR do início do ciclo.

@@ -26,30 +26,35 @@ const LinkedinIcon = () => (
   </svg>
 );
 
-// UX/UI §14: 4 colunas no desktop, 2 no celular — Falandou · Escola · Legal · Contato.
+// Revisão de jornada §6: links por intenção — Estudar na Falandou · Conhecer a escola ·
+// Conteúdos — e, separados, Contato e Legal. Celular: 2 colunas; tablet: 3; desktop: 6.
 const footerLinks: Record<string, { label: string; href: string }[]> = {
-  Escola: [
-    { label: "Planos e valores", href: "/planos" },
-    { label: "Professores", href: "/professores" },
+  "Estudar na Falandou": [
     { label: "Método", href: "/metodo" },
-    { label: "Resultados", href: "/resultados" },
-    { label: "Depoimentos", href: "/depoimentos" },
+    { label: "Planos e valores", href: "/planos" },
     { label: "Perguntas frequentes", href: "/#faq" },
-    { label: "Sobre a Falandou", href: "/sobre" },
-    { label: "Blog", href: "/blog" },
-    { label: "Vocabulário profissional", href: "/vocabulario" },
-    { label: "Indique um colega", href: "/indique" },
     { label: "Para empresas", href: "/planos#empresas" },
     { label: "Plataforma do Aluno", href: COMPANY.platformUrl },
+  ],
+  "Conhecer a escola": [
+    { label: "Professores", href: "/professores" },
+    { label: "Resultados", href: "/resultados" },
+    { label: "Depoimentos", href: "/depoimentos" },
+    { label: "Sobre a Falandou", href: "/sobre" },
+    { label: "Indique um colega", href: "/indique" },
+  ],
+  "Conteúdos": [
+    { label: "Blog", href: "/blog" },
+    { label: "Vocabulário profissional", href: "/vocabulario" },
+  ],
+  Contato: [
+    { label: "WhatsApp", href: getWhatsAppUrlForContext("cta") },
+    { label: "contato@falandou.com", href: "mailto:contato@falandou.com" },
   ],
   Legal: [
     { label: "Termos de uso", href: "/termos" },
     { label: "Política de privacidade", href: "/politica-de-privacidade" },
     { label: "LGPD e seus dados", href: "/politica-de-privacidade" },
-  ],
-  Contato: [
-    { label: "WhatsApp", href: getWhatsAppUrlForContext("cta") },
-    { label: "contato@falandou.com", href: "mailto:contato@falandou.com" },
   ],
 };
 
@@ -89,9 +94,9 @@ export default function Footer({ cta = true }: { cta?: boolean } = {}) {
       )}
 
       {/* Colunas */}
-      <div className="max-w-[1200px] mx-auto px-5 md:px-8 py-14 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+      <div className="max-w-[1200px] mx-auto px-5 md:px-8 py-14 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-8 md:gap-6">
         {/* Falandou: logo + tagline + redes */}
-        <div className="col-span-2 md:col-span-1">
+        <div className="col-span-2 md:col-span-3 lg:col-span-1">
           <Link href="/" className="inline-block mb-4">
             <span className="font-display font-extrabold text-2xl text-white tracking-tight">
               Falandou<span style={{ color: "#FF6820" }}>.</span>
@@ -121,7 +126,7 @@ export default function Footer({ cta = true }: { cta?: boolean } = {}) {
         </div>
 
         {Object.entries(footerLinks).map(([title, links]) => (
-          <div key={title}>
+          <nav key={title} aria-label={title} className={title === "Contato" ? "col-span-2 md:col-span-1" : undefined}>
             <p className="font-display font-semibold text-sm text-white mb-4">{title}</p>
             <ul className="space-y-1">
               {links.map((link) => {
@@ -151,7 +156,7 @@ export default function Footer({ cta = true }: { cta?: boolean } = {}) {
                 Atendimento pelo WhatsApp e por e-mail. Resposta em até 1h.
               </p>
             )}
-          </div>
+          </nav>
         ))}
       </div>
 

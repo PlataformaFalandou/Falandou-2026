@@ -9,6 +9,9 @@ import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import PlansGrid from "@/components/sections/PlansGrid";
 import PlanFinderForm from "@/components/sections/PlanFinderForm";
+import PlanCompare from "@/components/sections/PlanCompare";
+import PageIndex from "@/components/ui/PageIndex";
+import { SituationInPlan } from "@/components/interactive/SituationContext";
 import { COMMITMENT_DISCOUNTS, COMMITMENT_TEXT, INCLUDED_IN_ALL, PAUSE_RULE, PLAN_TERMS, MIN_REPORTED_RAISE, PRICE_FROM, PRICE_FROM_ROUNDED, PRICE_TO_VALUE, RESCHEDULE_RULE, STUDENTS_PER_TEACHER, commitmentPrice, getPlan, perDay, perSession } from "@/data/plans";
 
 import JsonLd from "@/components/ui/JsonLd";
@@ -137,9 +140,25 @@ export default function PlanosPage() {
           </div>
         </section>
 
+        {/* Índice da página (revisão de jornada §9) */}
+        <div className="-mt-8 md:-mt-10" style={{ backgroundColor: "var(--color-bg)" }}>
+          <PageIndex
+            items={[
+              { id: "planos", label: "Planos" },
+              { id: "comparar-planos", label: "Comparar" },
+              { id: "qual-plano", label: "Qual plano é para mim" },
+              { id: "duvidas", label: "Dúvidas" },
+              { id: "empresas", label: "Para empresas" },
+            ]}
+          />
+        </div>
+
         {/* ── Pricing cards ── */}
-        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
+        <section id="planos" aria-label="Planos" className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-6xl mx-auto px-5 md:px-8">
+            {/* A situação escolhida na home acompanha o visitante (revisão de jornada §2, §3) */}
+            <SituationInPlan />
+
             {/* Incluso em todos os planos */}
             <div
               className="mb-8 rounded-2xl px-6 py-5 flex flex-col md:flex-row md:items-center gap-4 md:gap-8"
@@ -202,6 +221,9 @@ export default function PlanosPage() {
             <p className="mt-4 text-center font-body text-xs max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.4)" }}>
               {PLAN_TERMS}
             </p>
+
+            {/* Comparação consistente entre os planos (revisão de jornada §12) */}
+            <PlanCompare />
 
             {/* Dúvida entre planos → formulário curto que abre o WhatsApp (UX/UI §11) */}
             <div
@@ -329,7 +351,7 @@ export default function PlanosPage() {
         </section>
 
         {/* ── FAQ ── */}
-        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
+        <section id="duvidas" className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-2xl mx-auto px-5 md:px-8">
             <h2
               className="font-display font-extrabold text-white mb-10 text-center"

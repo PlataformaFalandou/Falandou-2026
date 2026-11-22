@@ -9,6 +9,8 @@ import MethodCycle from "@/components/ui/MethodCycle";
 import CEFRScale from "@/components/ui/CEFRScale";
 import SpeakingLoop from "@/components/ui/SpeakingLoop";
 import PracticeCaseCard from "@/components/ui/PracticeCaseCard";
+import PageIndex from "@/components/ui/PageIndex";
+import { SituationInSession } from "@/components/interactive/SituationContext";
 import { PRACTICE_CASES } from "@/data/practiceCases";
 
 import JsonLd from "@/components/ui/JsonLd";
@@ -222,6 +224,18 @@ export default function MetodoPage() {
           </div>
         </section>
 
+        {/* Índice da página (revisão de jornada §9) — recolhido no celular */}
+        <div className="pb-4 -mt-16 md:-mt-24" style={{ backgroundColor: "var(--color-bg)" }}>
+          <PageIndex
+            items={[
+              { id: "visao-geral", label: "Visão geral" },
+              { id: "etapas", label: "Etapas" },
+              { id: "uma-sessao", label: "Uma sessão por dentro" },
+              { id: "duvidas", label: "Dúvidas" },
+            ]}
+          />
+        </div>
+
         {/* ── NARRATIVA EM 3 ATOS — tentou → por que não funcionou → o que muda ── */}
         <section className="py-12 md:py-20 bg-bg">
           <div className="max-w-5xl mx-auto px-5 md:px-8">
@@ -267,7 +281,7 @@ export default function MetodoPage() {
         </section>
 
         {/* ── CICLO: visão geral em diagrama (UX/UI §17, §25) ────────────── */}
-        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+        <section id="visao-geral" className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
           <div className="max-w-5xl mx-auto px-5 md:px-8">
             <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
               O ciclo em uma imagem
@@ -289,39 +303,8 @@ export default function MetodoPage() {
           </div>
         </section>
 
-        {/* ── UMA SESSÃO, POR DENTRO — demonstração do método (direção criativa §2.2, §4.2) ── */}
-        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }} aria-labelledby="sessao-por-dentro">
-          <div className="max-w-[1200px] mx-auto px-5 md:px-8">
-            <p className="eyebrow reveal text-sm font-bold uppercase tracking-widest mb-3">Uma sessão, por dentro</p>
-            <h2 id="sessao-por-dentro" className="reveal font-display text-white mb-4 max-w-3xl" style={{ fontSize: "var(--text-h2)" }}>
-              Sua próxima situação vira o <span style={{ color: "#FF6820" }}>tema da próxima sessão.</span>
-            </h2>
-            <p className="reveal text-lg max-w-2xl mb-12" style={{ color: "var(--color-text-body)" }}>
-              Você traz o e-mail, a reunião ou a apresentação que tem pela frente. A sessão transforma isso em
-              prática: ideia, frase, fala e feedback.
-            </p>
-            <div className="reveal mb-12">
-              <SpeakingLoop />
-            </div>
-            <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-8 lg:gap-12 items-start">
-              <div className="reveal">
-                <h3 className="font-display text-white mb-4" style={{ fontSize: "var(--text-h3)" }}>
-                  Como o professor trabalha um e-mail
-                </h3>
-                <ul className="flex flex-col gap-3 text-base leading-6" style={{ color: "var(--color-text-body)" }}>
-                  <li><strong className="text-white">Identifica o padrão.</strong> Tradução literal do português, tom, estrutura.</li>
-                  <li><strong className="text-white">Explica o porquê.</strong> Você entende a regra, não decora a correção.</li>
-                  <li><strong className="text-white">Reescreve com você.</strong> A versão final sai da sua frase, no seu contexto.</li>
-                  <li><strong className="text-white">Volta na próxima sessão.</strong> O mesmo padrão aparece em outra situação, até ficar automático.</li>
-                </ul>
-              </div>
-              <PracticeCaseCard c={PRACTICE_CASES.followup} />
-            </div>
-          </div>
-        </section>
-
         {/* ── ETAPAS DETALHADAS ────────────────────────────────────────────── */}
-        <section className="py-12 md:py-20 bg-bg">
+        <section id="etapas" aria-label="Etapas do ciclo" className="py-12 md:py-20 bg-bg">
           <div className="max-w-5xl mx-auto px-5 md:px-8 space-y-8">
             {steps.map((step, i) => (
               <div
@@ -440,8 +423,43 @@ export default function MetodoPage() {
           </div>
         </section>
 
+        {/* ── UMA SESSÃO, POR DENTRO — demonstração do método (direção criativa §2.2, §4.2) ── */}
+        <section id="uma-sessao" className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }} aria-labelledby="sessao-por-dentro">
+          <div className="max-w-[1200px] mx-auto px-5 md:px-8">
+            <p className="eyebrow reveal text-sm font-bold uppercase tracking-widest mb-3">Uma sessão, por dentro</p>
+            <h2 id="sessao-por-dentro" className="reveal font-display text-white mb-4 max-w-3xl" style={{ fontSize: "var(--text-h2)" }}>
+              Sua próxima situação vira o <span style={{ color: "#FF6820" }}>tema da próxima sessão.</span>
+            </h2>
+            <p className="reveal text-lg max-w-2xl mb-12" style={{ color: "var(--color-text-body)" }}>
+              Você traz o e-mail, a reunião ou a apresentação que tem pela frente. A sessão transforma isso em
+              prática: ideia, frase, fala e feedback.
+            </p>
+            <div className="reveal mb-12">
+              <SpeakingLoop />
+            </div>
+            {/* A situação escolhida na home acompanha o visitante (revisão de jornada §2) */}
+            <div className="reveal mb-12">
+              <SituationInSession />
+            </div>
+            <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-8 lg:gap-12 items-start">
+              <div className="reveal">
+                <h3 className="font-display text-white mb-4" style={{ fontSize: "var(--text-h3)" }}>
+                  Como o professor trabalha um e-mail
+                </h3>
+                <ul className="flex flex-col gap-3 text-base leading-6" style={{ color: "var(--color-text-body)" }}>
+                  <li><strong className="text-white">Identifica o padrão.</strong> Tradução literal do português, tom, estrutura.</li>
+                  <li><strong className="text-white">Explica o porquê.</strong> Você entende a regra, não decora a correção.</li>
+                  <li><strong className="text-white">Reescreve com você.</strong> A versão final sai da sua frase, no seu contexto.</li>
+                  <li><strong className="text-white">Volta na próxima sessão.</strong> O mesmo padrão aparece em outra situação, até ficar automático.</li>
+                </ul>
+              </div>
+              <PracticeCaseCard c={PRACTICE_CASES.followup} />
+            </div>
+          </div>
+        </section>
+
         {/* ── PERGUNTAS QUE BLOQUEIAM ───────────────────────────────────────── */}
-        <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+        <section id="duvidas" className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
           <div className="max-w-4xl mx-auto px-5 md:px-8">
             <div className="text-center mb-14">
               <p

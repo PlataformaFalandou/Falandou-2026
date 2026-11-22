@@ -22,6 +22,8 @@ interface InterestFormProps {
   ctaLabel?: string;
 }
 
+const withName = (msg: string, name: string) => (name.trim() ? `${msg} Me chamo ${name.trim()}.` : msg);
+
 export default function InterestForm({ context, whatsappMessage, ctaLabel = "Quero começar" }: InterestFormProps) {
   const uid = useId().replace(/[^a-zA-Z0-9]/g, "");
   const [name, setName] = useState("");
@@ -36,7 +38,7 @@ export default function InterestForm({ context, whatsappMessage, ctaLabel = "Que
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     trackCTAClick(`${context}-form`); // só a interação; o nome não vai para a medição
-    const text = name.trim() ? `${whatsappMessage} Me chamo ${name.trim()}.` : whatsappMessage;
+    const text = withName(whatsappMessage, name);
     const link = getWhatsAppUrl(text);
     setUrl(link);
     window.open(link, "_blank", "noopener,noreferrer");
@@ -76,6 +78,10 @@ export default function InterestForm({ context, whatsappMessage, ctaLabel = "Que
             />
             <label htmlFor={`${uid}-nome`}>Seu nome (opcional)</label>
           </div>
+          {/* O que será enviado — antes do clique (revisão de jornada §10) */}
+          <p className="text-sm leading-6 rounded-xl p-3" style={{ backgroundColor: "var(--color-interactive)", color: "var(--color-text-body)" }}>
+            <strong className="text-white">Mensagem:</strong> “{withName(whatsappMessage, name)}”
+          </p>
           <button type="submit" className="cta-secondary w-full rounded-full">
             Preparar mensagem com meu nome
           </button>
@@ -85,6 +91,9 @@ export default function InterestForm({ context, whatsappMessage, ctaLabel = "Que
       {step === "handoffReady" && (
         <div className="confirm-in flex flex-col gap-3" role="status" aria-live="polite">
           <p className="text-base text-white font-semibold">Sua mensagem está pronta para enviar no WhatsApp.</p>
+          <p className="text-sm" style={{ color: "var(--color-text-body)" }}>
+            Ela ainda não foi enviada: confira no WhatsApp e toque em enviar. Se a nova aba não abriu, use o botão abaixo.
+          </p>
           <a href={url} target="_blank" rel="noopener noreferrer" className="cta-primary w-full rounded-full">
             <MessageCircle aria-hidden="true" />
             Abrir o WhatsApp

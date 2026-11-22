@@ -47,7 +47,7 @@ export default function CTASection({
         </div>
         {/* Revisão editorial §28: o que acontece ao clicar */}
         <p className="mt-5 text-sm" style={{ color: "rgba(255,255,255,0.85)" }}>
-          Abre o WhatsApp da equipe · resposta em até 1h
+          Abre o WhatsApp da equipe com uma mensagem pronta · você decide se envia · resposta em até 1h
         </p>
       </div>
     </section>
