@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Roteiro de 30 dias — Falandou</title>
+<link href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@600;700;800&family=Wix+Madefor+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Fonte do PDF entregue pelo WhatsApp (ponto 47). Gerar com:
+     msedge --headless --print-to-pdf=roteiro-30-dias.pdf roteiro-30-dias.html */
+  @page { size: A4; margin: 0; }
+  :root {
+    --laranja: #FF6820; --grafite: #161616; --neve: #F5F6F1;
+    --texto: rgba(22,22,22,0.72); --suave: rgba(22,22,22,0.45); --linha: rgba(22,22,22,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  body { font-family: "Wix Madefor Text", Arial, sans-serif; color: var(--grafite); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 210mm; height: 297mm; padding: 18mm 18mm 16mm; position: relative; page-break-after: always; overflow: hidden; display: flex; flex-direction: column; }
+  .page:last-child { page-break-after: auto; }
+  h1, h2, h3, .display { font-family: "Wix Madefor Display", Arial, sans-serif; }
+  .logo { font-family: "Wix Madefor Display", Arial, sans-serif; font-weight: 800; font-size: 20pt; letter-spacing: -0.02em; }
+  .logo span { color: var(--laranja); }
+  .eyebrow { font-size: 8.5pt; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--laranja); }
+  .footer { position: absolute; left: 18mm; right: 18mm; bottom: 10mm; display: flex; justify-content: space-between; font-size: 8pt; color: var(--suave); }
+
+  /* Capa */
+  .cover { background: var(--grafite); color: #fff; justify-content: space-between; }
+  .cover .logo { color: #fff; }
+  .cover h1 { font-size: 40pt; line-height: 1.04; font-weight: 800; letter-spacing: -0.02em; margin: 14mm 0 8mm; }
+  .cover h1 em { font-style: normal; color: var(--laranja); }
+  .cover .lead { font-size: 13pt; line-height: 1.55; color: rgba(255,255,255,0.7); max-width: 150mm; }
+  .weeks-overview { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; margin-top: 14mm; }
+  .weeks-overview div { border: 1px solid rgba(255,255,255,0.14); border-radius: 4mm; padding: 5mm; }
+  .weeks-overview b { display: block; color: var(--laranja); font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 2mm; }
+  .weeks-overview span { font-family: "Wix Madefor Display", Arial, sans-serif; font-weight: 700; font-size: 11pt; line-height: 1.25; }
+  .cover .footer { color: rgba(255,255,255,0.4); }
+  .glow { position: absolute; width: 150mm; height: 150mm; border-radius: 50%; right: -50mm; top: -40mm; background: radial-gradient(circle, rgba(255,104,32,0.35), transparent 65%); }
+
+  /* Como usar */
+  .howto h2 { font-size: 24pt; font-weight: 800; margin: 3mm 0 6mm; letter-spacing: -0.01em; }
+  .howto p { font-size: 11pt; line-height: 1.65; color: var(--texto); margin-bottom: 4mm; max-width: 160mm; }
+  .rules { margin-top: 6mm; display: grid; gap: 4mm; }
+  .rule { display: flex; gap: 5mm; align-items: flex-start; background: var(--neve); border-radius: 4mm; padding: 5mm 6mm; }
+  .rule .n { flex-shrink: 0; width: 9mm; height: 9mm; border-radius: 50%; background: var(--laranja); color: #fff; font-weight: 800; font-size: 10pt; display: flex; align-items: center; justify-content: center; font-family: "Wix Madefor Display", Arial, sans-serif; }
+  .rule h3 { font-size: 11.5pt; margin-bottom: 1mm; }
+  .rule p { font-size: 10pt; margin: 0; }
+  .level { margin-top: 8mm; border: 1.5px dashed var(--linha); border-radius: 4mm; padding: 6mm; }
+  .level h3 { font-size: 11pt; margin-bottom: 4mm; }
+  .level .boxes { display: flex; gap: 3mm; }
+  .level .boxes span { flex: 1; text-align: center; border: 1px solid var(--linha); border-radius: 2mm; padding: 3mm 0; font-weight: 700; font-size: 10pt; color: var(--suave); }
+
+  /* Semanas */
+  .week-head { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--grafite); padding-bottom: 5mm; margin-bottom: 6mm; }
+  .week-head .num { font-family: "Wix Madefor Display", Arial, sans-serif; font-weight: 800; font-size: 46pt; line-height: 0.9; color: var(--laranja); }
+  .week-head h2 { font-size: 22pt; font-weight: 800; letter-spacing: -0.01em; margin-top: 2mm; }
+  .week-head .focus { font-size: 10.5pt; color: var(--suave); margin-top: 1mm; }
+  .why { font-size: 10.5pt; line-height: 1.6; color: var(--texto); margin-bottom: 6mm; }
+  .task { display: flex; gap: 4mm; align-items: flex-start; padding: 4mm 0; border-bottom: 1px solid var(--linha); }
+  .task .check { flex-shrink: 0; width: 5.5mm; height: 5.5mm; border: 1.5px solid var(--grafite); border-radius: 1.2mm; margin-top: 0.6mm; }
+  .task h3 { font-size: 11pt; margin-bottom: 1mm; }
+  .task p { font-size: 10pt; line-height: 1.55; color: var(--texto); }
+  .tip { margin-top: 5mm; background: var(--neve); border-left: 3px solid var(--laranja); border-radius: 0 3mm 3mm 0; padding: 4mm 5mm; font-size: 9.5pt; line-height: 1.55; color: var(--texto); }
+  .tip b { color: var(--grafite); }
+  .notes { margin-top: 6mm; flex: 1; display: flex; flex-direction: column; }
+  .notes .eyebrow { color: var(--suave); margin-bottom: 2mm; }
+  .notes .lines { flex: 1; background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 8.5mm, var(--linha) 8.5mm, var(--linha) 9mm); min-height: 30mm; margin-bottom: 8mm; }
+
+  /* Recursos e fechamento */
+  .resources h2, .closing h2 { font-size: 24pt; font-weight: 800; margin: 3mm 0 6mm; }
+  .res { padding: 4.5mm 0; border-bottom: 1px solid var(--linha); }
+  .res h3 { font-size: 11pt; margin-bottom: 1mm; }
+  .res p { font-size: 10pt; line-height: 1.5; color: var(--texto); }
+  .res a { color: var(--laranja); text-decoration: none; font-weight: 600; font-size: 9.5pt; }
+  .phrases { margin-top: 7mm; background: var(--grafite); color: #fff; border-radius: 4mm; padding: 6mm 7mm; }
+  .phrases .eyebrow { margin-bottom: 3mm; }
+  .phrases ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm 6mm; }
+  .phrases li { font-size: 10pt; line-height: 1.4; }
+  .phrases li i { display: block; font-style: normal; color: rgba(255,255,255,0.5); font-size: 8.5pt; }
+  .closing { background: var(--laranja); color: #fff; justify-content: center; }
+  .closing .eyebrow { color: rgba(255,255,255,0.8); }
+  .closing h2 { font-size: 30pt; line-height: 1.1; max-width: 160mm; }
+  .closing p { font-size: 12pt; line-height: 1.6; color: rgba(255,255,255,0.88); max-width: 150mm; margin-bottom: 5mm; }
+  .closing .card { margin-top: 8mm; background: var(--grafite); border-radius: 4mm; padding: 7mm 8mm; max-width: 150mm; }
+  .closing .card b { display: block; font-family: "Wix Madefor Display", Arial, sans-serif; font-size: 14pt; margin-bottom: 2mm; }
+  .closing .card span { color: rgba(255,255,255,0.7); font-size: 10.5pt; line-height: 1.6; }
+  .closing .footer { color: rgba(255,255,255,0.7); }
+</style>
+</head>
+<body>
+
+<!-- 1. Capa -->
+<section class="page cover">
+  <div class="glow"></div>
+  <div style="position:relative">
+    <div class="logo">Falandou<span>.</span></div>
+    <p class="eyebrow" style="margin-top:24mm">Material gratuito</p>
+    <h1>Roteiro de 30 dias para destravar o inglês <em>no trabalho.</em></h1>
+    <p class="lead">Quatro semanas de atividades concretas, feitas com o material do seu próprio trabalho. Para sair do “quero aprender” e entrar em modo profissional — com 20 a 30 minutos por dia.</p>
+    <div class="weeks-overview">
+      <div><b>Semana 1</b><span>Diagnóstico honesto</span></div>
+      <div><b>Semana 2</b><span>Vocabulário do seu setor</span></div>
+      <div><b>Semana 3</b><span>Comunicação escrita</span></div>
+      <div><b>Semana 4</b><span>Comunicação verbal</span></div>
+    </div>
+  </div>
+  <div class="footer"><span>2026.falandou.com</span><span>Inglês profissional · plano individual · exame CEFR</span></div>
+</section>
+
+<!-- 2. Como usar -->
+<section class="page howto">
+  <p class="eyebrow">Antes de começar</p>
+  <h2>Como usar este roteiro</h2>
+  <p>Cada semana tem um foco e três atividades. Elas não pedem livro nem aplicativo: a matéria-prima é o seu trabalho — os seus e-mails, as suas reuniões, o vocabulário da sua área. É assim que o inglês sai da teoria e vira ferramenta.</p>
+  <div class="rules">
+    <div class="rule"><div class="n">1</div><div><h3>Pouco, todo dia</h3><p>20 a 30 minutos por dia rendem mais do que três horas no fim de semana. Escolha um horário fixo e proteja-o na agenda.</p></div></div>
+    <div class="rule"><div class="n">2</div><div><h3>Marque o que fez</h3><p>Cada atividade tem um quadrado para marcar. Ver o progresso no papel ajuda a manter o ritmo nas semanas mais corridas.</p></div></div>
+    <div class="rule"><div class="n">3</div><div><h3>Anote o que travou</h3><p>Cada semana tem espaço para anotações. O que travou é exatamente o que você precisa treinar — e é a informação mais útil se você decidir ter acompanhamento depois.</p></div></div>
+    <div class="rule"><div class="n">4</div><div><h3>Grave a sua voz</h3><p>Nas semanas 1 e 4 você grava a si mesmo falando. Guarde as duas gravações: comparar o antes e o depois é a forma mais honesta de ver a evolução.</p></div></div>
+  </div>
+  <div class="level">
+    <h3>Meu nível hoje (preencha na Semana 1)</h3>
+    <div class="boxes"><span>A1</span><span>A2</span><span>B1</span><span>B2</span><span>C1</span><span>C2</span></div>
+  </div>
+  <div class="footer"><span>Falandou · Roteiro de 30 dias</span><span>2</span></div>
+</section>
+
+<!-- 3. Semana 1 -->
+<section class="page">
+  <div class="week-head">
+    <div><p class="eyebrow">Semana 1</p><h2>Diagnóstico honesto</h2><p class="focus">Entenda onde você está de verdade</p></div>
+    <div class="num">01</div>
+  </div>
+  <p class="why">Ninguém melhora o que não mede. Esta semana é para trocar a sensação vaga de “meu inglês é fraco” por um retrato claro: em que nível você está e quais situações realmente travam você.</p>
+  <div class="task"><div class="check"></div><div><h3>Faça um teste de nível gratuito e anote o resultado</h3><p>Use um teste online reconhecido (veja os links em “Recursos”). Anote o nível CEFR que aparecer — de A1 a C2 — no quadro da página 2.</p></div></div>
+  <div class="task"><div class="check"></div><div><h3>Liste as 3 situações em inglês que mais travam você no trabalho</h3><p>Seja específico: “fazer perguntas numa call com o time de fora” é mais útil do que “conversação”.</p></div></div>
+  <div class="task"><div class="check"></div><div><h3>Grave 2 minutos falando sobre o seu cargo — sem roteiro</h3><p>Explique o que você faz, para quem e qual é o desafio do momento. Ouça a gravação e anote o que incomodou: palavras que faltaram, pausas longas, frases que você evitou.</p></div></div>
+  <div class="tip"><b>Dica:</b> não se compare com nativos. O objetivo é se comunicar com clareza no seu contexto, não soar como outra pessoa.</div>
+  <div class="notes"><p class="eyebrow">Anotações — o que travou esta semana</p><div class="lines"></div></div>
+  <div class="footer"><span>Falandou · Roteiro de 30 dias</span><span>3</span></div>
+</section>
+
+<!-- 4. Semana 2 -->
+<section class="page">
+  <div class="week-head">
+    <div><p class="eyebrow">Semana 2</p><h2>Vocabulário do seu setor</h2><p class="focus">As palavras que realmente importam na sua área</p></div>
+    <div class="num">02</div>
+  </div>
+  <p class="why">Profissionais raramente travam por falta de vocabulário geral. Travam porque não têm à mão as palavras exatas da própria área. Esta semana você monta o seu glossário — com frases reais, não listas soltas.</p>
+  <div class="task"><div class="check"></div><div><h3>Destaque os termos que você não usaria naturalmente</h3><p>Abra 3 e-mails ou documentos em inglês do seu trabalho. Marque os termos que você entende, mas não usaria sozinho numa conversa.</p></div></div>
+  <div class="task"><div class="check"></div><div><h3>Crie um glossário pessoal com 10 termos técnicos</h3><p>Para cada termo, escreva uma frase real do seu dia a dia — não a definição do dicionário. Frase de contexto é o que fica na memória.</p></div></div>
+  <div class="task"><div class="check"></div><div><h3>Pratique os 10 termos em voz alta, 3 vezes ao dia, por 5 dias</h3><p>Leia as frases do glossário em voz alta. Falar ativa um caminho diferente de ler — é ele que você vai usar na reunião.</p></div></div>
+  <div class="tip"><b>Dica:</b> priorize termos que aparecem toda semana no seu trabalho. Dez palavras usadas sempre valem mais do que cem vistas uma vez.</div>
+  <div class="notes"><p class="eyebrow">Meu glossário — termo · frase real</p><div class="lines"></div></div>
+  <div class="footer"><span>Falandou · Roteiro de 30 dias</span><span>4</span></div>
+</section>
+
+<!-- 5. Semana 3 -->
+<section class="page">
+  <div class="week-head">
+    <div><p class="eyebrow">Semana 3</p><h2>Comunicação escrita</h2><p class="focus">E-mails que não precisam de revisão</p></div>
+    <div class="num">03</div>
+  </div>
+  <p class="why">A escrita dá tempo para pensar — por isso é o melhor treino antes da fala. Esta semana você treina com mensagens reais e aprende as estruturas que se repetem em quase todo e-mail profissional.</p>
+  <div class="task"><div class="check"></div><div><h3>Reescreva em inglês o último e-mail profissional que você mandou em português</h3><p>Não traduza palavra por palavra: reescreva a ideia. Frases curtas e diretas costumam funcionar melhor em inglês.</p></div></div>
+  <div class="task"><div class="check"></div><div><h3>Aprenda 5 padrões de abertura e 5 de fechamento</h3><p>Colete-os dos e-mails que você recebe de colegas de fora. Exemplos: “Following up on…”, “Just a quick note to…”, “Let me know if you have any questions.”</p></div></div>
+  <div class="task"><div class="check"></div><div><h3>Responda uma thread em inglês sem tradutor</h3><p>Escreva sozinho primeiro. Depois compare com uma versão revisada e anote as diferenças — são elas que você treina na semana seguinte.</p></div></div>
+  <div class="tip"><b>Dica:</b> monte um arquivo com as suas melhores frases de e-mail. Em um mês ele vira o seu kit pessoal de comunicação escrita.</div>
+  <div class="notes"><p class="eyebrow">Minhas frases de e-mail</p><div class="lines"></div></div>
+  <div class="footer"><span>Falandou · Roteiro de 30 dias</span><span>5</span></div>
+</section>
+
+<!-- 6. Semana 4 -->
+<section class="page">
+  <div class="week-head">
+    <div><p class="eyebrow">Semana 4</p><h2>Comunicação verbal</h2><p class="focus">Falar sem travar na hora H</p></div>
+    <div class="num">04</div>
+  </div>
+  <p class="why">Esta é a semana de usar tudo. O objetivo não é falar perfeito, e sim continuar falando: ganhar tempo quando a palavra some, pedir esclarecimento e não fugir para o português.</p>
+  <div class="task"><div class="check"></div><div><h3>Prepare e grave uma apresentação de 3 minutos sobre o seu trabalho</h3><p>Imagine que é para um colega estrangeiro. Use o glossário da Semana 2. Depois compare com a gravação da Semana 1.</p></div></div>
+  <div class="task"><div class="check"></div><div><h3>Treine 10 frases para ganhar tempo</h3><p>Como “Let me think about that…” e “Could you clarify what you mean by…?”. Veja a lista completa na página de recursos.</p></div></div>
+  <div class="task"><div class="check"></div><div><h3>Participe de pelo menos uma call, reunião ou conversa em inglês</h3><p>Sem fugir para o português. Se travar, use uma das frases para ganhar tempo — e anote o que aconteceu.</p></div></div>
+  <div class="tip"><b>Dica:</b> ouça as duas gravações (Semana 1 e Semana 4) em sequência. A diferença costuma ser maior do que a sensação do dia a dia.</div>
+  <div class="notes"><p class="eyebrow">Antes × depois — o que mudou</p><div class="lines"></div></div>
+  <div class="footer"><span>Falandou · Roteiro de 30 dias</span><span>6</span></div>
+</section>
+
+<!-- 7. Recursos -->
+<section class="page resources">
+  <p class="eyebrow">Links úteis</p>
+  <h2>Recursos para os 30 dias</h2>
+  <div class="res"><h3>Teste de nível — Cambridge English</h3><p>Teste rápido e gratuito para ter uma estimativa do seu nível.</p><a href="https://www.cambridgeenglish.org/test-your-english/">cambridgeenglish.org/test-your-english</a></div>
+  <div class="res"><h3>Teste de nível — British Council</h3><p>Outro teste online gratuito, com resultado na escala CEFR.</p><a href="https://learnenglish.britishcouncil.org/level">learnenglish.britishcouncil.org/level</a></div>
+  <div class="res"><h3>Canal Falandou no YouTube</h3><p>Vídeos da escola sobre inglês no trabalho — bons para treinar o ouvido entre uma atividade e outra.</p><a href="https://www.youtube.com/@falandou">youtube.com/@falandou</a></div>
+  <div class="res"><h3>Blog Falandou</h3><p>Artigos sobre vocabulário de reuniões, pronúncia e os níveis CEFR.</p><a href="https://2026.falandou.com/blog">2026.falandou.com/blog</a></div>
+  <div class="phrases">
+    <p class="eyebrow">10 frases para ganhar tempo</p>
+    <ul>
+      <li>Let me think about that for a second.<i>Deixa eu pensar um segundo.</i></li>
+      <li>Could you clarify what you mean by…?<i>Pode esclarecer o que quer dizer com…?</i></li>
+      <li>That’s a good question.<i>Boa pergunta.</i></li>
+      <li>Just to make sure I understood…<i>Só para confirmar que entendi…</i></li>
+      <li>Could you say that again, please?<i>Pode repetir, por favor?</i></li>
+      <li>How can I put this…<i>Como posso dizer…</i></li>
+      <li>Let me get back to you on that.<i>Deixa eu te retornar sobre isso.</i></li>
+      <li>What I’m trying to say is…<i>O que estou tentando dizer é…</i></li>
+      <li>Give me a moment to check.<i>Me dá um momento para verificar.</i></li>
+      <li>If I understood correctly, you mean…<i>Se entendi bem, você quer dizer…</i></li>
+    </ul>
+  </div>
+  <div class="footer"><span>Falandou · Roteiro de 30 dias</span><span>7</span></div>
+</section>
+
+<!-- 8. Fechamento -->
+<section class="page closing">
+  <p class="eyebrow">Depois dos 30 dias</p>
+  <h2>Você já sabe onde trava. O próximo passo é treinar isso com método.</h2>
+  <p>Na Falandou, o ciclo de 90 dias começa exatamente onde este roteiro termina: um exame CEFR completo, um plano montado para o seu objetivo profissional, sessões individuais 1 a 1 e um novo exame no fim para medir a evolução em número.</p>
+  <p>Envie as suas anotações para a equipe: elas mostram onde você trava e ajudam a indicar o plano certo para o seu objetivo.</p>
+  <div class="card"><b>Fale com a equipe Falandou</b><span>Pelo mesmo WhatsApp em que você recebeu este material, ou em 2026.falandou.com/planos</span></div>
+  <div class="footer"><span>Falandou<span style="color:#161616">.</span> — Inglês profissional</span><span>2026.falandou.com</span></div>
+</section>
+
+</body>
+</html>

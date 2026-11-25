@@ -9,6 +9,7 @@
  * descrição concreta, não só um ✓ vs ✗.
  */
 
+import { Check, X } from "lucide-react";
 import React from "react";
 import CEFRTooltip from "@/components/ui/CEFRTooltip";
 
@@ -47,27 +48,26 @@ const rows: { dimension: string; generic: string; falandou: React.ReactNode }[] 
 
 export default function ComparisonTable() {
   return (
-    <section className="py-20 md:py-28" style={{ background: "#F5F6F1" }}>
-      <div className="max-w-5xl mx-auto px-6">
+    <section className="py-12 md:py-20" style={{ background: "var(--color-bg-alt)" }}>
+      <div className="max-w-5xl mx-auto px-5 md:px-8">
 
         {/* Header */}
         <div className="text-center mb-14">
           <p
-            className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4"
-            style={{ color: "#FF6820" }}
+            className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3"
           >
             Por que a diferença importa
           </p>
           <h2
             className="reveal font-display font-extrabold leading-tight delay-100"
-            style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", color: "#161616" }}
+            style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}
           >
-            O que você recebe aqui{" "}
-            <span style={{ color: "#FF6820" }}>não existe em app ou curso em grupo.</span>
+            Enquanto a maioria dos formatos divide o professor,{" "}
+            <span style={{ color: "#FF6820" }}>aqui ele é só seu.</span>
           </h2>
           <p
             className="reveal font-body text-base leading-relaxed mt-4 max-w-xl mx-auto delay-150"
-            style={{ color: "rgba(22,22,22,0.55)" }}
+            style={{ color: "rgba(245,246,241,0.65)" }}
           >
             Não é crítica — é o contraste que explica por que cada formato
             existe e para quem cada um faz sentido.
@@ -75,16 +75,16 @@ export default function ComparisonTable() {
         </div>
 
         {/* Table — desktop */}
-        <div className="reveal delay-200 hidden md:block rounded-2xl overflow-hidden border" style={{ borderColor: "rgba(22,22,22,0.1)" }}>
+        <div className="reveal delay-200 hidden md:block rounded-2xl overflow-hidden border" style={{ borderColor: "var(--color-border)" }}>
           {/* Header row */}
-          <div className="grid grid-cols-[2fr_3fr_3fr]" style={{ background: "#161616" }}>
+          <div className="grid grid-cols-[2fr_3fr_3fr]" style={{ background: "var(--color-bg)" }}>
             <div className="px-6 py-4 text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>
               Critério
             </div>
-            <div className="px-6 py-4 text-xs font-bold uppercase tracking-widest border-l" style={{ color: "rgba(255,255,255,0.4)", borderColor: "rgba(255,255,255,0.08)" }}>
+            <div className="px-6 py-4 text-xs font-bold uppercase tracking-widest border-l" style={{ color: "rgba(255,255,255,0.4)", borderColor: "var(--color-border)" }}>
               Apps e cursos genéricos
             </div>
-            <div className="px-6 py-4 text-xs font-bold uppercase tracking-widest border-l" style={{ color: "#FF6820", borderColor: "rgba(255,255,255,0.08)" }}>
+            <div className="px-6 py-4 text-xs font-bold uppercase tracking-widest border-l" style={{ color: "#FF6820", borderColor: "var(--color-border)" }}>
               Falandou
             </div>
           </div>
@@ -95,24 +95,24 @@ export default function ComparisonTable() {
               key={row.dimension}
               className="grid grid-cols-[2fr_3fr_3fr] border-t"
               style={{
-                borderColor: "rgba(22,22,22,0.07)",
+                borderColor: "var(--color-border)",
                 background: i % 2 === 0 ? "#ffffff" : "#fafaf8",
               }}
             >
               <div className="px-6 py-5 flex items-center">
-                <span className="font-body text-sm font-bold" style={{ color: "#161616" }}>
+                <span className="font-body text-sm font-bold" style={{ color: "var(--color-text)" }}>
                   {row.dimension}
                 </span>
               </div>
-              <div className="px-6 py-5 flex items-start gap-3 border-l" style={{ borderColor: "rgba(22,22,22,0.07)" }}>
-                <span className="text-base flex-shrink-0 mt-0.5" aria-hidden>✗</span>
-                <span className="font-body text-sm leading-snug" style={{ color: "rgba(22,22,22,0.55)" }}>
+              <div className="px-6 py-5 flex items-start gap-3 border-l" style={{ borderColor: "var(--color-border)" }}>
+                <span className="text-base flex-shrink-0 mt-0.5" aria-hidden><X size={16} strokeWidth={2.5} aria-hidden="true" /></span>
+                <span className="font-body text-sm leading-snug" style={{ color: "rgba(245,246,241,0.65)" }}>
                   {row.generic}
                 </span>
               </div>
-              <div className="px-6 py-5 flex items-start gap-3 border-l" style={{ borderColor: "rgba(22,22,22,0.07)", background: "rgba(255,104,32,0.04)" }}>
-                <span className="text-base flex-shrink-0 mt-0.5" style={{ color: "#FF6820" }} aria-hidden>✓</span>
-                <span className="font-body text-sm font-medium leading-snug" style={{ color: "#161616" }}>
+              <div className="px-6 py-5 flex items-start gap-3 border-l" style={{ borderColor: "var(--color-border)", background: "rgba(255,104,32,0.04)" }}>
+                <span className="text-base flex-shrink-0 mt-0.5" style={{ color: "#FF6820" }} aria-hidden><Check size={16} strokeWidth={2.5} aria-hidden="true" /></span>
+                <span className="font-body text-sm font-medium leading-snug" style={{ color: "var(--color-text)" }}>
                   {row.falandou}
                 </span>
               </div>
@@ -126,25 +126,25 @@ export default function ComparisonTable() {
             <div
               key={row.dimension}
               className={`reveal rounded-2xl overflow-hidden border`}
-              style={{ borderColor: "rgba(22,22,22,0.1)", transitionDelay: `${i * 60}ms` }}
+              style={{ borderColor: "var(--color-border)", transitionDelay: `${Math.min(i * 40, 120)}ms` }}
             >
-              <div className="px-4 py-3" style={{ background: "#161616" }}>
+              <div className="px-4 py-3" style={{ background: "var(--color-bg)" }}>
                 <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.5)" }}>
                   {row.dimension}
                 </span>
               </div>
-              <div className="px-4 py-4 flex items-start gap-3 border-b" style={{ borderColor: "rgba(22,22,22,0.07)", background: "#fff" }}>
-                <span className="text-sm flex-shrink-0 mt-0.5" aria-hidden>✗</span>
+              <div className="px-4 py-4 flex items-start gap-3 border-b" style={{ borderColor: "var(--color-border)", background: "var(--color-surface)" }}>
+                <span className="text-sm flex-shrink-0 mt-0.5" aria-hidden><X size={16} strokeWidth={2.5} aria-hidden="true" /></span>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide mb-1" style={{ color: "rgba(22,22,22,0.4)" }}>Genérico</p>
-                  <p className="text-sm leading-snug" style={{ color: "rgba(22,22,22,0.55)" }}>{row.generic}</p>
+                  <p className="text-xs font-semibold uppercase tracking-wide mb-1" style={{ color: "rgba(245,246,241,0.5)" }}>Genérico</p>
+                  <p className="text-sm leading-snug" style={{ color: "rgba(245,246,241,0.65)" }}>{row.generic}</p>
                 </div>
               </div>
               <div className="px-4 py-4 flex items-start gap-3" style={{ background: "rgba(255,104,32,0.04)" }}>
-                <span className="text-sm flex-shrink-0 mt-0.5" style={{ color: "#FF6820" }} aria-hidden>✓</span>
+                <span className="text-sm flex-shrink-0 mt-0.5" style={{ color: "#FF6820" }} aria-hidden><Check size={16} strokeWidth={2.5} aria-hidden="true" /></span>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wide mb-1" style={{ color: "#FF6820" }}>Falandou</p>
-                  <p className="text-sm font-medium leading-snug" style={{ color: "#161616" }}>{row.falandou}</p>
+                  <p className="text-sm font-medium leading-snug" style={{ color: "var(--color-text)" }}>{row.falandou}</p>
                 </div>
               </div>
             </div>

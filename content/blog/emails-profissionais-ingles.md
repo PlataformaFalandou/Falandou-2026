@@ -1,10 +1,21 @@
 ---
-titulo: "Como escrever e-mails profissionais em inglês sem soar robótico"
-resumo: "Estrutura, tom e as expressões certas para cada situação — de pedidos e follow-ups a feedback e recusas delicadas."
-categoria: Vocabulário
-created_at: "2026-11-15T10:00:00.000Z"
-tempo_leitura: 6
+titulo: 'E-mails profissionais em inglês: como escrever sem soar robótico'
+titulo_seo: 'E-mail Profissional em Inglês: Guia Prático | Falandou'
+resumo: Estrutura, tom e as expressões certas para cada situação — de pedidos e follow-ups a feedback e recusas delicadas.
+descricao: 'Como escrever e-mail profissional em inglês: aberturas, pedidos, follow-ups, recusas e encerramentos com o tom certo, com frases prontas para cada situação.'
+categoria: Carreira e Negócios
+cluster: Carreira
+palavra_chave: e-mail profissional em inglês
+created_at: '2026-11-15T10:00:00.000Z'
+atualizado_em: '2026-11-20T10:00:00.000Z'
 publicado: true
+faq:
+- q: Como começar um e-mail formal em inglês?
+  a: No primeiro contato, “Dear Mr./Ms. [sobrenome],” é o padrão. Com quem você já troca mensagens, “Hi [nome],” é natural e profissional na maioria das empresas.
+- q: Como fazer um follow-up educado em inglês?
+  a: 'Retome o assunto sem cobrar: “Just following up on my email from Monday” ou “I wanted to check in on…”. Termine com o próximo passo que você espera.'
+- q: Qual a melhor forma de encerrar um e-mail profissional em inglês?
+  a: “Best regards” e “Kind regards” servem para quase tudo. “Thanks” ou “Best” funcionam em trocas rápidas com colegas.
 ---
 
 ## O problema dos e-mails traduzidos
@@ -101,3 +112,11 @@ Encerramento: 1 frase + assinatura
 Releia todo e-mail antes de enviar e pergunte: *"Se eu recebesse isso de alguém que eu não conheço, o que eu pensaria sobre essa pessoa?"*
 
 Tom é mais importante que gramática. Um e-mail com um erro de gramática e tom certo funciona. Um e-mail gramaticalmente perfeito com tom errado cria problemas.
+
+## Para ir além
+
+- Leia [o guia de inglês profissional](/blog/como-aprender-ingles-profissional/).
+- Leia [as expressões para a reunião que costuma vir antes do e-mail](/blog/vocabulario-reunioes-negocios/).
+- Veja [o inglês executivo para quem escreve para clientes e diretoria](/ingles-executivo/).
+- Veja [os planos de sessões individuais para treinar os seus e-mails reais](/planos/).
+

@@ -1,0 +1,24 @@
+# Hostinger (Apache/LiteSpeed): usa a 404 personalizada gerada pelo Next (out/404.html).
+# Sem esta linha, o servidor mostra a pagina de erro padrao da hospedagem.
+ErrorDocument 404 /404.html
+
+# Imagens de compartilhamento geradas pelo Next saem sem extensao
+# (ex.: /metodo/opengraph-image). Servir como PNG para Facebook/WhatsApp/LinkedIn.
+<FilesMatch "^opengraph-image$">
+  ForceType image/png
+</FilesMatch>
+
+# /entrevista-emprego duplicava /ingles-entrevista (mesmo titulo, mesma busca).
+# 301 mantem links antigos e anuncios funcionando e concentra o SEO numa pagina so.
+RedirectMatch 301 ^/entrevista-emprego/?$ /ingles-entrevista/
+
+# Turma online removida (a escola nao vende esse formato).
+RedirectMatch 301 ^/turma-online/?$ /planos/
+
+# PWA (UX/UI §16): tipo correto do manifest e service worker sempre atualizado.
+AddType application/manifest+json .webmanifest
+<IfModule mod_headers.c>
+  <Files "sw.js">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </Files>
+</IfModule>

@@ -1,43 +1,18 @@
 "use client";
 
-import React from "react";
-import { useRef } from "react";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { getWhatsAppUrl } from "@/lib/whatsapp";
+import Link from "next/link";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ArrowRight, ChevronLeft, ChevronRight, PlayCircle } from "lucide-react";
+import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
-import CEFRTooltip from "@/components/ui/CEFRTooltip";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { testimonials, personasWithEnough, type Persona, type Testimonial } from "@/data/testimonials";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 
-// ─── dados verificáveis — edite com seus números reais ───────────────────────
-const STATS = [
-  {
-    value: "79%",
-    label: "passaram a usar inglês no trabalho",
-    sub: "em até 90 dias · medido por exame pré e pós",
-  },
-  {
-    value: "11 sem",
-    label: "B1 → B2 em média",
-    sub: "mediana do último ciclo · exame antes e depois",
-  },
-  {
-    value: "70%",
-    label: "aprovados em seletivas",
-    sub: "dentro de 14 meses do início",
-  },
-  {
-    value: "92%",
-    label: "concluíram sem abandonar",
-    sub: "versus ~50% da média do setor",
-  },
-];
-
-const METHODOLOGY_NOTES: React.ReactNode[] = [
-  <>Exame <CEFRTooltip /> aplicado pela escola antes e após cada ciclo de 90 dias.</>,
-  "Dados do último ciclo fechado (Jan–Set 2024) · 87 alunos avaliados.",
-  <>Níveis: A1 · A2 · B1 · B2 · C1 · C2 — padrão europeu usado por Cambridge e IELTS. <CEFRTooltip>O que é CEFR?</CEFRTooltip></>,
-];
-// ─────────────────────────────────────────────────────────────────────────────
+// Seção de humanização: só depoimentos. Os dados de resultado ficam em ProofStats,
+// e os logos das empresas já aparecem na Hero.
+// Variantes (Arquitetura §7): "compact" = 3 cartões fixos + link para /depoimentos;
+// "full" = grade com todos (página /depoimentos). No celular, a versão compacta vira carrossel (UX/UI §12).
 
 // Logos inline — mesmas paths usadas em CompanyLogos.tsx
 const COMPANY_LOGOS: Record<string, { viewBox?: string; path: string }> = {
@@ -82,269 +57,344 @@ function CompanyLogoInline({ company }: { company: string }) {
   );
 }
 
-// Depoimentos como suporte qualitativo — com resultado específico quando possível
-const testimonials = [
-  {
-    name: "Rafael Souza",
-    role: "Analista de TI",
-    company: "IBM",
-    result: "Passou a conduzir reuniões técnicas com clientes externos",
-    source: "WhatsApp",
-    text: "Em seis meses passei a conduzir reuniões técnicas em inglês com clientes externos. Nunca imaginei que conseguiria avançar tão rápido — a metodologia é séria e os professores cobram resultado de verdade.",
-  },
-  {
-    name: "Camila Ferreira",
-    role: "Coordenadora de Projetos",
-    company: "Accenture",
-    result: "Perdeu o bloqueio de fala — resultado em 90 dias",
-    source: "WhatsApp · Ciclo 90 dias",
-    text: "O que eu não esperava era perder a vergonha de falar. As sessões individuais fixam muito mais do que qualquer aula em grupo — e conversar sobre temas do meu trabalho me deu confiança para usar o inglês fora do escritório também.",
-  },
-  {
-    name: "Diego Carvalho",
-    role: "Gerente Comercial",
-    company: "Amazon",
-    result: "Comunicação clara em qualquer ambiente profissional",
-    source: "E-mail · Jun 2024",
-    text: "A atenção dos professores ao longo do ciclo foi o que me surpreendeu. Sempre disponíveis, sempre diretos. Terminei os 90 dias com muito mais do que inglês — saí com clareza para me comunicar em qualquer ambiente profissional.",
-  },
-  {
-    name: "Lucas Andrade",
-    role: "Engenheiro de Produtos",
-    company: "Google",
-    result: "Confiança crescente semana a semana",
-    source: "E-mail",
-    text: "As aulas, as atividades práticas e o acompanhamento constante contribuíram bastante para o meu desenvolvimento. Me senti mais confiante a cada semana.",
-  },
-  {
-    name: "Mariana Costa",
-    role: "Gestora de Marketing",
-    company: "Unilever",
-    result: "Encaixou o plano na rotina sem abrir mão do resultado",
-    source: "WhatsApp",
-    text: "Consigo avançar mesmo nos dias mais corridos. O plano é direto e focado no meu contexto — é exatamente o formato que eu precisava para encaixar na rotina.",
-  },
-  {
-    name: "Renata Nogueira",
-    role: "Analista de Comunicação",
-    company: "JPMorgan Chase",
-    result: "Diferença real na carreira após melhorar comunicação",
-    source: "E-mail · Out 2024",
-    text: "As aulas foram essenciais para melhorar minha comunicação no trabalho. Passei a me expressar com muito mais clareza nas reuniões — e isso fez diferença real na minha carreira.",
-  },
-];
+function initials(name: string) {
+  const parts = name.trim().split(/\s+/);
+  return ((parts[0]?.[0] ?? "") + (parts.length > 1 ? parts[parts.length - 1][0] : "")).toUpperCase();
+}
 
-function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
+/**
+ * Cartão de depoimento em 5 elementos (UX/UI §12): aspas laranja de 60px, texto em
+ * 18px itálico, resultado em destaque, avatar com iniciais + nome + cargo e, quando
+ * houver o dado real do exame, o selo CEFR antes → depois (nunca estimado).
+ */
+function TestimonialCard({ t }: { t: Testimonial }) {
   return (
-    <div
-      className="flex-shrink-0 w-80 md:w-96 rounded-2xl overflow-hidden border border-white/10 hover:border-white/25 transition-all duration-300 flex flex-col"
-      style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
+    <figure
+      className="h-full rounded-2xl border flex flex-col p-6 md:p-8"
+      style={{ backgroundColor: "var(--color-surface)", borderColor: "var(--color-border)" }}
     >
-      <div className="p-6 flex flex-col flex-1">
-        {/* Result badge */}
-        <div
-          className="inline-flex self-start px-3 py-1.5 rounded-full text-xs font-semibold mb-5"
-          style={{ background: "rgba(255,104,32,0.15)", color: "#FF6820" }}
-        >
-          {t.result}
-        </div>
+      <div className="flex items-start justify-between gap-4">
+        <span aria-hidden="true" className="font-display font-black leading-none select-none" style={{ fontSize: "60px", color: "#FF6820", height: "40px" }}>
+          &ldquo;
+        </span>
+        {t.levelBefore && t.levelAfter && (
+          <span
+            className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-extrabold tnum"
+            style={{ background: "rgba(255,104,32,0.15)", color: "#FF8A4C", border: "1px solid rgba(255,104,32,0.4)" }}
+            title="Nível CEFR no início e no fim do ciclo"
+          >
+            {t.levelBefore} → {t.levelAfter}
+          </span>
+        )}
+      </div>
 
-        <Quote size={22} className="mb-3" style={{ color: "rgba(255,104,32,0.35)" }} />
+      {/* Resultado mensurável em destaque */}
+      <p className="font-display font-bold text-white text-base leading-snug mt-4 mb-4">
+        {t.result}
+        {t.cycle && <span className="font-body font-normal" style={{ color: "var(--color-text-muted)" }}> · {t.cycle}</span>}
+      </p>
 
-        <p className="text-sm leading-relaxed mb-6 flex-1" style={{ color: "rgba(255,255,255,0.72)" }}>
-          &ldquo;{t.text}&rdquo;
+      <blockquote className="flex-1 mb-6">
+        <p className="italic leading-relaxed" style={{ fontSize: "1.0625rem", color: "var(--color-text-body)" }}>
+          {t.text}
         </p>
+      </blockquote>
 
-        {/* Identity footer — cargo, empresa e logo */}
-        <div className="border-t pt-4" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
+      {/* Formato misto (Arquitetura §7): vídeo curto quando houver. Miniatura com
+          link — o YouTube não carrega na página, então não há cookies sem consentimento. */}
+      {t.videoId && (
+        <a
+          href={`https://www.youtube.com/watch?v=${t.videoId}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative block mb-6 rounded-xl overflow-hidden aspect-video img-skeleton"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`https://i.ytimg.com/vi/${t.videoId}/hqdefault.jpg`}
+            alt={`Depoimento em vídeo de ${t.name}`}
+            width={480}
+            height={360}
+            loading="lazy"
+            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+          />
+          <span className="absolute inset-0 flex items-center justify-center">
+            <PlayCircle size={40} color="#fff" strokeWidth={1.5} />
+          </span>
+        </a>
+      )}
+
+      {/* Identidade: avatar com iniciais + nome + cargo + empresa */}
+      <figcaption className="border-t pt-4 flex items-center gap-3" style={{ borderColor: "var(--color-border)" }}>
+        <span
+          aria-hidden="true"
+          className="w-11 h-11 rounded-full flex-shrink-0 flex items-center justify-center font-display font-extrabold text-sm"
+          style={{ background: "linear-gradient(135deg, #FF6820, #E05010)", color: "#fff" }}
+        >
+          {initials(t.name)}
+        </span>
+        <div className="min-w-0">
           <div className="font-display font-extrabold text-base text-white">{t.name}</div>
-          <div className="flex items-center gap-2 mt-1 flex-wrap">
-            <span className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
+          <div className="flex items-center gap-2 mt-0.5 flex-wrap">
+            <span className="text-xs" style={{ color: "var(--color-text-muted)" }}>
               {t.role}
             </span>
             {t.company && (
               <>
                 <span style={{ color: "rgba(255,255,255,0.2)" }} className="text-xs">·</span>
-                <span className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.65)" }}>
+                <span className="text-xs font-semibold" style={{ color: "rgba(245,246,241,0.75)" }}>
                   {t.company}
                 </span>
                 <CompanyLogoInline company={t.company} />
               </>
             )}
           </div>
-          <div className="mt-1 text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+          <div className="mt-0.5 text-xs" style={{ color: "rgba(245,246,241,0.4)" }}>
             {t.source}
           </div>
         </div>
-      </div>
-    </div>
+      </figcaption>
+    </figure>
   );
 }
 
-export default function Testimonials() {
-  const scrollRef = useRef<HTMLDivElement>(null);
+/**
+ * Carrossel do celular (revisão técnica §2): acionado só pelo visitante, sem troca automática.
+ * - Movimento: rolagem nativa suave (`scrollTo`), sem animação manual concorrente. Arrastar
+ *   interrompe naturalmente qualquer rolagem em andamento.
+ * - Card ativo: o mais próximo do centro visível, pela posição real; recalculado ao rolar e ao
+ *   redimensionar (ResizeObserver). O estado só muda quando o índice muda.
+ * - Acessibilidade: setas de 44px e teclado (← →); após navegar por botão ou teclado, uma região
+ *   `aria-live="polite"` anuncia "Depoimento 2 de 3". No desktop vira grade, sem parada de foco.
+ */
+function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
+  const rowRef = useRef<HTMLDivElement>(null);
+  const [index, setIndex] = useState(0);
+  const [announce, setAnnounce] = useState("");
+  const isCarousel = useMediaQuery("(max-width: 767px)");
+  const reduced = useMediaQuery("(prefers-reduced-motion: reduce)");
 
-  const scroll = (dir: "left" | "right") => {
-    if (!scrollRef.current) return;
-    scrollRef.current.scrollBy({ left: dir === "right" ? 420 : -420, behavior: "smooth" });
-  };
+  const goTo = useCallback(
+    (i: number, fromUser = true) => {
+      const row = rowRef.current;
+      const card = row?.children[i] as HTMLElement | undefined;
+      if (!row || !card) return;
+      const left = card.offsetLeft - row.offsetLeft - (row.clientWidth - card.offsetWidth) / 2;
+      row.scrollTo({ left, behavior: reduced ? "auto" : "smooth" });
+      if (fromUser) setAnnounce(`Depoimento ${i + 1} de ${items.length}`);
+    },
+    [items.length, reduced]
+  );
+
+  useEffect(() => {
+    const row = rowRef.current;
+    if (!row) return;
+    let raf = 0;
+    const measure = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const center = row.scrollLeft + row.clientWidth / 2;
+        let best = 0;
+        let bestDist = Infinity;
+        Array.from(row.children).forEach((c, i) => {
+          const el = c as HTMLElement;
+          const dist = Math.abs(el.offsetLeft - row.offsetLeft + el.offsetWidth / 2 - center);
+          if (dist < bestDist) {
+            bestDist = dist;
+            best = i;
+          }
+        });
+        setIndex((prev) => (prev === best ? prev : best));
+      });
+    };
+    measure();
+    row.addEventListener("scroll", measure, { passive: true });
+    const ro = new ResizeObserver(measure);
+    ro.observe(row);
+    return () => {
+      cancelAnimationFrame(raf);
+      row.removeEventListener("scroll", measure);
+      ro.disconnect();
+    };
+  }, []);
+
+  const prev = () => goTo(Math.max(0, index - 1));
+  const next = () => goTo(Math.min(items.length - 1, index + 1));
 
   return (
-    <section id="depoimentos" className="py-24 md:py-32 overflow-hidden" style={{ backgroundColor: "#161616" }}>
-      <div className="max-w-7xl mx-auto px-6">
-
-        {/* ── 0. Social proof: logos das empresas ── */}
-        <AnimatedSection className="mb-16">
-          <p className="font-body text-xs font-semibold uppercase tracking-widest mb-7 text-center" style={{ color: "rgba(255,255,255,0.25)" }}>
-            Nossos profissionais trabalham em
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-            {Object.entries(COMPANY_LOGOS).map(([name, logo]) => (
-              <div
-                key={name}
-                className="opacity-25 hover:opacity-50 transition-opacity duration-300"
-                title={name}
-                style={{ height: "28px" }}
-              >
-                <svg
-                  role="img"
-                  viewBox={logo.viewBox ?? "0 0 24 24"}
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-label={name}
-                  style={{ height: "100%", width: "auto", maxWidth: "120px", fill: "#ffffff" }}
-                >
-                  <path d={logo.path} />
-                </svg>
-              </div>
-            ))}
-          </div>
-        </AnimatedSection>
-
-        {/* ── 1. Dados verificáveis em primeiro plano ── */}
-        <div className="mb-20">
-          <AnimatedSection>
-          <p className="font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
-            Resultado verificável
-          </p>
-          <h2
-            className="font-display font-extrabold text-white leading-tight mb-3"
-            style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)" }}
-          >
-            79% dos profissionais passou a conduzir reuniões{" "}
-            <span style={{ color: "#FF6820" }}>e entrevistas em inglês em até 90 dias.</span>
-          </h2>
-          <p className="font-body text-base" style={{ color: "rgba(255,255,255,0.45)" }}>
-            Medido com exame antes e depois do ciclo — não autoavaliação, não percepção.
-          </p>
-          </AnimatedSection>
-
-          {/* Stat grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-10">
-            {STATS.map((s, i) => (
-              <AnimatedSection key={s.value} delay={i * 80} direction="up">
-              <div
-                className="rounded-2xl p-6 h-full"
-                style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}
-              >
-                <p
-                  className="font-display font-extrabold text-3xl mb-1"
-                  style={{ color: "#FF6820" }}
-                >
-                  {s.value}
-                </p>
-                <p className="font-body text-sm font-semibold text-white mb-1">{s.label}</p>
-                <p className="font-body text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{s.sub}</p>
-              </div>
-              </AnimatedSection>
-            ))}
-          </div>
-
-          {/* Methodology disclosure */}
-          <AnimatedSection delay={200}>
-          <div
-            className="mt-6 rounded-xl px-6 py-4"
-            style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
-          >
-            <p className="font-body text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>
-              Como medimos
-            </p>
-            <ul className="flex flex-col gap-1">
-              {METHODOLOGY_NOTES.map((note, idx) => (
-                <li key={idx} className="font-body text-xs flex items-start gap-2" style={{ color: "rgba(255,255,255,0.45)" }}>
-                  <span style={{ color: "#FF6820" }}>—</span> {note}
-                </li>
-              ))}
-            </ul>
-          </div>
-          </AnimatedSection>
-        </div>
-
-        {/* ── 2. Depoimentos como suporte qualitativo ── */}
-        <div className="flex items-end justify-between mb-10">
-          <AnimatedSection direction="left">
-            <p className="font-body text-sm font-bold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>
-              O que dizem os profissionais
-            </p>
-            <p className="font-display font-extrabold text-white" style={{ fontSize: "clamp(1.3rem, 2.5vw, 1.75rem)" }}>
-              Os números em palavras.
-            </p>
-          </AnimatedSection>
-          <div className="hidden md:flex gap-2">
-            <button
-              onClick={() => scroll("left")}
-              className="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-laranja hover:bg-laranja/10 transition-all"
-              aria-label="Rolar para esquerda"
-            >
-              <ChevronLeft size={18} />
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              className="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-laranja hover:bg-laranja/10 transition-all"
-              aria-label="Rolar para direita"
-            >
-              <ChevronRight size={18} />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Scrollable row */}
+    <div>
       <div
-        ref={scrollRef}
-        className="flex gap-5 overflow-x-auto scroll-smooth pb-4 pl-6 pr-6 md:pl-[calc((100vw-80rem)/2+1.5rem)] snap-x snap-mandatory"
-        style={{ scrollbarWidth: "none" }}
+        ref={rowRef}
+        tabIndex={isCarousel ? 0 : undefined}
+        onKeyDown={
+          isCarousel
+            ? (e) => {
+                if (e.key === "ArrowRight") { e.preventDefault(); next(); }
+                if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
+              }
+            : undefined
+        }
+        className="snap-row -mx-5 px-5 md:mx-0 md:px-0 flex md:grid md:grid-cols-3 gap-4 md:gap-6 overflow-x-auto md:overflow-visible items-stretch"
+        role={isCarousel ? "region" : undefined}
+        aria-roledescription={isCarousel ? "carrossel" : undefined}
+        aria-label={isCarousel ? "Depoimentos" : undefined}
       >
-        {testimonials.map((t) => (
-          <div key={t.name} className="snap-start">
+        {items.map((t, i) => (
+          <div
+            key={t.name}
+            className="shrink-0 w-[85%] sm:w-[60%] md:w-auto"
+            role={isCarousel ? "group" : undefined}
+            aria-roledescription={isCarousel ? "slide" : undefined}
+            aria-label={isCarousel ? `${i + 1} de ${items.length}` : undefined}
+          >
             <TestimonialCard t={t} />
           </div>
         ))}
       </div>
+      <p className="sr-only" aria-live="polite">
+        {announce}
+      </p>
+      {items.length > 1 && (
+        <div className="md:hidden flex items-center justify-center gap-1 mt-5">
+          <button
+            type="button"
+            onClick={prev}
+            disabled={index === 0}
+            aria-label="Depoimento anterior"
+            className="w-11 h-11 rounded-full flex items-center justify-center disabled:opacity-40"
+            style={{ border: "1px solid var(--color-border-strong)", color: "var(--color-text)" }}
+          >
+            <ChevronLeft size={20} aria-hidden="true" />
+          </button>
+          {items.map((t, i) => (
+            <button
+              key={t.name}
+              type="button"
+              onClick={() => goTo(i)}
+              aria-label={`Ir para o depoimento ${i + 1} de ${items.length}`}
+              aria-current={i === index}
+              className="w-11 h-11 flex items-center justify-center"
+            >
+              <span
+                className="block h-2 rounded-full"
+                style={{
+                  width: i === index ? 24 : 8,
+                  backgroundColor: i === index ? "#FF6820" : "rgba(255,255,255,0.25)",
+                  transition: "width var(--dur-base) ease-out, background-color var(--dur-base) ease-out",
+                }}
+              />
+            </button>
+          ))}
+          <button
+            type="button"
+            onClick={next}
+            disabled={index === items.length - 1}
+            aria-label="Próximo depoimento"
+            className="w-11 h-11 rounded-full flex items-center justify-center disabled:opacity-40"
+            style={{ border: "1px solid var(--color-border-strong)", color: "var(--color-text)" }}
+          >
+            <ChevronRight size={20} aria-hidden="true" />
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
 
-      {/* CTA */}
-      <div className="max-w-7xl mx-auto px-6 mt-14 text-center">
-        <p className="font-body text-base mb-6" style={{ color: "rgba(255,255,255,0.4)" }}>
-          A próxima história pode ser a sua.
-        </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+/** Só a grade de cartões — usada pela página /depoimentos. */
+export function TestimonialsGrid({ items = testimonials }: { items?: Testimonial[] }) {
+  return (
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+      {items.map((t) => (
+        <TestimonialCard key={t.name} t={t} />
+      ))}
+    </div>
+  );
+}
+
+/**
+ * Grade completa com filtro por perfil (página /depoimentos — Arquitetura §7).
+ * O filtro só aparece quando há 2+ perfis com 2+ depoimentos cada; antes disso,
+ * mostra a grade sem filtro (um filtro de uma opção só não ajuda ninguém).
+ */
+export function TestimonialsBrowser() {
+  const personas = personasWithEnough(testimonials);
+  const [active, setActive] = useState<Persona | "Todos">("Todos");
+  const items = active === "Todos" ? testimonials : testimonials.filter((t) => t.persona === active);
+
+  return (
+    <>
+      {personas.length >= 2 && (
+        <div className="flex flex-wrap gap-2 mb-8" role="group" aria-label="Filtrar depoimentos por perfil">
+          {(["Todos", ...personas] as const).map((p) => (
+            <button
+              key={p}
+              type="button"
+              onClick={() => setActive(p)}
+              aria-pressed={active === p}
+              className="px-4 py-2 rounded-full text-sm font-semibold transition-colors"
+              style={{
+                backgroundColor: active === p ? "#FF6820" : "rgba(255,255,255,0.06)",
+                color: "white",
+                border: active === p ? "1px solid #FF6820" : "1px solid rgba(255,255,255,0.15)",
+              }}
+            >
+              {p}
+            </button>
+          ))}
+        </div>
+      )}
+      <TestimonialsGrid items={items} />
+    </>
+  );
+}
+
+export default function Testimonials({ persona }: { persona?: Persona } = {}) {
+  // Arquitetura §8 — nas LPs, prova social filtrada: primeiro os depoimentos do
+  // perfil da página, completando com os destacados até 3 cartões.
+  const fromPersona = persona ? testimonials.filter((t) => t.persona === persona) : [];
+  const featured = testimonials.filter((t) => t.featured && !fromPersona.includes(t));
+  const rest = testimonials.filter((t) => !fromPersona.includes(t) && !featured.includes(t));
+  const items = [...fromPersona, ...featured, ...rest].slice(0, 3);
+
+  return (
+    <section id="depoimentos" className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
+      <div className="max-w-[1200px] mx-auto px-5 md:px-8">
+        <AnimatedSection className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+          <div>
+            <p className="eyebrow font-body text-sm font-bold uppercase tracking-widest mb-3">
+              O que dizem os profissionais
+            </p>
+            <h2 className="font-display font-extrabold text-white leading-tight" style={{ fontSize: "var(--text-h2)" }}>
+              Os números em palavras.
+            </h2>
+          </div>
+          <Link
+            href="/depoimentos"
+            className="inline-flex items-center gap-1.5 font-body text-sm font-semibold transition-colors duration-[var(--dur-base)] hover:text-white"
+            style={{ color: "rgba(255,255,255,0.55)" }}
+          >
+            Ver todos os {testimonials.length} depoimentos
+            <ArrowRight size={14} />
+          </Link>
+        </AnimatedSection>
+
+        <TestimonialsCarousel items={items} />
+
+        {/* CTA */}
+        <AnimatedSection delay={200} className="mt-14 text-center">
+          <p className="font-body text-base mb-6" style={{ color: "rgba(255,255,255,0.4)" }}>
+            A próxima história pode ser a sua.
+          </p>
           <a
-            href={getWhatsAppUrl("hero")}
+            href={getWhatsAppUrlForContext("cta")}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackCTAClick("testimonials")}
-            className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white transition-all duration-300 hover:opacity-90 hover:scale-105"
-            style={{ backgroundColor: "#FF6820" }}
-          >
+            className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white cta-primary">
             Quero começar
           </a>
-          <a
-            href="#faq"
-            className="font-body text-sm font-semibold underline underline-offset-4 transition-colors duration-200"
-            style={{ color: "rgba(255,255,255,0.35)" }}
-          >
-            Ver perguntas frequentes →
-          </a>
-        </div>
+        </AnimatedSection>
       </div>
     </section>
   );

@@ -1,0 +1,51 @@
+import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
+import { getArticles, lastModified } from "@/lib/blog";
+
+// sitemap.xml gerado no build (Arquitetura §6 e §10). Com `output: "export"`,
+// o Next grava out/sitemap.xml estático. Ao criar uma página nova, inclua aqui.
+export const dynamic = "force-static";
+
+const BASE = SITE_URL;
+
+type Entry = { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] };
+
+const PAGES: Entry[] = [
+  { path: "/", priority: 1.0, changeFrequency: "weekly" },
+  { path: "/metodo/", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/planos/", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/resultados/", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/depoimentos/", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/professores/", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/sobre/", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/blog/", priority: 0.8, changeFrequency: "weekly" },
+  { path: "/ingles-executivo/", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/ingles-entrevista/", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/ingles-expatriacao/", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/promocao-cargo/", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/intensivo/", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/para/engenheiros/", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/para/gestores/", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/vocabulario/", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/indique/", priority: 0.4, changeFrequency: "monthly" },
+  { path: "/politica-de-privacidade/", priority: 0.2, changeFrequency: "yearly" },
+  { path: "/termos/", priority: 0.2, changeFrequency: "yearly" },
+];
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date();
+  const pages = PAGES.map((p) => ({
+    url: `${BASE}${p.path}`,
+    lastModified: now,
+    changeFrequency: p.changeFrequency,
+    priority: p.priority,
+  }));
+  // SEO §5: posts 0.8 (pilares 0.85), data da última revisão.
+  const posts = getArticles().map((a) => ({
+    url: `${BASE}/blog/${a.slug}/`,
+    lastModified: new Date(lastModified(a)),
+    changeFrequency: "monthly" as const,
+    priority: a.pilar ? 0.85 : 0.8,
+  }));
+  return [...pages, ...posts];
+}

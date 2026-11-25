@@ -5,6 +5,14 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Um deploy por vez: com dangerous-clean-slate, dois deploys simultâneos
+# apagam/reenviam a mesma pasta via FTP e um deles falha no meio
+# ("550 ... Rename of hidden file ... failed"), podendo deixar o site incompleto.
+# O deploy em andamento termina; os seguintes esperam na fila.
+concurrency:
+  group: deploy-hostinger
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -38,7 +46,10 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./out/
           server-dir: ${{ secrets.FTP_REMOTE_DIR }}
-          dangerous-clean-slate: true
+          # Envio incremental: só os arquivos alterados sobem e os removidos são apagados
+          # (estado em .ftp-deploy-sync-state.json no servidor). Com clean-slate, a pasta
+          # era apagada antes do envio e o site ficava com 404 durante o deploy.
+          dangerous-clean-slate: false
           exclude: |
             **/.git*
             **/.git*/**

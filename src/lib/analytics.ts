@@ -102,6 +102,34 @@ export function trackABImpression(testName: string, variant: string) {
   });
 }
 
+// ─── Clique em qualquer link do WhatsApp ─────────────────────────────────────
+/**
+ * Disparado por um listener global (AnalyticsProvider) em todo clique num
+ * link wa.me — inclusive nos botões dos planos, que não chamam trackCTAClick.
+ * Serve para EXCLUIR do remarketing quem já iniciou contato (ponto 46).
+ * Evento próprio para não contar o Lead duas vezes.
+ */
+export function trackWhatsAppClick(path: string) {
+  gtag("event", "whatsapp_click", {
+    event_category: "funnel",
+    event_label: path,
+  });
+  fbq("trackCustom", "WhatsAppClick", { page: path });
+}
+
+// ─── Compartilhamento do programa de indicação ───────────────────────────────
+/**
+ * Aluno compartilhou /indique (ponto 48). Não é Lead — quem compartilha já é aluno.
+ * @param method "whatsapp" | "copiar"
+ */
+export function trackReferralShare(method: string) {
+  gtag("event", "referral_share", {
+    event_category: "referral",
+    event_label: method,
+  });
+  fbq("trackCustom", "ReferralShare", { method });
+}
+
 // ─── Chegada em /planos ───────────────────────────────────────────────────────
 /**
  * Dispara quando o visitante chega à página /planos.
@@ -119,4 +147,19 @@ export function trackPlansPageView() {
     content_name: "planos",
     content_category: "pricing",
   });
+}
+
+// ─── Tempo na página de planos ────────────────────────────────────────────────
+/**
+ * Posicionamento e Oferta §10 — "duração na página de planos": marca quem ficou
+ * 30 s e 90 s em /planos (interesse real em preço). Vira público de remarketing
+ * e sinal de qualidade de lead nos anúncios.
+ */
+export function trackPlansEngaged(seconds: number) {
+  gtag("event", "plans_engaged", {
+    event_category: "funnel",
+    event_label: `plans_${seconds}s`,
+    value: seconds,
+  });
+  fbq("trackCustom", "PlansEngaged", { seconds });
 }

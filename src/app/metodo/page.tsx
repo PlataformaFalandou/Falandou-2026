@@ -1,22 +1,33 @@
+import { BarChart3, Check, Dumbbell, Map, Search, Target } from "lucide-react";
 import type { Metadata } from "next";
-import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import CTASection from "@/components/sections/CTASection";
+import LeadMagnetCompact from "@/components/sections/LeadMagnetCompact";
 import ScrollRevealInit from "@/components/ui/ScrollRevealInit";
-import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
+import MethodCycle from "@/components/ui/MethodCycle";
+import CEFRScale from "@/components/ui/CEFRScale";
+import SpeakingLoop from "@/components/ui/SpeakingLoop";
+import PracticeCaseCard from "@/components/ui/PracticeCaseCard";
+import PageIndex from "@/components/ui/PageIndex";
+import { SituationInSession } from "@/components/interactive/SituationContext";
+import { PRACTICE_CASES } from "@/data/practiceCases";
 
+import JsonLd from "@/components/ui/JsonLd";
+import { PAUSE_RULE, RESCHEDULE_RULE, STUDENTS_PER_TEACHER } from "@/data/plans";
+import { faqSchema } from "@/lib/schema";
 export const metadata: Metadata = {
-  title: "Como Funciona | Falandou — Inglês Profissional",
+  title: "Método Falandou: o Ciclo de Inglês de 90 Dias | Falandou",
   description:
-    "O ciclo de 90 dias da Falandou: diagnóstico CEFR → plano individualizado → sessões 1 a 1 → avaliação de evolução. Processo claro, resultado em número.",
+    "Como funciona o Método Falandou: exame CEFR, plano individual, sessões 1 a 1 e avaliação no fim de cada ciclo de 90 dias. Resultado medido em número.",
   alternates: {
-    canonical: "https://2026.falandou.com/metodo",
+    canonical: "/metodo/",
   },
   openGraph: {
     title: "Como Funciona | Falandou",
     description:
       "Diagnóstico técnico, plano individual, sessões 1 a 1 e exame de evolução. O ciclo de 90 dias que transforma inglês travado em inglês funcional.",
-    url: "https://2026.falandou.com/metodo",
+    url: "/metodo/",
   },
 };
 
@@ -25,7 +36,7 @@ const steps = [
   {
     num: "01",
     tag: "Diagnóstico",
-    icon: "🔍",
+    icon: Search,
     title: "Exame CEFR diagnóstico",
     sub: "Ponto de partida técnico, sem achismo",
     body: "Antes de qualquer sessão, você faz um exame completo nas quatro habilidades — reading, listening, speaking e writing. O resultado posiciona você no padrão europeu CEFR (A1 a C2). Sem isso, qualquer plano é chute.",
@@ -40,7 +51,7 @@ const steps = [
   {
     num: "02",
     tag: "Estratégia",
-    icon: "🗺️",
+    icon: Map,
     title: "Plano individual de 90 dias",
     sub: "Montado para o seu objetivo, não para um público genérico",
     body: "Com o diagnóstico em mãos, os professores montam seu plano semana a semana. O vocabulário é do seu setor. As situações são do seu trabalho. Engenheiro treina engenharia; gestor treina reuniões e apresentações executivas.",
@@ -55,7 +66,7 @@ const steps = [
   {
     num: "03",
     tag: "Prática",
-    icon: "⚡",
+    icon: Dumbbell,
     title: "Prática guiada entre sessões",
     sub: "Atividades que imitam o uso real — não banco de questões genéricas",
     body: "Cada semana tem atividades direcionadas ao seu plano. Situações reais, vocabulário ativo, estruturas que você vai usar no trabalho. A prática é projetada para ativar o inglês, não apenas reconhecê-lo.",
@@ -70,14 +81,14 @@ const steps = [
   {
     num: "04",
     tag: "Sessões",
-    icon: "🎯",
+    icon: Target,
     title: "Sessões 1 a 1 com o professor",
     sub: "100% do tempo de cada sessão dedicado a você",
     body: "Sem dividir atenção com outros. O professor conhece seu plano, seu nível, seu objetivo. Cada sessão é uma conversa sobre o que você precisa usar — não sobre o que está no livro.",
     detail: [
-      "2 a 5 sessões por semana conforme o plano escolhido",
+      "De 4 a 16 sessões por mês, de 25 ou 50 minutos, conforme o plano",
       "Professor fixo — você não recomeça do zero a cada sessão",
-      "Reagendamento sem burocracia — avisa pelo WhatsApp",
+      "Reagendamento sem custo com 24h de antecedência, pelo WhatsApp",
     ],
     when: "Durante todo o ciclo",
     color: "#FF6820",
@@ -85,7 +96,7 @@ const steps = [
   {
     num: "05",
     tag: "Resultado",
-    icon: "📊",
+    icon: BarChart3,
     title: "Exame de evolução CEFR",
     sub: "Resultado em número, não em sensação",
     body: "Ao final dos 90 dias você refaz o exame CEFR. Comparamos com o ponto de partida — você vê exatamente quanto subiu. 79% dos profissionais sobem pelo menos 1 nível. Se quiser continuar, o próximo plano começa do novo patamar.",
@@ -99,27 +110,48 @@ const steps = [
   },
 ];
 
-// ── Perguntas que bloqueiam a decisão ─────────────────────────────────────────
+// ── Narrativa de comparação em 3 atos (Copywriting §9) ────────────────────────
+// Na home fica só o gancho (atos 1 + 2, MetodoTeaser); aqui o ato 3 é desenvolvido.
+const acts = [
+  {
+    tag: "Você tentou",
+    title: "O inglês melhorou um pouco. O tranco continuou.",
+    body: "Você já tentou aplicativo. Teve aula em grupo. Assistiu vídeo no YouTube. O inglês melhorou um pouco — mas na hora do meeting, do e-mail ou da entrevista, o tranco voltou.",
+  },
+  {
+    tag: "Por que não funcionou",
+    title: "Nenhum desses formatos foi feito para o seu trabalho.",
+    body: "Foram feitos para atender o maior número possível de pessoas: vocabulário sem contexto, ritmo da turma, conteúdo que você só assiste. É o oposto do que você precisa para falar numa reunião.",
+  },
+  {
+    tag: "O que é diferente aqui",
+    title: "A Falandou parte do seu contexto.",
+    body: "O seu cargo, o seu setor e as situações em que você trava. O exame CEFR mostra onde você está; o professor monta o plano a partir disso; cada sessão é desenhada para o que você vai usar na semana seguinte. E no fim, o mesmo exame mostra quanto você avançou.",
+  },
+];
+
+// ── FAQ do método: responde "como funciona" — complementar ao FAQ da home,
+//    que responde "o que é" (Copywriting §8). Sem perguntas repetidas.
 const faqs = [
   {
     q: "Preciso ter algum nível mínimo para começar?",
     a: "Não. O exame diagnóstico define o ponto de partida com precisão — trabalhamos com profissionais de A2 a C1. Se você consegue se comunicar minimamente em inglês, já dá para estruturar o plano.",
   },
   {
-    q: "Quanto tempo por semana preciso dedicar?",
-    a: "As sessões individuais levam de 50 minutos a 1 hora. As atividades práticas entre sessões foram calibradas para 20–30 minutos por dia. No total: 2 a 4 horas semanais dependendo do plano.",
+    q: "Como o professor é escolhido?",
+    a: `Pelo resultado do diagnóstico CEFR, pelo seu setor e pelo objetivo do ciclo. O professor é fixo e acompanha no máximo ${STUDENTS_PER_TEACHER} profissionais ao mesmo tempo — você não recomeça do zero a cada sessão.`,
   },
   {
     q: "E se eu faltar a uma sessão?",
-    a: "As sessões são reagendadas. Você avisa pelo WhatsApp e combinamos um novo horário — sem burocracia, sem custo extra, sem perder a sessão.",
+    a: `${RESCHEDULE_RULE} Os créditos de sessão valem dentro do ciclo mensal do plano — por isso vale reagendar no mesmo mês. ${PAUSE_RULE}`,
   },
   {
-    q: "O resultado é garantido?",
-    a: "Garantimos o processo — diagnóstico rigoroso, plano individual, acompanhamento semanal e exame de evolução. O resultado depende da dedicação, mas 79% dos profissionais que completam o ciclo sobe pelo menos 1 nível CEFR.",
+    q: "O plano muda durante o ciclo?",
+    a: "Pode mudar. A cada 30 dias o professor revisa o que avançou e ajusta o foco das semanas seguintes — por exemplo, se uma entrevista foi marcada ou se a escrita evoluiu mais rápido que a fala.",
   },
   {
     q: "Posso começar a qualquer momento?",
-    a: "Sim. Não há turma nem data de início — cada ciclo começa quando você começa. A primeira etapa é a conversa inicial gratuita para entender seu objetivo.",
+    a: "Sim. Não há turma nem data de início — cada ciclo começa quando você começa, com o exame diagnóstico.",
   },
   {
     q: "Por que 90 dias e não 6 meses?",
@@ -132,24 +164,25 @@ export default function MetodoPage() {
     <>
       <ScrollRevealInit />
       <Navbar />
-      <main>
+      <main id="conteudo">
+        {/* Dados estruturados — Arquitetura §10 */}
+        <JsonLd data={faqSchema(faqs)} />
 
         {/* ── HERO ─────────────────────────────────────────────────────────── */}
         <section
           className="pt-40 pb-28 md:pt-52 md:pb-36"
-          style={{ backgroundColor: "#161616" }}
+          style={{ backgroundColor: "var(--color-bg)" }}
         >
-          <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
             <div className="max-w-3xl">
               <p
-                className="reveal font-body text-sm font-bold uppercase tracking-widest mb-6"
-                style={{ color: "#FF6820" }}
+                className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-6"
               >
                 Como funciona
               </p>
               <h1
                 className="reveal font-display font-extrabold text-white leading-tight mb-6 delay-100"
-                style={{ fontSize: "clamp(2.2rem, 5vw, 3.75rem)" }}
+                style={{ fontSize: "var(--text-h1)" }}
               >
                 Um ciclo de 90 dias com{" "}
                 <span style={{ color: "#FF6820" }}>processo visível</span>{" "}
@@ -161,7 +194,7 @@ export default function MetodoPage() {
               >
                 Diagnóstico técnico, plano individual, sessões 1 a 1 e exame
                 de evolução CEFR. Você sabe exatamente o que acontece em cada
-                etapa — sem surpresa, sem "continue e veja".
+                etapa — sem surpresa, sem &ldquo;continue e veja&rdquo;.
               </p>
 
               {/* Stat strip */}
@@ -191,61 +224,107 @@ export default function MetodoPage() {
           </div>
         </section>
 
-        {/* ── CICLO: visão geral ────────────────────────────────────────────── */}
-        <section className="py-6 md:py-8" style={{ backgroundColor: "#F5F6F1" }}>
-          <div className="max-w-5xl mx-auto px-6">
-            {/* Timeline bar */}
-            <div className="reveal flex items-center justify-between gap-0 overflow-x-auto py-6">
-              {steps.map((step, i) => (
-                <div key={step.num} className="flex items-center flex-shrink-0">
-                  <div className="flex flex-col items-center text-center px-3">
-                    <div
-                      className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm mb-2"
-                      style={{ backgroundColor: "#FF6820" }}
-                    >
-                      {step.num}
-                    </div>
-                    <span className="font-body text-xs font-bold" style={{ color: "#161616" }}>
-                      {step.tag}
-                    </span>
-                    <span className="font-body text-xs mt-0.5" style={{ color: "rgba(22,22,22,0.4)" }}>
-                      {step.when}
-                    </span>
-                  </div>
-                  {i < steps.length - 1 && (
-                    <div
-                      className="flex-1 h-0.5 mx-1 min-w-[24px] md:min-w-[40px]"
-                      style={{ background: "rgba(255,104,32,0.25)" }}
-                    />
-                  )}
-                </div>
+        {/* Índice da página (revisão de jornada §9) — recolhido no celular */}
+        <div className="pb-4 -mt-16 md:-mt-24" style={{ backgroundColor: "var(--color-bg)" }}>
+          <PageIndex
+            items={[
+              { id: "visao-geral", label: "Visão geral" },
+              { id: "etapas", label: "Etapas" },
+              { id: "uma-sessao", label: "Uma sessão por dentro" },
+              { id: "duvidas", label: "Dúvidas" },
+            ]}
+          />
+        </div>
+
+        {/* ── NARRATIVA EM 3 ATOS — tentou → por que não funcionou → o que muda ── */}
+        <section className="py-12 md:py-20 bg-bg">
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
+              Por que outros formatos não resolveram
+            </p>
+            <h2
+              className="reveal font-display font-extrabold leading-tight mb-14 delay-100"
+              style={{ fontSize: "var(--text-h2)", color: "var(--color-text)", maxWidth: "720px" }}
+            >
+              Você não travou por falta de esforço.
+            </h2>
+            <ol className="grid md:grid-cols-3 gap-4 md:gap-6">
+              {acts.map((act, i) => (
+                <li
+                  key={act.tag}
+                  className="reveal rounded-2xl p-6 md:p-8"
+                  style={{
+                    backgroundColor: i === 2 ? "var(--color-surface)" : "var(--color-bg-alt)",
+                    border: i === 2 ? "2px solid #FF6820" : "1px solid var(--color-border)",
+                    transitionDelay: `${Math.min(i * 40, 120)}ms`,
+                  }}
+                >
+                  <span className="eyebrow font-body text-xs font-bold uppercase tracking-widest">
+                    {i + 1} · {act.tag}
+                  </span>
+                  <h3
+                    className="font-display font-extrabold text-[length:var(--text-h3)] mt-3 mb-3 leading-snug"
+                    style={{ color: "var(--color-text)" }}
+                  >
+                    {act.title}
+                  </h3>
+                  <p
+                    className="font-body text-base leading-6"
+                    style={{ color: i === 2 ? "rgba(255,255,255,0.7)" : "rgba(245,246,241,0.75)" }}
+                  >
+                    {act.body}
+                  </p>
+                </li>
               ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* ── CICLO: visão geral em diagrama (UX/UI §17, §25) ────────────── */}
+        <section id="visao-geral" className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }}>
+          <div className="max-w-5xl mx-auto px-5 md:px-8">
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
+              O ciclo em uma imagem
+            </p>
+            <h2 className="reveal font-display font-extrabold leading-tight mb-12 delay-100 text-white" style={{ fontSize: "var(--text-h2)" }}>
+              Diagnóstico, plano, sessões, avaliação — e um novo nível.
+            </h2>
+            <div className="reveal">
+              <MethodCycle />
+            </div>
+
+            {/* Escala CEFR interativa: "você está aqui" */}
+            <div className="reveal mt-16 rounded-2xl p-6 md:p-6 md:p-8" style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
+              <h3 className="font-display font-extrabold text-white mb-6" style={{ fontSize: "var(--text-h3)" }}>
+                A escala CEFR: de onde você sai e aonde chega.
+              </h3>
+              <CEFRScale interactive />
             </div>
           </div>
         </section>
 
         {/* ── ETAPAS DETALHADAS ────────────────────────────────────────────── */}
-        <section className="py-20 md:py-28 bg-white">
-          <div className="max-w-5xl mx-auto px-6 space-y-8">
+        <section id="etapas" aria-label="Etapas do ciclo" className="py-12 md:py-20 bg-bg">
+          <div className="max-w-5xl mx-auto px-5 md:px-8 space-y-8">
             {steps.map((step, i) => (
               <div
                 key={step.num}
                 className="reveal rounded-2xl overflow-hidden"
                 style={{
-                  border: "1px solid rgba(0,0,0,0.07)",
-                  transitionDelay: `${i * 60}ms`,
+                  border: "1px solid var(--color-border)",
+                  transitionDelay: `${Math.min(i * 40, 120)}ms`,
                 }}
               >
                 {/* Header strip */}
                 <div
                   className="flex items-center gap-4 px-8 py-5"
-                  style={{ backgroundColor: i === 0 ? "#161616" : "#F5F6F1" }}
+                  style={{ backgroundColor: i === 0 ? "var(--color-surface)" : "var(--color-bg-alt)" }}
                 >
                   <span
                     className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-display font-black text-sm"
                     style={{
                       backgroundColor: "#FF6820",
-                      color: "white",
+                      color: "var(--color-on-brand)",
                     }}
                   >
                     {step.num}
@@ -260,23 +339,23 @@ export default function MetodoPage() {
                       </span>
                       <span
                         className="font-body text-xs"
-                        style={{ color: i === 0 ? "rgba(255,255,255,0.4)" : "rgba(22,22,22,0.4)" }}
+                        style={{ color: i === 0 ? "rgba(255,255,255,0.4)" : "rgba(245,246,241,0.5)" }}
                       >
                         {step.when}
                       </span>
                     </div>
                     <h3
-                      className="font-display font-extrabold text-lg mt-1 leading-tight"
-                      style={{ color: i === 0 ? "white" : "#161616" }}
+                      className="font-display font-extrabold text-[length:var(--text-h3)] mt-1 leading-tight"
+                      style={{ color: "var(--color-text)" }}
                     >
                       {step.title}
                     </h3>
                   </div>
-                  <span className="text-3xl flex-shrink-0 hidden sm:block">{step.icon}</span>
+                  <step.icon size={28} strokeWidth={1.75} className="flex-shrink-0 hidden sm:block" style={{ color: "var(--color-text-muted)" }} aria-hidden="true" />
                 </div>
 
                 {/* Body */}
-                <div className="px-8 py-7 grid md:grid-cols-[1fr_auto] gap-8 items-start bg-white">
+                <div className="px-8 py-7 grid md:grid-cols-[1fr_auto] items-start bg-surface gap-4 md:gap-6">
                   <div>
                     <p
                       className="font-body text-sm font-semibold mb-3"
@@ -286,7 +365,7 @@ export default function MetodoPage() {
                     </p>
                     <p
                       className="font-body text-base leading-relaxed mb-6"
-                      style={{ color: "rgba(22,22,22,0.7)" }}
+                      style={{ color: "rgba(245,246,241,0.8)" }}
                     >
                       {step.body}
                     </p>
@@ -296,12 +375,10 @@ export default function MetodoPage() {
                           <span
                             className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold mt-0.5"
                             style={{ background: "rgba(255,104,32,0.12)", color: "#FF6820" }}
-                          >
-                            ✓
-                          </span>
+                          ><Check size={16} strokeWidth={2.5} aria-hidden="true" /></span>
                           <span
                             className="font-body text-sm leading-snug"
-                            style={{ color: "rgba(22,22,22,0.65)" }}
+                            style={{ color: "rgba(245,246,241,0.75)" }}
                           >
                             {d}
                           </span>
@@ -328,7 +405,7 @@ export default function MetodoPage() {
                 {i < steps.length - 1 && (
                   <div
                     className="flex justify-center py-2"
-                    style={{ background: "#F5F6F1" }}
+                    style={{ background: "var(--color-bg-alt)" }}
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <path
@@ -346,43 +423,77 @@ export default function MetodoPage() {
           </div>
         </section>
 
+        {/* ── UMA SESSÃO, POR DENTRO — demonstração do método (direção criativa §2.2, §4.2) ── */}
+        <section id="uma-sessao" className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg-alt)" }} aria-labelledby="sessao-por-dentro">
+          <div className="max-w-[1200px] mx-auto px-5 md:px-8">
+            <p className="eyebrow reveal text-sm font-bold uppercase tracking-widest mb-3">Uma sessão, por dentro</p>
+            <h2 id="sessao-por-dentro" className="reveal font-display text-white mb-4 max-w-3xl" style={{ fontSize: "var(--text-h2)" }}>
+              Sua próxima situação vira o <span style={{ color: "#FF6820" }}>tema da próxima sessão.</span>
+            </h2>
+            <p className="reveal text-lg max-w-2xl mb-12" style={{ color: "var(--color-text-body)" }}>
+              Você traz o e-mail, a reunião ou a apresentação que tem pela frente. A sessão transforma isso em
+              prática: ideia, frase, fala e feedback.
+            </p>
+            <div className="reveal mb-12">
+              <SpeakingLoop />
+            </div>
+            {/* A situação escolhida na home acompanha o visitante (revisão de jornada §2) */}
+            <div className="reveal mb-12">
+              <SituationInSession />
+            </div>
+            <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-8 lg:gap-12 items-start">
+              <div className="reveal">
+                <h3 className="font-display text-white mb-4" style={{ fontSize: "var(--text-h3)" }}>
+                  Como o professor trabalha um e-mail
+                </h3>
+                <ul className="flex flex-col gap-3 text-base leading-6" style={{ color: "var(--color-text-body)" }}>
+                  <li><strong className="text-white">Identifica o padrão.</strong> Tradução literal do português, tom, estrutura.</li>
+                  <li><strong className="text-white">Explica o porquê.</strong> Você entende a regra, não decora a correção.</li>
+                  <li><strong className="text-white">Reescreve com você.</strong> A versão final sai da sua frase, no seu contexto.</li>
+                  <li><strong className="text-white">Volta na próxima sessão.</strong> O mesmo padrão aparece em outra situação, até ficar automático.</li>
+                </ul>
+              </div>
+              <PracticeCaseCard c={PRACTICE_CASES.followup} />
+            </div>
+          </div>
+        </section>
+
         {/* ── PERGUNTAS QUE BLOQUEIAM ───────────────────────────────────────── */}
-        <section className="py-24 md:py-32" style={{ backgroundColor: "#F5F6F1" }}>
-          <div className="max-w-4xl mx-auto px-6">
+        <section id="duvidas" className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
+          <div className="max-w-4xl mx-auto px-5 md:px-8">
             <div className="text-center mb-14">
               <p
-                className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4"
-                style={{ color: "#FF6820" }}
+                className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3"
               >
-                Dúvidas comuns antes de começar
+                Dúvidas sobre o funcionamento
               </p>
               <h2
                 className="reveal font-display font-extrabold leading-tight delay-100"
-                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}
+                style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}
               >
-                As perguntas que todo mundo tem antes de decidir.
+                Como o ciclo funciona no dia a dia.
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-5">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6">
               {faqs.map((faq, i) => (
                 <div
                   key={i}
-                  className="reveal rounded-2xl p-7 bg-white"
+                  className="reveal rounded-2xl p-7 bg-surface"
                   style={{
-                    border: "1px solid rgba(0,0,0,0.07)",
-                    transitionDelay: `${i * 50}ms`,
+                    border: "1px solid var(--color-border)",
+                    transitionDelay: `${Math.min(i * 40, 120)}ms`,
                   }}
                 >
                   <p
                     className="font-display font-bold text-base mb-3 leading-snug"
-                    style={{ color: "#161616" }}
+                    style={{ color: "var(--color-text)" }}
                   >
                     {faq.q}
                   </p>
                   <p
-                    className="font-body text-sm leading-relaxed"
-                    style={{ color: "rgba(22,22,22,0.6)" }}
+                    className="font-body text-base leading-6"
+                    style={{ color: "rgba(245,246,241,0.7)" }}
                   >
                     {faq.a}
                   </p>
@@ -392,81 +503,18 @@ export default function MetodoPage() {
           </div>
         </section>
 
-        {/* ── O QUE NÃO FUNCIONA — compacto ───────────────────────────────── */}
-        <section className="py-20 md:py-24 bg-white border-t" style={{ borderColor: "rgba(0,0,0,0.06)" }}>
-          <div className="max-w-4xl mx-auto px-6">
-            <p
-              className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4 text-center"
-              style={{ color: "rgba(22,22,22,0.35)" }}
-            >
-              Por que outros formatos não resolvem
-            </p>
-            <div className="reveal grid sm:grid-cols-2 md:grid-cols-4 gap-4 delay-100">
-              {[
-                { icon: "📱", label: "Apps", flaw: "Vocabulário sem contexto profissional" },
-                { icon: "👥", label: "Cursos em grupo", flaw: "Ritmo do grupo, não o seu" },
-                { icon: "🎧", label: "Vídeos gravados", flaw: "Passivo não desenvolve fala" },
-                { icon: "📚", label: "Gramática", flaw: "Regras não ativam fluência" },
-              ].map((f) => (
-                <div
-                  key={f.label}
-                  className="rounded-xl p-5"
-                  style={{ background: "#F5F6F1", border: "1px solid rgba(0,0,0,0.05)" }}
-                >
-                  <span className="text-2xl block mb-3">{f.icon}</span>
-                  <p className="font-body text-sm font-bold mb-1" style={{ color: "#161616" }}>{f.label}</p>
-                  <p className="font-body text-xs leading-snug" style={{ color: "rgba(22,22,22,0.5)" }}>{f.flaw}</p>
-                </div>
-              ))}
-            </div>
-            <p
-              className="reveal font-display font-extrabold text-xl md:text-2xl text-center mt-10 max-w-2xl mx-auto delay-200"
-              style={{ color: "#161616" }}
-            >
-              A Falandou resolve exatamente o que falta em cada um desses formatos.
-            </p>
-          </div>
-        </section>
+        {/* ── CTA (componente reutilizável — Arquitetura §4) ── */}
+        <CTASection
+          heading="Pronto para começar pelo diagnóstico?"
+          text="Conte o seu objetivo e o seu prazo. A equipe responde em até 1h e explica como o ciclo fica no seu caso."
+          whatsappContext="metodo"
+          secondary={{ href: "/planos", label: "Ver planos e valores" }}
+        />
 
-        {/* ── CTA ──────────────────────────────────────────────────────────── */}
-        <section className="py-24 md:py-32" style={{ backgroundColor: "#FF6820" }}>
-          <div className="max-w-3xl mx-auto px-6 text-center">
-            <h2
-              className="font-display font-extrabold text-white leading-tight mb-4"
-              style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
-            >
-              Pronto para ver o processo na prática?
-            </h2>
-            <p
-              className="font-body text-lg mb-10"
-              style={{ color: "rgba(255,255,255,0.8)" }}
-            >
-              A conversa inicial é gratuita. Você entende o plano, faz perguntas
-              e decide sem pressão — sem compromisso.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href={getWhatsAppUrlForContext("metodo")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-10 py-5 rounded-full text-base font-bold transition-all duration-200 hover:scale-105 active:scale-95"
-                style={{ backgroundColor: "#161616", color: "white" }}
-              >
-                Quero começar
-              </a>
-              <Link
-                href="/planos"
-                className="inline-flex items-center justify-center px-8 py-5 rounded-full text-base font-semibold transition-all duration-200 hover:scale-105"
-                style={{ background: "rgba(255,255,255,0.2)", color: "white", border: "1px solid rgba(255,255,255,0.4)" }}
-              >
-                Ver planos e valores
-              </Link>
-            </div>
-          </div>
-        </section>
+        <LeadMagnetCompact />
 
       </main>
-      <Footer />
+      <Footer cta={false} />
     </>
   );
 }

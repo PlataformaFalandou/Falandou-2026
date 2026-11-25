@@ -1,4 +1,7 @@
+import { SITE_URL } from "@/lib/site";
 export const WHATSAPP_NUMBER = "5511971419047";
+/** Número para exibir (ex.: quando o WhatsApp não abre e a pessoa copia a mensagem). */
+export const WHATSAPP_DISPLAY = `+${WHATSAPP_NUMBER.slice(0, 2)} ${WHATSAPP_NUMBER.slice(2, 4)} ${WHATSAPP_NUMBER.slice(4, 9)}-${WHATSAPP_NUMBER.slice(9)}`;
 
 export function getWhatsAppUrl(message?: string): string {
   const defaultMessage = "Olá! Quero saber como a Falandou pode me ajudar com inglês profissional.";
@@ -50,12 +53,11 @@ export function withUTM(
  *   linkedinUrl("planos", "post-semana-12")
  */
 export function linkedinUrl(
-  page: "home" | "planos" | "metodo" | "ingles-entrevista" | "ingles-executivo" | "ingles-expatriacao" | "promocao-cargo" | "intensivo" | "turma-online" | string,
+  page: "home" | "planos" | "metodo" | "ingles-entrevista" | "ingles-executivo" | "ingles-expatriacao" | "promocao-cargo" | "intensivo" | string,
   campaign?: string
 ): string {
-  const BASE = "https://2026.falandou.com";
   const path = page === "home" ? "/" : `/${page}`;
-  return withUTM(`${BASE}${path}`, "linkedin", campaign);
+  return withUTM(`${SITE_URL}${path}`, "linkedin", campaign);
 }
 
 export function getWhatsAppUrlForContext(context: string): string {
@@ -68,6 +70,12 @@ export function getWhatsAppUrlForContext(context: string): string {
     faq: "Olá! Fiquei com uma dúvida depois de ler o FAQ da Falandou e gostaria de conversar com a equipe.",
     roi: "Olá! Vi os cenários de retorno da Falandou e quero entender como o plano certo pode impactar minha carreira. Pode me ajudar?",
     metodo: "Olá! Li sobre o método da Falandou e quero entender como funciona na prática para o meu caso.",
+    empresas: "Olá! Represento uma empresa e quero entender como funciona o inglês profissional da Falandou para a nossa equipe.",
+    depoimentos:"Olá! Li os depoimentos da Falandou e quero entender como o ciclo funcionaria para o meu caso.",
+    sobre:"Olá! Conheci a Falandou pelo site e quero entender como funciona o ciclo para profissionais.",
+    resultados:"Olá! Vi os resultados da Falandou e quero fazer o diagnóstico para saber de onde eu partiria.",
+    indicacao:"Olá! Sou aluno(a) da Falandou e tenho uma dúvida sobre o programa de indicação.",
+    professores: "Olá! Conheci os professores da Falandou e quero fazer o diagnóstico para saber qual plano faz sentido para mim.",
     "ingles-entrevista": "Olá! Tenho uma entrevista de emprego em inglês se aproximando e preciso me preparar. Quero entender como a Falandou pode me ajudar.",
     "ingles-entrevista-urgente": "Olá! Minha entrevista em inglês está próxima e preciso de preparação intensiva. Pode me ajudar urgente?",
     "ingles-expatriacao": "Olá! Estou sendo transferido internacionalmente e preciso de inglês profissional para o ambiente de trabalho no exterior. Quero entender como a Falandou me prepara.",
@@ -76,10 +84,9 @@ export function getWhatsAppUrlForContext(context: string): string {
     executivo: "Olá! Preciso de inglês executivo para reuniões e apresentações. Quero entender como a Falandou trabalha com esse objetivo.",
     promocao: "Olá! Estou buscando uma promoção e o inglês é requisito. Quero saber como a Falandou pode acelerar meu desenvolvimento.",
     leadmagnet: "Olá! Vi o roteiro de 30 dias no site da Falandou e quero receber o PDF completo.",
-    "turma-online": "Olá! Tenho interesse na turma online de inglês profissional da Falandou e gostaria de saber quando a próxima turma abre.",
-    "turma-online-footer": "Olá! Tenho interesse na turma online de inglês profissional da Falandou e gostaria de saber quando a próxima turma abre.",
-    intensivo: "Olá! Tenho interesse no programa intensivo da Falandou e gostaria de entender como funciona e quando começa a próxima turma.",
-    "intensivo-footer": "Olá! Tenho interesse no programa intensivo da Falandou e gostaria de entender como funciona e quando começa a próxima turma.",
+    engenheiros: "Olá! Sou da área de engenharia/arquitetura e preciso usar inglês com clientes e times de fora. Quero entender como a Falandou trabalha com esse perfil.",
+    gestores: "Olá! Sou gestor(a) e preciso conduzir reuniões com o time global em inglês. Quero entender como a Falandou trabalha com esse perfil.",
+    intensivo: "Olá! Tenho interesse no plano Urgente da Falandou (16 sessões/mês). Podem me contar mais sobre como funciona?",
   };
   return getWhatsAppUrl(messages[context] ?? messages.hero);
 }

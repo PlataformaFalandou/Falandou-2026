@@ -2,10 +2,12 @@
 
 import { trackCTAClick } from "@/lib/analytics";
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, MessageCircle } from "lucide-react";
-import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
+import { getWhatsAppUrl, getWhatsAppUrlForContext } from "@/lib/whatsapp";
+import { STATS } from "@/data/stats";
+import PracticeCaseCard from "@/components/ui/PracticeCaseCard";
+import type { PracticeCase } from "@/data/practiceCases";
 
 // Inline SVG paths — Simple Icons (CC0). Logos são marcas dos respectivos proprietários.
 // Contexto: empregadores dos alunos matriculados — não implica endosso.
@@ -32,182 +34,159 @@ const HERO_LOGOS = [
   },
 ];
 
+/**
+ * Trecho do título. O título entra inteiro, sem separar palavras ou letras
+ * (direção de movimento §1.1). `accent` pinta de laranja — uma expressão por título.
+ * `start` é mantido por compatibilidade.
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function HeadlineWords({ text, accent = false, start = 0 }: { text: string; accent?: boolean; start?: number }) {
+  const clean = text.trim();
+  return accent ? <span style={{ color: "#FF6820" }}>{clean}</span> : <>{clean} </>;
+}
+
 interface HeroProps {
-  eyebrow?: string;
+  eyebrow?: React.ReactNode;
   headline?: React.ReactNode;
-  subheadline?: string;
+  subheadline?: React.ReactNode;
+  /** Versão curta do subtítulo para o celular (revisão editorial §21). */
+  subheadlineShort?: string;
   /** Chip de dado imediatamente abaixo do subheadline — ancora qualquer claim de resultado. */
   statChip?: string;
   whatsappContext?: string;
+  /** Texto do botão principal. LPs de mídia usam algo mais urgente (Arquitetura §8). */
+  ctaLabel?: string;
+  /** "Situação em prática" ao lado do título, no desktop (direção criativa §5.1). */
+  practice?: PracticeCase;
+  /** Bloco ao lado do título no desktop (ex.: demonstração interativa). Tem prioridade sobre `practice`. */
+  aside?: React.ReactNode;
+  /** Mensagem do WhatsApp do CTA principal (ex.: contexto da situação escolhida). */
+  whatsappMessage?: string;
 }
 
+
+/**
+ * Hero em 3 camadas (UX/UI §2): resultado (headline) → mecanismo (subheadline) →
+ * ação (CTA primário + secundário). Fundo tipográfico escuro, sem foto de banco de imagens.
+ */
 export default function Hero({
   eyebrow = "Você sabe inglês. Mas trava na hora de usar.",
   headline = (
     <>
-      Fale inglês com{" "}
-      <span style={{ color: "#FF6820" }}>confiança no trabalho.</span>
+      <HeadlineWords text="Fale inglês com" />
+      <HeadlineWords text="confiança no trabalho." accent start={3} />
     </>
   ),
   subheadline = "A maioria dos profissionais entende inglês razoavelmente bem. O problema é na hora de falar — reunião, apresentação, entrevista. A Falandou resolve exatamente isso: inglês funcional para o seu contexto. B1 → B2 em 11 semanas em média.",
+  subheadlineShort,
   statChip,
   whatsappContext = "hero",
+  ctaLabel = "Quero começar",
+  practice,
+  aside,
+  whatsappMessage,
 }: HeroProps) {
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    const t = setTimeout(() => setLoaded(true), 100);
-    return () => clearTimeout(t);
-  }, []);
-
+  const side = aside ?? (practice ? <PracticeCaseCard c={practice} compact /> : null);
+  // Entrada do hero (direção de movimento §1.1) em CSS puro: título (320ms) →
+  // explicação (+60ms) → botões e prova (+100ms). Sem esperar a hidratação.
   return (
-    <section className="relative min-h-screen overflow-hidden">
-      {/* Full-bleed background image */}
-      <div className="absolute inset-0">
-        <Image
-          src="/images/hero-woman-meeting.png"
-          alt="Profissional apresentando com confiança em inglês"
-          fill
-          className="object-cover object-center"
-          priority
-          sizes="100vw"
-        />
-        {/* Dark overlay */}
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(135deg, rgba(22,22,22,0.85) 0%, rgba(22,22,22,0.6) 60%, rgba(22,22,22,0.4) 100%)" }}
-        />
-        {/* Orange tint bottom */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-64 pointer-events-none"
-          style={{ background: "linear-gradient(to top, rgba(255,104,32,0.15), transparent)" }}
-        />
-      </div>
+    <section
+      className="relative overflow-hidden"
+      style={{ background: "linear-gradient(160deg, #1A1A1A 0%, #141414 55%, #1E1E1E 100%)" }}
+    >
+      {/* Textura sutil: grade de linhas finas + brilho laranja (sem imagem, sem loop) */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
+          maskImage: "radial-gradient(ellipse at 30% 40%, black 0%, transparent 75%)",
+          WebkitMaskImage: "radial-gradient(ellipse at 30% 40%, black 0%, transparent 75%)",
+        }}
+      />
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24 md:pt-40 md:pb-32 min-h-screen flex flex-col justify-center">
+      <div className="relative z-10 max-w-[1200px] mx-auto px-5 md:px-8 pt-28 pb-12 md:pt-40 md:pb-20 min-h-hero flex flex-col justify-center">
+        {/* Revisão visual §5.1: título → explicação → CTA → prova curta. Os indicadores
+            detalhados ficam na faixa seguinte (StatsBar). */}
+        <div className={side ? "grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-12 xl:gap-16 items-center" : ""}>
         <div className="max-w-3xl">
-          {/* Eyebrow */}
-          <div
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-8 border border-white/20 backdrop-blur-sm transition-all duration-700 ${
-              loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-            style={{ background: "rgba(255,104,32,0.2)", color: "#FF9A6C" }}
+          {/* Selo: menos contraste que o CTA */}
+          <p
+            className="enter-title inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium mb-6 border"
+            style={{ background: "transparent", borderColor: "var(--color-border)", color: "var(--color-text-body)" }}
           >
-            <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: "#FF6820" }} />
             {eyebrow}
-          </div>
+          </p>
 
-          {/* Headline */}
-          <h1
-            className={`font-display font-extrabold text-white leading-[1.05] tracking-tight mb-6 transition-all duration-700 delay-100 ${
-              loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
-            style={{ fontSize: "clamp(2.8rem, 6vw, 5rem)" }}
-          >
+          {/* 1 — título: uma expressão destacada, só pela cor (§2.3) */}
+          <h1 className="enter-title font-display text-white mb-4" style={{ fontSize: "var(--text-h1)" }}>
             {headline}
           </h1>
 
-          {/* Subheadline */}
-          <p
-            className={`text-white/70 text-xl md:text-2xl leading-relaxed mb-10 max-w-2xl transition-all duration-700 delay-200 ${
-              loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
-          >
-            {subheadline}
+          {/* 2 — explicação em duas ou três linhas */}
+          <p className="enter-text text-lg md:text-xl leading-relaxed mb-8 max-w-2xl" style={{ color: "var(--color-text-body)" }}>
+            {subheadlineShort ?? subheadline}
           </p>
 
-          {/* Stat chip — dado de suporte ao claim do subheadline */}
-          {statChip && (
-            <p
-              className={`text-sm font-medium mb-10 -mt-6 transition-all duration-700 delay-250 ${
-                loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
-              style={{ color: "rgba(255,104,32,0.85)" }}
-            >
-              {statChip}
+          {/* 3 — ação: primário preenchido + secundário de contorno neutro (§3.1) */}
+          <div className="enter-actions">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href={whatsappMessage ? getWhatsAppUrl(whatsappMessage) : getWhatsAppUrlForContext(whatsappContext)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackCTAClick("hero")}
+                className="cta-primary cta-lg rounded-full sm:min-w-[220px]"
+              >
+                <MessageCircle aria-hidden="true" />
+                {ctaLabel}
+              </a>
+              <Link href="/planos" className="cta-secondary cta-lg rounded-full sm:min-w-[180px]">
+                Ver planos
+                <ArrowRight aria-hidden="true" />
+              </Link>
+            </div>
+            {/* Botão → texto auxiliar: 8px (§4.3) */}
+            <p className="mt-2 text-sm" style={{ color: "var(--color-text-muted)" }}>
+              Pelo WhatsApp · a equipe responde em até 1h
             </p>
-          )}
-
-          {/* CTAs */}
-          <div
-            className={`flex flex-col sm:flex-row gap-4 mb-16 transition-all duration-700 delay-300 ${
-              loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
-          >
-            <a
-              href={getWhatsAppUrlForContext(whatsappContext)}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackCTAClick("hero")}
-              className="inline-flex items-center justify-center gap-3 px-8 py-5 rounded-full text-base font-bold text-white transition-all duration-200 hover:scale-105 active:scale-95 shadow-2xl"
-              style={{ backgroundColor: "#FF6820", boxShadow: "0 8px 32px rgba(255,104,32,0.5)" }}
-            >
-              <MessageCircle size={20} />
-              Quero começar
-            </a>
-            <a
-              href="#como-funciona"
-              className="inline-flex items-center justify-center gap-2 px-8 py-5 rounded-full text-base font-semibold text-white border border-white/30 backdrop-blur-sm hover:border-white/60 transition-all duration-200 group"
-              style={{ background: "rgba(255,255,255,0.1)" }}
-            >
-              Ver como funciona
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </a>
           </div>
 
-          {/* Stats strip — 4 números concretos visíveis sem rolar */}
-          <div
-            className={`transition-all duration-700 delay-500 ${
-              loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-          >
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-4 max-w-xl">
-              {[
-                { value: "600+",    label: "Profissionais formados" },
-                { value: "11 sem",  label: "B1→B2 em média" },
-                { value: "79%",     label: "Sobem 1 nível em 90 dias" },
-                { value: "4.9★",    label: "Avaliação média" },
-              ].map((s) => (
-                <div key={s.label} className="text-center sm:text-left">
-                  <div className="font-display font-extrabold text-2xl md:text-3xl text-white">{s.value}</div>
-                  <div className="text-white/50 text-xs mt-1 leading-tight">{s.label}</div>
-                </div>
+          {/* 4 — prova curta */}
+          <div className="enter-actions mt-10">
+            <p className="text-sm tnum mb-4" style={{ color: "var(--color-text-body)" }}>
+              {statChip ?? (
+                <>
+                  <strong className="text-white">{STATS.evaluated} profissionais</strong> avaliados no exame CEFR no último
+                  ciclo · sessões 1 a 1, sem turma
+                </>
+              )}
+            </p>
+            <div className="flex flex-wrap gap-6 items-center" aria-label="Empresas onde trabalham profissionais que estudaram na Falandou">
+              {HERO_LOGOS.map((logo) => (
+                <svg
+                  key={logo.name}
+                  role="img"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-label={logo.name}
+                  style={{ height: "18px", width: "auto", maxWidth: "80px", fill: "rgba(255,255,255,0.4)" }}
+                >
+                  <path d={logo.path} />
+                </svg>
               ))}
-            </div>
-
-            {/* Logos — empresas dos alunos, compacto dentro da Hero */}
-            <div
-              className={`mt-8 transition-all duration-700 delay-700 ${
-                loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
-            >
-              <p className="text-white/30 text-xs uppercase tracking-widest font-semibold mb-4">
-                Profissionais de empresas como
-              </p>
-              <div className="flex flex-wrap gap-6 items-center">
-                {HERO_LOGOS.map((logo) => (
-                  <svg
-                    key={logo.name}
-                    role="img"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-label={logo.name}
-                    style={{ height: "18px", width: "auto", maxWidth: "80px", fill: "rgba(255,255,255,0.35)" }}
-                    className="hover:fill-white/60 transition-all duration-200"
-                  >
-                    <path d={logo.path} />
-                  </svg>
-                ))}
-              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Bottom scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-50">
-        <div className="w-px h-12 bg-white/40" style={{ animation: "pulse 2s infinite" }} />
+        {/* Composição do hero: o trabalho da escola ao lado da promessa (direção criativa §4.2) */}
+        {side && (
+          <div className="enter-aside hidden lg:block">
+            {side}
+          </div>
+        )}
+        </div>
       </div>
     </section>
   );

@@ -63,7 +63,7 @@ export default function CEFRTooltip({ children = "CEFR" }: Props) {
             left: "50%",
             transform: "translateX(-50%)",
             width: "260px",
-            background: "#161616",
+            background: "var(--color-bg)",
             color: "#F5F6F1",
             fontSize: "13px",
             lineHeight: 1.5,
@@ -91,7 +91,7 @@ export default function CEFRTooltip({ children = "CEFR" }: Props) {
           />
           <strong style={{ color: "#FF6820" }}>CEFR</strong> é o padrão europeu
           de proficiência em idiomas — usado por Cambridge, IELTS e multinacionais
-          para avaliar candidatos. Vai de A1 (iniciante) a C2 (fluente).
+          para avaliar candidatos. Vai de A1 (iniciante) a C2 (proficiente).
         </span>
       )}
     </span>

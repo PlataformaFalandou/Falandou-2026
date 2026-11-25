@@ -1,134 +1,138 @@
 "use client";
 
-import Image from "next/image";
-import { getWhatsAppUrl } from "@/lib/whatsapp";
+import FadeImage from "@/components/ui/FadeImage";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
-import AnimatedSection from "@/components/ui/AnimatedSection";
+import { teachers, teacherSlug, YOUTUBE_CHANNEL_URL, type Teacher } from "@/lib/teachers";
 
-const teachers = [
-  {
-    name: "Adriel Pelegrino",
-    title: "Fundador & Professor",
-    photo: "/images/prof-adriel.png",
-    credentials: ["Cambridge C2", "Filólogo e Linguista"],
-    focus: "B2 – C2",
-    specialty: "Entrevistas internacionais",
-    bio: "7 anos treinando profissionais brasileiros para o mercado global. Especialista em comunicação de alto nível: negociações, entrevistas executivas e apresentações para clientes internacionais.",
-  },
-  {
-    name: "Sara El Hamdaoui",
-    title: "Professora",
-    photo: "/images/prof-sara.jpg",
-    credentials: ["CELTA", "DELTA"],
-    focus: "A1 – B1",
-    specialty: "Inglês cotidiano",
-    bio: "Pedagoga com formação europeia e certificações CELTA e DELTA — as mais exigentes para professores de inglês. Especializada em construir a base sólida que todo profissional precisa para crescer com confiança.",
-  },
-  {
-    name: "Amanda Bennett",
-    title: "Professora",
-    photo: "/images/prof-amanda.png",
-    credentials: ["Cambridge", "IELTS", "TOEFL"],
-    focus: "A1 – C2",
-    specialty: "Literatura e escrita profissional",
-    bio: "Pedagoga norte-americana com formação e prática em Cambridge, IELTS e TOEFL. Atende do nível A1 ao C2 com planos individualizados — do diagnóstico inicial até a preparação para certificação.",
-  },
-];
+// Link para o canal da escola — mostra como a Falandou ensina antes da conversa.
+export function YouTubeLink({ className = "" }: { className?: string }) {
+  return (
+    <a
+      href={YOUTUBE_CHANNEL_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-flex items-center gap-2 font-body text-sm font-semibold transition-colors duration-[var(--dur-base)] hover:text-white ${className}`}
+      style={{ color: "rgba(255,255,255,0.6)" }}
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          fill="#FF6820"
+          d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"
+        />
+      </svg>
+      Veja como a escola ensina no canal @falandou
+      <ArrowRight size={14} />
+    </a>
+  );
+}
+
+export function TeacherCard({ t }: { t: Teacher }) {
+  return (
+    <div
+      id={teacherSlug(t.name)}
+      className="rounded-2xl overflow-hidden border flex flex-col scroll-mt-28"
+      style={{ backgroundColor: "var(--color-surface)", borderColor: "var(--color-border)" }}
+    >
+      {/* Photo */}
+      <div className="relative w-full aspect-square overflow-hidden img-skeleton">
+        <FadeImage
+          src={t.photo}
+          alt={t.name}
+          fill
+          className="object-cover object-top"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
+        {/* Focus badge */}
+        <div
+          className="on-brand absolute bottom-3 right-3 px-3 py-1.5 rounded-full text-xs font-bold"
+          style={{ backgroundColor: "#FF6820" }}
+        >
+          Foco {t.focus}
+        </div>
+      </div>
+
+      {/* Info */}
+      <div className="p-6 flex flex-col flex-1">
+        <h3 className="font-display font-extrabold text-white text-[length:var(--text-h3)] mb-0.5">{t.name}</h3>
+        <p className="font-body text-white/50 text-sm mb-1">{t.title}</p>
+        <p className="font-body text-sm font-semibold mb-4" style={{ color: "#FF8A4C" }}>Especialidade: {t.specialty}</p>
+
+        {/* Credentials */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          {t.credentials.map((c) => (
+            <span
+              key={c}
+              className="px-3 py-1 rounded-full text-xs font-semibold"
+              style={{ backgroundColor: "rgba(255,104,32,0.15)", color: "#FF6820", border: "1px solid rgba(255,104,32,0.3)" }}
+            >
+              {c}
+            </span>
+          ))}
+        </div>
+
+        {/* Bio */}
+        <p className="font-body text-white/60 text-base leading-6 flex-1">{t.bio}</p>
+      </div>
+    </div>
+  );
+}
 
 export default function Teachers() {
   return (
-    <section className="py-24 md:py-32" style={{ backgroundColor: "#161616" }}>
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         {/* Header */}
-        <AnimatedSection className="text-center mb-16">
-          <p className="font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+        <div className="text-center mb-16">
+          <p className="eyebrow font-body text-sm font-bold uppercase tracking-widest mb-3">
             Quem vai te ensinar
           </p>
           <h2
             className="font-display font-extrabold text-white leading-tight"
-            style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)" }}
+            style={{ fontSize: "var(--text-h2)" }}
           >
             Professores reais, credenciais verificáveis.
           </h2>
           <p className="font-body text-white/50 text-lg mt-4 max-w-xl mx-auto">
             Cada profissional é atribuído a um professor com base no diagnóstico CEFR e no objetivo do ciclo.
           </p>
-        </AnimatedSection>
+          <YouTubeLink className="mt-6" />
+        </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {teachers.map((t, i) => (
-            <AnimatedSection key={t.name} delay={i * 100} direction="up">
-            <div
-              className="rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col h-full"
-              style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
-            >
-              {/* Photo */}
-              <div className="relative w-full aspect-square overflow-hidden">
-                <Image
-                  src={t.photo}
-                  alt={t.name}
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-                {/* Focus badge */}
-                <div
-                  className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full text-xs font-bold text-white"
-                  style={{ backgroundColor: "#FF6820" }}
-                >
-                  Foco {t.focus}
-                </div>
-              </div>
-
-              {/* Info */}
-              <div className="p-6 flex flex-col flex-1">
-                <h3 className="font-display font-extrabold text-white text-xl mb-0.5">{t.name}</h3>
-                <p className="font-body text-white/40 text-sm mb-4">{t.title}</p>
-
-                {/* Credentials */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {t.credentials.map((c) => (
-                    <span
-                      key={c}
-                      className="px-3 py-1 rounded-full text-xs font-semibold"
-                      style={{ backgroundColor: "rgba(255,104,32,0.15)", color: "#FF6820", border: "1px solid rgba(255,104,32,0.3)" }}
-                    >
-                      {c}
-                    </span>
-                  ))}
-                  <span
-                    className="px-3 py-1 rounded-full text-xs font-semibold text-white/50"
-                    style={{ border: "1px solid rgba(255,255,255,0.15)" }}
-                  >
-                    {t.specialty}
-                  </span>
-                </div>
-
-                {/* Bio */}
-                <p className="font-body text-white/60 text-sm leading-relaxed flex-1">{t.bio}</p>
-              </div>
-            </div>
-            </AnimatedSection>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          {teachers.map((t) => (
+            <TeacherCard key={t.name} t={t} />
           ))}
         </div>
 
         {/* CTA — visitante acabou de conhecer o time */}
-        <AnimatedSection delay={300} className="mt-16 text-center">
+        <div className="mt-16 text-center">
           <p className="font-body text-base mb-6" style={{ color: "rgba(255,255,255,0.4)" }}>
             Seu professor será escolhido com base no seu diagnóstico CEFR e objetivo.
           </p>
-          <a
-            href={getWhatsAppUrl("hero")}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackCTAClick("teachers")}
-            className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full transition-all duration-300 hover:opacity-90 hover:scale-105"
-            style={{ backgroundColor: "#FF6820", color: "#fff" }}
-          >
-            Falar com nossa equipe
-          </a>
-        </AnimatedSection>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href={getWhatsAppUrlForContext("cta")}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackCTAClick("teachers")}
+              className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full cta-primary"
+              style={{ color: "#fff" }}>
+              Quero começar
+            </a>
+            <Link
+              href="/professores"
+              className="inline-flex items-center gap-1.5 font-body text-sm font-semibold underline underline-offset-4 transition-colors duration-[var(--dur-base)]"
+              style={{ color: "rgba(255,255,255,0.45)" }}
+            >
+              Conhecer os professores
+              <ArrowRight size={14} />
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );

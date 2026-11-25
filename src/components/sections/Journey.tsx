@@ -1,200 +1,197 @@
 "use client";
 
-import Image from "next/image";
-import { getWhatsAppUrl } from "@/lib/whatsapp";
+import React, { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 import CEFRTooltip from "@/components/ui/CEFRTooltip";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 
-const steps = [
+/**
+ * Journey — ponto 40: mostrar o processo o suficiente para responder
+ * "mas como funciona?", sem substituir a conversa com a equipe.
+ * Uma frase por etapa; os detalhes ficam em /metodo e na conversa.
+ * Sem dados de resultado aqui — a prova fica em ProofStats.
+ */
+const steps: { number: string; title: React.ReactNode; description: string; example: string }[] = [
   {
     number: "01",
-    title: "Exame CEFR",
-    subtitle: "Diagnóstico técnico",
-    description:
-      "Você faz um exame completo para identificar seu nível CEFR, pontos fortes e onde estão as maiores lacunas. Sem achismo — base científica para tudo que vem a seguir.",
-    img: "/images/entrevista-simulacao.png",
-    tag: "Diagnóstico",
+    title: <>Exame <CEFRTooltip /></>,
+    description: "Diagnóstico das quatro habilidades: onde você está e o que falta.",
+    example: "Um profissional que lê bem, mas trava na fala, descobre reading em B2 e speaking em B1 — então o plano começa pela fala.",
   },
   {
     number: "02",
     title: "Plano de 90 dias",
-    subtitle: "Personalizado pelos professores",
-    description:
-      "Com os resultados em mãos, nossos professores montam seu plano semanal completo. Cada semana tem foco, ritmo e atividades alinhados ao seu objetivo profissional.",
-    img: "/images/reuniao-produto.png",
-    tag: "Estratégia",
+    description: "Montado pelos professores em torno do seu objetivo profissional.",
+    example: "O objetivo “conduzir a reunião semanal com o time dos EUA” vira metas por semana: abrir a reunião, pedir a palavra, fechar com próximos passos.",
   },
   {
     number: "03",
-    title: "Atividades semanais",
-    subtitle: "100% focadas no seu objetivo",
-    description:
-      "Cada semana você recebe exercícios práticos e direcionados. Vocabulário do seu setor, situações reais do seu trabalho — sem nada genérico que não sirva para o que você precisa.",
-    img: "/images/email-profissional.png",
-    tag: "Prática",
+    title: "Prática semanal",
+    description: "Atividades com o vocabulário e as situações do seu trabalho.",
+    example: "De 20 a 30 minutos por dia com as expressões da próxima reunião e um e-mail real do trabalho para reescrever.",
   },
   {
     number: "04",
-    title: "Sessões individuais",
-    subtitle: "Professor dedicado + acompanhamento ativo",
-    description:
-      "Sessões individuais com professor especializado no seu contexto, mais acompanhamento pelo WhatsApp durante toda a semana. Você nunca fica sem suporte.",
-    img: "/images/aula-video-call.png",
-    tag: "Acompanhamento",
+    title: "Sessões 1 a 1",
+    description: "Professor dedicado e acompanhamento pelo WhatsApp a semana toda.",
+    example: "Na sessão, você ensaia a abertura da reunião de segunda. O professor corrige na hora e você repete até sair natural.",
   },
   {
     number: "05",
     title: "Exame final",
-    subtitle: "Reavaliação CEFR",
-    description:
-      "Ao final dos 90 dias, você refaz o exame CEFR. Comparamos com o início, medimos sua evolução real. 79% dos profissionais sobe pelo menos 1 nível — quem começa em B1 chega a B2 em 11 semanas em média.",
-    img: "/images/apresentacao-resultados.png",
-    tag: "Resultado",
+    description: "Você refaz o exame e vê a sua evolução em número.",
+    example: "O mesmo formato do exame inicial mostra quanto cada habilidade subiu — e orienta o foco do próximo ciclo.",
   },
 ];
 
 export default function Journey() {
+  // Narrativa controlável (direção "o inglês ganhando forma" §6.2): a rolagem só indica a etapa
+  // em leitura (celular); clique/toque abre o exemplo concreto. Sem avanço automático, sem prender
+  // a página. O destaque é uma etapa da explicação — não progresso real nem garantia de resultado.
+  const [reading, setReading] = useState(0);
+  const [open, setOpen] = useState<number | null>(null);
+  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
+  const active = open ?? (isDesktop ? 0 : reading);
+
+  useEffect(() => {
+    if (isDesktop) return;
+    const items = itemRefs.current.filter((el): el is HTMLLIElement => !!el);
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) setReading(Number((e.target as HTMLElement).dataset.step));
+        }
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    );
+    items.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [isDesktop]);
+
   return (
-    <section id="como-funciona" className="py-24 md:py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="como-funciona" className="py-12 md:py-20 bg-bg">
+      <div className="max-w-[1200px] mx-auto px-5 md:px-8">
         {/* Header */}
-        <AnimatedSection className="text-center max-w-2xl mx-auto mb-20">
-          <p className="font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+        <AnimatedSection className="text-center max-w-2xl mx-auto mb-14 md:mb-16">
+          <p className="eyebrow font-body text-sm font-bold uppercase tracking-widest mb-3">
             Como funciona
           </p>
           <h2
             className="font-display font-extrabold leading-tight"
-            style={{ fontSize: "clamp(2rem, 4vw, 3rem)", color: "#161616" }}
+            style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}
           >
             Sua jornada de{" "}
             <span style={{ color: "#FF6820" }}>90 dias</span>{" "}
             para o inglês profissional.
           </h2>
-          <p className="font-body text-lg mt-4" style={{ color: "rgba(22,22,22,0.55)" }}>
-            Um processo estruturado, do diagnóstico ao resultado — tudo personalizado para o seu contexto.
+          <p className="font-body text-lg mt-4" style={{ color: "rgba(245,246,241,0.65)" }}>
+            Cinco etapas, do diagnóstico ao resultado medido.
           </p>
         </AnimatedSection>
 
-        {/* Steps — alternating layout like reference */}
-        <div className="space-y-8">
-          {steps.map((step, i) => (
-            <AnimatedSection key={step.number} delay={i * 60} direction={i % 2 === 0 ? "left" : "right"}>
+        {/* Timeline */}
+        <ol className="relative grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-6">
+          {/* Linha de conexão (desktop): trilho neutro + progresso até a etapa em leitura (250ms) */}
+          <div aria-hidden className="hidden md:block absolute left-[10%] right-[10%] top-7 h-px" style={{ backgroundColor: "var(--color-border)" }}>
             <div
-              className={`group grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500 ${
-                i % 2 === 1 ? "md:[direction:rtl]" : ""
-              }`}
+              className="h-full origin-left"
+              style={{
+                backgroundColor: "#FF6820",
+                transform: `scaleX(${active / (steps.length - 1)})`,
+                transition: "transform 250ms var(--ease-enter)",
+              }}
+            />
+          </div>
+          {steps.map((step, i) => (
+            <AnimatedSection
+              key={step.number}
+              delay={i * 80}
+              direction="up"
+              className="relative"
             >
-              {/* Image half */}
-              <div
-                className={`relative overflow-hidden ${i % 2 === 1 ? "md:[direction:ltr]" : ""}`}
-                style={{ minHeight: "320px" }}
+            <li
+              ref={(el) => {
+                itemRefs.current[i] = el;
+              }}
+              data-step={i}
+              aria-current={i === active ? "step" : undefined}
+              className="relative flex md:flex-col items-start md:items-center gap-4 md:gap-0 md:text-center rounded-2xl p-5 md:p-6 h-full"
+              style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
+            >
+              <span
+                className="relative z-10 flex-shrink-0 w-11 h-11 md:w-12 md:h-12 md:-mt-1 md:mb-5 rounded-full flex items-center justify-center font-display font-black text-sm"
+                style={{
+                  backgroundColor: i <= active ? "#FF6820" : "var(--color-interactive)",
+                  color: i <= active ? "var(--color-on-brand)" : "var(--color-text)",
+                  transition: "background-color var(--dur-base) ease-out, color var(--dur-base) ease-out",
+                }}
               >
-                <Image
-                  src={step.img}
-                  alt={step.title}
-                  fill
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-                {/* Number badge */}
-                <div
-                  className="absolute top-6 left-6 w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-base text-white z-10 shadow-lg"
-                  style={{ backgroundColor: "#FF6820" }}
-                >
-                  {step.number}
-                </div>
-                {/* Tag badge */}
-                <div className="absolute bottom-6 left-6 z-10">
-                  <span
-                    className="text-xs font-bold px-3 py-1.5 rounded-full text-white backdrop-blur-sm"
-                    style={{ background: "rgba(22,22,22,0.7)" }}
-                  >
-                    {step.tag}
-                  </span>
-                </div>
-              </div>
-
-              {/* Content half */}
-              <div
-                className={`flex flex-col justify-center p-10 md:p-14 ${i % 2 === 1 ? "md:[direction:ltr]" : ""}`}
-                style={{ backgroundColor: i % 2 === 0 ? "#161616" : "#FF6820" }}
-              >
-                <h3
-                  className="font-display font-extrabold text-white mb-2"
-                  style={{ fontSize: "clamp(1.6rem, 2.8vw, 2.25rem)" }}
-                >
-                  {step.title === "Exame CEFR" ? (
-                    <>Exame <CEFRTooltip /></>
-                  ) : (
-                    step.title
-                  )}
+                {step.number}
+              </span>
+              <div>
+                <h3 className="font-display font-extrabold text-lg lg:text-xl mb-1.5" style={{ color: "var(--color-text)" }}>
+                  {step.title}
                 </h3>
-                <p
-                  className="font-body text-sm font-semibold uppercase tracking-wide mb-5"
-                  style={{ color: i % 2 === 0 ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0.7)" }}
-                >
-                  {step.subtitle === "Reavaliação CEFR" ? (
-                    <>Reavaliação <CEFRTooltip /></>
-                  ) : (
-                    step.subtitle
-                  )}
+                <p className="font-body text-base leading-6" style={{ color: "rgba(245,246,241,0.7)" }}>
+                  {step.description}
                 </p>
-                <p
-                  className="font-body text-base leading-relaxed"
-                  style={{ color: i % 2 === 0 ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.9)" }}
+                <button
+                  type="button"
+                  onClick={() => setOpen(open === i ? null : i)}
+                  aria-expanded={open === i}
+                  aria-controls={`etapa-${i}-exemplo`}
+                  className="cta-tertiary mt-3 min-h-[44px] text-sm font-semibold text-white"
                 >
-                  {step.description.includes("nível CEFR") ? (
-                    <>
-                      {step.description.split("nível CEFR")[0]}
-                      nível <CEFRTooltip />
-                      {step.description.split("nível CEFR")[1]}
-                    </>
-                  ) : step.description.includes("exame CEFR") ? (
-                    <>
-                      {step.description.split("exame CEFR")[0]}
-                      exame <CEFRTooltip />
-                      {step.description.split("exame CEFR")[1]}
-                    </>
-                  ) : (
-                    step.description
-                  )}
-                </p>
-
-                {/* Progress dots */}
-                <div className="flex gap-2 mt-10">
-                  {steps.map((_, j) => (
-                    <div
-                      key={j}
-                      className="h-1.5 rounded-full transition-all duration-300"
-                      style={{
-                        width: j === i ? "28px" : "6px",
-                        backgroundColor: j === i ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.25)",
-                      }}
-                    />
-                  ))}
+                  {open === i ? "Fechar exemplo" : "Ver um exemplo"}
+                </button>
+                <div
+                  id={`etapa-${i}-exemplo`}
+                  className="grid text-left"
+                  style={{
+                    gridTemplateRows: open === i ? "1fr" : "0fr",
+                    transition: "grid-template-rows var(--dur-base) var(--ease-enter)",
+                  }}
+                  inert={open !== i}
+                >
+                  <p className="overflow-hidden text-sm leading-6" style={{ color: "var(--color-text-body)" }}>
+                    <span className="block pt-2">
+                      <strong className="text-white">Exemplo ilustrativo:</strong> {step.example}
+                    </span>
+                  </p>
                 </div>
               </div>
-            </div>
+            </li>
             </AnimatedSection>
           ))}
-        </div>
+        </ol>
 
-        {/* CTA — visitante acabou de entender o processo completo */}
-        <AnimatedSection className="mt-16 text-center">
-          <p className="font-body text-base mb-6" style={{ color: "rgba(22,22,22,0.55)" }}>
-            Pronto para ver como fica o seu plano?
+        {/* CTA — o detalhe do plano sai da conversa, não da página */}
+        <AnimatedSection delay={200} className="mt-14 md:mt-16 text-center">
+          <p className="font-body text-base mb-6" style={{ color: "rgba(245,246,241,0.65)" }}>
+            O detalhe do seu plano sai do diagnóstico. Quer ver como fica o seu?
           </p>
           <a
-            href={getWhatsAppUrl("hero")}
+            href={getWhatsAppUrlForContext("journey")}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackCTAClick("journey")}
-            className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white transition-all duration-300 hover:opacity-90 hover:scale-105"
-            style={{ backgroundColor: "#FF6820" }}
-          >
+            className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white cta-primary">
             Quero começar
           </a>
+          {/* Arquitetura §5: rota de aprofundamento antes da decisão */}
+          <div className="mt-5">
+            <Link
+              href="/metodo"
+              className="font-body text-sm font-semibold underline underline-offset-4"
+              style={{ color: "rgba(245,246,241,0.65)" }}
+            >
+              Ver o método completo →
+            </Link>
+          </div>
         </AnimatedSection>
       </div>
     </section>

@@ -41,9 +41,9 @@ export default function CompanyLogos() {
   return (
     <section
       className="py-16"
-      style={{ backgroundColor: "#0e0e0e", borderTop: "1px solid rgba(255,255,255,0.06)" }}
+      style={{ backgroundColor: "var(--color-bg)", borderTop: "1px solid var(--color-border)" }}
     >
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-5 md:px-8">
         <p className="text-center font-body text-sm font-semibold uppercase tracking-widest text-white/30 mb-10">
           Profissionais formados em empresas como
         </p>
@@ -51,7 +51,7 @@ export default function CompanyLogos() {
           {logos.map((logo) => (
             <div
               key={logo.name}
-              className="opacity-30 hover:opacity-60 transition-opacity duration-300 flex items-center justify-center"
+              className="opacity-30 hover:opacity-60 transition-opacity duration-[var(--dur-base)] flex items-center justify-center"
               title={logo.name}
               style={{ height: "44px" }}
             >
@@ -73,7 +73,7 @@ export default function CompanyLogos() {
           Esses profissionais estudaram na Falandou.{" "}
           <a
             href="#como-funciona"
-            className="underline underline-offset-4 hover:text-white transition-colors duration-200"
+            className="underline underline-offset-4 hover:text-white transition-colors duration-[var(--dur-base)]"
             style={{ color: "rgba(255,255,255,0.5)" }}
           >
             Veja como funciona →

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
+import { CookiePreferencesButton } from "@/components/ui/CookieBanner";
+import { COMPANY } from "@/data/company";
 
 // Social SVG icons (lucide-react doesn't include these)
 const InstagramIcon = () => (
@@ -24,68 +26,86 @@ const LinkedinIcon = () => (
   </svg>
 );
 
-const footerLinks = {
-  Escola: [
-    { label: "Como funciona", href: "#como-funciona" },
-    { label: "Para quem é", href: "#para-quem" },
-    { label: "Depoimentos", href: "#depoimentos" },
+// Revisão de jornada §6: links por intenção — Estudar na Falandou · Conhecer a escola ·
+// Conteúdos — e, separados, Contato e Legal. Celular: 2 colunas; tablet: 3; desktop: 6.
+const footerLinks: Record<string, { label: string; href: string }[]> = {
+  "Estudar na Falandou": [
+    { label: "Método", href: "/metodo" },
+    { label: "Planos e valores", href: "/planos" },
+    { label: "Perguntas frequentes", href: "/#faq" },
+    { label: "Para empresas", href: "/planos#empresas" },
+    { label: "Plataforma do Aluno", href: COMPANY.platformUrl },
   ],
-  Recursos: [
+  "Conhecer a escola": [
+    { label: "Professores", href: "/professores" },
+    { label: "Resultados", href: "/resultados" },
+    { label: "Depoimentos", href: "/depoimentos" },
+    { label: "Sobre a Falandou", href: "/sobre" },
+    { label: "Indique um colega", href: "/indique" },
+  ],
+  "Conteúdos": [
     { label: "Blog", href: "/blog" },
-    { label: "Exame CEFR", href: "/blog/diferenca-cefr-niveis-ingles" },
-    { label: "Plataforma do aluno", href: "https://falandou-hub-learn.lovable.app" },
+    { label: "Vocabulário profissional", href: "/vocabulario" },
   ],
   Contato: [
     { label: "WhatsApp", href: getWhatsAppUrlForContext("cta") },
     { label: "contato@falandou.com", href: "mailto:contato@falandou.com" },
   ],
+  Legal: [
+    { label: "Termos de uso", href: "/termos" },
+    { label: "Política de privacidade", href: "/politica-de-privacidade" },
+    { label: "LGPD e seus dados", href: "/politica-de-privacidade" },
+  ],
 };
 
-export default function Footer() {
+/**
+ * `cta={false}` nas páginas que já terminam com um fechamento laranja (CTASection/MidCTA):
+ * uma única conclusão por página (revisão visual §5.3).
+ */
+export default function Footer({ cta = true }: { cta?: boolean } = {}) {
   return (
-    <footer style={{ backgroundColor: "#161616" }} className="text-white">
-      {/* Final CTA strip */}
+    <footer style={{ backgroundColor: "var(--color-bg)" }} className="text-white border-t border-white/5">
+      {/* Faixa de CTA acima do rodapé: última chance antes de sair (§14) */}
+      {cta && (
       <div
         className="border-b border-white/5 py-12"
-        style={{ background: "linear-gradient(135deg, rgba(255,104,32,0.12) 0%, transparent 50%)" }}
+        style={{ background: "var(--color-surface)" }}
       >
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="max-w-[1200px] mx-auto px-5 md:px-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <h3 className="font-display font-extrabold text-2xl md:text-3xl text-white mb-1">
-              Pronto para evoluir seu inglês?
-            </h3>
-            <p className="font-body text-white/50 text-sm">
-              Fale com a gente — sem compromisso, sem taxa de consulta.
+            <p className="font-display font-extrabold text-2xl md:text-3xl text-white mb-1">
+              Comece a sua jornada CEFR.
+            </p>
+            <p className="text-sm" style={{ color: "rgba(245,246,241,0.6)" }}>
+              Em 90 dias você tem o resultado medido no exame CEFR. A equipe responde em até 1h.
             </p>
           </div>
           <a
             href={getWhatsAppUrlForContext("cta")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-7 py-4 rounded-full text-sm font-semibold text-white transition-all duration-200 hover:scale-105 active:scale-95 flex-shrink-0"
-            style={{ backgroundColor: "#FF6820" }}
+            className="cta-primary self-start md:self-auto inline-flex items-center justify-center gap-2 min-w-[220px] px-7 py-4 rounded-full text-base font-bold flex-shrink-0"
           >
-            <MessageCircle size={18} />
+            <MessageCircle size={18} aria-hidden="true" />
             Quero começar
           </a>
         </div>
       </div>
+      )}
 
-      {/* Main footer */}
-      <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-2 md:grid-cols-5 gap-10">
-        {/* Brand */}
-        <div className="col-span-2">
+      {/* Colunas */}
+      <div className="max-w-[1200px] mx-auto px-5 md:px-8 py-14 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-8 md:gap-6">
+        {/* Falandou: logo + tagline + redes */}
+        <div className="col-span-2 md:col-span-3 lg:col-span-1">
           <Link href="/" className="inline-block mb-4">
             <span className="font-display font-extrabold text-2xl text-white tracking-tight">
               Falandou<span style={{ color: "#FF6820" }}>.</span>
             </span>
           </Link>
-          <p className="font-body text-white/50 text-sm leading-relaxed max-w-xs">
-            Inglês profissional para quem precisa de resultado. Plano personalizado, professores especializados e acompanhamento ativo.
+          <p className="text-base leading-6 max-w-xs" style={{ color: "rgba(245,246,241,0.6)" }}>
+            Inglês profissional, 1 a 1, com resultado medido no exame CEFR.
           </p>
-
-          {/* Social */}
-          <div className="flex gap-3 mt-6">
+          <div className="flex gap-2 mt-6">
             {[
               { Icon: InstagramIcon, href: "https://instagram.com/falandou", label: "Instagram" },
               { Icon: YoutubeIcon, href: "https://youtube.com/@falandou", label: "YouTube" },
@@ -97,8 +117,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-laranja hover:border-laranja transition-colors duration-200"
-                style={{ "--laranja": "#FF6820" } as React.CSSProperties}
+                className="w-11 h-11 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-laranja hover:border-laranja transition-colors duration-[var(--dur-base)]"
               >
                 <Icon />
               </a>
@@ -106,35 +125,48 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Links */}
         {Object.entries(footerLinks).map(([title, links]) => (
-          <div key={title}>
-            <h4 className="font-display font-semibold text-sm text-white mb-4">{title}</h4>
-            <ul className="space-y-2.5">
-              {links.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    target={link.href.startsWith("http") ? "_blank" : undefined}
-                    rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="font-body text-sm text-white/50 hover:text-laranja transition-colors duration-200"
-                    style={{ "--laranja": "#FF6820" } as React.CSSProperties}
-                  >
-                    {link.label}
-                  </a>
+          <nav key={title} aria-label={title} className={title === "Contato" ? "col-span-2 md:col-span-1" : undefined}>
+            <p className="font-display font-semibold text-sm text-white mb-4">{title}</p>
+            <ul className="space-y-1">
+              {links.map((link) => {
+                const external = link.href.startsWith("http");
+                return (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      target={external ? "_blank" : undefined}
+                      rel={external ? "noopener noreferrer" : undefined}
+                      className="link-hover inline-flex items-center min-h-[44px] md:min-h-[36px] text-sm"
+                      style={{ color: "rgba(245,246,241,0.65)" }}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                );
+              })}
+              {title === "Legal" && (
+                <li>
+                  <CookiePreferencesButton className="link-hover inline-flex items-center min-h-[44px] md:min-h-[36px] text-sm text-left text-[rgba(245,246,241,0.65)]" />
                 </li>
-              ))}
+              )}
             </ul>
-          </div>
+            {title === "Contato" && (
+              <p className="mt-3 text-xs leading-relaxed" style={{ color: "rgba(245,246,241,0.5)" }}>
+                Atendimento pelo WhatsApp e por e-mail. Resposta em até 1h.
+              </p>
+            )}
+          </nav>
         ))}
       </div>
 
-      {/* Bottom bar */}
+      {/* Rodapé */}
       <div className="border-t border-white/5 py-5">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-2">
-          <p className="font-body text-xs text-white/30">
-            © {new Date().getFullYear()} Falandou Escola de Inglês. Todos os direitos reservados.
+        <div className="max-w-[1200px] mx-auto px-5 md:px-8 flex flex-col md:flex-row items-center justify-between gap-2 text-xs" style={{ color: "rgba(245,246,241,0.45)" }}>
+          <p className="text-center md:text-left">
+            © {new Date().getFullYear()} {COMPANY.legalName}. Todos os direitos reservados.
           </p>
+          <p>Escola de inglês online · Brasil</p>
         </div>
       </div>
     </footer>

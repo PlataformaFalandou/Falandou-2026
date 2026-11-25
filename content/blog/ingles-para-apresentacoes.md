@@ -1,10 +1,21 @@
 ---
-titulo: "Inglês para apresentações: como estruturar e conduzir sem travar"
-resumo: "As frases de transição, abertura e encerramento que transformam uma apresentação nervosa em uma comunicação clara e segura."
-categoria: Vocabulário
-created_at: "2026-11-18T10:00:00.000Z"
-tempo_leitura: 6
+titulo: 'Inglês para apresentações: como estruturar e conduzir sem travar'
+titulo_seo: 'Inglês para Apresentações: Frases e Estrutura | Falandou'
+resumo: As frases de transição, abertura e encerramento que transformam uma apresentação nervosa em uma comunicação clara e segura.
+descricao: 'Inglês para apresentações: frases de abertura, transição e encerramento, e como responder perguntas difíceis para apresentar com clareza e segurança.'
+categoria: Carreira e Negócios
+cluster: Carreira
+palavra_chave: inglês para apresentações
+created_at: '2026-11-18T10:00:00.000Z'
+atualizado_em: '2026-11-20T10:00:00.000Z'
 publicado: true
+faq:
+- q: Como começar uma apresentação em inglês?
+  a: 'Diga quem você é, o objetivo e o roteiro em poucas frases: “Today I''ll walk you through…” e “By the end, you''ll have…”. Isso dá segurança a você e ao público.'
+- q: O que dizer quando não entendo uma pergunta em inglês?
+  a: 'Peça para reformular sem constrangimento: “Could you rephrase the question?” ou confirme o que entendeu: “If I understand correctly, you''re asking…”.'
+- q: É melhor decorar a apresentação em inglês?
+  a: 'Decore só a abertura e as transições. O resto funciona melhor a partir de tópicos: decorar tudo trava você quando alguém interrompe.'
 ---
 
 ## Por que apresentações em inglês são diferentes
@@ -102,3 +113,11 @@ Grave sua apresentação completa em vídeo. Assista sem som. Se a linguagem cor
 Depois assista sem imagem. Se o raciocínio não fizer sentido só com o áudio, a estrutura está fraca.
 
 Uma apresentação que funciona nos dois testes funciona na vida real.
+
+## Para ir além
+
+- Leia [o guia de inglês profissional](/blog/como-aprender-ingles-profissional/).
+- Leia [as expressões de inglês para reuniões](/blog/vocabulario-reunioes-negocios/).
+- Veja [o inglês para gestores e líderes que apresentam para a diretoria](/para/gestores/).
+- Veja [os planos para ensaiar a sua próxima apresentação nas sessões](/planos/).
+

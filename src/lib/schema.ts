@@ -1,0 +1,73 @@
+// Dados estruturados (schema.org) — Arquitetura da Informação §10.
+// Renderizados com <JsonLd data={...} /> (src/components/ui/JsonLd.tsx).
+import { COMPANY } from "@/data/company";
+import { SITE_URL } from "@/lib/site";
+import { DURATIONS, PLANS, priceValue } from "@/data/plans";
+import { YOUTUBE_CHANNEL_URL } from "@/lib/teachers";
+
+const BASE = SITE_URL;
+
+const ORG_REF = { "@type": "EducationalOrganization", name: COMPANY.legalName, url: `${BASE}/` };
+
+/** Organization — home. */
+export function organizationSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    name: COMPANY.legalName,
+    alternateName: COMPANY.brand,
+    url: `${BASE}/`,
+    email: COMPANY.privacyEmail,
+    logo: `${BASE}/icon-512.png`,
+    image: `${BASE}/opengraph-image`,
+    areaServed: "BR",
+    knowsLanguage: ["pt-BR", "en"],
+    description:
+      "Escola de inglês profissional: plano individual, sessões 1 a 1 e exame CEFR antes e depois de cada ciclo de 90 dias.",
+    sameAs: [YOUTUBE_CHANNEL_URL, "https://instagram.com/falandou", "https://linkedin.com/company/falandou"],
+  };
+}
+
+/** Course — /planos e páginas por perfil. Ofertas = planos de src/data/plans.ts. */
+export function courseSchema(opts: { name: string; description: string; path: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: opts.name,
+    description: opts.description,
+    url: `${BASE}${opts.path}`,
+    inLanguage: "en",
+    provider: ORG_REF,
+    educationalCredentialAwarded: "Exame de nível CEFR antes e depois do ciclo (aplicado pela escola)",
+    timeRequired: "P90D",
+    // SEO §3: instância do curso (Google pede para o resultado enriquecido de curso).
+    hasCourseInstance: {
+      "@type": "CourseInstance",
+      courseMode: "Online",
+      instructor: { "@type": "Organization", name: COMPANY.legalName },
+    },
+    offers: PLANS.flatMap((p) =>
+      DURATIONS.map((d) => ({
+        "@type": "Offer",
+        name: `Plano ${p.name} — ${p.sessionsPerMonth} sessões/mês de ${d} minutos`,
+        price: priceValue(p.prices[d]).toFixed(2),
+        priceCurrency: "BRL",
+        category: "Mensalidade",
+        url: `${BASE}/planos/`,
+      }))
+    ),
+  };
+}
+
+/** FAQPage — páginas com perguntas frequentes. */
+export function faqSchema(items: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+}

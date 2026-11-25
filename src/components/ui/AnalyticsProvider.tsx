@@ -9,9 +9,10 @@
  * Os scripts só carregam se os IDs estiverem configurados — não há erro em dev.
  */
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { trackPageView, resetScroll50 } from "@/lib/analytics";
+import { trackPageView, resetScroll50, trackPlansEngaged, trackPlansPageView, trackWhatsAppClick } from "@/lib/analytics";
+import { getConsent, CONSENT_EVENT } from "@/lib/consent";
 
 const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID;
 const PIXEL_ID = process.env.NEXT_PUBLIC_PIXEL_ID;
@@ -57,24 +58,66 @@ function injectPixel() {
   document.head.appendChild(s);
 }
 
+function trackRoute(pathname: string) {
+  trackPageView(pathname);
+  // Ponto 46 — público de remarketing "viu /planos" (ViewContent no Pixel).
+  // pathname pode vir com barra final (trailingSlash no export estático).
+  if (pathname.replace(/\/+$/, "") === "/planos") {
+    trackPlansPageView();
+  }
+}
+
 export default function AnalyticsProvider() {
   const pathname = usePathname();
+  // LGPD — GA4 e Pixel só carregam depois do "Aceitar" no aviso de cookies.
+  // O componente não renderiza nada, então ler o storage no 1º render não causa hydration mismatch.
+  const [consented, setConsented] = useState(
+    () => typeof window !== "undefined" && getConsent() === "granted"
+  );
 
-  // Injeta scripts uma única vez após a hidratação
   useEffect(() => {
-    injectGA4();
-    injectPixel();
+    function onConsent(e: Event) {
+      setConsented((e as CustomEvent<string>).detail === "granted");
+    }
+    window.addEventListener(CONSENT_EVENT, onConsent);
+    return () => window.removeEventListener(CONSENT_EVENT, onConsent);
   }, []);
 
-  // Dispara page_view a cada mudança de rota (incluindo a inicial)
+  // Injeta os scripts uma única vez, quando houver consentimento
   useEffect(() => {
+    if (!consented) return;
+    injectGA4();
+    injectPixel();
+  }, [consented]);
+
+  // Dispara page_view a cada mudança de rota (incluindo a inicial e o momento do aceite)
+  useEffect(() => {
+    resetScroll50(); // reset do scroll tracker a cada rota nova
+    if (!consented) return;
     // Aguarda um tick para os scripts estarem disponíveis no window
-    const timer = setTimeout(() => {
-      trackPageView(pathname);
-      resetScroll50(); // reset do scroll tracker a cada rota nova
-    }, 100);
+    const timer = setTimeout(() => trackRoute(pathname), 100);
     return () => clearTimeout(timer);
-  }, [pathname]);
+  }, [pathname, consented]);
+
+  // Tempo em /planos (30 s e 90 s) — só com consentimento e enquanto a rota não mudar
+  useEffect(() => {
+    if (!consented || pathname.replace(/\/+$/, "") !== "/planos") return;
+    const timers = [30, 90].map((s) => setTimeout(() => trackPlansEngaged(s), s * 1000));
+    return () => timers.forEach(clearTimeout);
+  }, [pathname, consented]);
+
+  // Ponto 46 — todo clique em link do WhatsApp vira sinal de "já iniciou contato",
+  // usado para excluir essa pessoa do remarketing. Sem consentimento, fbq/gtag não
+  // existem e as chamadas são no-ops (lib/analytics).
+  useEffect(() => {
+    function onClick(e: MouseEvent) {
+      // [data-share]: compartilhamento com terceiros (ex.: /indique), não contato com a escola.
+      const link = (e.target as Element | null)?.closest?.('a[href*="wa.me/"]:not([data-share])');
+      if (link) trackWhatsAppClick(window.location.pathname);
+    }
+    document.addEventListener("click", onClick, true);
+    return () => document.removeEventListener("click", onClick, true);
+  }, []);
 
   return null; // componente invisível
 }

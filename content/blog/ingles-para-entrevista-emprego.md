@@ -1,10 +1,21 @@
 ---
-titulo: "Como se preparar para uma entrevista de emprego em inglês"
-resumo: "O que os recrutadores de multinacionais realmente avaliam — e como preparar as respostas certas para as perguntas que sempre aparecem."
-categoria: Dicas
-created_at: "2026-11-12T10:00:00.000Z"
-tempo_leitura: 7
+titulo: 'Entrevista de emprego em inglês: como se preparar'
+titulo_seo: 'Entrevista em Inglês: Perguntas e Respostas | Falandou'
+resumo: O que os recrutadores de multinacionais realmente avaliam — e como preparar as respostas certas para as perguntas que sempre aparecem.
+descricao: 'Entrevista de emprego em inglês: o que o recrutador avalia, a estrutura STAR e como responder às perguntas que sempre aparecem, com exemplos práticos.'
+categoria: Carreira e Negócios
+cluster: Carreira
+palavra_chave: entrevista de emprego em inglês
+created_at: '2026-11-12T10:00:00.000Z'
+atualizado_em: '2026-11-20T10:00:00.000Z'
 publicado: true
+faq:
+- q: Como responder “Tell me about yourself” em inglês?
+  a: 'Em até dois minutos: cargo atual, uma conquista relevante e por que você quer a vaga. Ensaie a abertura até sair natural — é a primeira impressão do seu inglês.'
+- q: Que nível de inglês preciso para uma entrevista em multinacional?
+  a: Depende da vaga, mas conduzir uma conversa profissional com fluência costuma corresponder ao B2 da escala CEFR. Cargos de liderança global pedem mais.
+- q: Posso pedir para o recrutador repetir a pergunta?
+  a: 'Pode e deve, quando necessário: “Could you repeat the question, please?”. Responder à pergunta errada pesa muito mais do que pedir para repetir.'
 ---
 
 ## O que o recrutador está realmente avaliando
@@ -19,7 +30,7 @@ Gramática perfeita é irrelevante se você não consegue demonstrar essas três
 
 ## A estrutura STAR: seu melhor aliado
 
-STAR significa Situation, Task, Action, Result. É o formato que recrutadores esperam para perguntas comportamentais:
+STAR é a sigla de *Situation, Task, Action, Result* (situação, tarefa, ação e resultado). É o formato que recrutadores esperam para perguntas comportamentais:
 
 - **"Tell me about a time you led a difficult project"**
 - **"Give me an example of when you had a conflict with a colleague"**
@@ -81,3 +92,11 @@ Nunca diga "No, I think you covered everything." Prepare 3–4 perguntas genuín
 Grave as primeiras 30 segundos de cada resposta. Se você trava no início, o recrutador assume que você está no limite do seu inglês — mesmo que depois de 10 segundos você flua normalmente.
 
 A entrada precisa ser fluida. Treine o começo de cada resposta até sair automático.
+
+## Para ir além
+
+- Leia [o guia dos níveis CEFR, para saber o nível que a vaga exige](/blog/diferenca-cefr-niveis-ingles/).
+- Leia [o guia de inglês profissional](/blog/como-aprender-ingles-profissional/).
+- Veja [a preparação para entrevista em inglês da Falandou](/ingles-entrevista/).
+- Veja [os planos de sessões individuais com simulação de entrevista](/planos/).
+
