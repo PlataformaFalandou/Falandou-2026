@@ -7,7 +7,6 @@ import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { testimonials, personasWithEnough, type Persona, type Testimonial } from "@/data/testimonials";
-import AnimatedSection from "@/components/ui/AnimatedSection";
 
 // Seção de humanização: só depoimentos. Os dados de resultado ficam em ProofStats,
 // e os logos das empresas já aparecem na Hero.
@@ -360,12 +359,12 @@ export default function Testimonials({ persona }: { persona?: Persona } = {}) {
   return (
     <section id="depoimentos" className="py-12 md:py-20" style={{ backgroundColor: "var(--color-bg)" }}>
       <div className="max-w-[1200px] mx-auto px-5 md:px-8">
-        <AnimatedSection className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
           <div>
-            <p className="eyebrow font-body text-sm font-bold uppercase tracking-widest mb-3">
+            <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
               O que dizem os profissionais
             </p>
-            <h2 className="font-display font-extrabold text-white leading-tight" style={{ fontSize: "var(--text-h2)" }}>
+            <h2 className="reveal font-display font-extrabold text-white leading-tight delay-100" style={{ fontSize: "var(--text-h2)" }}>
               Os números em palavras.
             </h2>
           </div>
@@ -377,12 +376,12 @@ export default function Testimonials({ persona }: { persona?: Persona } = {}) {
             Ver todos os {testimonials.length} depoimentos
             <ArrowRight size={14} />
           </Link>
-        </AnimatedSection>
+        </div>
 
         <TestimonialsCarousel items={items} />
 
         {/* CTA */}
-        <AnimatedSection delay={200} className="mt-14 text-center">
+        <div className="mt-14 text-center">
           <p className="font-body text-base mb-6" style={{ color: "rgba(255,255,255,0.4)" }}>
             A próxima história pode ser a sua.
           </p>
@@ -394,7 +393,7 @@ export default function Testimonials({ persona }: { persona?: Persona } = {}) {
             className="inline-flex items-center gap-3 font-body font-bold text-base px-8 py-4 rounded-full text-white cta-primary">
             Quero começar
           </a>
-        </AnimatedSection>
+        </div>
       </div>
     </section>
   );
