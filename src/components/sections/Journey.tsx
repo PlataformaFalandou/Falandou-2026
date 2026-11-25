@@ -4,6 +4,7 @@ import Image from "next/image";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 import CEFRTooltip from "@/components/ui/CEFRTooltip";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 const steps = [
   {
@@ -58,32 +59,31 @@ export default function Journey() {
     <section id="como-funciona" className="py-24 md:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-20">
-          <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+        <AnimatedSection className="text-center max-w-2xl mx-auto mb-20">
+          <p className="font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
             Como funciona
           </p>
           <h2
-            className="reveal font-display font-extrabold leading-tight delay-100"
+            className="font-display font-extrabold leading-tight"
             style={{ fontSize: "clamp(2rem, 4vw, 3rem)", color: "#161616" }}
           >
             Sua jornada de{" "}
             <span style={{ color: "#FF6820" }}>90 dias</span>{" "}
             para o inglês profissional.
           </h2>
-          <p className="reveal font-body text-lg mt-4 delay-200" style={{ color: "rgba(22,22,22,0.55)" }}>
+          <p className="font-body text-lg mt-4" style={{ color: "rgba(22,22,22,0.55)" }}>
             Um processo estruturado, do diagnóstico ao resultado — tudo personalizado para o seu contexto.
           </p>
-        </div>
+        </AnimatedSection>
 
         {/* Steps — alternating layout like reference */}
         <div className="space-y-8">
           {steps.map((step, i) => (
+            <AnimatedSection key={step.number} delay={i * 60} direction={i % 2 === 0 ? "left" : "right"}>
             <div
-              key={step.number}
-              className={`reveal group grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 ${
+              className={`group grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500 ${
                 i % 2 === 1 ? "md:[direction:rtl]" : ""
               }`}
-              style={{ transitionDelay: `${i * 60}ms` }}
             >
               {/* Image half */}
               <div
@@ -176,11 +176,12 @@ export default function Journey() {
                 </div>
               </div>
             </div>
+            </AnimatedSection>
           ))}
         </div>
 
         {/* CTA — visitante acabou de entender o processo completo */}
-        <div className="mt-16 text-center">
+        <AnimatedSection className="mt-16 text-center">
           <p className="font-body text-base mb-6" style={{ color: "rgba(22,22,22,0.55)" }}>
             Pronto para ver como fica o seu plano?
           </p>
@@ -194,7 +195,7 @@ export default function Journey() {
           >
             Quero começar
           </a>
-        </div>
+        </AnimatedSection>
       </div>
     </section>
   );

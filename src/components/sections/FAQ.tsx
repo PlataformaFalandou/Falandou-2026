@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 const faqs = [
   {
@@ -77,17 +78,17 @@ export default function FAQ() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-5 gap-14 items-start">
           {/* Left: header */}
-          <div className="lg:col-span-2">
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+          <AnimatedSection direction="left" className="lg:col-span-2">
+            <p className="font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
               Dúvidas frequentes
             </p>
             <h2
-              className="reveal font-display font-extrabold leading-tight delay-100"
+              className="font-display font-extrabold leading-tight"
               style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#161616" }}
             >
               Tudo que você precisa saber antes de começar.
             </h2>
-            <p className="reveal font-body text-base mt-4 delay-200" style={{ color: "rgba(22,22,22,0.55)" }}>
+            <p className="font-body text-base mt-4" style={{ color: "rgba(22,22,22,0.55)" }}>
               Não encontrou sua resposta? Fale diretamente com a gente pelo WhatsApp.
             </p>
 
@@ -96,15 +97,16 @@ export default function FAQ() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackCTAClick("faq")}
-              className="reveal inline-flex items-center gap-2 mt-8 px-6 py-3.5 rounded-full text-sm font-bold text-white transition-all duration-200 hover:scale-105 delay-300"
+              className="inline-flex items-center gap-2 mt-8 px-6 py-3.5 rounded-full text-sm font-bold text-white transition-all duration-200 hover:scale-105"
               style={{ backgroundColor: "#161616" }}
             >
               Falar com nossa equipe
             </a>
-          </div>
+          </AnimatedSection>
 
           {/* Right: FAQ list */}
-          <div className="reveal lg:col-span-3 bg-white rounded-2xl p-8 md:p-10 shadow-sm delay-200">
+          <AnimatedSection direction="right" delay={100} className="lg:col-span-3">
+          <div className="bg-white rounded-2xl p-8 md:p-10 shadow-sm">
             {faqs.map((faq, i) => (
               <FAQItem
                 key={i}
@@ -114,6 +116,7 @@ export default function FAQ() {
               />
             ))}
           </div>
+          </AnimatedSection>
         </div>
       </div>
     </section>

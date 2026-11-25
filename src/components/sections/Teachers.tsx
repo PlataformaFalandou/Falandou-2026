@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 const teachers = [
   {
@@ -39,7 +40,7 @@ export default function Teachers() {
     <section className="py-24 md:py-32" style={{ backgroundColor: "#161616" }}>
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-16">
+        <AnimatedSection className="text-center mb-16">
           <p className="font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
             Quem vai te ensinar
           </p>
@@ -52,14 +53,14 @@ export default function Teachers() {
           <p className="font-body text-white/50 text-lg mt-4 max-w-xl mx-auto">
             Cada profissional é atribuído a um professor com base no diagnóstico CEFR e no objetivo do ciclo.
           </p>
-        </div>
+        </AnimatedSection>
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {teachers.map((t) => (
+          {teachers.map((t, i) => (
+            <AnimatedSection key={t.name} delay={i * 100} direction="up">
             <div
-              key={t.name}
-              className="rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col"
+              className="rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col h-full"
               style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
             >
               {/* Photo */}
@@ -108,11 +109,12 @@ export default function Teachers() {
                 <p className="font-body text-white/60 text-sm leading-relaxed flex-1">{t.bio}</p>
               </div>
             </div>
+            </AnimatedSection>
           ))}
         </div>
 
         {/* CTA — visitante acabou de conhecer o time */}
-        <div className="mt-16 text-center">
+        <AnimatedSection delay={300} className="mt-16 text-center">
           <p className="font-body text-base mb-6" style={{ color: "rgba(255,255,255,0.4)" }}>
             Seu professor será escolhido com base no seu diagnóstico CEFR e objetivo.
           </p>
@@ -126,7 +128,7 @@ export default function Teachers() {
           >
             Falar com nossa equipe
           </a>
-        </div>
+        </AnimatedSection>
       </div>
     </section>
   );

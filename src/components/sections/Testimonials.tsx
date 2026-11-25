@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 import CEFRTooltip from "@/components/ui/CEFRTooltip";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 // ─── dados verificáveis — edite com seus números reais ───────────────────────
 const STATS = [
@@ -193,7 +194,7 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* ── 0. Social proof: logos das empresas ── */}
-        <div className="reveal mb-16 delay-0">
+        <AnimatedSection className="mb-16">
           <p className="font-body text-xs font-semibold uppercase tracking-widest mb-7 text-center" style={{ color: "rgba(255,255,255,0.25)" }}>
             Nossos profissionais trabalham em
           </p>
@@ -217,30 +218,32 @@ export default function Testimonials() {
               </div>
             ))}
           </div>
-        </div>
+        </AnimatedSection>
 
         {/* ── 1. Dados verificáveis em primeiro plano ── */}
         <div className="mb-20">
-          <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
+          <AnimatedSection>
+          <p className="font-body text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#FF6820" }}>
             Resultado verificável
           </p>
           <h2
-            className="reveal font-display font-extrabold text-white leading-tight mb-3 delay-100"
+            className="font-display font-extrabold text-white leading-tight mb-3"
             style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)" }}
           >
             79% dos profissionais passou a conduzir reuniões{" "}
             <span style={{ color: "#FF6820" }}>e entrevistas em inglês em até 90 dias.</span>
           </h2>
-          <p className="reveal font-body text-base delay-150" style={{ color: "rgba(255,255,255,0.45)" }}>
+          <p className="font-body text-base" style={{ color: "rgba(255,255,255,0.45)" }}>
             Medido com exame antes e depois do ciclo — não autoavaliação, não percepção.
           </p>
+          </AnimatedSection>
 
           {/* Stat grid */}
-          <div className="reveal grid grid-cols-2 md:grid-cols-4 gap-5 mt-10 delay-200">
-            {STATS.map((s) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-10">
+            {STATS.map((s, i) => (
+              <AnimatedSection key={s.value} delay={i * 80} direction="up">
               <div
-                key={s.value}
-                className="rounded-2xl p-6"
+                className="rounded-2xl p-6 h-full"
                 style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}
               >
                 <p
@@ -252,12 +255,14 @@ export default function Testimonials() {
                 <p className="font-body text-sm font-semibold text-white mb-1">{s.label}</p>
                 <p className="font-body text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{s.sub}</p>
               </div>
+              </AnimatedSection>
             ))}
           </div>
 
           {/* Methodology disclosure */}
+          <AnimatedSection delay={200}>
           <div
-            className="reveal mt-6 rounded-xl px-6 py-4 delay-300"
+            className="mt-6 rounded-xl px-6 py-4"
             style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
           >
             <p className="font-body text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>
@@ -271,18 +276,19 @@ export default function Testimonials() {
               ))}
             </ul>
           </div>
+          </AnimatedSection>
         </div>
 
         {/* ── 2. Depoimentos como suporte qualitativo ── */}
         <div className="flex items-end justify-between mb-10">
-          <div>
-            <p className="reveal font-body text-sm font-bold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>
+          <AnimatedSection direction="left">
+            <p className="font-body text-sm font-bold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>
               O que dizem os profissionais
             </p>
-            <p className="reveal font-display font-extrabold text-white delay-100" style={{ fontSize: "clamp(1.3rem, 2.5vw, 1.75rem)" }}>
+            <p className="font-display font-extrabold text-white" style={{ fontSize: "clamp(1.3rem, 2.5vw, 1.75rem)" }}>
               Os números em palavras.
             </p>
-          </div>
+          </AnimatedSection>
           <div className="hidden md:flex gap-2">
             <button
               onClick={() => scroll("left")}

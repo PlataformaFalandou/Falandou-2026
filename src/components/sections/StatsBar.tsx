@@ -1,6 +1,7 @@
 "use client";
 
 import { useCounter } from "@/hooks/useCounter";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 function StatItem({
   value,
@@ -16,35 +17,28 @@ function StatItem({
   const { count, ref } = useCounter(value, 2000);
 
   return (
-    <div
-      ref={ref}
-      className="reveal text-center px-6 py-6"
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      <div className="font-display font-extrabold text-4xl md:text-5xl text-white">
+    <AnimatedSection delay={delay} direction="up" className="text-center px-6 py-6">
+      <div ref={ref} className="font-display font-extrabold text-4xl md:text-5xl text-white">
         {count}
         {suffix}
       </div>
       <div className="text-white/60 text-sm mt-2 max-w-[140px] mx-auto leading-snug">
         {label}
       </div>
-    </div>
+    </AnimatedSection>
   );
 }
 
 function StatStatic({ display, label, delay = 0 }: { display: string; label: string; delay?: number }) {
   return (
-    <div
-      className="reveal text-center px-6 py-6"
-      style={{ transitionDelay: `${delay}ms` }}
-    >
+    <AnimatedSection delay={delay} direction="up" className="text-center px-6 py-6">
       <div className="font-display font-extrabold text-4xl md:text-5xl text-white">
         {display}
       </div>
       <div className="text-white/60 text-sm mt-2 max-w-[140px] mx-auto leading-snug">
         {label}
       </div>
-    </div>
+    </AnimatedSection>
   );
 }
 
