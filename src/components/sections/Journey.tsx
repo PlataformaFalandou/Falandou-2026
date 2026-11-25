@@ -6,6 +6,7 @@ import { getWhatsAppUrlForContext } from "@/lib/whatsapp";
 import { trackCTAClick } from "@/lib/analytics";
 import CEFRTooltip from "@/components/ui/CEFRTooltip";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 /**
  * Journey — ponto 40: mostrar o processo o suficiente para responder
@@ -75,22 +76,22 @@ export default function Journey() {
     <section id="como-funciona" className="py-12 md:py-20 bg-bg">
       <div className="max-w-[1200px] mx-auto px-5 md:px-8">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14 md:mb-16">
-          <p className="eyebrow reveal font-body text-sm font-bold uppercase tracking-widest mb-3">
+        <AnimatedSection className="text-center max-w-2xl mx-auto mb-14 md:mb-16">
+          <p className="eyebrow font-body text-sm font-bold uppercase tracking-widest mb-3">
             Como funciona
           </p>
           <h2
-            className="reveal font-display font-extrabold leading-tight delay-100"
+            className="font-display font-extrabold leading-tight"
             style={{ fontSize: "var(--text-h2)", color: "var(--color-text)" }}
           >
             Sua jornada de{" "}
             <span style={{ color: "#FF6820" }}>90 dias</span>{" "}
             para o inglês profissional.
           </h2>
-          <p className="reveal font-body text-lg mt-4 delay-200" style={{ color: "rgba(245,246,241,0.65)" }}>
+          <p className="font-body text-lg mt-4" style={{ color: "rgba(245,246,241,0.65)" }}>
             Cinco etapas, do diagnóstico ao resultado medido.
           </p>
-        </div>
+        </AnimatedSection>
 
         {/* Timeline */}
         <ol className="relative grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-6">
@@ -106,15 +107,20 @@ export default function Journey() {
             />
           </div>
           {steps.map((step, i) => (
-            <li
+            <AnimatedSection
               key={step.number}
+              delay={i * 80}
+              direction="up"
+              className="relative"
+            >
+            <li
               ref={(el) => {
                 itemRefs.current[i] = el;
               }}
               data-step={i}
               aria-current={i === active ? "step" : undefined}
-              className="reveal relative flex md:flex-col items-start md:items-center gap-4 md:gap-0 md:text-center rounded-2xl p-5 md:p-6"
-              style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)", transitionDelay: `${Math.min(i * 40, 120)}ms` }}
+              className="relative flex md:flex-col items-start md:items-center gap-4 md:gap-0 md:text-center rounded-2xl p-5 md:p-6 h-full"
+              style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
             >
               <span
                 className="relative z-10 flex-shrink-0 w-11 h-11 md:w-12 md:h-12 md:-mt-1 md:mb-5 rounded-full flex items-center justify-center font-display font-black text-sm"
@@ -159,11 +165,12 @@ export default function Journey() {
                 </div>
               </div>
             </li>
+            </AnimatedSection>
           ))}
         </ol>
 
         {/* CTA — o detalhe do plano sai da conversa, não da página */}
-        <div className="mt-14 md:mt-16 text-center">
+        <AnimatedSection delay={200} className="mt-14 md:mt-16 text-center">
           <p className="font-body text-base mb-6" style={{ color: "rgba(245,246,241,0.65)" }}>
             O detalhe do seu plano sai do diagnóstico. Quer ver como fica o seu?
           </p>
@@ -185,7 +192,7 @@ export default function Journey() {
               Ver o método completo →
             </Link>
           </div>
-        </div>
+        </AnimatedSection>
       </div>
     </section>
   );
