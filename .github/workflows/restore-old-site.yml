@@ -1,0 +1,40 @@
+name: Restore Old Site (falandou.com mirror)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  mirror-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download falandou.com as static site
+        run: |
+          mkdir -p ./site-mirror
+          wget \
+            --mirror \
+            --convert-links \
+            --adjust-extension \
+            --page-requisites \
+            --no-parent \
+            --directory-prefix=./site-mirror \
+            --no-host-directories \
+            --timeout=30 \
+            --tries=3 \
+            -e robots=off \
+            https://falandou.com/ || true
+          echo "=== Files downloaded ==="
+          find ./site-mirror -type f | head -50
+
+      - name: Deploy via FTP to Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./site-mirror/
+          server-dir: ${{ secrets.FTP_REMOTE_DIR }}
+          dangerous-clean-slate: true
+          exclude: |
+            **/.git*
+            **/.git*/**
